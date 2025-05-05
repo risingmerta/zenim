@@ -1,0 +1,16 @@
+.category-layout {
+  width: 100%;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  display: grid;
+  grid-template-columns: minmax(0, 75%) minmax(0, 25%);
+  column-gap: 1.5rem;
+}
+
+@media (max-width: 1200px) {
+  .category-layout {
+    display: flex;
+    flex-direction: column;
+    row-gap: 2.5rem; /* 10 = 2.5rem */
+  }
+}

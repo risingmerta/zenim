@@ -1,0 +1,30 @@
+.page-button {
+  width: 40px;
+  font-size: 15px;
+  margin-left: 0.25rem; /* mx-1 */
+  margin-right: 0.25rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5rem;
+  border-radius: 9999px; /* rounded-full */
+  font-weight: bold;
+  background-color: #2b2a3c;
+  color: #999;
+  transition: color 0.3s ease;
+  cursor: pointer;
+}
+
+.page-button:hover {
+  color: #00f2fe;
+}
+
+.page-button.active {
+  background-color: #00f2fe;
+  color: #2b2a3c;
+  cursor: default;
+}
+
+.page-button.start {
+  background-color: #353537;
+}

@@ -1,0 +1,38 @@
+/* styles.css */
+.categLay {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 75%) minmax(0, 25%);
+  height: fit-content;
+  width: 100%;
+  overflow: hidden;
+  margin-top: 64px;
+}
+.categWrapper {
+  width: 100%;
+  display: grid;
+  grid-template-columns: minmax(0, 75%) minmax(0, 25%);
+  column-gap: 1.5rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  flex-direction: column;
+}
+
+@media (max-width: 1200px) {
+  .categWrapper {
+    display: flex;
+  }
+}
+
+@media (max-width: 1200px) {
+  .categLay {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 768px) {
+  .categLay {
+    margin-top: 50px;
+  }
+}

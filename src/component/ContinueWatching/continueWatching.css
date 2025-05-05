@@ -1,0 +1,86 @@
+.carg {
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+  column-gap: 1rem;
+  row-gap: 3rem;
+}
+.contiAll {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.crd-col {
+  width: calc(75% - 1rem);
+}
+.midd {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+.contic {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+  padding: 20px 0;
+  gap: 10px;
+  font-weight: 600;
+}
+.conticFa {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  width: calc(75% - 1rem);
+}
+
+.paginA {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 50px;
+  margin-bottom: 20px;
+}
+.pagin-tile {
+  height: 50px;
+  width: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--grey-dark);
+  color: rgb(160, 163, 159);
+  border-radius: 50%;
+  font-weight: 600;
+}
+.pagin-tile:hover {
+  color: var(--theme);
+  cursor: pointer;
+}
+.pagin-colo {
+  background: var(--theme);
+  color: black;
+}
+.pagin-colo:hover {
+  background: var(--theme);
+  color: black;
+}
+
+@media screen and (max-width: 1150px) {
+  .crd-col {
+    width: 100%;
+  }
+  .conticFa {
+    width: 100%;
+    padding-left: 10px;
+    gap: 0;
+  }
+}
+
+@media screen and (max-width: 476px) {
+  .contic {
+    font-size: 20px;
+  }
+}

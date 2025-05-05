@@ -1,0 +1,112 @@
+"use client";
+import Spotlight from "@/component/spotlight/Spotlight.jsx";
+import Trending from "@/component/trending/Trending.jsx";
+import Cart from "@/component/cart/Cart.jsx";
+import CategoryCard from "@/component/categorycard/CategoryCard.jsx";
+import Genre from "@/component/genres/Genre.jsx";
+import Topten from "@/component/topten/Topten.jsx";
+import Loader from "@/component/Loader/Loader.jsx";
+import Error from "@/component/error/Error.jsx";
+import Schedule from "@/component/schedule/Schedule";
+import ContinueWatching from "@/component/continue/ContinueWatching";
+import { useEffect, useState } from "react";
+import "./home.css"; // Import the CSS file here
+import Navbar from "../Navbar/Navbar";
+import { SessionProvider } from "next-auth/react";
+import Footer from "../Footer/Footer";
+
+export default function Home() {
+  const website_name = "Animoon";
+  const [homeInfo, setHomeInfo] = useState(null);
+  const [homeInfoLoading, setHomeInfoLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchHomeInfo = async () => {
+      try {
+        const res = await fetch("/api/home");
+        const data = await res.json();
+        setHomeInfo(data);
+      } catch (err) {
+        console.error("Error fetching home info:", err);
+        setError(err);
+      } finally {
+        setHomeInfoLoading(false);
+      }
+    };
+    fetchHomeInfo();
+  }, []);
+
+  if (homeInfoLoading) return <Loader type="home" />;
+  if (error) return <Error />;
+  if (!homeInfo) return <Error error="404" />;
+
+  return (
+    <>
+      <SessionProvider>
+        <Navbar />
+        <div className="home-container">
+          <Spotlight spotlights={homeInfo.spotlights} />
+          <ContinueWatching />
+          <Trending trending={homeInfo.trending} />
+
+          <div className="mt-10 flex gap-6 max-[1200px]:px-4 max-[1200px]:grid max-[1200px]:grid-cols-2 max-[1200px]:mt-12 max-[1200px]:gap-y-10 max-[680px]:grid-cols-1">
+            <Cart
+              label="Top Airing"
+              data={homeInfo.top_airing}
+              path="top-airing"
+            />
+            <Cart
+              label="Most Popular"
+              data={homeInfo.most_popular}
+              path="most-popular"
+            />
+            <Cart
+              label="Most Favorite"
+              data={homeInfo.most_favorite}
+              path="most-favorite"
+            />
+            <Cart
+              label="Latest Completed"
+              data={homeInfo.latest_completed}
+              path="completed"
+            />
+          </div>
+
+          <div className="main-content-grid">
+            <div className="left-content">
+              <CategoryCard
+                label="Latest Episode"
+                data={homeInfo.latest_episode}
+                className={"mt-[60px]"}
+                path="recently-updated"
+                limit={12}
+              />
+              <CategoryCard
+                label={`New On ${website_name}`}
+                data={homeInfo.recently_added}
+                className={"mt-[60px]"}
+                path="recently-added"
+                limit={12}
+              />
+              <Schedule />
+              <CategoryCard
+                label="Top Upcoming"
+                data={homeInfo.top_upcoming}
+                className={"mt-[30px]"}
+                path="top-upcoming"
+                limit={12}
+              />
+            </div>
+
+            <div className="right-sidebar">
+              <Genre data={homeInfo.genres} />
+              <Topten data={homeInfo.topten} className={"mt-12"} />
+            </div>
+          </div>
+        </div>
+        <Footer />
+      </SessionProvider>
+    </>
+  );
+}

@@ -1,0 +1,15 @@
+.page-layout {
+  width: 100%;
+  display: grid;
+  grid-template-columns: minmax(0, 75%) minmax(0, 25%);
+  column-gap: 1.5rem;
+  flex-direction: column;
+}
+
+@media (max-width: 1200px) {
+  .page-layout {
+    display: flex;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}

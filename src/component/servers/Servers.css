@@ -1,0 +1,31 @@
+.servers {
+  border-bottom: 1px dashed #35373d;
+}
+.servers:only-child {
+  border-bottom: none;
+}
+.servers:last-child {
+  border-bottom: none;
+}
+.responsiveCard {
+  width: 100%;
+  height: 100%;
+  border-radius: 0.5rem; /* rounded-lg */
+  display: grid;
+  grid-template-columns: minmax(0, 30%) minmax(0, 70%);
+  overflow: hidden;
+}
+
+@media (max-width: 800px) {
+  .responsiveCard {
+    grid-template-columns: minmax(0, 40%) minmax(0, 60%);
+  }
+}
+
+@media (max-width: 600px) {
+  .responsiveCard {
+    display: flex;
+    flex-direction: column;
+    border-radius: 0; /* rounded-none */
+  }
+}
