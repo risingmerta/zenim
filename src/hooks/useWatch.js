@@ -185,6 +185,7 @@ export const useWatch = (animeId, initialEpisodeId) => {
             server.type.toLowerCase()
           );
           setStreamInfo(data);
+          console.log(data)
           setStreamUrl(data?.streamingLink?.link?.file || null);
           setIntro(data?.streamingLink?.intro || null);
           setOutro(data?.streamingLink?.outro || null);
