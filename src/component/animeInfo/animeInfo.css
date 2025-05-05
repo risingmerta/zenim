@@ -25,7 +25,7 @@
   align-items: flex-start;
   z-index: 10;
   padding: 70px 56px; /* px-14 = 56px, py-[70px] */
-  background-color: rgba(37, 36, 52, 0.5); /* #252434 with bg-opacity-70 */
+  /* background-color: rgba(37, 36, 52, 0.5); #252434 with bg-opacity-70 */
   column-gap: 32px; /* gap-x-8 */
 
   /* Responsive styles */
