@@ -11,7 +11,7 @@ export default async function getStreamInfo(animeId, episodeId, serverName, type
     const default1 = result1?.streamingLink?.tracks?.find(t => t.default)?.file;
 
     // Short delay to reduce cache overlap
-    await new Promise(resolve => setTimeout(resolve, 300));
+    // await new Promise(resolve => setTimeout(resolve, 300));
 
     // Second fetch
     const res2 = await axios.get(fullUrl);
