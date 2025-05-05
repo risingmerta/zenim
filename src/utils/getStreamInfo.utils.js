@@ -5,14 +5,8 @@ export default async function getStreamInfo(animeId, episodeId, serverName, type
   const fullUrl = `${api_url}/stream?id=${animeId}&ep=${episodeId}&server=${serverName}&type=${type}`;
 
   try {
-    const headers = {
-      'Cache-Control': 'no-cache',
-      'Pragma': 'no-cache',
-      'Expires': '0'
-    };
-
     // First fetch
-    const res1 = await axios.get(fullUrl, { headers });
+    const res1 = await axios.get(fullUrl);
     const result1 = res1.data?.results;
     const default1 = result1?.streamingLink?.tracks?.find(t => t.default)?.file;
 
@@ -20,7 +14,7 @@ export default async function getStreamInfo(animeId, episodeId, serverName, type
     await new Promise(resolve => setTimeout(resolve, 300));
 
     // Second fetch
-    const res2 = await axios.get(fullUrl, { headers });
+    const res2 = await axios.get(fullUrl);
     const result2 = res2.data?.results;
     const default2 = result2?.streamingLink?.tracks?.find(t => t.default)?.file;
 
