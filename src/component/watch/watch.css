@@ -27,7 +27,7 @@
   width: 100% !important;
   height: 100% !important;
   object-fit: cover !important;
-  filter: grayscale(100%) blur(5px) !important;
+  filter: grayscale(100%) !important;
   z-index: -900 !important;
 }
 
