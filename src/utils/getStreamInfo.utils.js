@@ -2,7 +2,7 @@ import axios from "axios";
 
 export default async function getStreamInfo(animeId, episodeId, serverName, type) {
   const api_url = "https://vimal.animoon.me/api";
-  const fullUrl = `${api_url}/stream?id=${animeId}&ep=${episodeId}&server=${serverName}&type=${type}`;
+  const baseUrl = `${api_url}/stream?id=${animeId}&ep=${episodeId}&server=${serverName}&type=${type}`;
 
   try {
     const headers = {
@@ -11,19 +11,21 @@ export default async function getStreamInfo(animeId, episodeId, serverName, type
       'Expires': '0'
     };
 
-    // First fetch
-    const res1 = await axios.get(fullUrl, { headers });
+    // First fetch with a timestamp to avoid caching
+    const res1 = await axios.get(`${baseUrl}&t=${Date.now()}`, { headers });
     const tracks1 = res1.data?.results?.streamingLink?.tracks || [];
 
-    // Delay to prevent caching overlap
+    // Short delay to separate requests
     await new Promise(r => setTimeout(r, 300));
 
-    // Second fetch
-    const res2 = await axios.get(fullUrl, { headers });
+    // Second fetch with a new timestamp
+    const res2 = await axios.get(`${baseUrl}&t=${Date.now()}`, { headers });
     const tracks2 = res2.data?.results?.streamingLink?.tracks || [];
 
     if (JSON.stringify(tracks1) !== JSON.stringify(tracks2)) {
-      alert("Track list changed between requests!");
+      console.log("⚠️ Track list changed between requests!");
+      console.log("First tracks:", tracks1);
+      console.log("Second tracks:", tracks2);
       return null;
     }
 
