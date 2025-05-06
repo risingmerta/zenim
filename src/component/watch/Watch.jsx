@@ -207,6 +207,7 @@ export default function Watch(props) {
 
     if (typeof window !== "undefined" && adContainer) {
       adContainer.style.display = "none"; // Hide by default
+      adContainer.style.height = "0"; // Set height to 0 to remove space
 
       adContainer.innerHTML = `
         <iframe
@@ -221,14 +222,15 @@ export default function Watch(props) {
 
       if (iframe) {
         iframe.addEventListener("load", () => {
-          // Wait a bit and then show only if it loaded properly
           setTimeout(() => {
             adContainer.style.display = "block"; // Show when loaded
-          }, 100); // delay is optional
+            adContainer.style.height = "100px"; // Set height back to 100px
+          }, 100);
         });
 
         iframe.addEventListener("error", () => {
-          adContainer.style.display = "none"; // Hide if it fails
+          adContainer.style.display = "none"; // Hide the container if it fails
+          adContainer.style.height = "0"; // Set height to 0 to remove space
         });
       }
     }
