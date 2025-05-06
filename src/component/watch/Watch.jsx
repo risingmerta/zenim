@@ -249,8 +249,8 @@ export default function Watch(props) {
               className="backgroundImage"
             />
             <div className="backgroundOverlay"></div>
+            <div id="ad-container"></div>
             <div className="layoutWrapper">
-              <div id="ad-container"></div>
               {animeInfo && (
                 <ul className="flex absolute left-4 top-[-40px] gap-x-2 items-center w-fit max-[1200px]:hidden">
                   {[
