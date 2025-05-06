@@ -1,3 +1,4 @@
+import Advertize from "@/component/Advertize/Advertize";
 import AnimeInfo from "@/component/animeInfo/AnimeInfo";
 import Category from "@/component/category/Category";
 import React from "react";
@@ -82,6 +83,7 @@ export default async function page({ params, searchParams }) {
       ) : (
         <AnimeInfo idd={id} />
       )}
+      <Advertize />
     </div>
   );
 }

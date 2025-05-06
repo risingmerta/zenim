@@ -1,8 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import "./advertize.css";
-
-const Advertize = (props) => {
+export default function Advertize(props) {
   const [time, setTime] = useState(new Date());
   const [showAd, setShowAd] = useState(false);
 
@@ -61,7 +60,8 @@ const Advertize = (props) => {
     ls.setItem("lastHour", time.getHours().toString());
     ls.setItem("truth", "false");
     window.open(
-      props?.direct || "https://www.highrevenuenetwork.com/hnq4sfr7se?key=fa60dc3aeeb0a08aa0476e80986ad233"
+      props?.direct ||
+        "https://www.highrevenuenetwork.com/hnq4sfr7se?key=fa60dc3aeeb0a08aa0476e80986ad233"
     );
   }
 
@@ -75,6 +75,4 @@ const Advertize = (props) => {
       }}
     ></div>
   );
-};
-
-export default Advertize;
+}

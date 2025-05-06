@@ -1,3 +1,4 @@
+import Advertize from '@/component/Advertize/Advertize'
 import Producer from '@/component/producer/Producer'
 import React from 'react'
 
@@ -9,6 +10,7 @@ export default async function page({ params , searchParams }) {
   return (
     <div>
       <Producer id={id} page={page} />
+      <Advertize />
     </div>
   )
 }

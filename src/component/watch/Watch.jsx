@@ -21,7 +21,7 @@ import SidecardLoader from "@/component/Loader/SidecardLoader";
 import Voiceactor from "@/component/voiceactor/Voiceactor";
 import Watchcontrols from "@/component/watchcontrols/Watchcontrols";
 import useWatchControl from "@/hooks/useWatchControl";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import Link from "next/link";
 import Navbar from "../Navbar/Navbar";
 import Footer from "../Footer/Footer";
@@ -199,6 +199,40 @@ export default function Watch(props) {
       },
     ]);
   }, [animeId, animeInfo]);
+
+  const pathname = usePathname();
+
+  useEffect(() => {
+    const adContainer = document.getElementById("ad-container");
+
+    if (typeof window !== "undefined" && adContainer) {
+      adContainer.style.display = "none"; // Hide by default
+
+      adContainer.innerHTML = `
+        <iframe
+          id="ad-iframe"
+          src="/ad"
+          style="width: fit-content; height: 100px; border: none; overflow: hidden;"
+          scrolling="no"
+        ></iframe>
+      `;
+
+      const iframe = adContainer.querySelector("#ad-iframe");
+
+      if (iframe) {
+        iframe.addEventListener("load", () => {
+          // Wait a bit and then show only if it loaded properly
+          setTimeout(() => {
+            adContainer.style.display = "block"; // Show when loaded
+          }, 100); // delay is optional
+        });
+
+        iframe.addEventListener("error", () => {
+          adContainer.style.display = "none"; // Hide if it fails
+        });
+      }
+    }
+  }, [pathname]);
   return (
     <>
       <SessionProvider>
@@ -216,6 +250,7 @@ export default function Watch(props) {
             />
             <div className="backgroundOverlay"></div>
             <div className="layoutWrapper">
+              <div id="ad-container"></div>
               {animeInfo && (
                 <ul className="flex absolute left-4 top-[-40px] gap-x-2 items-center w-fit max-[1200px]:hidden">
                   {[
