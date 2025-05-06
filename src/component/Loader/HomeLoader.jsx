@@ -1,3 +1,4 @@
+"use client";
 import { SessionProvider } from "next-auth/react";
 import CartLoader from "./CartLoader";
 import CategoryCardLoader from "./CategoryCardLoader";

@@ -1,3 +1,4 @@
+"use client";
 import { Skeleton } from "@/component/ui/Skeleton/Skeleton";
 import CategoryCardLoader from "./CategoryCardLoader";
 import SidecardLoader from "./SidecardLoader";

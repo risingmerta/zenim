@@ -1,3 +1,4 @@
+"use client";
 import { SessionProvider } from "next-auth/react";
 import { Skeleton } from "../ui/Skeleton/Skeleton";
 import CategoryCardLoader from "./CategoryCardLoader";
