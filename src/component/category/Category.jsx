@@ -12,6 +12,7 @@ import { useRouter } from "next/navigation";
 import "./category.css";
 import Navbar from "../Navbar/Navbar";
 import Footer from "../Footer/Footer";
+import { SessionProvider } from "next-auth/react";
 
 export default function Category({ path, label, pagel }) {
   const [searchParams, setSearchParams] = useState(pagel);
