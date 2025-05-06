@@ -40,7 +40,7 @@ export default function Home() {
   if (homeInfoLoading) return <Loader type="home" />;
   if (error) return <Error />;
   if (!homeInfo) return <Error error="404" />;
-
+ 
   return (
     <>
       <SessionProvider>
