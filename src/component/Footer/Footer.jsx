@@ -16,7 +16,7 @@ export default function Footer(props) {
     const links = alphabets.map((el) => {
       return (
         <Link
-          href={`/az-lst/${el}${props.refer ? `?refer=${props.refer}` : ''}`}
+          href={`/az-list/${el}${props.refer ? `?refer=${props.refer}` : ''}`}
           key={el}
           className="alphabet-tile"
           onClick={handleNavigation}
