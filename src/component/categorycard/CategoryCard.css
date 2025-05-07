@@ -25,3 +25,41 @@
   background: rgba(255, 255, 255, 0.3);
   display: inline-block;
 }
+.custom-badge {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4px; /* space-x-1 = 0.25rem = 4px */
+  background-color: #B0E3AF;
+  border-radius: 2px;
+  padding: 2px 4px; /* py-[2px] = 2px top/bottom, px-[4px] = 4px left/right */
+  color: black;
+}
+.custom-badge-blue {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4px; /* space-x-1 = 0.25rem = 4px */
+  background-color: #B9E7FF;
+  border-radius: 2px;
+  padding: 2px 8px; /* py-[2px] = 2px top/bottom, px-[8px] = 8px left/right */
+  color: black;
+}
+.custom-floating-box {
+  position: absolute;
+  left: 0.5rem; /* left-2 = 8px */
+  bottom: 1rem; /* bottom-4 = 16px */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  gap: 4px; /* space-x-1 = 4px */
+  z-index: 100;
+}
+
+@media (max-width: 270px) {
+  .custom-floating-box {
+    flex-direction: column;
+    row-gap: 3px; /* gap-y-[3px] = 3px vertical spacing */
+  }
+}
