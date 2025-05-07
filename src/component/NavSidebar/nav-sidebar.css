@@ -8,7 +8,7 @@
   bottom: 0;
   background: rgba(36, 36, 40, 0.8);
   backdrop-filter: blur(10px);
-  z-index: -1;
+  z-index: 1000000;
   transition: all 0.1s ease-in-out;
 }
 .close-menu {
@@ -20,7 +20,7 @@
   left: -280px;
   width: 280px;
   height: 100vh;
-  z-index: 100;
+  z-index: 1000200;
   overflow-y: auto;
   flex-direction: column;
   row-gap: 20px;
