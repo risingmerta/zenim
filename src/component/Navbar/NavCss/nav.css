@@ -5,7 +5,7 @@
   position: fixed !important;
   height: 65px;
   width: 100%;
-  z-index: 1000000;
+  z-index: 80;
   top: 0;
   max-width: 1920px;
   margin: auto;
