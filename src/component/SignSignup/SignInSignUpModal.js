@@ -164,7 +164,7 @@ const SignInSignUpModal = (props) => {
                 />
                 <button
                   type="button"
-                  className="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-500"
+                  className="icon-position"
                   onClick={() => setShowPassword(!showPassword)}
                 >
                   {showPassword ? (

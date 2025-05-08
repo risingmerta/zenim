@@ -127,6 +127,14 @@
   gap: 5px;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
+.icon-position {
+  position: absolute;
+  right: 0.5rem;        /* right-2 */
+  top: 50%;             /* top-1/2 */
+  transform: translateY(-50%); /* -translate-y-1/2 */
+  color: #6B7280;       /* text-gray-500 */
+}
+
 @media (max-width: 400px) {
   .modal-content {
     min-width: 100%; /* Make the modal content take full width */
