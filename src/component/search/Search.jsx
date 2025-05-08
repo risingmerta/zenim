@@ -355,7 +355,24 @@ export default function Search(props) {
     };
     fetchSearch();
     window.scrollTo({ top: 0, behavior: "smooth" });
-  }, [keyword, page]);
+  }, [
+    props.type,
+    props.status,
+    props.rated,
+    props.score,
+    props.season,
+    props.language,
+    props.sy,
+    props.sm,
+    props.sd,
+    props.ey,
+    props.em,
+    props.ed,
+    props.sort,
+    props.genres,
+    props.page,
+    props.keyword,
+  ]);
 
   const handlePageChange = (newPage) => {
     setSearchParams({ page: newPage });
