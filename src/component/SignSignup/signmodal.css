@@ -128,11 +128,13 @@
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 .icon-position {
-  position: absolute;
-  right: 0.5rem;        /* right-2 */
-  top: 50%;             /* top-1/2 */
-  transform: translateY(-50%); /* -translate-y-1/2 */
+   /* position: absolute;
+  right: 0.5rem;        
+  top: 50%;             
+  transform: translateY(-50%);  */
   color: #6B7280;       /* text-gray-500 */
+  font-size: 1.25rem;  
+  padding: 0.5rem;
 }
 
 @media (max-width: 400px) {
