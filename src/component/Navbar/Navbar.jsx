@@ -13,7 +13,7 @@ import { useSession } from "next-auth/react";
 import Profilo from "../Profilo/Profilo";
 import SignInSignUpModal from "../SignSignup/SignInSignUpModal";
 
-export default function Navbar({ lang, sign, refer }) {
+export default function Navbar({ lang, refer }) {
   const [sidebarIsOpen, setSidebarIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [showFloat, setShowFloat] = useState(false);
