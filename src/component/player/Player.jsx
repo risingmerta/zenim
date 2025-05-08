@@ -28,7 +28,6 @@ import artplayerPluginHlsControl from "artplayer-plugin-hls-control";
 import artplayerPluginUploadSubtitle from "./artplayerPluginUploadSubtitle";
 
 const website_name = "Animoon";
-const logo = "Animoon";
 
 Artplayer.LOG_VERSION = false;
 Artplayer.CONTEXTMENU = false;
