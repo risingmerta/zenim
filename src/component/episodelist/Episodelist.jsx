@@ -13,7 +13,6 @@ import "./Episodelist.css";
 function Episodelist({
   episodes,
   onEpisodeClick,
-  WatchedEpisodes,
   currentEpisode,
   totalEpisodes,
 }) {
@@ -233,11 +232,7 @@ function Episodelist({
                          isActive
                            ? "bg-[#00f2fe] text-black"
                            : "bg-[#35373D] text-gray-400"
-                       } ${isSearched ? "glow-animation" : ""} ${
-                        WatchedEpisodes?.includes(item?.id)
-                          ? "text-[#21a6ad]"
-                          : ""
-                      }`}
+                       } ${isSearched ? "glow-animation" : ""} `}
                       onClick={() => {
                         if (episodeNumber) {
                           onEpisodeClick(episodeNumber);
@@ -275,11 +270,7 @@ function Episodelist({
                         : "bg-none"
                     } group md:hover:bg-[#2B2A42] ${
                       isActive ? "text-[#00f2fe] bg-[#2B2A42]" : ""
-                    } ${isSearched ? "glow-animation" : ""} ${
-                      WatchedEpisodes?.includes(item?.id)
-                        ? "text-[#21a6ad]"
-                        : ""
-                    }`}
+                    } ${isSearched ? "glow-animation" : ""}`}
                     onClick={() => {
                       if (episodeNumber) {
                         onEpisodeClick(episodeNumber);
