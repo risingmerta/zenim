@@ -235,6 +235,38 @@ export default function Watch(props) {
       }
     }
   }, [pathname]);
+
+  let WatchedEpisodes;
+
+  if (typeof window !== "undefined") {
+    const [animeIdPart, epPart] = episodeId.split("?ep=");
+
+    const animeId = animeIdPart; // "bye-bye-earth-season-2-19564"
+    const epId = epPart; // "136147"
+
+    if (animeId && epId) {
+      const key = `watched-${animeId}`; // e.g. "watched-bye-bye-earth-season-2-19564"
+      const existing = localStorage.getItem(key);
+
+      let episodes = [];
+
+      if (existing) {
+        try {
+          episodes = JSON.parse(existing);
+          WatchedEpisodes = episodes;
+        } catch (err) {
+          console.error("Failed to parse existing episodes", err);
+        }
+      }
+
+      // Add new epId only if not already present
+      if (!episodes.includes(episodeId)) {
+        episodes.push(episodeId);
+        localStorage.setItem(key, JSON.stringify(episodes));
+      }
+    }
+  }
+
   return (
     <>
       <SessionProvider>
@@ -285,6 +317,7 @@ export default function Watch(props) {
                     <Episodelist
                       episodes={episodes}
                       currentEpisode={episodeId}
+                      WatchedEpisodes={WatchedEpisodes}
                       onEpisodeClick={(id) => setEpisodeId(id)}
                       totalEpisodes={totalEpisodes}
                     />
