@@ -210,6 +210,14 @@ export default function Player({
     }
   };
 
+  let timeStamp = 0;
+
+  if (typeof window !== "undefined") {
+    if (localStorage.getItem(episodeId + "-time")) {
+      timeStamp = parseInt(localStorage.getItem(episodeId + "-time"));
+    }
+  }
+
   useEffect(() => {
     if (!streamUrl || !artRef.current) return;
     const iframeUrl = streamInfo?.streamingLink?.iframe;
@@ -223,9 +231,9 @@ export default function Player({
     const art = new Artplayer({
       url:
         m3u8proxy[Math.floor(Math.random() * m3u8proxy?.length)] +
-        encodeURIComponent(streamUrl) + 
-         "&headers=" +
-         encodeURIComponent(JSON.stringify(headers)),
+        encodeURIComponent(streamUrl) +
+        "&headers=" +
+        encodeURIComponent(JSON.stringify(headers)),
       container: artRef.current,
       type: "m3u8",
       autoplay: autoPlay,
@@ -395,7 +403,15 @@ export default function Player({
           (art.width > 500 ? art.width * 0.02 : art.width * 0.03) + "px",
       });
     });
+    art.on("video:timeupdate", () => {
+      if (art.currentTime > 0) {
+        localStorage.setItem(episodeId + "-time", art.currentTime.toString());
+      }
+    });
     art.on("ready", () => {
+      if (timeStamp > 0) {
+        art.currentTime = timeStamp;
+      }
       setTimeout(() => {
         art.layers[website_name].style.opacity = 0;
       }, 2000);
