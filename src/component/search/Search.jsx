@@ -530,7 +530,7 @@ export default function Search(props) {
               className={"mt-0"}
             />
             <PageSlider
-              page={page}
+              page={props.page}
               totalPages={totalPages}
               handlePageChange={handlePageChange}
             />
