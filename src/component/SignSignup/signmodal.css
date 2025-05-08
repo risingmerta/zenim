@@ -96,7 +96,8 @@
 }
 .midN {
   width: 90%;
-  color: white;
+  color: black;
+  background: white;
 }
 .btio {
   font-size: 15px;
