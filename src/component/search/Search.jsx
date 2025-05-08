@@ -10,6 +10,9 @@ import getSearch from "@/utils/getSearch.utils";
 import { useEffect, useState } from "react";
 import "./search.css";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { SessionProvider } from "next-auth/react";
+import Navbar from "../Navbar/Navbar";
+import Footer from "../Footer/Footer";
 
 export default function Search(props) {
   const [searchParams, setSearchParams] = useState(props.page);
@@ -387,183 +390,190 @@ export default function Search(props) {
     router.push(`?${params.toString()}`);
   };
   return (
-    <div className="main-layout">
-      <div>
-        <div className="filter-container">
-          <h2>Filter</h2>
+    <>
+      <SessionProvider>
+        <Navbar />
+        <div className="main-layout">
+          <div>
+            <div className="filter-container">
+              <h2>Filter</h2>
 
-          <div className="filter-row">
-            {filtersList.map((filter) => (
-              <div key={filter.label} className="filter-group">
-                <label>{filter.label}</label>
-                <select
-                  name={filter.name}
-                  value={filters[filter.name]} // Default to index 3 if no value is set
-                  onChange={handleFilterChange}
-                  className="filter-dropdown"
-                >
-                  {filter.values.map((value, idx) => (
-                    <option key={value} value={idx}>
-                      {value}
-                    </option>
-                  ))}
-                </select>
+              <div className="filter-row">
+                {filtersList.map((filter) => (
+                  <div key={filter.label} className="filter-group">
+                    <label>{filter.label}</label>
+                    <select
+                      name={filter.name}
+                      value={filters[filter.name]} // Default to index 3 if no value is set
+                      onChange={handleFilterChange}
+                      className="filter-dropdown"
+                    >
+                      {filter.values.map((value, idx) => (
+                        <option key={value} value={idx}>
+                          {value}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                ))}
               </div>
-            ))}
-          </div>
 
-          {/* Date Filters */}
-          <div className="filter-row">
-            {["startDate", "endDate"].map((dateType) => (
-              <div key={dateType} className="filter-group">
-                <label>
-                  {dateType === "startDate" ? "Start Date" : "End Date"}
-                </label>
-                <div className="date-inputs">
+              {/* Date Filters */}
+              <div className="filter-row">
+                {["startDate", "endDate"].map((dateType) => (
+                  <div key={dateType} className="filter-group">
+                    <label>
+                      {dateType === "startDate" ? "Start Date" : "End Date"}
+                    </label>
+                    <div className="date-inputs">
+                      <select
+                        className="date-dropdown"
+                        onChange={
+                          dateType === "startDate"
+                            ? handleStartYearChange
+                            : handleEndYearChange
+                        }
+                      >
+                        <option value="">Year</option>
+                        {[...Array(50)].map((_, i) => (
+                          <option key={i} value={1970 + i}>
+                            {1970 + i}
+                          </option>
+                        ))}
+                      </select>
+                      <select
+                        className="date-dropdown"
+                        onChange={
+                          dateType === "startDate"
+                            ? handleStartMonthChange
+                            : handleEndMonthChange
+                        }
+                      >
+                        <option value="">Month</option>
+                        {Array.from({ length: 12 }, (_, i) => (
+                          <option key={i} value={i + 1}>
+                            {i + 1}
+                          </option>
+                        ))}
+                      </select>
+                      <select
+                        className="date-dropdown"
+                        onChange={
+                          dateType === "startDate"
+                            ? handleStartDayChange
+                            : handleEndDayChange
+                        }
+                      >
+                        <option value="">Day</option>
+                        {Array.from({ length: 31 }, (_, i) => (
+                          <option key={i} value={i + 1}>
+                            {i + 1}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              {/* Sort Option */}
+              <div className="filter-row">
+                <div className="filter-group">
+                  <label>Sort</label>
                   <select
-                    className="date-dropdown"
-                    onChange={
-                      dateType === "startDate"
-                        ? handleStartYearChange
-                        : handleEndYearChange
-                    }
+                    name="sort"
+                    value={filters.sort}
+                    onChange={handleFilterChange}
+                    className="filter-dropdown"
                   >
-                    <option value="">Year</option>
-                    {[...Array(50)].map((_, i) => (
-                      <option key={i} value={1970 + i}>
-                        {1970 + i}
-                      </option>
-                    ))}
-                  </select>
-                  <select
-                    className="date-dropdown"
-                    onChange={
-                      dateType === "startDate"
-                        ? handleStartMonthChange
-                        : handleEndMonthChange
-                    }
-                  >
-                    <option value="">Month</option>
-                    {Array.from({ length: 12 }, (_, i) => (
-                      <option key={i} value={i + 1}>
-                        {i + 1}
-                      </option>
-                    ))}
-                  </select>
-                  <select
-                    className="date-dropdown"
-                    onChange={
-                      dateType === "startDate"
-                        ? handleStartDayChange
-                        : handleEndDayChange
-                    }
-                  >
-                    <option value="">Day</option>
-                    {Array.from({ length: 31 }, (_, i) => (
-                      <option key={i} value={i + 1}>
-                        {i + 1}
-                      </option>
-                    ))}
+                    <option value="default">Default</option>
+                    <option value="recently_added">Recently Added</option>
+                    <option value="recently_updated">Recently Updated</option>
+                    <option value="score">Score</option>
+                    <option value="name_az">Name A-Z</option>
+                    <option value="released_date">Released Date</option>
+                    <option value="most_watched">Most Watched</option>
                   </select>
                 </div>
               </div>
-            ))}
-          </div>
 
-          {/* Sort Option */}
-          <div className="filter-row">
-            <div className="filter-group">
-              <label>Sort</label>
-              <select
-                name="sort"
-                value={filters.sort}
-                onChange={handleFilterChange}
-                className="filter-dropdown"
-              >
-                <option value="default">Default</option>
-                <option value="recently_added">Recently Added</option>
-                <option value="recently_updated">Recently Updated</option>
-                <option value="score">Score</option>
-                <option value="name_az">Name A-Z</option>
-                <option value="released_date">Released Date</option>
-                <option value="most_watched">Most Watched</option>
-              </select>
+              {/* Genre */}
+              <div className="filter-row">
+                <label>Genre</label>
+                <div className="genres">
+                  {genArr.map((gen) => (
+                    <span
+                      key={gen}
+                      className={`genre-item ${
+                        filters.genres.includes(gen) ? "selected" : ""
+                      }`}
+                      onClick={() => handleGenreClick(gen)}
+                    >
+                      {gen}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              <button className="filter-button" onClick={applyFilters}>
+                Apply Filters
+              </button>
             </div>
-          </div>
-
-          {/* Genre */}
-          <div className="filter-row">
-            <label>Genre</label>
-            <div className="genres">
-              {genArr.map((gen) => (
-                <span
-                  key={gen}
-                  className={`genre-item ${
-                    filters.genres.includes(gen) ? "selected" : ""
-                  }`}
-                  onClick={() => handleGenreClick(gen)}
-                >
-                  {gen}
-                </span>
-              ))}
-            </div>
-          </div>
-
-          <button className="filter-button" onClick={applyFilters}>
-            Apply Filters
-          </button>
-        </div>
-        {loading ? (
-          <CategoryCardLoader className={"max-[478px]:mt-2"} />
-        ) : page > totalPages ? (
-          <p className="font-bold text-2xl text-[#00f2fe] max-[478px]:text-[18px] max-[300px]:leading-6">
-            You came a long way, go back <br className="max-[300px]:hidden" />
-            nothing is here
-          </p>
-        ) : //filter div code start
-        // filter div code end
-        searchData && searchData.length > 0 ? (
-          <div>
-            <CategoryCard
-              label={
-                props.onSear
-                  ? `Search results for: ${keyword}`
-                  : `Filtered results`
-              }
-              data={searchData}
-              showViewMore={false}
-              className={"mt-0"}
-            />
-            <PageSlider
-              page={parseInt(searchParams || "1", 10)}
-              totalPages={totalPages}
-              handlePageChange={handlePageChange}
-            />
-          </div>
-        ) : error ? (
-          <p className="font-bold text-2xl text-[#00f2fe] max-[478px]:text-[18px]">
-            Couldn&apos;t get search result please try again
-          </p>
-        ) : (
-          <h1 className="font-bold text-2xl text-[#00f2fe] max-[478px]:text-[18px]">{`Search results for: ${keyword}`}</h1>
-        )}
-      </div>
-      <div className="w-full flex flex-col gap-y-10">
-        {homeInfoLoading ? (
-          <SidecardLoader />
-        ) : (
-          <>
-            {homeInfo?.most_popular && (
-              <Sidecard
-                data={homeInfo.most_popular}
-                className="mt-0"
-                label="Most Popular"
-              />
+            {loading ? (
+              <CategoryCardLoader className={"max-[478px]:mt-2"} />
+            ) : page > totalPages ? (
+              <p className="font-bold text-2xl text-[#00f2fe] max-[478px]:text-[18px] max-[300px]:leading-6">
+                You came a long way, go back{" "}
+                <br className="max-[300px]:hidden" />
+                nothing is here
+              </p>
+            ) : //filter div code start
+            // filter div code end
+            searchData && searchData.length > 0 ? (
+              <div>
+                <CategoryCard
+                  label={
+                    props.onSear
+                      ? `Search results for: ${keyword}`
+                      : `Filtered results`
+                  }
+                  data={searchData}
+                  showViewMore={false}
+                  className={"mt-0"}
+                />
+                <PageSlider
+                  page={parseInt(searchParams || "1", 10)}
+                  totalPages={totalPages}
+                  handlePageChange={handlePageChange}
+                />
+              </div>
+            ) : error ? (
+              <p className="font-bold text-2xl text-[#00f2fe] max-[478px]:text-[18px]">
+                Couldn&apos;t get search result please try again
+              </p>
+            ) : (
+              <h1 className="font-bold text-2xl text-[#00f2fe] max-[478px]:text-[18px]">{`Search results for: ${keyword}`}</h1>
             )}
-            {homeInfo?.genres && <Genre data={homeInfo.genres} />}
-          </>
-        )}
-      </div>
-    </div>
+          </div>
+          <div className="w-full flex flex-col gap-y-10">
+            {homeInfoLoading ? (
+              <SidecardLoader />
+            ) : (
+              <>
+                {homeInfo?.most_popular && (
+                  <Sidecard
+                    data={homeInfo.most_popular}
+                    className="mt-0"
+                    label="Most Popular"
+                  />
+                )}
+                {homeInfo?.genres && <Genre data={homeInfo.genres} />}
+              </>
+            )}
+          </div>
+        </div>
+        <Footer />
+      </SessionProvider>
+    </>
   );
 }
