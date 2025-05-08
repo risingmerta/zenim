@@ -342,7 +342,8 @@ export default function Search(props) {
           props.sort,
           props.genres,
           props.page,
-          props.keyword
+          props.keyword,
+          props.onSear
         );
         setSearchData(data.data);
         setTotalPages(data.totalPage);
@@ -372,6 +373,7 @@ export default function Search(props) {
     props.genres,
     props.page,
     props.keyword,
+    props.onSear
   ]);
 
   const handlePageChange = (newPage) => {
@@ -517,7 +519,7 @@ export default function Search(props) {
         searchData && searchData.length > 0 ? (
           <div>
             <CategoryCard
-              label={`Search results for: ${keyword}`}
+              label={ props.onSear ? `Search results for: ${keyword}` : `Filtered results`}
               data={searchData}
               showViewMore={false}
               className={"mt-0"}
