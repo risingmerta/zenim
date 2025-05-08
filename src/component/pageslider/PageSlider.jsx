@@ -1,7 +1,7 @@
 import { faAngleDoubleLeft, faAngleDoubleRight, faChevronLeft, faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import './pageSlider.css';
-
+ 
 function PageSlider({ page, totalPages, handlePageChange, start = false, style }) {
     const renderPageNumbers = () => {
         const pages = [];

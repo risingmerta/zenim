@@ -9,7 +9,7 @@ import { useHomeInfo } from "@/context/HomeInfoContext";
 import getSearch from "@/utils/getSearch.utils";
 import { useEffect, useState } from "react";
 import "./search.css";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 export default function Search(props) {
   const [searchParams, setSearchParams] = useState(props.page);
@@ -376,9 +376,14 @@ export default function Search(props) {
     props.onSear
   ]);
 
+  const searchPar = useSearchParams();
+
   const handlePageChange = (newPage) => {
-    setSearchParams({ page: newPage });
-    setSearchParam(keyword);
+    const params = new URLSearchParams(searchPar.toString());
+
+    // Set or update the 'page' param
+    params.set('page', newPage);
+    router.push(`?${params.toString()}`);
   };
   return (
     <div className="main-layout">
