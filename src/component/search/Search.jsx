@@ -535,7 +535,7 @@ export default function Search(props) {
               className={"mt-0"}
             />
             <PageSlider
-              page={searchParams}
+              page={parseInt(searchParams.get("page") || "1", 10)}
               totalPages={totalPages}
               handlePageChange={handlePageChange}
             />
