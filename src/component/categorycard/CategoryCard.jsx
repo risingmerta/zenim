@@ -164,9 +164,9 @@ const CategoryCard = React.memo(
                         18+
                       </div>
                     )}
-                    <div className="absolute left-2 bottom-3 flex items-center justify-center w-fit space-x-1 z-[100] max-[270px]:flex-col max-[270px]:gap-y-[3px]">
+                    <div className="custom-floating-box">
                       {item.tvInfo?.sub && (
-                        <div className="flex space-x-1 justify-center items-center bg-[#B0E3AF] rounded-[2px] px-[4px] text-black py-[2px]">
+                        <div className="custom-badge">
                           <FontAwesomeIcon
                             icon={faClosedCaptioning}
                             className="text-[12px]"
@@ -177,7 +177,7 @@ const CategoryCard = React.memo(
                         </div>
                       )}
                       {item.tvInfo?.dub && (
-                        <div className="flex space-x-1 justify-center items-center bg-[#B9E7FF] rounded-[2px] px-[8px] text-black py-[2px]">
+                        <div className="custom-badge-blue">
                           <FontAwesomeIcon
                             icon={faMicrophone}
                             className="text-[12px]"
