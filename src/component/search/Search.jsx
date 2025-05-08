@@ -373,16 +373,17 @@ export default function Search(props) {
     props.genres,
     props.page,
     props.keyword,
-    props.onSear
+    props.onSear,
   ]);
 
   const searchPar = useSearchParams();
 
   const handlePageChange = (newPage) => {
+    setSearchParams(newPage);
     const params = new URLSearchParams(searchPar.toString());
 
     // Set or update the 'page' param
-    params.set('page', newPage);
+    params.set("page", newPage);
     router.push(`?${params.toString()}`);
   };
   return (
@@ -524,13 +525,17 @@ export default function Search(props) {
         searchData && searchData.length > 0 ? (
           <div>
             <CategoryCard
-              label={ props.onSear ? `Search results for: ${keyword}` : `Filtered results`}
+              label={
+                props.onSear
+                  ? `Search results for: ${keyword}`
+                  : `Filtered results`
+              }
               data={searchData}
               showViewMore={false}
               className={"mt-0"}
             />
             <PageSlider
-              page={props.page}
+              page={searchParams}
               totalPages={totalPages}
               handlePageChange={handlePageChange}
             />
