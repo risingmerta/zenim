@@ -11,6 +11,7 @@ import Link from "next/link";
 import NavSidebar from "../NavSidebar/NavSidebar";
 import { useSession } from "next-auth/react";
 import Profilo from "../Profilo/Profilo";
+import SignInSignUpModal from "../SignSignup/SignInSignUpModal";
 
 export default function Navbar({ lang, sign, refer }) {
   const [sidebarIsOpen, setSidebarIsOpen] = useState(false);
@@ -46,6 +47,11 @@ export default function Navbar({ lang, sign, refer }) {
 
   const toggleProfile = () => setProfiIsOpen(true);
 
+  const [logIsOpen, setLogIsOpen] = useState(false);
+  const sign = (sign) => {
+    setLogIsOpen(sign);
+  };
+
   // const [siteName, setSiteName] = useState("Animoon");
 
   // useEffect(() => {
@@ -63,10 +69,26 @@ export default function Navbar({ lang, sign, refer }) {
   return (
     <div>
       {profiIsOpen ? (
-          <Profilo setProfiIsOpen={setProfiIsOpen} profiIsOpen={profiIsOpen} refer={refer}/>
-        ) : (
-          ""
-        )}
+        <Profilo
+          setProfiIsOpen={setProfiIsOpen}
+          profiIsOpen={profiIsOpen}
+          refer={refer}
+        />
+      ) : (
+        ""
+      )}
+      {logIsOpen ? (
+        <div>
+          <SignInSignUpModal
+            logIsOpen={logIsOpen}
+            setLogIsOpen={setLogIsOpen}
+            sign={sign}
+            refer={refer}
+          />
+        </div>
+      ) : (
+        ""
+      )}
       <NavSidebar
         sidebarIsOpen={sidebarIsOpen}
         setSidebarIsOpen={setSidebarIsOpen}
