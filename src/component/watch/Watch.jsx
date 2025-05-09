@@ -203,35 +203,16 @@ export default function Watch(props) {
   const pathname = usePathname();
 
   useEffect(() => {
-    const adContainer = document.getElementById("ad-container");
-
-    if (typeof window !== "undefined" && adContainer) {
-      adContainer.style.display = "none"; // Hide by default
-      adContainer.style.height = "0"; // Set height to 0 to remove space
-
-      adContainer.innerHTML = `
-        <iframe
-          id="ad-iframe"
-          src="/ad"
-          style="width: fit-content; height: 100px; border: none; overflow: hidden;"
-          scrolling="no"
-        ></iframe>
-      `;
-
-      const iframe = adContainer.querySelector("#ad-iframe");
-
-      if (iframe) {
-        iframe.addEventListener("load", () => {
-          setTimeout(() => {
-            adContainer.style.display = "block"; // Show when loaded
-            adContainer.style.height = "100px"; // Set height back to 100px
-          }, 100);
-        });
-
-        iframe.addEventListener("error", () => {
-          adContainer.style.display = "none"; // Hide the container if it fails
-          adContainer.style.height = "0"; // Set height to 0 to remove space
-        });
+    if (typeof window !== "undefined") {
+      const adContainer = document.getElementById("ad-container");
+      if (adContainer) {
+        adContainer.innerHTML = `
+            <iframe
+              src="/ad"
+              style="width: fit-content; height: 100px; border: none; overflow: hidden;"
+              scrolling="no"
+            ></iframe>
+          `;
       }
     }
   }, [pathname]);
@@ -280,7 +261,15 @@ export default function Watch(props) {
               className="backgroundImage"
             />
             <div className="backgroundOverlay"></div>
-            <div id="ad-container"></div>
+            <div
+              id="ad-container"
+              style={{
+                width: "100%",
+                display: "flex",
+                justifyContent: "center",
+                marginTop: "65px",
+              }}
+            ></div>
             <div className="layoutWrapper">
               {animeInfo && (
                 <ul className="flex absolute left-4 top-[-40px] gap-x-2 items-center w-fit max-[1200px]:hidden">
