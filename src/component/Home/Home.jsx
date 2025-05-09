@@ -14,7 +14,6 @@ import "./home.css"; // Import the CSS file here
 import Navbar from "../Navbar/Navbar";
 import { SessionProvider } from "next-auth/react";
 import Footer from "../Footer/Footer";
-import { usePathname } from "next/navigation";
 
 export default function Home() {
   const website_name = "Animoon";
@@ -41,59 +40,15 @@ export default function Home() {
   if (homeInfoLoading) return <Loader type="home" />;
   if (error) return <Error />;
   if (!homeInfo) return <Error error="404" />;
-
-  const pathname = usePathname();
-
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      const adContainer = document.getElementById("ad-container6");
-      if (adContainer) {
-        adContainer.innerHTML = `
-              <iframe
-                src="/ad6"
-                style="width: fit-content; height: 100px; border: none; overflow: hidden;"
-                scrolling="no"
-              ></iframe>
-            `;
-      }
-    }
-  }, [pathname]);
-
+ 
   return (
     <>
       <SessionProvider>
         <Navbar />
         <div className="home-container">
           <Spotlight spotlights={homeInfo.spotlights} />
-          <div
-            id="ad-container6"
-            style={{
-              width: "100%",
-              display: "flex",
-              justifyContent: "center",
-              margin: "10px 0",
-            }}
-          ></div>
           <ContinueWatching />
-          <div
-            id="ad-container6"
-            style={{
-              width: "100%",
-              display: "flex",
-              justifyContent: "center",
-              margin: "10px 0",
-            }}
-          ></div>
           <Trending trending={homeInfo.trending} />
-          <div
-            id="ad-container6"
-            style={{
-              width: "100%",
-              display: "flex",
-              justifyContent: "center",
-              margin: "10px 0",
-            }}
-          ></div>
 
           <div className="mt-10 flex gap-6 max-[1200px]:px-4 max-[1200px]:grid max-[1200px]:grid-cols-2 max-[1200px]:mt-12 max-[1200px]:gap-y-10 max-[680px]:grid-cols-1">
             <Cart
@@ -118,16 +73,6 @@ export default function Home() {
             />
           </div>
 
-          <div
-            id="ad-container6"
-            style={{
-              width: "100%",
-              display: "flex",
-              justifyContent: "center",
-              margin: "10px 0",
-            }}
-          ></div>
-
           <div className="main-content-grid">
             <div className="left-content">
               <CategoryCard
@@ -137,15 +82,6 @@ export default function Home() {
                 path="recently-updated"
                 limit={12}
               />
-              <div
-                id="ad-container6"
-                style={{
-                  width: "100%",
-                  display: "flex",
-                  justifyContent: "center",
-                  margin: "10px 0",
-                }}
-              ></div>
               <CategoryCard
                 label={`New On ${website_name}`}
                 data={homeInfo.recently_added}
@@ -153,25 +89,7 @@ export default function Home() {
                 path="recently-added"
                 limit={12}
               />
-              <div
-                id="ad-container6"
-                style={{
-                  width: "100%",
-                  display: "flex",
-                  justifyContent: "center",
-                  margin: "10px 0",
-                }}
-              ></div>
               <Schedule />
-              <div
-                id="ad-container6"
-                style={{
-                  width: "100%",
-                  display: "flex",
-                  justifyContent: "center",
-                  margin: "10px 0",
-                }}
-              ></div>
               <CategoryCard
                 label="Top Upcoming"
                 data={homeInfo.top_upcoming}
@@ -179,38 +97,11 @@ export default function Home() {
                 path="top-upcoming"
                 limit={12}
               />
-              <div
-                id="ad-container6"
-                style={{
-                  width: "100%",
-                  display: "flex",
-                  justifyContent: "center",
-                  margin: "10px 0",
-                }}
-              ></div>
             </div>
 
             <div className="right-sidebar">
               <Genre data={homeInfo.genres} />
-              <div
-                id="ad-container6"
-                style={{
-                  width: "100%",
-                  display: "flex",
-                  justifyContent: "center",
-                  margin: "10px 0",
-                }}
-              ></div>
               <Topten data={homeInfo.topten} className={"mt-12"} />
-              <div
-                id="ad-container6"
-                style={{
-                  width: "100%",
-                  display: "flex",
-                  justifyContent: "center",
-                  margin: "10px 0",
-                }}
-              ></div>
             </div>
           </div>
         </div>
