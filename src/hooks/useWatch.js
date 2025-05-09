@@ -24,6 +24,7 @@ export const useWatch = (animeId, initialEpisodeId) => {
   const [episodeId, setEpisodeId] = useState(null);
   const [activeEpisodeNum, setActiveEpisodeNum] = useState(null);
   const [activeServerId, setActiveServerId] = useState(null);
+  const [activeServerType, setActiveServerType] = useState(null);
   const [serverLoading, setServerLoading] = useState(true);
   const [nextEpisodeSchedule, setNextEpisodeSchedule] = useState(null);
   const isServerFetchInProgress = useRef(false);
@@ -35,6 +36,7 @@ export const useWatch = (animeId, initialEpisodeId) => {
     setActiveEpisodeNum(null);
     setServers(null);
     setActiveServerId(null);
+    setActiveServerType(null);
     setStreamInfo(null);
     setStreamUrl(null);
     setSubtitles([]);
@@ -119,8 +121,8 @@ export const useWatch = (animeId, initialEpisodeId) => {
           (server) =>
             server.serverName === "HD-1" || server.serverName === "HD-2"
         );
-        const savedServerName = localStorage.getItem("server_name");
-        const savedServerType = localStorage.getItem("server_type");
+        const savedServerName = typeof window !== "undefined" && localStorage.getItem("server_name");
+        const savedServerType = typeof window !== "undefined" && localStorage.getItem("server_type");
         let initialServer;
         initialServer = data.find(
           (server) =>
