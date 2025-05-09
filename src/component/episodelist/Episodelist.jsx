@@ -212,31 +212,33 @@ function Episodelist({
                 .slice(selectedRange[0] - 1, selectedRange[1])
                 .map((item, index) => {
                   const episodeNumber = item?.id.match(/ep=(\d+)/)?.[1];
+                  const isWatched = WatchedEpisodes?.includes(item?.id);
                   const isActive =
                     activeEpisodeId === episodeNumber ||
                     currentEpisode === episodeNumber;
                   const isSearched = searchedEpisode === item?.id;
 
+                  const bgClass = isWatched
+                    ? isActive
+                      ? "bg-[#00f2fe]"
+                      : "bg-[#248388]"
+                    : item?.filler
+                    ? isActive
+                      ? "bg-[#00f2fe]"
+                      : "bg-gradient-to-r from-[#5a4944] to-[#645a4b]"
+                    : isActive
+                    ? "bg-[#00f2fe]"
+                    : "bg-[#35373D]";
+
+                  const textClass =
+                    isWatched || isActive ? "text-black" : "text-gray-400";
+
                   return (
                     <div
                       key={item?.id}
                       ref={isActive ? activeEpisodeRef : null}
-                      className={`flex items-center justify-center rounded-[3px] h-[30px] text-[13.5px] font-medium cursor-pointer group ${
-                        item?.filler
-                          ? isActive
-                            ? "bg-[#00f2fe]"
-                            : "bg-gradient-to-r from-[#5a4944] to-[#645a4b]"
-                          : ""
-                      } md:hover:bg-[#67686F] 
-                          md:hover:text-white
-                       ${
-                         isActive
-                           ? "bg-[#00f2fe] text-black"
-                           : "bg-[#35373D] text-gray-400"
-                       } ${isSearched ? "glow-animation" : ""} ${
-                        WatchedEpisodes?.includes(item?.id)
-                          ? "text-[#21a6ad]"
-                          : ""
+                      className={`flex items-center justify-center rounded-[3px] h-[30px] text-[13.5px] font-medium cursor-pointer group md:hover:bg-[#67686F] md:hover:text-white ${bgClass} ${textClass} ${
+                        isSearched ? "glow-animation" : ""
                       }`}
                       onClick={() => {
                         if (episodeNumber) {
@@ -259,6 +261,7 @@ function Episodelist({
                   );
                 })
             : episodes?.map((item, index) => {
+                const isWatched = WatchedEpisodes?.includes(item?.id);
                 const episodeNumber = item?.id.match(/ep=(\d+)/)?.[1];
                 const isActive =
                   activeEpisodeId === episodeNumber ||
@@ -276,15 +279,14 @@ function Episodelist({
                     } group md:hover:bg-[#2B2A42] ${
                       isActive ? "text-[#00f2fe] bg-[#2B2A42]" : ""
                     } ${isSearched ? "glow-animation" : ""} ${
-                      WatchedEpisodes?.includes(item?.id)
-                        ? "text-[#21a6ad]"
-                        : ""
-                    }`}
+                      isWatched && !isActive ? "text-[#21a6ad]" : ""
+                    }
+`}
                     onClick={() => {
                       if (episodeNumber) {
                         onEpisodeClick(episodeNumber);
                         setActiveEpisodeId(episodeNumber);
-                        setSearchedEpisode(null);
+                        setSearchedEpisode(null); 
                       }
                     }}
                   >
@@ -297,6 +299,12 @@ function Episodelist({
                         <FontAwesomeIcon
                           icon={faCirclePlay}
                           className="w-[20px] h-[20px] text-[#00f2fe]"
+                        />
+                      )}
+                      {!isActive && isWatched && (
+                        <FontAwesomeIcon
+                          icon={faCheck}
+                          className="w-[20px] h-[20px] text-[#21a6ad]"
                         />
                       )}
                     </div>

@@ -12,6 +12,9 @@ function Servers({
   servers,
   activeEpisodeNum,
   activeServerId,
+  animeId,
+  episodeId,
+  WatchedEpisodes,
   setActiveServerId,
   serverLoading,
 }) {
@@ -55,7 +58,10 @@ function Servers({
         <div className="responsiveCard">
           <div className="h-full bg-[#00f2fe] px-6 text-black flex flex-col justify-center items-center gap-y-2 max-[600px]:bg-transparent max-[600px]:h-1/2 max-[600px]:text-white max-[600px]:mb-4">
             <p className="text-center leading-5 font-medium text-[14px]">
-              You are watching <br />
+              {`You are ${WatchedEpisodes.find(
+                (watched) => watched === animeId + "?ep=" + episodeId
+              ) ? "Re-Watching" : "watching" }`}{" "}
+              <br />
               <span className="font-semibold max-[600px]:text-[#00f2fe]">
                 Episode {activeEpisodeNum}
               </span>

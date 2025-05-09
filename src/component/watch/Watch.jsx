@@ -236,34 +236,31 @@ export default function Watch(props) {
     }
   }, [pathname]);
 
-  let WatchedEpisodes;
+  let WatchedEpisodes = [];
 
   if (typeof window !== "undefined") {
-    const [animeIdPart, epPart] = episodeId?.split("?ep=");
-
-    const animeId = animeIdPart; // "bye-bye-earth-season-2-19564"
-    const epId = epPart; // "136147"
-
-    if (animeId && epId) {
-      const key = `watched-${animeId}`; // e.g. "watched-bye-bye-earth-season-2-19564"
-      const existing = localStorage.getItem(key);
-
+    if (animeId && episodeId) {
+      const key = `watched-${animeId}`; // Key in localStorage
       let episodes = [];
 
-      if (existing) {
-        try {
+      try {
+        const existing = localStorage.getItem(key);
+        if (existing) {
           episodes = JSON.parse(existing);
-          WatchedEpisodes = episodes;
-        } catch (err) {
-          console.error("Failed to parse existing episodes", err);
+          if (!Array.isArray(episodes)) {
+            episodes = []; // Ensure fallback to array
+          }
         }
+      } catch (err) {
+        console.error("Failed to parse existing episodes:", err);
       }
 
-      // Add new epId only if not already present
-      if (!episodes?.includes(episodeId)) {
-        episodes?.push(episodeId);
+      if (!episodes.includes(animeId + "?ep=" + episodeId)) {
+        episodes.push(animeId + "?ep=" + episodeId);
         localStorage.setItem(key, JSON.stringify(episodes));
       }
+
+      WatchedEpisodes = episodes;
     }
   }
 
@@ -384,6 +381,9 @@ export default function Watch(props) {
                     servers={servers}
                     activeEpisodeNum={activeEpisodeNum}
                     activeServerId={activeServerId}
+                    animeId={animeId}
+                    episodeId={episodeId}
+                    WatchedEpisodes={WatchedEpisodes}
                     setActiveServerId={setActiveServerId}
                     serverLoading={serverLoading}
                   />
