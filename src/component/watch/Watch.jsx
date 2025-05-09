@@ -217,6 +217,81 @@ export default function Watch(props) {
     }
   }, [pathname]);
 
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const adContainer = document.getElementById("ad-container2");
+      if (adContainer) {
+        adContainer.innerHTML = `
+            <iframe
+              src="/ad2"
+              style="width: fit-content; height: 100px; border: none; overflow: hidden;"
+              scrolling="no"
+            ></iframe>
+          `;
+      }
+    }
+  }, [pathname]);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const adContainer = document.getElementById("ad-container3");
+      if (adContainer) {
+        adContainer.innerHTML = `
+            <iframe
+              src="/ad3"
+              style="width: fit-content; height: 100px; border: none; overflow: hidden;"
+              scrolling="no"
+            ></iframe>
+          `;
+      }
+    }
+  }, [pathname]);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const adContainer = document.getElementById("ad-container4");
+      if (adContainer) {
+        adContainer.innerHTML = `
+            <iframe
+              src="/ad4"
+              style="width: fit-content; height: 100px; border: none; overflow: hidden;"
+              scrolling="no"
+            ></iframe>
+          `;
+      }
+    }
+  }, [pathname]);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const adContainer = document.getElementById("ad-container5");
+      if (adContainer) {
+        adContainer.innerHTML = `
+            <iframe
+              src="/ad5"
+              style="width: fit-content; height: 100px; border: none; overflow: hidden;"
+              scrolling="no"
+            ></iframe>
+          `;
+      }
+    }
+  }, [pathname]);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const adContainer = document.getElementById("ad-container6");
+      if (adContainer) {
+        adContainer.innerHTML = `
+            <iframe
+              src="/ad6"
+              style="width: fit-content; height: 100px; border: none; overflow: hidden;"
+              scrolling="no"
+            ></iframe>
+          `;
+      }
+    }
+  }, [pathname]);
+
   let WatchedEpisodes = [];
 
   if (typeof window !== "undefined") {
@@ -558,6 +633,15 @@ export default function Watch(props) {
               </div>
             </div>
           </div>
+          <div
+            id="ad-container6"
+            style={{
+              width: "100%",
+              display: "flex",
+              justifyContent: "center",
+              margin: "10px 0",
+            }}
+          ></div>
           <div className="w-full flex gap-x-4 items-center bg-[#191826] p-5 max-[575px]:px-3 max-[320px]:hidden">
             <img
               src="https://i.postimg.cc/d34WWyNQ/share-icon.gif"
@@ -571,11 +655,29 @@ export default function Watch(props) {
               <p className="text-[16px] text-white">to your friends</p>
             </div>
           </div>
+          <div
+            id="ad-container2"
+            style={{
+              width: "100%",
+              display: "flex",
+              justifyContent: "center",
+              margin: "10px 0",
+            }}
+          ></div>
           <div className="contentWrapper">
             <div className="mt-[15px] flex flex-col gap-y-7">
               {animeInfo?.charactersVoiceActors.length > 0 && (
                 <Voiceactor animeInfo={animeInfo} className="!mt-0" />
               )}
+              <div
+                id="ad-container3"
+                style={{
+                  width: "100%",
+                  display: "flex",
+                  justifyContent: "center",
+                  margin: "10px 0",
+                }}
+              ></div>
               {animeInfo?.recommended_data.length > 0 ? (
                 <CategoryCard
                   label="Recommended for you"
@@ -586,8 +688,26 @@ export default function Watch(props) {
               ) : (
                 <CategoryCardLoader className={"mt-[15px]"} />
               )}
+              <div
+                id="ad-container4"
+                style={{
+                  width: "100%",
+                  display: "flex",
+                  justifyContent: "center",
+                  margin: "10px 0",
+                }}
+              ></div>
             </div>
             <div>
+              <div
+                id="ad-container5"
+                style={{
+                  width: "100%",
+                  display: "flex",
+                  justifyContent: "center",
+                  margin: "10px 0",
+                }}
+              ></div>
               {animeInfo && animeInfo.related_data ? (
                 <Sidecard
                   label="Related Anime"
@@ -597,6 +717,15 @@ export default function Watch(props) {
               ) : (
                 <SidecardLoader className={"mt-[25px]"} />
               )}
+              <div
+                id="ad-container6"
+                style={{
+                  width: "100%",
+                  display: "flex",
+                  justifyContent: "center",
+                  margin: "10px 0",
+                }}
+              ></div>
               {homeInfo && homeInfo.most_popular && (
                 <Sidecard
                   label="Most Popular"
@@ -605,6 +734,15 @@ export default function Watch(props) {
                   limit={10}
                 />
               )}
+              <div
+                id="ad-container6"
+                style={{
+                  width: "100%",
+                  display: "flex",
+                  justifyContent: "center",
+                  margin: "10px 0",
+                }}
+              ></div>
             </div>
           </div>
         </div>
