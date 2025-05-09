@@ -16,7 +16,7 @@ import { useLanguage } from "@/context/LanguageContext";
 // import { useHomeInfo } from "@/context/HomeInfoContext";
 import Voiceactor from "@/component/voiceactor/Voiceactor";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import Navbar from "../Navbar/Navbar";
 import Footer from "../Footer/Footer";
 import { SessionProvider } from "next-auth/react";
@@ -180,6 +180,23 @@ export default function AnimeInfo({ random = false, idd }) {
     },
   ];
 
+  const pathname = usePathname();
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const adContainer = document.getElementById("ad-container6");
+      if (adContainer) {
+        adContainer.innerHTML = `
+              <iframe
+                src="/ad6"
+                style="width: fit-content; height: 100px; border: none; overflow: hidden;"
+                scrolling="no"
+              ></iframe>
+            `;
+      }
+    }
+  }, [pathname]);
+
   return (
     <>
       <SessionProvider>
@@ -190,6 +207,16 @@ export default function AnimeInfo({ random = false, idd }) {
             alt={`${title} Poster`}
             className="backgroundPoster"
           />
+
+          <div
+            id="ad-container6"
+            style={{
+              width: "100%",
+              display: "flex",
+              justifyContent: "center",
+              margin: "10px 0",
+            }}
+          ></div>
 
           <div className="animeInfoBox">
             <div className="relative w-[180px] h-[270px] max-[575px]:w-[140px] max-[575px]:h-[200px] flex-shrink-0">
@@ -374,6 +401,15 @@ export default function AnimeInfo({ random = false, idd }) {
             </div>
           </div>
         </div>
+        <div
+          id="ad-container6"
+          style={{
+            width: "100%",
+            display: "flex",
+            justifyContent: "center",
+            margin: "10px 0",
+          }}
+        ></div>
         <div className="mainLayoutGrid">
           <div>
             {seasons?.length > 0 && (
@@ -412,9 +448,27 @@ export default function AnimeInfo({ random = false, idd }) {
                 </div>
               </div>
             )}
+            <div
+              id="ad-container6"
+              style={{
+                width: "100%",
+                display: "flex",
+                justifyContent: "center",
+                margin: "10px 0",
+              }}
+            ></div>
             {animeInfo?.charactersVoiceActors.length > 0 && (
               <Voiceactor animeInfo={animeInfo} />
             )}
+            <div
+              id="ad-container6"
+              style={{
+                width: "100%",
+                display: "flex",
+                justifyContent: "center",
+                margin: "10px 0",
+              }}
+            ></div>
             {animeInfo.recommended_data.length > 0 && (
               <CategoryCard
                 label="Recommended for you"
@@ -425,6 +479,15 @@ export default function AnimeInfo({ random = false, idd }) {
               />
             )}
           </div>
+          <div
+            id="ad-container6"
+            style={{
+              width: "100%",
+              display: "flex",
+              justifyContent: "center",
+              margin: "10px 0",
+            }}
+          ></div>
           <div>
             {animeInfo.related_data.length > 0 && (
               <Sidecard
@@ -433,6 +496,15 @@ export default function AnimeInfo({ random = false, idd }) {
                 className="mt-8"
               />
             )}
+            <div
+              id="ad-container6"
+              style={{
+                width: "100%",
+                display: "flex",
+                justifyContent: "center",
+                margin: "10px 0",
+              }}
+            ></div>
             {homeInfo && homeInfo.most_popular && (
               <Sidecard
                 label="Most Popular"
@@ -441,6 +513,15 @@ export default function AnimeInfo({ random = false, idd }) {
                 limit={10}
               />
             )}
+            <div
+              id="ad-container6"
+              style={{
+                width: "100%",
+                display: "flex",
+                justifyContent: "center",
+                margin: "10px 0",
+              }}
+            ></div>
           </div>
         </div>
         <Footer />
