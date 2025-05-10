@@ -146,6 +146,114 @@ export default function AnimeInfo({ random = false, idd }) {
       };
     }
   }, [animeInfo]);
+
+  const pathname = usePathname();
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const adContainer = document.getElementById("ad-container");
+      if (adContainer) {
+        adContainer.innerHTML = `
+              <iframe
+                src="/ad"
+                style="width: fit-content; height: 100px; border: none; overflow: hidden;"
+                scrolling="no"
+              ></iframe>
+            `;
+      }
+    }
+  }, [pathname]);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const adContainer = document.getElementById("ad-container2");
+      if (adContainer) {
+        adContainer.innerHTML = `
+              <iframe
+                src="/ad2"
+                style="width: fit-content; height: 100px; border: none; overflow: hidden;"
+                scrolling="no"
+              ></iframe>
+            `;
+      }
+    }
+  }, [pathname]);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const adContainer = document.getElementById("ad-container3");
+      if (adContainer) {
+        adContainer.innerHTML = `
+              <iframe
+                src="/ad3"
+                style="width: fit-content; height: 100px; border: none; overflow: hidden;"
+                scrolling="no"
+              ></iframe>
+            `;
+      }
+    }
+  }, [pathname]);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const adContainer = document.getElementById("ad-container4");
+      if (adContainer) {
+        adContainer.innerHTML = `
+              <iframe
+                src="/ad4"
+                style="width: fit-content; height: 100px; border: none; overflow: hidden;"
+                scrolling="no"
+              ></iframe>
+            `;
+      }
+    }
+  }, [pathname]);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const adContainer = document.getElementById("ad-container5");
+      if (adContainer) {
+        adContainer.innerHTML = `
+              <iframe
+                src="/ad5"
+                style="width: fit-content; height: 100px; border: none; overflow: hidden;"
+                scrolling="no"
+              ></iframe>
+            `;
+      }
+    }
+  }, [pathname]);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const adContainer = document.getElementById("ad-container6");
+      if (adContainer) {
+        adContainer.innerHTML = `
+              <iframe
+                src="/ad6"
+                style="width: fit-content; height: 100px; border: none; overflow: hidden;"
+                scrolling="no"
+              ></iframe>
+            `;
+      }
+    }
+  }, [pathname]);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const adContainer = document.getElementById("ad-container7");
+      if (adContainer) {
+        adContainer.innerHTML = `
+              <iframe
+                src="/ad6"
+                style="width: fit-content; height: 100px; border: none; overflow: hidden;"
+                scrolling="no"
+              ></iframe>
+            `;
+      }
+    }
+  }, [pathname]);
+
   if (loading) return <Loader type="animeInfo" />;
   if (error) {
     return <Error />;
@@ -180,23 +288,6 @@ export default function AnimeInfo({ random = false, idd }) {
     },
   ];
 
-  const pathname = usePathname();
-
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      const adContainer = document.getElementById("ad-container6");
-      if (adContainer) {
-        adContainer.innerHTML = `
-              <iframe
-                src="/ad6"
-                style="width: fit-content; height: 100px; border: none; overflow: hidden;"
-                scrolling="no"
-              ></iframe>
-            `;
-      }
-    }
-  }, [pathname]);
-
   return (
     <>
       <SessionProvider>
@@ -208,17 +299,16 @@ export default function AnimeInfo({ random = false, idd }) {
             className="backgroundPoster"
           />
 
-          <div
-            id="ad-container6"
-            style={{
-              width: "100%",
-              display: "flex",
-              justifyContent: "center",
-              margin: "10px 0",
-            }}
-          ></div>
-
           <div className="animeInfoBox">
+            <div
+              id="ad-container"
+              style={{
+                width: "100%",
+                display: "flex",
+                justifyContent: "center",
+                margin: "10px 0",
+              }}
+            ></div>
             <div className="relative w-[180px] h-[270px] max-[575px]:w-[140px] max-[575px]:h-[200px] flex-shrink-0">
               <img
                 src={`https://wsrv.nl/?url=${poster}`}
@@ -449,7 +539,7 @@ export default function AnimeInfo({ random = false, idd }) {
               </div>
             )}
             <div
-              id="ad-container6"
+              id="ad-container2"
               style={{
                 width: "100%",
                 display: "flex",
@@ -461,7 +551,7 @@ export default function AnimeInfo({ random = false, idd }) {
               <Voiceactor animeInfo={animeInfo} />
             )}
             <div
-              id="ad-container6"
+              id="ad-container3"
               style={{
                 width: "100%",
                 display: "flex",
@@ -480,7 +570,7 @@ export default function AnimeInfo({ random = false, idd }) {
             )}
           </div>
           <div
-            id="ad-container6"
+            id="ad-container4"
             style={{
               width: "100%",
               display: "flex",
@@ -497,7 +587,7 @@ export default function AnimeInfo({ random = false, idd }) {
               />
             )}
             <div
-              id="ad-container6"
+              id="ad-container5"
               style={{
                 width: "100%",
                 display: "flex",
@@ -514,7 +604,7 @@ export default function AnimeInfo({ random = false, idd }) {
               />
             )}
             <div
-              id="ad-container6"
+              id="ad-container7"
               style={{
                 width: "100%",
                 display: "flex",
