@@ -129,7 +129,10 @@ export default function AnimeInfo({ random = false, idd, adDiv }) {
               <iframe
                 src="/ad"
                 style="width: fit-content; height: 100px; border: none; overflow: hidden;"
-                scrolling="no"
+                style={{width: "fit-content",
+            height: "100px",
+            border: "none",
+            overflow: "hidden",}} scrolling="no"
               ></iframe>
             `;
       }
@@ -144,7 +147,10 @@ export default function AnimeInfo({ random = false, idd, adDiv }) {
               <iframe
                 src="/ad2"
                 style="width: fit-content; height: 100px; border: none; overflow: hidden;"
-                scrolling="no"
+                style={{width: "fit-content",
+            height: "100px",
+            border: "none",
+            overflow: "hidden",}} scrolling="no"
               ></iframe>
             `;
       }
@@ -159,7 +165,10 @@ export default function AnimeInfo({ random = false, idd, adDiv }) {
               <iframe
                 src="/ad3"
                 style="width: fit-content; height: 100px; border: none; overflow: hidden;"
-                scrolling="no"
+                style={{width: "fit-content",
+            height: "100px",
+            border: "none",
+            overflow: "hidden",}} scrolling="no"
               ></iframe>
             `;
       }
@@ -174,7 +183,10 @@ export default function AnimeInfo({ random = false, idd, adDiv }) {
               <iframe
                 src="/ad4"
                 style="width: fit-content; height: 100px; border: none; overflow: hidden;"
-                scrolling="no"
+                style={{width: "fit-content",
+            height: "100px",
+            border: "none",
+            overflow: "hidden",}} scrolling="no"
               ></iframe>
             `;
       }
@@ -189,7 +201,10 @@ export default function AnimeInfo({ random = false, idd, adDiv }) {
               <iframe
                 src="/ad5"
                 style="width: fit-content; height: 100px; border: none; overflow: hidden;"
-                scrolling="no"
+                style={{width: "fit-content",
+            height: "100px",
+            border: "none",
+            overflow: "hidden",}} scrolling="no"
               ></iframe>
             `;
       }
@@ -204,7 +219,10 @@ export default function AnimeInfo({ random = false, idd, adDiv }) {
               <iframe
                 src="/ad6"
                 style="width: fit-content; height: 100px; border: none; overflow: hidden;"
-                scrolling="no"
+                style={{width: "fit-content",
+            height: "100px",
+            border: "none",
+            overflow: "hidden",}} scrolling="no"
               ></iframe>
             `;
       }
@@ -219,7 +237,10 @@ export default function AnimeInfo({ random = false, idd, adDiv }) {
               <iframe
                 src="/ad6"
                 style="width: fit-content; height: 100px; border: none; overflow: hidden;"
-                scrolling="no"
+                style={{width: "fit-content",
+            height: "100px",
+            border: "none",
+            overflow: "hidden",}} scrolling="no"
               ></iframe>
             `;
       }
@@ -521,7 +542,7 @@ export default function AnimeInfo({ random = false, idd, adDiv }) {
             </div>
           </div>
         </div>
-        <div
+        {/* <div
           id="ad-container6"
           style={{
             width: "100%",
@@ -529,17 +550,26 @@ export default function AnimeInfo({ random = false, idd, adDiv }) {
             justifyContent: "center",
             margin: "10px 0",
           }}
-        ></div>
-        <iframe
-          src="/ad6"
+        ></div> */}
+        <div
           style={{
-            width: "fit-content",
-            height: "100px",
-            border: "none",
-            overflow: "hidden",
+            width: "100%",
+            display: "flex",
+            justifyContent: "center",
+            margin: "10px 0",
           }}
-          scrolling="no"
-        ></iframe>
+        >
+          <iframe
+            src="/ad6"
+            style={{
+              width: "fit-content",
+              height: "100px",
+              border: "none",
+              overflow: "hidden",
+            }}
+            scrolling="no"
+          ></iframe>
+        </div>
         {/* <script
           async="async"
           data-cfasync="false"
@@ -593,16 +623,25 @@ export default function AnimeInfo({ random = false, idd, adDiv }) {
                 margin: "10px 0",
               }}
             ></div> */}
-            <iframe
-              src="/ad2"
+            <div
               style={{
-                width: "fit-content",
-                height: "100px",
-                border: "none",
-                overflow: "hidden",
+                width: "100%",
+                display: "flex",
+                justifyContent: "center",
+                margin: "10px 0",
               }}
-              scrolling="no"
-            ></iframe>
+            >
+              <iframe
+                src="/ad2"
+                style={{
+                  width: "fit-content",
+                  height: "100px",
+                  border: "none",
+                  overflow: "hidden",
+                }}
+                scrolling="no"
+              ></iframe>
+            </div>
             {animeInfo?.charactersVoiceActors.length > 0 && (
               <Voiceactor animeInfo={animeInfo} />
             )}
@@ -615,16 +654,25 @@ export default function AnimeInfo({ random = false, idd, adDiv }) {
                 margin: "10px 0",
               }}
             ></div> */}
-            <iframe
-              src="/ad3"
+            <div
               style={{
-                width: "fit-content",
-                height: "100px",
-                border: "none",
-                overflow: "hidden",
+                width: "100%",
+                display: "flex",
+                justifyContent: "center",
+                margin: "10px 0",
               }}
-              scrolling="no"
-            ></iframe>
+            >
+              <iframe
+                src="/ad3"
+                style={{
+                  width: "fit-content",
+                  height: "100px",
+                  border: "none",
+                  overflow: "hidden",
+                }}
+                scrolling="no"
+              ></iframe>
+            </div>
             {animeInfo.recommended_data.length > 0 && (
               <CategoryCard
                 label="Recommended for you"
@@ -644,16 +692,22 @@ export default function AnimeInfo({ random = false, idd, adDiv }) {
               margin: "10px 0",
             }}
           ></div> */}
-          <iframe
+          {/* <iframe
             src="/ad4"
             style={{
               width: "fit-content",
+            height: "100px",
+            border: "none",
+            overflow: "hidden",,
               height: "100px",
               border: "none",
               overflow: "hidden",
             }}
-            scrolling="no"
-          ></iframe>
+            style={{width: "fit-content",
+            height: "100px",
+            border: "none",
+            overflow: "hidden",}} scrolling="no"
+          ></iframe> */}
           <div>
             {animeInfo.related_data.length > 0 && (
               <Sidecard
@@ -671,16 +725,25 @@ export default function AnimeInfo({ random = false, idd, adDiv }) {
                 margin: "10px 0",
               }}
             ></div> */}
-            <iframe
-              src="/ad5"
+            <div
               style={{
-                width: "fit-content",
-                height: "100px",
-                border: "none",
-                overflow: "hidden",
+                width: "100%",
+                display: "flex",
+                justifyContent: "center",
+                margin: "10px 0",
               }}
-              scrolling="no"
-            ></iframe>
+            >
+              <iframe
+                src="/ad5"
+                style={{
+                  width: "fit-content",
+                  height: "100px",
+                  border: "none",
+                  overflow: "hidden",
+                }}
+                scrolling="no"
+              ></iframe>
+            </div>
             {homeInfo && homeInfo.most_popular && (
               <Sidecard
                 label="Most Popular"
@@ -698,16 +761,25 @@ export default function AnimeInfo({ random = false, idd, adDiv }) {
                 margin: "10px 0",
               }}
             ></div> */}
-            <iframe
-              src="/ad6"
+            <div
               style={{
-                width: "fit-content",
-                height: "100px",
-                border: "none",
-                overflow: "hidden",
+                width: "100%",
+                display: "flex",
+                justifyContent: "center",
+                margin: "10px 0",
               }}
-              scrolling="no"
-            ></iframe>
+            >
+              <iframe
+                src="/ad6"
+                style={{
+                  width: "fit-content",
+                  height: "100px",
+                  border: "none",
+                  overflow: "hidden",
+                }}
+                scrolling="no"
+              ></iframe>
+            </div>
           </div>
         </div>
         <Footer />
