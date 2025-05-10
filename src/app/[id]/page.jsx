@@ -1,6 +1,7 @@
 import Advertize from "@/component/Advertize/Advertize";
 import AnimeInfo from "@/component/animeInfo/AnimeInfo";
 import Category from "@/component/category/Category";
+import Script from "next/script";
 import React from "react";
 
 export async function generateMetadata({ params }) {
@@ -84,6 +85,13 @@ export default async function page({ params, searchParams }) {
         <AnimeInfo idd={id} />
       )}
       <Advertize />
+      <Script
+        strategy="afterInteractive"
+        src="//abackdamstubborn.com/a6053b92a96db67507afac0ea870db33/invoke.js"
+        async
+      />
+
+      <div id="container-a6053b92a96db67507afac0ea870db33"></div>
     </div>
   );
 }
