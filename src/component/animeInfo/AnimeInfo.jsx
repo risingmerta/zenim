@@ -283,16 +283,16 @@ export default function AnimeInfo({ random = false, idd, adDiv }) {
         window.scrollTo({ top: 0, behavior: "smooth" });
     }
   }, [id, random]);
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      if (animeInfo && location.pathname === `/${animeInfo.id}`) {
-        document.title = `Watch ${animeInfo.title} English Sub/Dub online Free on ${website_name}`;
-      }
-      return () => {
-        document.title = `${website_name} | Free anime streaming platform`;
-      };
-    }
-  }, [animeInfo]);
+  // useEffect(() => {
+  //   if (typeof window !== "undefined") {
+  //     if (animeInfo && location.pathname === `/${animeInfo.id}`) {
+  //       document.title = `Watch ${animeInfo.title} English Sub/Dub online Free on ${website_name}`;
+  //     }
+  //     return () => {
+  //       document.title = `${website_name} | Free anime streaming platform`;
+  //     };
+  //   }
+  // }, [animeInfo]);
 
   if (loading) return <Loader type="animeInfo" />;
   if (error) {
