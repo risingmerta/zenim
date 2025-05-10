@@ -340,7 +340,16 @@ export default function AnimeInfo({ random = false, idd, adDiv }) {
                 data-cfasync="false"
                 src="//abackdamstubborn.com/a6053b92a96db67507afac0ea870db33/invoke.js"
               ></script> */}
-              <div id="container-a6053b92a96db67507afac0ea870db33"></div>
+              <iframe
+                src="/ad6"
+                style={{
+                  width: "fit-content",
+                  height: "100px",
+                  border: "none",
+                  overflow: "hidden",
+                }}
+                scrolling="no"
+              ></iframe>
               <img
                 src={`https://wsrv.nl/?url=${poster}`}
                 alt={`${title} Poster`}
