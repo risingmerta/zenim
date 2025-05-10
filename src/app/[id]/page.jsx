@@ -87,11 +87,12 @@ export default async function page({ params, searchParams }) {
       {categRoutes.find((item) => item === param.id) ? (
         <Category path={id} label={id.split("-")?.join(" ")} pagel={page} />
       ) : (
-        <AnimeInfo idd={id} />
+        <AnimeInfo
+          idd={id}
+          adDiv={<div id="container-a6053b92a96db67507afac0ea870db33"></div>}
+        />
       )}
-      <Advertize
-        adDiv={<div id="container-a6053b92a96db67507afac0ea870db33"></div>}
-      />
+      <Advertize />
     </div>
   );
 }
