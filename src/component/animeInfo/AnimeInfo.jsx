@@ -292,6 +292,15 @@ export default function AnimeInfo({ random = false, idd }) {
     <>
       <SessionProvider>
         <Navbar />
+        <div
+          id="ad-container"
+          style={{
+            width: "100%",
+            display: "flex",
+            justifyContent: "center",
+            marginTop: "65px",
+          }}
+        ></div>
         <div className="infoContainer">
           <img
             src={`https://wsrv.nl/?url=${poster}`}
@@ -300,15 +309,6 @@ export default function AnimeInfo({ random = false, idd }) {
           />
 
           <div className="animeInfoBox">
-            <div
-              id="ad-container"
-              style={{
-                width: "100%",
-                display: "flex",
-                justifyContent: "center",
-                margin: "10px 0",
-              }}
-            ></div>
             <div className="relative w-[180px] h-[270px] max-[575px]:w-[140px] max-[575px]:h-[200px] flex-shrink-0">
               <img
                 src={`https://wsrv.nl/?url=${poster}`}
