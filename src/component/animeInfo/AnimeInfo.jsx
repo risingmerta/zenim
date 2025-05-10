@@ -312,12 +312,11 @@ export default function AnimeInfo({ random = false, idd }) {
                   margin: "10px 0",
                 }}
               ></div>
-              <Script
-                strategy="afterInteractive"
+              <script
+                async="async"
+                data-cfasync="false"
                 src="//abackdamstubborn.com/a6053b92a96db67507afac0ea870db33/invoke.js"
-                async
-              />
-
+              ></script>
               <div id="container-a6053b92a96db67507afac0ea870db33"></div>
               <img
                 src={`https://wsrv.nl/?url=${poster}`}
@@ -509,12 +508,11 @@ export default function AnimeInfo({ random = false, idd }) {
             margin: "10px 0",
           }}
         ></div>
-        <Script
-          strategy="afterInteractive"
+        <script
+          async="async"
+          data-cfasync="false"
           src="//abackdamstubborn.com/a6053b92a96db67507afac0ea870db33/invoke.js"
-          async
-        />
-
+        ></script>
         <div id="container-a6053b92a96db67507afac0ea870db33"></div>
         <div className="mainLayoutGrid">
           <div>
