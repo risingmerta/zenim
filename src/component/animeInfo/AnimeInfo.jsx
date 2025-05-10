@@ -16,11 +16,10 @@ import { useLanguage } from "@/context/LanguageContext";
 // import { useHomeInfo } from "@/context/HomeInfoContext";
 import Voiceactor from "@/component/voiceactor/Voiceactor";
 import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import Navbar from "../Navbar/Navbar";
 import Footer from "../Footer/Footer";
 import { SessionProvider } from "next-auth/react";
-import Script from "next/script";
 
 const website_name = "Animoon";
 
@@ -95,157 +94,6 @@ export default function AnimeInfo({ random = false, idd, adDiv }) {
   const [error, setError] = useState(null);
   const [homeInfo, setHomeInfo] = useState(null);
   const [homeInfoLoading, setHomeInfoLoading] = useState(true);
-
-  const pathname = usePathname();
-
-  useEffect(() => {
-    // Clean up any existing script to prevent duplicates
-    const existingScript = document.querySelector(
-      'script[src*="abackdamstubborn"]'
-    );
-    if (existingScript) {
-      existingScript.remove();
-    }
-
-    // Check if container exists before loading the script
-    const container = document.getElementById(
-      "container-a6053b92a96db67507afac0ea870db33"
-    );
-    if (container) {
-      const script = document.createElement("script");
-      script.src =
-        "//abackdamstubborn.com/a6053b92a96db67507afac0ea870db33/invoke.js";
-      script.async = true;
-      container.innerHTML = ""; // Optional: clear container before loading
-      document.body.appendChild(script);
-    }
-  }, [idd]); // re-run when idd changes
-
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      const adContainer = document.getElementById("ad-container");
-      if (adContainer) {
-        adContainer.innerHTML = `
-              <iframe
-                src="/ad"
-                style="width: fit-content; height: 100px; border: none; overflow: hidden;"
-                style={{width: "fit-content",
-            height: "100px",
-            border: "none",
-            overflow: "hidden",}} scrolling="no"
-              ></iframe>
-            `;
-      }
-    }
-  }, [pathname]);
-
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      const adContainer = document.getElementById("ad-container2");
-      if (adContainer) {
-        adContainer.innerHTML = `
-              <iframe
-                src="/ad2"
-                style="width: fit-content; height: 100px; border: none; overflow: hidden;"
-                style={{width: "fit-content",
-            height: "100px",
-            border: "none",
-            overflow: "hidden",}} scrolling="no"
-              ></iframe>
-            `;
-      }
-    }
-  }, [pathname]);
-
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      const adContainer = document.getElementById("ad-container3");
-      if (adContainer) {
-        adContainer.innerHTML = `
-              <iframe
-                src="/ad3"
-                style="width: fit-content; height: 100px; border: none; overflow: hidden;"
-                style={{width: "fit-content",
-            height: "100px",
-            border: "none",
-            overflow: "hidden",}} scrolling="no"
-              ></iframe>
-            `;
-      }
-    }
-  }, [pathname]);
-
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      const adContainer = document.getElementById("ad-container4");
-      if (adContainer) {
-        adContainer.innerHTML = `
-              <iframe
-                src="/ad4"
-                style="width: fit-content; height: 100px; border: none; overflow: hidden;"
-                style={{width: "fit-content",
-            height: "100px",
-            border: "none",
-            overflow: "hidden",}} scrolling="no"
-              ></iframe>
-            `;
-      }
-    }
-  }, [pathname]);
-
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      const adContainer = document.getElementById("ad-container5");
-      if (adContainer) {
-        adContainer.innerHTML = `
-              <iframe
-                src="/ad5"
-                style="width: fit-content; height: 100px; border: none; overflow: hidden;"
-                style={{width: "fit-content",
-            height: "100px",
-            border: "none",
-            overflow: "hidden",}} scrolling="no"
-              ></iframe>
-            `;
-      }
-    }
-  }, [pathname]);
-
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      const adContainer = document.getElementById("ad-container6");
-      if (adContainer) {
-        adContainer.innerHTML = `
-              <iframe
-                src="/ad6"
-                style="width: fit-content; height: 100px; border: none; overflow: hidden;"
-                style={{width: "fit-content",
-            height: "100px",
-            border: "none",
-            overflow: "hidden",}} scrolling="no"
-              ></iframe>
-            `;
-      }
-    }
-  }, [pathname]);
-
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      const adContainer = document.getElementById("ad-container7");
-      if (adContainer) {
-        adContainer.innerHTML = `
-              <iframe
-                src="/ad6"
-                style="width: fit-content; height: 100px; border: none; overflow: hidden;"
-                style={{width: "fit-content",
-            height: "100px",
-            border: "none",
-            overflow: "hidden",}} scrolling="no"
-              ></iframe>
-            `;
-      }
-    }
-  }, [pathname]);
 
   useEffect(() => {
     const fetchHomeInfo = async () => {
@@ -347,20 +195,6 @@ export default function AnimeInfo({ random = false, idd, adDiv }) {
 
           <div className="animeInfoBox">
             <div className="relative w-[180px] h-[270px] max-[575px]:w-[140px] max-[575px]:h-[200px] flex-shrink-0">
-              {/* <div
-                id="ad-container"
-                style={{
-                  width: "100%",
-                  display: "flex",
-                  justifyContent: "center",
-                  margin: "10px 0",
-                }}
-              ></div> */}
-              {/* <script
-                async="async"
-                data-cfasync="false"
-                src="//abackdamstubborn.com/a6053b92a96db67507afac0ea870db33/invoke.js"
-              ></script> */}
               <img
                 src={`https://wsrv.nl/?url=${poster}`}
                 alt={`${title} Poster`}
@@ -542,15 +376,6 @@ export default function AnimeInfo({ random = false, idd, adDiv }) {
             </div>
           </div>
         </div>
-        {/* <div
-          id="ad-container6"
-          style={{
-            width: "100%",
-            display: "flex",
-            justifyContent: "center",
-            margin: "10px 0",
-          }}
-        ></div> */}
         <div
           style={{
             width: "100%",
@@ -570,12 +395,6 @@ export default function AnimeInfo({ random = false, idd, adDiv }) {
             scrolling="no"
           ></iframe>
         </div>
-        {/* <script
-          async="async"
-          data-cfasync="false"
-          src="//abackdamstubborn.com/a6053b92a96db67507afac0ea870db33/invoke.js"
-        ></script> */}
-        {/* <div id="container-a6053b92a96db67507afac0ea870db33"></div> */}
         <div className="mainLayoutGrid">
           <div>
             {seasons?.length > 0 && (
@@ -614,15 +433,6 @@ export default function AnimeInfo({ random = false, idd, adDiv }) {
                 </div>
               </div>
             )}
-            {/* <div
-              id="ad-container2"
-              style={{
-                width: "100%",
-                display: "flex",
-                justifyContent: "center",
-                margin: "10px 0",
-              }}
-            ></div> */}
             <div
               style={{
                 width: "100%",
@@ -645,15 +455,7 @@ export default function AnimeInfo({ random = false, idd, adDiv }) {
             {animeInfo?.charactersVoiceActors.length > 0 && (
               <Voiceactor animeInfo={animeInfo} />
             )}
-            {/* <div
-              id="ad-container3"
-              style={{
-                width: "100%",
-                display: "flex",
-                justifyContent: "center",
-                margin: "10px 0",
-              }}
-            ></div> */}
+
             <div
               style={{
                 width: "100%",
@@ -683,31 +485,6 @@ export default function AnimeInfo({ random = false, idd, adDiv }) {
               />
             )}
           </div>
-          {/* <div
-            id="ad-container4"
-            style={{
-              width: "100%",
-              display: "flex",
-              justifyContent: "center",
-              margin: "10px 0",
-            }}
-          ></div> */}
-          {/* <iframe
-            src="/ad4"
-            style={{
-              width: "fit-content",
-            height: "100px",
-            border: "none",
-            overflow: "hidden",,
-              height: "100px",
-              border: "none",
-              overflow: "hidden",
-            }}
-            style={{width: "fit-content",
-            height: "100px",
-            border: "none",
-            overflow: "hidden",}} scrolling="no"
-          ></iframe> */}
           <div>
             {animeInfo.related_data.length > 0 && (
               <Sidecard
@@ -716,15 +493,7 @@ export default function AnimeInfo({ random = false, idd, adDiv }) {
                 className="mt-8"
               />
             )}
-            {/* <div
-              id="ad-container5"
-              style={{
-                width: "100%",
-                display: "flex",
-                justifyContent: "center",
-                margin: "10px 0",
-              }}
-            ></div> */}
+
             <div
               style={{
                 width: "100%",
@@ -752,15 +521,7 @@ export default function AnimeInfo({ random = false, idd, adDiv }) {
                 limit={10}
               />
             )}
-            {/* <div
-              id="ad-container7"
-              style={{
-                width: "100%",
-                display: "flex",
-                justifyContent: "center",
-                margin: "10px 0",
-              }}
-            ></div> */}
+
             <div
               style={{
                 width: "100%",
