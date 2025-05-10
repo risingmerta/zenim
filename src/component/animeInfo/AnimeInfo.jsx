@@ -24,7 +24,7 @@ import Script from "next/script";
 
 const website_name = "Animoon";
 
-function InfoItem({ label, value, isProducer = true }) {
+function InfoItem({ label, value, isProducer = true, adDiv }) {
   return (
     value && (
       <div className="text-[14px] font-bold">
@@ -98,36 +98,36 @@ export default function AnimeInfo({ random = false, idd }) {
 
   const pathname = usePathname();
 
-  useEffect(() => {
-    // Function to load the script
-    const loadScript = () => {
-      const script = document.createElement("script");
-      script.async = true;
-      script.src =
-        "//abackdamstubborn.com/a6053b92a96db67507afac0ea870db33/invoke.js";
-      script.setAttribute("data-cfasync", "false");
-      document.body.appendChild(script);
+  // useEffect(() => {
+  //   // Function to load the script
+  //   const loadScript = () => {
+  //     const script = document.createElement("script");
+  //     script.async = true;
+  //     script.src =
+  //       "//abackdamstubborn.com/a6053b92a96db67507afac0ea870db33/invoke.js";
+  //     script.setAttribute("data-cfasync", "false");
+  //     document.body.appendChild(script);
 
-      // Optionally remove the previous script before adding new
-      const container = document.getElementById(
-        "container-a6053b92a96db67507afac0ea870db33"
-      );
-      if (container) {
-        container.innerHTML = ""; // Clear container if necessary
-      }
-    };
+  //     // Optionally remove the previous script before adding new
+  //     const container = document.getElementById(
+  //       "container-a6053b92a96db67507afac0ea870db33"
+  //     );
+  //     if (container) {
+  //       container.innerHTML = ""; // Clear container if necessary
+  //     }
+  //   };
 
-    // Call loadScript when the component mounts or when pathname changes
-    loadScript();
+  //   // Call loadScript when the component mounts or when pathname changes
+  //   loadScript();
 
-    // Cleanup on component unmount or route change
-    return () => {
-      const scripts = document.querySelectorAll(
-        `script[src="//abackdamstubborn.com/a6053b92a96db67507afac0ea870db33/invoke.js"]`
-      );
-      scripts.forEach((script) => script.remove());
-    };
-  }, [pathname]); // Depend on router.pathname to reload when path changes
+  //   // Cleanup on component unmount or route change
+  //   return () => {
+  //     const scripts = document.querySelectorAll(
+  //       `script[src="//abackdamstubborn.com/a6053b92a96db67507afac0ea870db33/invoke.js"]`
+  //     );
+  //     scripts.forEach((script) => script.remove());
+  //   };
+  // }, [pathname]); // Depend on router.pathname to reload when path changes
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -348,7 +348,7 @@ export default function AnimeInfo({ random = false, idd }) {
                 data-cfasync="false"
                 src="//abackdamstubborn.com/a6053b92a96db67507afac0ea870db33/invoke.js"
               ></script> */}
-              <div id="container-a6053b92a96db67507afac0ea870db33"></div>
+              {adDiv}
               <img
                 src={`https://wsrv.nl/?url=${poster}`}
                 alt={`${title} Poster`}

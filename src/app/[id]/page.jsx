@@ -79,19 +79,19 @@ export default async function page({ params, searchParams }) {
   ];
   return (
     <div>
-      {categRoutes.find((item) => item === param.id) ? (
-        <Category path={id} label={id.split("-")?.join(" ")} pagel={page} />
-      ) : (
-        <AnimeInfo idd={id} />
-      )}
-      <Advertize />
       <Script
         strategy="afterInteractive"
         src="//abackdamstubborn.com/a6053b92a96db67507afac0ea870db33/invoke.js"
         async
       />
-
-      <div id="container-a6053b92a96db67507afac0ea870db33"></div>
+      {categRoutes.find((item) => item === param.id) ? (
+        <Category path={id} label={id.split("-")?.join(" ")} pagel={page} />
+      ) : (
+        <AnimeInfo idd={id} />
+      )}
+      <Advertize
+        adDiv={<div id="container-a6053b92a96db67507afac0ea870db33"></div>}
+      />
     </div>
   );
 }
