@@ -85,7 +85,7 @@ function Tag({ bgColor, index, icon, text }) {
   );
 }
 
-export default function AnimeInfo({ random = false, idd }) {
+export default function AnimeInfo({ random = false, idd, adDiv }) {
   const { language } = useLanguage();
   const id = random ? null : idd;
   const [isFull, setIsFull] = useState(false);
