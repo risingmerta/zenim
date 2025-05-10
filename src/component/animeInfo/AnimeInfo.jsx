@@ -20,6 +20,7 @@ import { usePathname, useRouter } from "next/navigation";
 import Navbar from "../Navbar/Navbar";
 import Footer from "../Footer/Footer";
 import { SessionProvider } from "next-auth/react";
+import Script from "next/script";
 
 const website_name = "Animoon";
 
@@ -311,6 +312,13 @@ export default function AnimeInfo({ random = false, idd }) {
                   margin: "10px 0",
                 }}
               ></div>
+              <Script
+                strategy="afterInteractive"
+                src="//abackdamstubborn.com/a6053b92a96db67507afac0ea870db33/invoke.js"
+                async
+              />
+
+              <div id="container-a6053b92a96db67507afac0ea870db33"></div>
               <img
                 src={`https://wsrv.nl/?url=${poster}`}
                 alt={`${title} Poster`}
@@ -501,6 +509,13 @@ export default function AnimeInfo({ random = false, idd }) {
             margin: "10px 0",
           }}
         ></div>
+        <Script
+          strategy="afterInteractive"
+          src="//abackdamstubborn.com/a6053b92a96db67507afac0ea870db33/invoke.js"
+          async
+        />
+
+        <div id="container-a6053b92a96db67507afac0ea870db33"></div>
         <div className="mainLayoutGrid">
           <div>
             {seasons?.length > 0 && (
