@@ -99,43 +99,27 @@ export default function AnimeInfo({ random = false, idd, adDiv }) {
   const pathname = usePathname();
 
   useEffect(() => {
-    <Script
-      strategy="afterInteractive"
-      src="//abackdamstubborn.com/a6053b92a96db67507afac0ea870db33/invoke.js"
-      async
-    />;
-  }, [pathname]);
+    // Clean up any existing script to prevent duplicates
+    const existingScript = document.querySelector(
+      'script[src*="abackdamstubborn"]'
+    );
+    if (existingScript) {
+      existingScript.remove();
+    }
 
-  // useEffect(() => {
-  //   // Function to load the script
-  //   const loadScript = () => {
-  //     const script = document.createElement("script");
-  //     script.async = true;
-  //     script.src =
-  //       "//abackdamstubborn.com/a6053b92a96db67507afac0ea870db33/invoke.js";
-  //     script.setAttribute("data-cfasync", "false");
-  //     document.body.appendChild(script);
-
-  //     // Optionally remove the previous script before adding new
-  //     const container = document.getElementById(
-  //       "container-a6053b92a96db67507afac0ea870db33"
-  //     );
-  //     if (container) {
-  //       container.innerHTML = ""; // Clear container if necessary
-  //     }
-  //   };
-
-  //   // Call loadScript when the component mounts or when pathname changes
-  //   loadScript();
-
-  //   // Cleanup on component unmount or route change
-  //   return () => {
-  //     const scripts = document.querySelectorAll(
-  //       `script[src="//abackdamstubborn.com/a6053b92a96db67507afac0ea870db33/invoke.js"]`
-  //     );
-  //     scripts.forEach((script) => script.remove());
-  //   };
-  // }, [pathname]); // Depend on router.pathname to reload when path changes
+    // Check if container exists before loading the script
+    const container = document.getElementById(
+      "container-a6053b92a96db67507afac0ea870db33"
+    );
+    if (container) {
+      const script = document.createElement("script");
+      script.src =
+        "//abackdamstubborn.com/a6053b92a96db67507afac0ea870db33/invoke.js";
+      script.async = true;
+      container.innerHTML = ""; // Optional: clear container before loading
+      document.body.appendChild(script);
+    }
+  }, [idd]); // re-run when idd changes
 
   useEffect(() => {
     if (typeof window !== "undefined") {
