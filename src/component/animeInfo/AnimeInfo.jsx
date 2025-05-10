@@ -98,6 +98,14 @@ export default function AnimeInfo({ random = false, idd, adDiv }) {
 
   const pathname = usePathname();
 
+  useEffect(() => {
+    <Script
+      strategy="afterInteractive"
+      src="//abackdamstubborn.com/a6053b92a96db67507afac0ea870db33/invoke.js"
+      async
+    />;
+  }, [pathname]);
+
   // useEffect(() => {
   //   // Function to load the script
   //   const loadScript = () => {
@@ -334,7 +342,7 @@ export default function AnimeInfo({ random = false, idd, adDiv }) {
 
           <div className="animeInfoBox">
             <div className="relative w-[180px] h-[270px] max-[575px]:w-[140px] max-[575px]:h-[200px] flex-shrink-0">
-              <div
+              {/* <div
                 id="ad-container"
                 style={{
                   width: "100%",
@@ -342,13 +350,13 @@ export default function AnimeInfo({ random = false, idd, adDiv }) {
                   justifyContent: "center",
                   margin: "10px 0",
                 }}
-              ></div>
+              ></div> */}
               {/* <script
                 async="async"
                 data-cfasync="false"
                 src="//abackdamstubborn.com/a6053b92a96db67507afac0ea870db33/invoke.js"
               ></script> */}
-              {adDiv}
+              <div id="container-a6053b92a96db67507afac0ea870db33"></div>
               <img
                 src={`https://wsrv.nl/?url=${poster}`}
                 alt={`${title} Poster`}
