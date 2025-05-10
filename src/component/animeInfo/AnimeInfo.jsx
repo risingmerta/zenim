@@ -632,7 +632,7 @@ export default function AnimeInfo({ random = false, idd, adDiv }) {
               }}
             >
               <iframe
-                src="/ad2"
+                src="/ad4"
                 style={{
                   width: "fit-content",
                   height: "100px",
