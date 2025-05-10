@@ -340,16 +340,6 @@ export default function AnimeInfo({ random = false, idd, adDiv }) {
                 data-cfasync="false"
                 src="//abackdamstubborn.com/a6053b92a96db67507afac0ea870db33/invoke.js"
               ></script> */}
-              <iframe
-                src="/ad6"
-                style={{
-                  width: "fit-content",
-                  height: "100px",
-                  border: "none",
-                  overflow: "hidden",
-                }}
-                scrolling="no"
-              ></iframe>
               <img
                 src={`https://wsrv.nl/?url=${poster}`}
                 alt={`${title} Poster`}
@@ -540,12 +530,22 @@ export default function AnimeInfo({ random = false, idd, adDiv }) {
             margin: "10px 0",
           }}
         ></div>
+        <iframe
+          src="/ad6"
+          style={{
+            width: "fit-content",
+            height: "100px",
+            border: "none",
+            overflow: "hidden",
+          }}
+          scrolling="no"
+        ></iframe>
         {/* <script
           async="async"
           data-cfasync="false"
           src="//abackdamstubborn.com/a6053b92a96db67507afac0ea870db33/invoke.js"
         ></script> */}
-        <div id="container-a6053b92a96db67507afac0ea870db33"></div>
+        {/* <div id="container-a6053b92a96db67507afac0ea870db33"></div> */}
         <div className="mainLayoutGrid">
           <div>
             {seasons?.length > 0 && (
@@ -584,7 +584,7 @@ export default function AnimeInfo({ random = false, idd, adDiv }) {
                 </div>
               </div>
             )}
-            <div
+            {/* <div
               id="ad-container2"
               style={{
                 width: "100%",
@@ -592,11 +592,21 @@ export default function AnimeInfo({ random = false, idd, adDiv }) {
                 justifyContent: "center",
                 margin: "10px 0",
               }}
-            ></div>
+            ></div> */}
+            <iframe
+              src="/ad2"
+              style={{
+                width: "fit-content",
+                height: "100px",
+                border: "none",
+                overflow: "hidden",
+              }}
+              scrolling="no"
+            ></iframe>
             {animeInfo?.charactersVoiceActors.length > 0 && (
               <Voiceactor animeInfo={animeInfo} />
             )}
-            <div
+            {/* <div
               id="ad-container3"
               style={{
                 width: "100%",
@@ -604,7 +614,17 @@ export default function AnimeInfo({ random = false, idd, adDiv }) {
                 justifyContent: "center",
                 margin: "10px 0",
               }}
-            ></div>
+            ></div> */}
+            <iframe
+              src="/ad3"
+              style={{
+                width: "fit-content",
+                height: "100px",
+                border: "none",
+                overflow: "hidden",
+              }}
+              scrolling="no"
+            ></iframe>
             {animeInfo.recommended_data.length > 0 && (
               <CategoryCard
                 label="Recommended for you"
@@ -615,7 +635,7 @@ export default function AnimeInfo({ random = false, idd, adDiv }) {
               />
             )}
           </div>
-          <div
+          {/* <div
             id="ad-container4"
             style={{
               width: "100%",
@@ -623,7 +643,17 @@ export default function AnimeInfo({ random = false, idd, adDiv }) {
               justifyContent: "center",
               margin: "10px 0",
             }}
-          ></div>
+          ></div> */}
+          <iframe
+            src="/ad4"
+            style={{
+              width: "fit-content",
+              height: "100px",
+              border: "none",
+              overflow: "hidden",
+            }}
+            scrolling="no"
+          ></iframe>
           <div>
             {animeInfo.related_data.length > 0 && (
               <Sidecard
@@ -632,7 +662,7 @@ export default function AnimeInfo({ random = false, idd, adDiv }) {
                 className="mt-8"
               />
             )}
-            <div
+            {/* <div
               id="ad-container5"
               style={{
                 width: "100%",
@@ -640,7 +670,17 @@ export default function AnimeInfo({ random = false, idd, adDiv }) {
                 justifyContent: "center",
                 margin: "10px 0",
               }}
-            ></div>
+            ></div> */}
+            <iframe
+              src="/ad5"
+              style={{
+                width: "fit-content",
+                height: "100px",
+                border: "none",
+                overflow: "hidden",
+              }}
+              scrolling="no"
+            ></iframe>
             {homeInfo && homeInfo.most_popular && (
               <Sidecard
                 label="Most Popular"
@@ -649,7 +689,7 @@ export default function AnimeInfo({ random = false, idd, adDiv }) {
                 limit={10}
               />
             )}
-            <div
+            {/* <div
               id="ad-container7"
               style={{
                 width: "100%",
@@ -657,7 +697,17 @@ export default function AnimeInfo({ random = false, idd, adDiv }) {
                 justifyContent: "center",
                 margin: "10px 0",
               }}
-            ></div>
+            ></div> */}
+            <iframe
+              src="/ad6"
+              style={{
+                width: "fit-content",
+                height: "100px",
+                border: "none",
+                overflow: "hidden",
+              }}
+              scrolling="no"
+            ></iframe>
           </div>
         </div>
         <Footer />
