@@ -96,58 +96,6 @@ export default function AnimeInfo({ random = false, idd }) {
   const [homeInfo, setHomeInfo] = useState(null);
   const [homeInfoLoading, setHomeInfoLoading] = useState(true);
 
-  useEffect(() => {
-    const fetchHomeInfo = async () => {
-      try {
-        const res = await fetch("/api/home");
-        const data = await res.json();
-        setHomeInfo(data);
-      } catch (err) {
-        console.error("Error fetching home info:", err);
-        setError(err);
-      } finally {
-        setHomeInfoLoading(false);
-      }
-    };
-    fetchHomeInfo();
-  }, []);
-  const router = useRouter();
-  useEffect(() => {
-    if (id === "404-not-found-page") {
-      console.log("404 got!");
-      return null;
-    } else {
-      const fetchAnimeInfo = async () => {
-        setLoading(true);
-        try {
-          const url = random ? `/api/info?random=true` : `/api/info?id=${id}`;
-          const response = await fetch(url);
-          const data = await response.json();
-          setSeasons(data?.seasons);
-          setAnimeInfo(data.data);
-        } catch (err) {
-          console.error("Error fetching anime info:", err);
-          setError(err);
-        } finally {
-          setLoading(false);
-        }
-      };
-      fetchAnimeInfo();
-      typeof window !== "undefined" &&
-        window.scrollTo({ top: 0, behavior: "smooth" });
-    }
-  }, [id, random]);
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      if (animeInfo && location.pathname === `/${animeInfo.id}`) {
-        document.title = `Watch ${animeInfo.title} English Sub/Dub online Free on ${website_name}`;
-      }
-      return () => {
-        document.title = `${website_name} | Free anime streaming platform`;
-      };
-    }
-  }, [animeInfo]);
-
   const pathname = usePathname();
 
   useEffect(() => {
@@ -285,6 +233,58 @@ export default function AnimeInfo({ random = false, idd }) {
       }
     }
   }, [pathname]);
+
+  useEffect(() => {
+    const fetchHomeInfo = async () => {
+      try {
+        const res = await fetch("/api/home");
+        const data = await res.json();
+        setHomeInfo(data);
+      } catch (err) {
+        console.error("Error fetching home info:", err);
+        setError(err);
+      } finally {
+        setHomeInfoLoading(false);
+      }
+    };
+    fetchHomeInfo();
+  }, []);
+  const router = useRouter();
+  useEffect(() => {
+    if (id === "404-not-found-page") {
+      console.log("404 got!");
+      return null;
+    } else {
+      const fetchAnimeInfo = async () => {
+        setLoading(true);
+        try {
+          const url = random ? `/api/info?random=true` : `/api/info?id=${id}`;
+          const response = await fetch(url);
+          const data = await response.json();
+          setSeasons(data?.seasons);
+          setAnimeInfo(data.data);
+        } catch (err) {
+          console.error("Error fetching anime info:", err);
+          setError(err);
+        } finally {
+          setLoading(false);
+        }
+      };
+      fetchAnimeInfo();
+      typeof window !== "undefined" &&
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  }, [id, random]);
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      if (animeInfo && location.pathname === `/${animeInfo.id}`) {
+        document.title = `Watch ${animeInfo.title} English Sub/Dub online Free on ${website_name}`;
+      }
+      return () => {
+        document.title = `${website_name} | Free anime streaming platform`;
+      };
+    }
+  }, [animeInfo]);
 
   if (loading) return <Loader type="animeInfo" />;
   if (error) {
