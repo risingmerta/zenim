@@ -1,27 +1,42 @@
-import axios from "axios";
+import { connectDB } from "@/lib/mongoClient";
 
 export async function GET(req) {
   try {
     const { searchParams } = new URL(req.url);
     const id = searchParams.get("id");
+    const epi = searchParams.get("epi") === "true";
     const random = searchParams.get("random") === "true";
 
-    const api_url = "https://vimal.animoon.me/api";
+    const db = await connectDB();
+    const animeInfoCol = db.collection("animeInfo");
 
     if (random) {
-      const randomIdResponse = await axios.get(`${api_url}/random/id`);
-      const randomId = randomIdResponse.data.results;
-      const infoResponse = await axios.get(`${api_url}/info?id=${randomId}`);
-      return Response.json(infoResponse.data.results);
+      // Get all IDs
+      const allDocs = await animeInfoCol.find({}).project({ _id: 1 }).toArray();
+      if (!allDocs.length)
+        return new Response("No entries found", { status: 404 });
+
+      const randomDoc = allDocs[Math.floor(Math.random() * allDocs.length)];
+      const randomData = await animeInfoCol.findOne({ _id: randomDoc._id });
+
+      return Response.json(randomData.info.results);
     }
 
     if (!id) {
       return new Response("Missing ID", { status: 400 });
     }
 
-    const infoResponse = await axios.get(`${api_url}/info?id=${id}`);
-    return Response.json(infoResponse.data.results);
+    const doc = await animeInfoCol.findOne({ _id: id });
 
+    if (!doc) {
+      return new Response("Anime not found", { status: 404 });
+    }
+
+    if (epi) {
+      Response.json(doc);
+    }
+
+    return Response.json(doc.info.results);
   } catch (error) {
     console.error("Error in /api/info:", error);
     return new Response("Internal Server Error", { status: 500 });

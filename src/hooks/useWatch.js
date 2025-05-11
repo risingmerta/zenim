@@ -58,10 +58,15 @@ export const useWatch = (animeId, initialEpisodeId) => {
     const fetchInitialData = async () => {
       try {
         setAnimeInfoLoading(true);
-        const [animeData, episodesData] = await Promise.all([
-          getAnimeInfo(animeId, false),
-          getEpisodes(animeId),
-        ]);
+        const url = `/api/info?id=${id}&epi=true`;
+        const response = await fetch(url);
+        const data = await response.json();
+        // const [animeData, episodesData] = await Promise.all([
+        //   getAnimeInfo(animeId, false),
+        //   getEpisodes(animeId),
+        // ]);
+        const animeData = data.info.results;
+        const episodesData = data.episode.results;
         setAnimeInfo(animeData?.data);
         setSeasons(animeData?.seasons);
         setEpisodes(episodesData?.episodes);
@@ -121,8 +126,10 @@ export const useWatch = (animeId, initialEpisodeId) => {
           (server) =>
             server.serverName === "HD-1" || server.serverName === "HD-2"
         );
-        const savedServerName = typeof window !== "undefined" && localStorage.getItem("server_name");
-        const savedServerType = typeof window !== "undefined" && localStorage.getItem("server_type");
+        const savedServerName =
+          typeof window !== "undefined" && localStorage.getItem("server_name");
+        const savedServerType =
+          typeof window !== "undefined" && localStorage.getItem("server_type");
         let initialServer;
         initialServer = data.find(
           (server) =>
@@ -187,7 +194,7 @@ export const useWatch = (animeId, initialEpisodeId) => {
             server.type.toLowerCase()
           );
           setStreamInfo(data);
-          console.log(data)
+          console.log(data);
           setStreamUrl(data?.streamingLink?.link?.file || null);
           setIntro(data?.streamingLink?.intro || null);
           setOutro(data?.streamingLink?.outro || null);
