@@ -32,10 +32,9 @@ export async function GET(req) {
       return new Response("Anime not found", { status: 404 });
     }
 
-    const cox = JSON.stringify(doc);
-    const parsed = JSON.parse(cox);
-
-    const respo = epi ? parsed : parsed.info.results;
+    const respo = epi
+      ? { info: doc.info.results, episode: doc.episode.results }
+      : doc.info.results;
 
     return Response.json(respo);
   } catch (error) {

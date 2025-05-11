@@ -65,8 +65,8 @@ export const useWatch = (animeId, initialEpisodeId) => {
         //   getAnimeInfo(animeId, false),
         //   getEpisodes(animeId),
         // ]);
-        const animeData = data.info.results;
-        const episodesData = data.episode.results;
+        const animeData = data.info;
+        const episodesData = data.episode;
         setAnimeInfo(animeData?.data);
         setSeasons(animeData?.seasons);
         setEpisodes(episodesData?.episodes);
