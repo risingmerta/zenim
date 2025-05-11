@@ -61,7 +61,7 @@ export default function Advertize(props) {
     ls.setItem("truth", "false");
     window.open(
       props?.direct ||
-        "https://www.highrevenuenetwork.com/hnq4sfr7se?key=fa60dc3aeeb0a08aa0476e80986ad233"
+        "https://abackdamstubborn.com/zffe7w32?key=38fa10bd1d079d31f58778794a8026c0"
     );
   }
 

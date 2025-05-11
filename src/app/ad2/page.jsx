@@ -8,7 +8,7 @@ const Page = () => {
   useEffect(() => {
     const timeout = setTimeout(() => {
       const adContainer = document.getElementById(
-        "container-e7adc5efcea4f0969cce1ae3fbb08178"
+        "container-510b920445a3874545238e3d17d800ec"
       );
       if (adContainer && adContainer.childNodes.length > 0) {
         setAdVisible(true);
@@ -27,12 +27,12 @@ const Page = () => {
       }}
     >
       <Script
-        src="/statespiecehooter.com/e7adc5efcea4f0969cce1ae3fbb08178/invoke.js"
+        src="//abackdamstubborn.com/510b920445a3874545238e3d17d800ec/invoke.js"
         strategy="afterInteractive"
         data-cfasync="false"
         async
       />
-      <div id="container-e7adc5efcea4f0969cce1ae3fbb08178" />
+      <div id="container-510b920445a3874545238e3d17d800ec" />
       {!adVisible && (
         <div
           style={{
