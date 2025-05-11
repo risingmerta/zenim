@@ -19,7 +19,7 @@ export async function GET() {
 
   try {
     const response = await axios.get(API_URL);
-    const results = response.data.results;
+    const results = response.data.data;
 
     if (!results || Object.keys(results).length === 0) {
       return NextResponse.json({ error: "No results found" }, { status: 500 });
