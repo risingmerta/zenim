@@ -56,10 +56,10 @@ export async function GET() {
     };
 
     // Store in in-memory cache
-    cache = {
-      timestamp: currentTime,
-      data: dataToCache,
-    };
+    // cache = {
+    //   timestamp: currentTime,
+    //   data: dataToCache,
+    // };
 
     return NextResponse.json(dataToCache);
   } catch (error) {
