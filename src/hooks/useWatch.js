@@ -58,15 +58,15 @@ export const useWatch = (animeId, initialEpisodeId) => {
     const fetchInitialData = async () => {
       try {
         setAnimeInfoLoading(true);
-        const url = `/api/info?id=${id}&epi=true`;
-        const response = await fetch(url);
-        const data = await response.json();
-        // const [animeData, episodesData] = await Promise.all([
-        //   getAnimeInfo(animeId, false),
-        //   getEpisodes(animeId),
-        // ]);
-        const animeData = data.info;
-        const episodesData = data.episode;
+        // const url = `/api/info?id=${id}&epi=true`;
+        // const response = await fetch(url);
+        // const data = await response.json();
+        const [animeData, episodesData] = await Promise.all([
+          getAnimeInfo(animeId, false),
+          getEpisodes(animeId),
+        ]);
+        // const animeData = data.info;
+        // const episodesData = data.episode;
         setAnimeInfo(animeData?.data);
         setSeasons(animeData?.seasons);
         setEpisodes(episodesData?.episodes);
