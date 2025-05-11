@@ -33,8 +33,9 @@ export async function GET(req) {
     }
 
     const cox = JSON.stringify(doc);
+    const parsed = JSON.parse(cox);
 
-    const respo = epi ? cox : cox.info.results;
+    const respo = epi ? parsed : parsed.info.results;
 
     return Response.json(respo);
   } catch (error) {
