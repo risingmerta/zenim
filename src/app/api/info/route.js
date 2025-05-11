@@ -33,7 +33,7 @@ export async function GET(req) {
     }
 
     if (epi) {
-      Response.json(doc);
+      return Response.json(doc);
     }
 
     return Response.json(doc.info.results);
