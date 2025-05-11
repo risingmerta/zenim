@@ -32,11 +32,9 @@ export async function GET(req) {
       return new Response("Anime not found", { status: 404 });
     }
 
-    if (epi) {
-      return Response.json(doc);
-    }
+    const respo = epi ? doc : doc.info.results;
 
-    return Response.json(doc.info.results);
+    return Response.json(respo);
   } catch (error) {
     console.error("Error in /api/info:", error);
     return new Response("Internal Server Error", { status: 500 });
