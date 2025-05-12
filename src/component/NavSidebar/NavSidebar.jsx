@@ -29,7 +29,7 @@ export default function NavSidebar(props) {
             Close Menu
           </div>
           <div className="action-grop">
-            <Actions isInSidebar={true} data={props.data} lang={props.lang} refer={props.refer}/>
+            <Actions isInSidebar={true} data={props.data} lang={props.lang} refer={props.refer} selectL={props.selectL}/>
           </div>
 
           <a href="/" className="d-flex a-center j-center">

@@ -4,7 +4,7 @@ import {
   faMicrophone,
 } from "@fortawesome/free-solid-svg-icons";
 import { FaChevronRight } from "react-icons/fa";
-import { useLanguage } from "@/context/LanguageContext";
+// import { useLanguage } from "@/context/LanguageContext";
 import "./Cart.css";
 import { useState } from "react";
 import useToolTipPosition from "@/hooks/useToolTipPosition";

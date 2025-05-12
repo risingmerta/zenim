@@ -1,4 +1,4 @@
-import { useLanguage } from "@/context/LanguageContext";
+// import { useLanguage } from "@/context/LanguageContext";
 import {
   faAngleDown,
   faCirclePlay,
@@ -16,9 +16,10 @@ function Episodelist({
   WatchedEpisodes,
   currentEpisode,
   totalEpisodes,
+  selectL
 }) {
   const [activeEpisodeId, setActiveEpisodeId] = useState(currentEpisode);
-  const { language } = useLanguage();
+  const language = selectL;
   const listContainerRef = useRef(null);
   const activeEpisodeRef = useRef(null);
   const [showDropDown, setShowDropDown] = useState(false);

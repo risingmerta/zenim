@@ -4,14 +4,14 @@ import {
   faClosedCaptioning,
   faMicrophone,
 } from "@fortawesome/free-solid-svg-icons";
-import { useLanguage } from "@/context/LanguageContext";
+// import { useLanguage } from "@/context/LanguageContext";
 // import { Link, useNavigate } from "react-router-dom";
 import useToolTipPosition from "@/hooks/useToolTipPosition";
 import Qtip from "../qtip/Qtip";
 import Link from "next/link";
 
-function Topten({ data, className }) {
-  const { language } = useLanguage();
+function Topten({ data, className, selectL }) {
+  const language = selectL;
   const [activePeriod, setActivePeriod] = useState("today");
   const [hoveredItem, setHoveredItem] = useState(null);
   const [hoverTimeout, setHoverTimeout] = useState(null);
