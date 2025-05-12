@@ -11,8 +11,8 @@ import Link from "next/link";
 import { useLanguage } from "@/context/LanguageContext";
 import "./Banner.css";
 
-function Banner({ item, index }) {
-  const { language } = useLanguage();
+function Banner({ item, index, selectL }) {
+  const language = selectL;
 
   return (
     <section className="spotlight w-full h-full">

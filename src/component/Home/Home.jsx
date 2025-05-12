@@ -17,6 +17,10 @@ import Footer from "../Footer/Footer";
 import { usePathname } from "next/navigation";
 
 export default function Home() {
+  const [selectL, setSelectL] = useState("EN");
+  const lang = (lang) => {
+    setSelectL(lang);
+  }; 
   const website_name = "Animoon";
   const [homeInfo, setHomeInfo] = useState(null);
   const [homeInfoLoading, setHomeInfoLoading] = useState(true);
@@ -45,9 +49,9 @@ export default function Home() {
   return (
     <>
       <SessionProvider>
-        <Navbar />
+        <Navbar lang={lang} selectL={selectL} />
         <div className="home-container">
-          <Spotlight spotlights={homeInfo.spotlights} />
+          <Spotlight spotlights={homeInfo.spotlights} selectL={selectL} />
 
           <div
             style={{
@@ -68,7 +72,7 @@ export default function Home() {
               scrolling="no"
             ></iframe>
           </div>
-          <ContinueWatching />
+          <ContinueWatching selectL={selectL} />
           <div
             id="ad-container6"
             style={{
@@ -78,7 +82,7 @@ export default function Home() {
               margin: "10px 0",
             }}
           ></div>
-          <Trending trending={homeInfo.trending} />
+          <Trending trending={homeInfo.trending} selectL={selectL} />
           <div
             style={{
               width: "100%",
@@ -104,21 +108,25 @@ export default function Home() {
               label="Top Airing"
               data={homeInfo.top_airing}
               path="top-airing"
+              selectL={selectL}
             />
             <Cart
               label="Most Popular"
               data={homeInfo.most_popular}
               path="most-popular"
+              selectL={selectL}
             />
             <Cart
               label="Most Favorite"
               data={homeInfo.most_favorite}
               path="most-favorite"
+              selectL={selectL}
             />
             <Cart
               label="Latest Completed"
               data={homeInfo.latest_completed}
               path="completed"
+              selectL={selectL}
             />
           </div>
 
@@ -150,6 +158,7 @@ export default function Home() {
                 className={"mt-[60px]"}
                 path="recently-updated"
                 limit={12}
+                selectL={selectL}
               />
               <div
                 style={{
@@ -176,6 +185,7 @@ export default function Home() {
                 className={"mt-[60px]"}
                 path="recently-added"
                 limit={12}
+                selectL={selectL}
               />
               <div
                 style={{
@@ -196,7 +206,7 @@ export default function Home() {
                   scrolling="no"
                 ></iframe>
               </div>
-              <Schedule />
+              <Schedule selectL={selectL} />
               <div
                 style={{
                   width: "100%",
@@ -222,6 +232,7 @@ export default function Home() {
                 className={"mt-[30px]"}
                 path="top-upcoming"
                 limit={12}
+                selectL={selectL}
               />
               <div
                 style={{
@@ -265,7 +276,11 @@ export default function Home() {
                   scrolling="no"
                 ></iframe>
               </div>
-              <Topten data={homeInfo.topten} className={"mt-12"} />
+              <Topten
+                data={homeInfo.topten}
+                className={"mt-12"}
+                selectL={selectL}
+              />
               <div
                 style={{
                   width: "100%",

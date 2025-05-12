@@ -85,7 +85,8 @@ function Tag({ bgColor, index, icon, text }) {
 }
 
 export default function AnimeInfo({ random = false, idd, adDiv }) {
-  const { language } = useLanguage();
+  const [selectL, setSelectL] = useState("EN");
+  const language = selectL;
   const id = random ? null : idd;
   const [isFull, setIsFull] = useState(false);
   const [animeInfo, setAnimeInfo] = useState(null);
@@ -94,6 +95,9 @@ export default function AnimeInfo({ random = false, idd, adDiv }) {
   const [error, setError] = useState(null);
   const [homeInfo, setHomeInfo] = useState(null);
   const [homeInfoLoading, setHomeInfoLoading] = useState(true);
+  const lang = (lang) => {
+    setSelectL(lang);
+  };
 
   useEffect(() => {
     const fetchHomeInfo = async () => {
@@ -184,7 +188,7 @@ export default function AnimeInfo({ random = false, idd, adDiv }) {
   return (
     <>
       <SessionProvider>
-        <Navbar />
+        <Navbar lang={lang} selectL={selectL}/>
 
         <div className="infoContainer">
           <img
@@ -364,7 +368,7 @@ export default function AnimeInfo({ random = false, idd, adDiv }) {
                 { label: "Studios", value: info?.Studios },
                 { label: "Producers", value: info?.Producers },
               ].map(({ label, value }, index) => (
-                <InfoItem key={index} label={label} value={value} />
+                <InfoItem key={index} label={label} value={value}/>
               ))}
               {/* <p className="text-[14px] mt-4 custom-xl:hidden">
               {`${website_name} is the best site to watch `}
@@ -482,6 +486,7 @@ export default function AnimeInfo({ random = false, idd, adDiv }) {
                 limit={animeInfo.recommended_data.length}
                 showViewMore={false}
                 className={"mt-8"}
+                selectL={selectL}
               />
             )}
           </div>
@@ -491,6 +496,7 @@ export default function AnimeInfo({ random = false, idd, adDiv }) {
                 label="Related Anime"
                 data={animeInfo.related_data}
                 className="mt-8"
+                selectL={selectL}
               />
             )}
 
@@ -519,6 +525,7 @@ export default function AnimeInfo({ random = false, idd, adDiv }) {
                 data={homeInfo.most_popular.slice(0, 10)}
                 className="mt-[40px]"
                 limit={10}
+                selectL={selectL}
               />
             )}
 

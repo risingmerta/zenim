@@ -13,7 +13,7 @@ import { useSession } from "next-auth/react";
 import Profilo from "../Profilo/Profilo";
 import SignInSignUpModal from "../SignSignup/SignInSignUpModal";
 
-export default function Navbar({ lang, refer }) {
+export default function Navbar({ lang, refer, selectL }) {
   const [sidebarIsOpen, setSidebarIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [showFloat, setShowFloat] = useState(false);
@@ -93,6 +93,7 @@ export default function Navbar({ lang, refer }) {
         sidebarIsOpen={sidebarIsOpen}
         setSidebarIsOpen={setSidebarIsOpen}
         lang={lang}
+        selectL={selectL}
       />
       <div className={`nav-1 ${isScrolled ? "darkio" : ""}`}>
         <div className="nav-in">
@@ -114,7 +115,7 @@ export default function Navbar({ lang, refer }) {
             <Social refer={refer} />
           </div>
           <div className="nav-action">
-            <Action lang={lang} refer={refer} />
+            <Action lang={lang} refer={refer} selectL={selectL}/>
           </div>
         </div>
         <div className="nav-end">

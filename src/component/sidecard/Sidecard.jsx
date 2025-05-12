@@ -4,14 +4,13 @@ import {
   faClosedCaptioning,
   faMicrophone,
 } from "@fortawesome/free-solid-svg-icons";
-import { useLanguage } from "@/context/LanguageContext";
 import useToolTipPosition from "@/hooks/useToolTipPosition";
 import Qtip from "../qtip/Qtip";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
-function Sidecard({ data, label, className, limit }) {
-  const { language } = useLanguage();
+function Sidecard({ data, label, className, limit, selectL }) {
+  const language = selectL;
   const router = useRouter();
   const [showAll, setShowAll] = useState(false);
   const [hoverTimeout, setHoverTimeout] = useState(null);

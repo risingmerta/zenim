@@ -12,8 +12,8 @@ import Qtip from "../qtip/Qtip";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 
-function Cart({ label, data, path }) {
-  const { language } = useLanguage();
+function Cart({ label, data, path, selectL }) {
+  const language = selectL;
   const router = useRouter();
   const [hoveredItem, setHoveredItem] = useState(null);
   const [hoverTimeout, setHoverTimeout] = useState(null);

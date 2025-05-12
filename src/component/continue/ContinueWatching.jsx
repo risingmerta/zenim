@@ -11,9 +11,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlay } from "@fortawesome/free-solid-svg-icons";
 import Link from "next/link";
 
-const ContinueWatching = () => {
+const ContinueWatching = (props) => {
   const [watchList, setWatchList] = useState([]);
-  const { language } = useLanguage();
+  const language = props.selectL;
   const swiperRef = useRef(null);
 
   useEffect(() => {

@@ -24,8 +24,9 @@ const CategoryCard = React.memo(
     cardStyle,
     path,
     limit,
+    selectL,
   }) => {
-    const { language } = useLanguage();
+    const language = selectL;
     const router = useRouter();
     const [showPlay, setShowPlay] = useState(false);
     if (limit) {

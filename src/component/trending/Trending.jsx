@@ -7,12 +7,14 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 
-const Trending = ({ trending }) => {
-  const { language } = useLanguage();
+const Trending = ({ trending, selectL }) => {
+  const language = selectL;
 
   return (
     <div className="mt-6 max-[1200px]:px-4 max-md:px-0">
-      <h1 className="text-[#00f2fe] text-2xl font-bold max-md:pl-4">Trending</h1>
+      <h1 className="text-[#00f2fe] text-2xl font-bold max-md:pl-4">
+        Trending
+      </h1>
 
       <div className="pr-[60px] relative mx-auto overflow-hidden z-[1] mt-6 max-[759px]:pr-0">
         <Swiper

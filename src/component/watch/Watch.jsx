@@ -1,8 +1,8 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 import "./watch.css";
-import { useLanguage } from "@/context/LanguageContext";
-import { useHomeInfo } from "@/context/HomeInfoContext";
+// import { useLanguage } from "@/context/LanguageContext";
+// import { useHomeInfo } from "@/context/HomeInfoContext";
 import { useWatch } from "@/hooks/useWatch";
 import BouncingLoader from "@/component/ui/bouncingloader/Bouncingloader";
 import Player from "@/component/player/Player";
@@ -30,12 +30,16 @@ import { SessionProvider } from "next-auth/react";
 const website_name = "Animoon";
 
 export default function Watch(props) {
+  const [selectL, setSelectL] = useState("EN");
+  const lang = (lang) => {
+    setSelectL(lang);
+  };
   const router = useRouter();
   const animeId = props.id;
   // const queryParams = new URLSearchParams(location.search);
   let initialEpisodeId = props.epId;
   const [tags, setTags] = useState([]);
-  const { language } = useLanguage();
+  const language = selectL;
   const [error, setError] = useState(null);
   const [homeInfo, setHomeInfo] = useState(null);
   const [homeInfoLoading, setHomeInfoLoading] = useState(true);
@@ -313,7 +317,7 @@ export default function Watch(props) {
   return (
     <>
       <SessionProvider>
-        <Navbar />
+        <Navbar lang={lang} selectL={selectL}/>
         <div className="w-full h-fit flex flex-col justify-center items-center relative">
           <div className="w-full relative max-[1400px]:px-[30px] max-[1200px]:px-[80px] max-[1024px]:px-0">
             <img
@@ -371,6 +375,7 @@ export default function Watch(props) {
                       WatchedEpisodes={WatchedEpisodes}
                       onEpisodeClick={(id) => setEpisodeId(id)}
                       totalEpisodes={totalEpisodes}
+                      selectL={selectL}
                     />
                   )}
                 </div>
@@ -392,6 +397,7 @@ export default function Watch(props) {
                         animeInfo={animeInfo}
                         episodeNum={activeEpisodeNum}
                         streamInfo={streamInfo}
+                        selectL={selectL}
                       />
                     ) : (
                       <div className="absolute inset-0 flex justify-center items-center bg-black bg-opacity-50">
@@ -429,6 +435,7 @@ export default function Watch(props) {
                       totalEpisodes={totalEpisodes}
                       episodeId={episodeId}
                       onButtonClick={(id) => setEpisodeId(id)}
+                      selectL={selectL}
                     />
                   )}
                   <Servers
@@ -440,6 +447,7 @@ export default function Watch(props) {
                     WatchedEpisodes={WatchedEpisodes}
                     setActiveServerId={setActiveServerId}
                     serverLoading={serverLoading}
+                    selectL={selectL}
                   />
                   {seasons?.length > 0 && (
                     <div className="flex flex-col gap-y-2 bg-[#11101A] p-4">
@@ -674,6 +682,7 @@ export default function Watch(props) {
                   data={animeInfo?.recommended_data}
                   limit={animeInfo?.recommended_data.length}
                   showViewMore={false}
+                  selectL={selectL}
                 />
               ) : (
                 <CategoryCardLoader className={"mt-[15px]"} />
@@ -703,35 +712,37 @@ export default function Watch(props) {
                   label="Related Anime"
                   data={animeInfo.related_data}
                   className="mt-[15px]"
+                  selectL={selectL}
                 />
               ) : (
                 <SidecardLoader className={"mt-[25px]"} />
               )}
               <div
-              style={{
-                width: "100%",
-                display: "flex",
-                justifyContent: "center",
-                margin: "10px 0",
-              }}
-            >
-              <iframe
-                src="/ad5"
                 style={{
-                  width: "fit-content",
-                  height: "100px",
-                  border: "none",
-                  overflow: "hidden",
+                  width: "100%",
+                  display: "flex",
+                  justifyContent: "center",
+                  margin: "10px 0",
                 }}
-                scrolling="no"
-              ></iframe>
-            </div>
+              >
+                <iframe
+                  src="/ad5"
+                  style={{
+                    width: "fit-content",
+                    height: "100px",
+                    border: "none",
+                    overflow: "hidden",
+                  }}
+                  scrolling="no"
+                ></iframe>
+              </div>
               {homeInfo && homeInfo.most_popular && (
                 <Sidecard
                   label="Most Popular"
                   data={homeInfo.most_popular.slice(0, 10)}
                   className="mt-[15px]"
                   limit={10}
+                  selectL={selectL}
                 />
               )}
               <div

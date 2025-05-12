@@ -10,7 +10,7 @@ import "./schedule.css";
 import Link from "next/link";
 // import { Link } from "react-router-dom";
 
-const Schedule = () => {
+const Schedule = (props) => {
   const [dates, setDates] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);

@@ -7,7 +7,7 @@ import "./Spotlight.css";
 import Banner from "../banner/Banner";
 import { FaAngleLeft, FaAngleRight } from "react-icons/fa";
 
-const Spotlight = ({ spotlights }) => {
+const Spotlight = ({ spotlights, selectL }) => {
   return (
     <>
       <div className="relative h-[600px] max-[1390px]:h-[530px] max-[1300px]:h-[500px] max-md:h-[420px]">
@@ -39,7 +39,7 @@ const Spotlight = ({ spotlights }) => {
             >
               {spotlights.map((item, index) => (
                 <SwiperSlide className="text-black relative" key={index}>
-                  <Banner item={item} index={index} />
+                  <Banner item={item} index={index} selectL={selectL}/>
                 </SwiperSlide>
               ))}
             </Swiper>

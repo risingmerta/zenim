@@ -5,22 +5,22 @@ import { PiBroadcastFill } from "react-icons/pi";
 import { BsBroadcast } from "react-icons/bs";
 import "./NavCss/action.css";
 import Link from "next/link";
-import { useLanguage } from "@/context/LanguageContext";
+// import { useLanguage } from "@/context/LanguageContext";
 
 const Action = (props) => {
-  const { language, toggleLanguage } = useLanguage();
-  const [selectedLang, setSelectedLang] = useState(language);
+  // const { language, toggleLanguage } = useLanguage();
+  // const [selectedLang, setSelectedLang] = useState(language);
 
   const toggle = () => {
-    if (selectedLang === "EN") {
-      setSelectedLang("JP");
-      toggleLanguage("JP");
-      // props.lang("JP");
+    if (selectL === "EN") {
+      // setSelectedLang("JP");
+      // toggleLanguage("JP");
+      props.lang("JP");
     }
-    if (selectedLang === "JP") {
-      setSelectedLang("EN");
-      toggleLanguage("EN");
-      // props.lang("EN");
+    if (selectL === "JP") {
+      // setSelectedLang("EN");
+      // toggleLanguage("EN");
+      props.lang("EN");
     }
   };
   return (
