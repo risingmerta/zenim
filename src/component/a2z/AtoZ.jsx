@@ -12,6 +12,10 @@ import Navbar from "../Navbar/Navbar";
 import { SessionProvider } from "next-auth/react";
 
 export default function AtoZ({ path, pagel }) {
+  const [selectL, setSelectL] = useState("EN");
+  const lang = (lang) => {
+    setSelectL(lang);
+  };
   const [searchParams, setSearchParams] = useState(pagel);
   const [categoryInfo, setCategoryInfo] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -52,7 +56,7 @@ export default function AtoZ({ path, pagel }) {
   return (
     <>
       <SessionProvider>
-        <Navbar />
+        <Navbar lang={lang} selectL={selectL}/>
         <div className="max-w-[1260px] mx-auto px-[15px] flex flex-col mt-[64px] max-md:mt-[50px]">
           <ul className="flex gap-x-2 mt-[50px] items-center w-fit max-[1200px]:hidden">
             <li className="flex gap-x-3 items-center">
@@ -112,6 +116,7 @@ export default function AtoZ({ path, pagel }) {
                   showViewMore={false}
                   className="mt-0"
                   cardStyle="max-[1400px]:h-[35vw]"
+                  selectL={selectL}
                 />
               )}
               <PageSlider

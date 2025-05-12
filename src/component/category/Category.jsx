@@ -15,6 +15,10 @@ import Footer from "../Footer/Footer";
 import { SessionProvider } from "next-auth/react";
 
 export default function Category({ path, label, pagel }) {
+  const [selectL, setSelectL] = useState("EN");
+  const lang = (lang) => {
+    setSelectL(lang);
+  };
   const [searchParams, setSearchParams] = useState(pagel);
   const [categoryInfo, setCategoryInfo] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -81,7 +85,7 @@ export default function Category({ path, label, pagel }) {
   return (
     <>
       <SessionProvider>
-        <Navbar />
+        <Navbar lang={lang} selectL={selectL}/>
         <div className="w-full flex flex-col gap-y-4 mt-[64px] max-md:mt-[50px]">
           {/* Share Anime Banner */}
           <div className="w-full flex gap-x-4 items-center bg-[#191826] p-5 max-[575px]:px-3 max-[320px]:hidden">
@@ -118,6 +122,7 @@ export default function Category({ path, label, pagel }) {
                       className="mt-0"
                       categoryPage={true}
                       path={path}
+                      selectL={selectL}
                     />
                   )}
                   <PageSlider
@@ -136,7 +141,7 @@ export default function Category({ path, label, pagel }) {
               ) : (
                 <>
                   {homeInfo?.topten && (
-                    <Topten data={homeInfo.topten} className="mt-0" />
+                    <Topten data={homeInfo.topten} className="mt-0" selectL={selectL}/>
                   )}
                   {homeInfo?.genres && <Genre data={homeInfo.genres} />}
                 </>

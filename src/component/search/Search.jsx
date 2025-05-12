@@ -15,6 +15,10 @@ import Navbar from "../Navbar/Navbar";
 import Footer from "../Footer/Footer";
 
 export default function Search(props) {
+  const [selectL, setSelectL] = useState("EN");
+  const lang = (lang) => {
+    setSelectL(lang);
+  };
   const [searchParams, setSearchParams] = useState(props.page);
   const [searchParam, setSearchParam] = useState(props.keyword);
   const keyword = searchParam;
@@ -263,17 +267,6 @@ export default function Search(props) {
     // setFilteredData(filteredAnimes);
   };
 
-  const [selectL, setSelectL] = useState("en");
-  const [profiIsOpen, setProfiIsOpen] = useState(false);
-  const [logIsOpen, setLogIsOpen] = useState(false);
-  const sign = (sign) => {
-    setLogIsOpen(sign);
-  };
-
-  const lang = (lang) => {
-    setSelectL(lang);
-  };
-
   const [fullPath, setFullPath] = useState("");
 
   const pathname = usePathname();
@@ -392,7 +385,7 @@ export default function Search(props) {
   return (
     <>
       <SessionProvider>
-        <Navbar />
+        <Navbar lang={lang} selectL={selectL} />
         <div className="main-layout">
           <div>
             <div className="filter-container">
@@ -540,6 +533,7 @@ export default function Search(props) {
                   data={searchData}
                   showViewMore={false}
                   className={"mt-0"}
+                  selectL={selectL}
                 />
                 <PageSlider
                   page={parseInt(searchParams || "1", 10)}
@@ -565,6 +559,7 @@ export default function Search(props) {
                     data={homeInfo.most_popular}
                     className="mt-0"
                     label="Most Popular"
+                    selectL={selectL}
                   />
                 )}
                 {homeInfo?.genres && <Genre data={homeInfo.genres} />}
