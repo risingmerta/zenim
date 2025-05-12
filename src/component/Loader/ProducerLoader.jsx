@@ -4,6 +4,7 @@ import Footer from "../Footer/Footer";
 import Navbar from "../Navbar/Navbar";
 import CategoryCardLoader from "./CategoryCardLoader";
 import SidecardLoader from "./SidecardLoader";
+import "./producerLoader.css";
 
 function ProducerLoader() {
   return (
