@@ -6,16 +6,16 @@ let cache = {
   data: null,
 };
 
-const CACHE_DURATION = 24 * 60 * 60 * 1000; // 24 hours
+const CACHE_DURATION = 60 * 60 * 1000; // 1 hour
 const API_URL = "https://kaori.animoon.me/api/home";
 
 export async function GET() {
-  // const currentTime = Date.now();
+  const currentTime = Date.now();
 
-  // // Return cached data if still valid
-  // if (cache.data && currentTime - cache.timestamp < CACHE_DURATION) {
-  //   return NextResponse.json(cache.data);
-  // }
+  // Return cached data if still valid
+  if (cache.data && currentTime - cache.timestamp < CACHE_DURATION) {
+    return NextResponse.json(cache.data);
+  }
 
   try {
     const response = await axios.get(API_URL);
@@ -56,10 +56,10 @@ export async function GET() {
     };
 
     // Store in in-memory cache
-    // cache = {
-    //   timestamp: currentTime,
-    //   data: dataToCache,
-    // };
+    cache = {
+      timestamp: currentTime,
+      data: dataToCache,
+    };
 
     return NextResponse.json(dataToCache);
   } catch (error) {
