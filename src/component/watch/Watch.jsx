@@ -114,16 +114,6 @@ export default function Watch(props) {
   }, [episodeId, animeId, router.push]);
 
   // Update typeof window !== "undefined" && document title
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      if (animeInfo) {
-        document.title = `Watch ${animeInfo.title} English Sub/Dub online Free on ${website_name}`;
-      }
-      return () => {
-        document.title = `${website_name} | Free anime streaming platform`;
-      };
-    }
-  }, [animeId]);
 
   // Redirect if no episodes
   useEffect(() => {
@@ -718,14 +708,24 @@ export default function Watch(props) {
                 <SidecardLoader className={"mt-[25px]"} />
               )}
               <div
-                id="ad-container6"
+              style={{
+                width: "100%",
+                display: "flex",
+                justifyContent: "center",
+                margin: "10px 0",
+              }}
+            >
+              <iframe
+                src="/ad5"
                 style={{
-                  width: "100%",
-                  display: "flex",
-                  justifyContent: "center",
-                  margin: "10px 0",
+                  width: "fit-content",
+                  height: "100px",
+                  border: "none",
+                  overflow: "hidden",
                 }}
-              ></div>
+                scrolling="no"
+              ></iframe>
+            </div>
               {homeInfo && homeInfo.most_popular && (
                 <Sidecard
                   label="Most Popular"

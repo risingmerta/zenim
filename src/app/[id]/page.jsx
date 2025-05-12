@@ -35,21 +35,24 @@ export async function generateMetadata({ params }) {
     const label = toCapitalize(idToCheck.split("-").join(" "));
     return {
       title: `${label} Anime - ${siteName}`,
-      description: `Watch ${label} Anime online free on ${siteName}.`,
+      // description: `Watch ${label} Anime online free on ${siteName}.`,
     };
   }
 
   return {
     title: `Watch ${idToCheck
-      .split("-")
-      .slice(0, -1)
+      .split("-") // Split by hyphen
+      .slice(0, -1) // Remove the last part
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1)) // Capitalize each word
       .join(" ")} English Sub/Dub online free on ${siteName}`,
     description: `${siteName} is the best site to watch ${idToCheck
-      .split("-")
-      .slice(0, -1)
+      .split("-") // Split by hyphen
+      .slice(0, -1) // Remove the last part
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1)) // Capitalize each word
       .join(" ")} SUB online, or you can even watch ${idToCheck
-      .split("-")
-      .slice(0, -1)
+      .split("-") // Split by hyphen
+      .slice(0, -1) // Remove the last part
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1)) // Capitalize each word
       .join(
         " "
       )} DUB in HD quality. You can also watch underrated anime on ${siteName}.`,
