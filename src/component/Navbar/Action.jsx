@@ -12,12 +12,12 @@ const Action = (props) => {
   // const [selectedLang, setSelectedLang] = useState(language);
 
   const toggle = () => {
-    if (selectL === "EN") {
+    if (props.selectL === "EN") {
       // setSelectedLang("JP");
       // toggleLanguage("JP");
       props.lang("JP");
     }
-    if (selectL === "JP") {
+    if (props.selectL === "JP") {
       // setSelectedLang("EN");
       // toggleLanguage("EN");
       props.lang("EN");
@@ -49,13 +49,13 @@ const Action = (props) => {
       >
         <div className={`action-ico ${props.isInSidebar ? "action-iS" : ""}`}>
           <button
-            className={`engJ ${selectL === "EN" ? "selEJ" : ""}`}
+            className={`engJ ${props.selectL === "EN" ? "selEJ" : ""}`}
             onClick={() => toggle()}
           >
             EN
           </button>
           <button
-            className={`JpE ${selectL === "JP" ? "selEJ" : ""}`}
+            className={`JpE ${props.selectL === "JP" ? "selEJ" : ""}`}
             onClick={() => toggle()}
           >
             JP
