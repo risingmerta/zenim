@@ -71,14 +71,25 @@ const Schedule = () => {
 
       // Check if cached data exists
       const cachedData = localStorage.getItem(`schedule-${date}`);
+      let useApi = true;
+
       if (cachedData) {
         const parsedData = JSON.parse(cachedData);
-        setscheduleData(Array.isArray(parsedData) ? parsedData : []);
-      } else {
+        if (Array.isArray(parsedData) && parsedData.length > 0) {
+          setscheduleData(parsedData);
+          useApi = false;
+        }
+      }
+
+      if (useApi) {
         const ref = await fetch(`/api/schedule?date=${date}`);
         const data = await ref.json();
-        setscheduleData(Array.isArray(data) ? data : []);
-        localStorage.setItem(`schedule-${date}`, JSON.stringify(data || []));
+        if (Array.isArray(data) && data.length > 0) {
+          setscheduleData(data);
+          localStorage.setItem(`schedule-${date}`, JSON.stringify(data));
+        } else {
+          setscheduleData([]);
+        }
       }
     } catch (err) {
       console.error("Error fetching schedule info:", err);
