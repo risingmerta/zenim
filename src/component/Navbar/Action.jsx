@@ -49,13 +49,13 @@ const Action = (props) => {
       >
         <div className={`action-ico ${props.isInSidebar ? "action-iS" : ""}`}>
           <button
-            className={`engJ ${selectedLang === "EN" ? "selEJ" : ""}`}
+            className={`engJ ${selectL === "EN" ? "selEJ" : ""}`}
             onClick={() => toggle()}
           >
             EN
           </button>
           <button
-            className={`JpE ${selectedLang === "JP" ? "selEJ" : ""}`}
+            className={`JpE ${selectL === "JP" ? "selEJ" : ""}`}
             onClick={() => toggle()}
           >
             JP
