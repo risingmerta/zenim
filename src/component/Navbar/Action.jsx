@@ -9,15 +9,15 @@ import Link from "next/link";
 
 const Action = (props) => {
   // const { language, toggleLanguage } = useLanguage();
-  // const [selectedLang, setSelectedLang] = useState(language);
+  const selectedLang = props.selectL || "EN";
 
   const toggle = () => {
-    if (props.selectL === "EN") {
+    if (selectedLang === "EN") {
       // setSelectedLang("JP");
       // toggleLanguage("JP");
       props.lang("JP");
     }
-    if (props.selectL === "JP") {
+    if (selectedLang === "JP") {
       // setSelectedLang("EN");
       // toggleLanguage("EN");
       props.lang("EN");
@@ -49,13 +49,13 @@ const Action = (props) => {
       >
         <div className={`action-ico ${props.isInSidebar ? "action-iS" : ""}`}>
           <button
-            className={`engJ ${props.selectL === "EN" ? "selEJ" : ""}`}
+            className={`engJ ${selectedLang === "EN" ? "selEJ" : ""}`}
             onClick={() => toggle()}
           >
             EN
           </button>
           <button
-            className={`JpE ${props.selectL === "JP" ? "selEJ" : ""}`}
+            className={`JpE ${selectedLang === "JP" ? "selEJ" : ""}`}
             onClick={() => toggle()}
           >
             JP
