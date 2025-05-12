@@ -74,14 +74,24 @@ export default function Home() {
           </div>
           <ContinueWatching selectL={selectL} />
           <div
-            id="ad-container6"
             style={{
               width: "100%",
               display: "flex",
               justifyContent: "center",
               margin: "10px 0",
             }}
-          ></div>
+          >
+            <iframe
+              src="/banner"
+              style={{
+                width: "fit-content",
+                height: "100px",
+                border: "none",
+                overflow: "hidden",
+              }}
+              scrolling="no"
+            ></iframe>
+          </div>
           <Trending trending={homeInfo.trending} selectL={selectL} />
           <div
             style={{
