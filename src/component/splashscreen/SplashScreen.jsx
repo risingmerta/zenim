@@ -1,13 +1,17 @@
+"use client";
 import { useState, useEffect, useCallback } from "react";
-import { Link, useNavigate } from "react-router-dom";
+// import {  useNavigate } from "react-router-dom";
 import "./SplashScreen.css";
-import logoTitle from "@/src/config/logoTitle";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCircleArrowRight,
   faMagnifyingGlass,
 } from "@fortawesome/free-solid-svg-icons";
-import getTopSearch from "@/src/utils/getTopSearch.utils";
+import getTopSearch from "@/utils/getTopSearch.utils";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import Image from "next/image";
+import splash from "../../../public/splash.webp";
 
 // Static data moved outside the component
 const NAV_LINKS = [
@@ -17,6 +21,8 @@ const NAV_LINKS = [
   { to: "/most-popular", label: "Most Popular" },
   { to: "/top-airing", label: "Top Airing" },
 ];
+
+const logoTitle = "Animoon";
 
 const useTopSearch = () => {
   const [topSearch, setTopSearch] = useState([]);
@@ -30,8 +36,8 @@ const useTopSearch = () => {
   return topSearch;
 };
 
-function SplashScreen() {
-  const navigate = useNavigate();
+export default function SplashScreen() {
+  const router = useRouter();
   const [search, setSearch] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
   const topSearch = useTopSearch();
@@ -40,8 +46,8 @@ function SplashScreen() {
     const trimmedSearch = search.trim();
     if (!trimmedSearch) return;
     const queryParam = encodeURIComponent(trimmedSearch);
-    navigate(`/search?keyword=${queryParam}`);
-  }, [search, navigate]);
+    router.push(`/search?keyword=${queryParam}`);
+  }, [search, router]);
 
   const handleKeyDown = useCallback(
     (e) => {
@@ -58,7 +64,11 @@ function SplashScreen() {
         <nav className="relative w-full">
           <div className="w-fit flex gap-x-12 mx-auto font-semibold max-[780px]:hidden">
             {NAV_LINKS.map((link) => (
-              <Link key={link.to} to={link.to} className="hover:text-[#00f2fe]">
+              <Link
+                key={link.to}
+                href={link.to}
+                className="hover:text-[#00f2fe]"
+              >
                 {link.label}
               </Link>
             ))}
@@ -101,7 +111,7 @@ function SplashScreen() {
                 {NAV_LINKS.map((link) => (
                   <Link
                     key={link.to}
-                    to={link.to}
+                    href={link.to}
                     onClick={() => setIsModalOpen(false)}
                     className="hover:text-[#00f2fe] text-white text-lg"
                   >
@@ -116,12 +126,13 @@ function SplashScreen() {
         <div className="splashscreen min-h-[480px] min-[1200px]:min-h-[520px] bg-[#2B2A3C] rounded-[40px] flex relative mt-7 max-[780px]:w-full items-stretch max-[780px]:rounded-[30px] max-[520px]:rounded-none max-[520px]:min-h-fit max-[520px]:pb-4 max-[520px]:mt-4">
           <div className="h-auto flex flex-col w-[700px] relative z-40 px-20 py-20 left-0 max-[1200px]:py-12 max-[780px]:px-12 max-[520px]:py-4 max-[520px]:px-8">
             <Link
-              to="/home"
+              href="/home"
               className="text-[45px] font-extrabold tracking-wide max-[520px]:text-[38px] max-[520px]:text-center"
             >
-              {logoTitle.slice(0, 3)}
-              <span className="text-[#00f2fe]">{logoTitle.slice(3, 4)}</span>
-              {logoTitle.slice(4)}
+              <div className="logo-container">
+                <div className="logo-icon"></div>
+                <div className="logo-text">{logoTitle}</div>
+              </div>
             </Link>
             <div className="w-full flex gap-x-3 mt-6">
               <input
@@ -146,13 +157,13 @@ function SplashScreen() {
               <span className="splashitem font-[600]">Top search: </span>
               {topSearch.map((item, index) => (
                 <span key={index} className="splashitem font-[400]">
-                  <Link to={item.link}>{item.title}</Link>
+                  <Link href={item.link}>{item.title}</Link>
                   {index < topSearch.length - 1 && <span>, </span>}
                 </span>
               ))}
             </div>
             <div className="mt-8 flex max-[780px]:left-10">
-              <Link to="/home" className="max-[520px]:w-full">
+              <Link href="/home" className="max-[520px]:w-full">
                 <div className="bg-[#00f2fe] text-black py-4 px-10 rounded-xl font-bold text-[20px] max-[520px]:text-center max-[520px]:font-medium max-[520px]:text-[17px]">
                   Watch anime
                   <FontAwesomeIcon
@@ -165,8 +176,8 @@ function SplashScreen() {
           </div>
           <div className="h-full w-[600px] absolute right-0 max-[780px]:hidden">
             <div className="splashoverlay"></div>
-            <img
-              src="/splash.webp"
+            <Image
+              src={splash}
               alt="Splash"
               className="bg-cover rounded-r-[40px] w-full h-full object-cover"
             />
@@ -179,5 +190,3 @@ function SplashScreen() {
     </div>
   );
 }
-
-export default SplashScreen;

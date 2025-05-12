@@ -1,12 +1,10 @@
-import Advertize from "@/component/Advertize/Advertize";
-import Home from "@/component/Home/Home";
+import SplashScreen from "@/component/splashscreen/SplashScreen";
 import React from "react";
 
 const page = () => {
   return (
     <div>
-      <Home />
-      <Advertize />
+      <SplashScreen />
     </div>
   );
 };

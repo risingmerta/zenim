@@ -27,3 +27,46 @@
   );
   z-index: 30;
 }
+.logo {
+  max-height: 40px !important;
+}
+/* Navbar Logo Container */
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Spacing between the icon and text */
+}
+
+/* Crescent Moon Icon */
+.logo-icon {
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(145deg, #ffffff, #00f2fe);
+  border-radius: 50%;
+  position: relative;
+  box-shadow: 0 0 10px rgba(0, 242, 254, 0.7);
+}
+
+.logo-icon::after {
+  content: "";
+  width: 30px;
+  height: 30px;
+  background: #1a1a1a;
+  border-radius: 50%;
+  position: absolute;
+  top: 5px;
+  left: 7px;
+}
+
+/* Logo Text */
+.logo-text {
+  font-size: 1.5rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  background: linear-gradient(90deg, #4facfe, #00f2fe, #e91e63, #ffeb3b);
+  background-size: 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradientFlow 4s infinite;
+  white-space: nowrap; /* Prevents text wrapping */
+}
