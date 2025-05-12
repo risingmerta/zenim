@@ -20,7 +20,7 @@ export async function GET(req) {
     const db = await connectDB();
     const animeCollection = db.collection("animoon-schedule");
     const docs = await animeCollection.find({}).toArray();
-    animeDocs = JSON.parse(JSON.stringify(docs));
+    const animeDocs = JSON.parse(JSON.stringify(docs));
 
     const daySchedule = animeDocs.find((entry) => entry._id === date);
     return NextResponse.json(daySchedule?.schedule);
