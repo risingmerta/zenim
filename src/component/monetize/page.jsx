@@ -8,7 +8,7 @@ import Navbar from "../Navbar/Navbar";
 import Footer from "../Footer/Footer";
 import Toast from "../Toast/Toast";
 
-export default function MonetizePage(props) {
+export default function AffiliatePage(props) {
   const { data: session } = useSession();
   const [selectL, setSelectL] = useState("en");
   const [directLink, setDirectLink] = useState("");
@@ -17,7 +17,7 @@ export default function MonetizePage(props) {
   const [showToast, setShowToast] = useState(false);
   const [profiIsOpen, setProfiIsOpen] = useState(false);
   const [logIsOpen, setLogIsOpen] = useState(false);
-  const [alreadyMonetized, setAlreadyMonetized] = useState(false);
+  const [isAffiliate, setIsAffiliate] = useState(false);
 
   const sign = (sign) => setLogIsOpen(sign);
   const lang = (lang) => setSelectL(lang);
@@ -25,7 +25,7 @@ export default function MonetizePage(props) {
   useEffect(() => {
     const fetchLinks = async () => {
       if (!session) {
-        setAlreadyMonetized(false);
+        setIsAffiliate(false);
         return;
       }
       try {
@@ -33,7 +33,7 @@ export default function MonetizePage(props) {
         const result = await res.json();
 
         if (result?.directLink) {
-          setAlreadyMonetized(true);
+          setIsAffiliate(true);
           setDirectLink(result.directLink);
         }
         if (result?.refLink) {
@@ -72,7 +72,7 @@ export default function MonetizePage(props) {
         setShowToast(true);
         setDirectLink("");
         setRefLink("");
-        setAlreadyMonetized(true);
+        setIsAffiliate(true);
       } else {
         setStatus("❌ Failed to save links.");
       }
@@ -102,11 +102,12 @@ export default function MonetizePage(props) {
       )}
 
       <div className="container">
-        {alreadyMonetized ? (
+        {isAffiliate ? (
           <>
-            <h1 className="heading">🎉 You Are Monetized!</h1>
+            <h1 className="heading">🎉 You're an Affiliate!</h1>
             <p className="text">
-              Thanks for setting up your Direct Link. Start sharing and earning now!
+              Thanks for joining the Animoon Affiliate Program. Share your link
+              and earn!
             </p>
             <a
               className="button"
@@ -118,9 +119,9 @@ export default function MonetizePage(props) {
             </a>
 
             <div className="box" style={{ marginTop: "2rem" }}>
-              <h2 className="boxTitle">✏️ Update Your Links</h2>
+              <h2 className="boxTitle">✏️ Update Your Affiliate Links</h2>
 
-              <label>Update Direct Link:</label>
+              <label className="pext">Update Direct Link:</label>
               <input
                 type="text"
                 value={directLink}
@@ -129,7 +130,7 @@ export default function MonetizePage(props) {
                 className="input"
               />
 
-              <label>Update Referral Link:</label>
+              <label className="pext">Update Referral Link:</label>
               <input
                 type="text"
                 value={refLink}
@@ -147,9 +148,10 @@ export default function MonetizePage(props) {
           </>
         ) : (
           <>
-            <h1 className="heading">💸 Start Earning with Animoon + Adsterra</h1>
+            <h1 className="heading">💸 Share Animoon & Earn</h1>
             <p className="text">
-              Earn from your streams + refer friends to earn even more!
+              Become an affiliate by sharing your direct link and earn for every
+              visit!
             </p>
 
             {/* Step 1 - Join Adsterra */}
@@ -168,18 +170,18 @@ export default function MonetizePage(props) {
               </a>
             </div>
 
-            {/* Step 2 - How to Add Direct Link */}
+            {/* Step 2 - Add Direct Link */}
             <div className="box">
-              <h2 className="boxTitle">▶️ 2. How to Add Direct Link</h2>
-              <div className="videoWrapper">
-                <iframe
-                  src="https://www.youtube.com/embed/a9RXktchr6o"
-                  title="How To Create ADSTERRA DIRECT LINK As A Beginner (2024)"
-                  frameBorder="0"
-                  allowFullScreen
-                ></iframe>
-              </div>
-              <label>Your Adsterra Direct Link:</label>
+              <h2 className="boxTitle">▶️ 2. Add Direct Link</h2>
+              <a
+                className="button"
+                href="https://beta.publishers.adsterra.com/links"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                🚀 Get Your Direct Link
+              </a>
+              <label className="pext">Your Adsterra Direct Link:</label>
               <input
                 type="text"
                 value={directLink}
@@ -189,10 +191,18 @@ export default function MonetizePage(props) {
               />
             </div>
 
-            {/* Step 3 - Refer Friends (Optional) */}
+            {/* Step 3 - Referral (Optional) */}
             <div className="box">
-              <h2 className="boxTitle">🤝 3. (Optional) Refer Friends</h2>
-              <label>Your Adsterra Referral Link:</label>
+              <h2 className="boxTitle">🤝 3. Refer Friends (Optional)</h2>
+              <a
+                className="button"
+                href="https://beta.publishers.adsterra.com/referrals"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                🚀 Get Your Referral Link
+              </a>
+              <label className="pext">Your Adsterra Referral Link:</label>
               <input
                 type="text"
                 value={refLink}
@@ -200,26 +210,20 @@ export default function MonetizePage(props) {
                 placeholder="Paste your referral link here"
                 className="input"
               />
-              {refLink && (
-                <iframe
-                  src={refLink}
-                  width="100%"
-                  height="250"
-                  frameBorder="0"
-                  sandbox="allow-scripts allow-same-origin"
-                  title="Referral Link Preview"
-                />
-              )}
+              <p className="text">
+                💸 When you refer someone using your link, you will earn 5% of
+                what the person you refer earns as an affiliate of Animoon!
+              </p>
             </div>
 
             <button className="saveButton" onClick={handleSave}>
-              💾 Save My Links
+              💾 Save My Affiliate Links
             </button>
 
             {status && <p className="status">{status}</p>}
 
             <p className="note">
-              Save your links above. Share live streams with your audience or friends to start earning!
+              Once saved, share your affiliate links and start earning!
             </p>
           </>
         )}
@@ -231,7 +235,7 @@ export default function MonetizePage(props) {
 
       {showToast && (
         <Toast
-          message="✅ Your links have been saved!"
+          message="✅ Your affiliate links have been saved!"
           onClose={() => setShowToast(false)}
         />
       )}

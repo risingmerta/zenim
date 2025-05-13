@@ -1,3 +1,4 @@
+/* General Layout */
 .container {
   max-width: 600px;
   margin: 100px auto;
@@ -5,19 +6,34 @@
   background-color: #000;
   border-radius: 20px;
   color: #fff;
-  font-family: Arial, sans-serif;
+  font-family: "Roboto", Arial, sans-serif; /* Modern font for readability */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Added box shadow for better contrast */
 }
 
 .heading {
   color: #00f2fe;
   text-align: center;
-  font-size: 28px;
+  font-size: 1.8rem; /* Slightly smaller font size */
+  font-weight: bold;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; /* Font for headings */
+  margin-bottom: 20px; /* Added margin between heading and text */
 }
 
 .text {
   color: #bbb;
-  font-size: 14px;
+  font-size: 0.9rem; /* Slightly smaller font size */
   text-align: center;
+  margin-bottom: 20px; /* Space between text and next element */
+  line-height: 1.6; /* Increased line height for readability */
+}
+
+.pext {
+  color: #fff;
+  font-size: 0.9rem; /* Slightly smaller font size */
+  text-align: center;
+  font-weight: 500;
+  margin-bottom: 20px; /* Space between text and next element */
+  line-height: 1.6; /* Increased line height for readability */
 }
 
 .box {
@@ -26,12 +42,18 @@
   border-radius: 12px;
   margin: 20px 0;
   border: 1px solid #00f2fe30; /* subtle border with theme color transparency */
+  transition: transform 0.3s;
+}
+.box:hover {
+  transform: translateY(-5px); /* Hover effect for interactivity */
 }
 
 .boxTitle {
-  font-size: 18px;
-  margin-bottom: 8px;
+  font-size: 1.1rem; /* Slightly smaller font size for title */
+  margin-bottom: 10px;
   color: #00f2fe;
+  font-weight: bold;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; /* Modern title font */
 }
 
 .input {
@@ -43,12 +65,15 @@
   border-radius: 8px;
   margin-top: 5px;
   margin-bottom: 12px;
-  transition: border-color 0.3s;
+  font-size: 0.9rem; /* Slightly smaller font size */
+  font-family: "Roboto", Arial, sans-serif; /* Consistent font family */
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .input:focus {
   border-color: #00f2fe;
   outline: none;
+  box-shadow: 0 0 8px rgba(0, 242, 254, 0.7);
 }
 
 .saveButton {
@@ -62,11 +87,14 @@
   border-radius: 10px;
   margin-top: 10px;
   cursor: pointer;
-  transition: opacity 0.3s;
+  transition: opacity 0.3s, transform 0.2s;
+  font-size: 0.9rem; /* Slightly smaller font size */
+  font-family: "Roboto", Arial, sans-serif; /* Consistent font family for buttons */
 }
 
 .saveButton:hover {
   opacity: 0.9;
+  transform: scale(1.05); /* Added scale effect for better hover */
 }
 
 .button {
@@ -80,30 +108,35 @@
   border-radius: 10px;
   text-decoration: none;
   margin-top: 12px;
-  transition: background 0.3s;
+  margin-bottom: 20px;
+  transition: background 0.3s, transform 0.2s;
+  font-size: 0.9rem; /* Slightly smaller font size */
+  font-family: "Roboto", Arial, sans-serif; /* Consistent font family for buttons */
 }
 
 .button:hover {
   background: #4facfe;
+  transform: scale(1.05);
 }
 
 .note {
   text-align: center;
-  font-size: 13px;
+  font-size: 0.85rem; /* Smaller size for less prominence */
   margin-top: 10px;
   color: #aaa;
+  line-height: 1.5; /* Improved line height for readability */
 }
 
 .footer {
   text-align: center;
-  font-size: 12px;
+  font-size: 0.75rem; /* Reduced size for footer */
   color: #666;
   margin-top: 20px;
 }
 
 .status {
   text-align: center;
-  font-size: 14px;
+  font-size: 0.9rem; /* Slightly smaller font size */
   color: #00f2fe;
   margin-top: 12px;
 }
