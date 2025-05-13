@@ -18,6 +18,15 @@ export default function AffiliatePage(props) {
   const [profiIsOpen, setProfiIsOpen] = useState(false);
   const [logIsOpen, setLogIsOpen] = useState(false);
   const [isAffiliate, setIsAffiliate] = useState(false);
+  const [copied, setCopied] = useState(false);
+  const referralLink = `https://approx.animoon.me/home?refer=${session?.user?.id}`;
+
+  const handleCopy = () => {
+    navigator.clipboard.writeText(referralLink).then(() => {
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000); // reset after 2 seconds
+    });
+  };
 
   const sign = (sign) => setLogIsOpen(sign);
   const lang = (lang) => setSelectL(lang);
@@ -109,9 +118,22 @@ export default function AffiliatePage(props) {
               Thanks for joining the Animoon Affiliate Program. Share your link
               and earn!
             </p>
+            <div className="box">
+              <div className="boxTitle">Your Referral Link</div>
+              <input
+                type="text"
+                readOnly
+                value={referralLink}
+                className="input"
+                onFocus={(e) => e.target.select()}
+              />
+              <button className="saveButton" onClick={handleCopy}>
+                {copied ? "Link Copied!" : "Copy Link"}
+              </button>
+            </div>
             <a
               className="button"
-              href="https://beta.publishers.adsterra.com/referral/XbbeibecUR"
+              href="https://beta.publishers.adsterra.com/websites"
               target="_blank"
               rel="noopener noreferrer"
             >
