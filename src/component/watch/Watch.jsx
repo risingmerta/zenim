@@ -105,7 +105,7 @@ export default function Watch(props) {
   // Handle URL updates when episodeId changes
   useEffect(() => {
     if (episodeId) {
-      const newUrl = `/watch/${animeId}?ep=${episodeId}`;
+      const newUrl = `/watch/${animeId}?ep=${episodeId}${props.refer ? `&refer=${props.refer}` : ""}`;
       if (isFirstSet.current) {
         // Initial load: replace history entry
         router.push(newUrl, { replace: true });
@@ -122,7 +122,7 @@ export default function Watch(props) {
   // Redirect if no episodes
   useEffect(() => {
     if (totalEpisodes !== null && totalEpisodes === 0) {
-      router.push(`/${animeId}`);
+      router.push(`/${animeId}${props.refer ? `?refer=${props.refer}` : ""}`);
     }
   }, [streamInfo, episodeId, animeId, totalEpisodes, router.push]);
 
@@ -348,7 +348,7 @@ export default function Watch(props) {
                   ].map(([text, link], index) => (
                     <li key={index} className="flex gap-x-3 items-center">
                       <Link
-                        href={`/${link}`}
+                        href={`/${link}${props.refer ? `?refer=${props.refer}` : ""}`}
                         className="text-white hover:text-[#FFBADE] text-[15px] font-semibold"
                       >
                         {text}
@@ -457,7 +457,7 @@ export default function Watch(props) {
                       <div className="flex flex-wrap gap-4 max-[575px]:grid max-[575px]:grid-cols-3 max-[575px]:gap-3 max-[480px]:grid-cols-2">
                         {seasons.map((season, index) => (
                           <Link
-                            href={`/${season.id}`}
+                            href={`/${season.id}${props.refer ? `?refer=${props.refer}` : ""}`}
                             key={index}
                             className={`relative w-[20%] h-[60px] rounded-lg overflow-hidden cursor-pointer group ${
                               animeId === String(season.id)
@@ -622,7 +622,7 @@ export default function Watch(props) {
                     {` DUB in HD quality.`}
                   </p>
                   <Link
-                    href={`/${animeId}`}
+                    href={`/${animeId}${props.refer ? `?refer=${props.refer}` : ""}`}
                     className="w-fit text-[13px] bg-white rounded-[12px] px-[10px] py-1 text-black"
                   >
                     View detail
@@ -683,6 +683,7 @@ export default function Watch(props) {
                   limit={animeInfo?.recommended_data.length}
                   showViewMore={false}
                   selectL={selectL}
+                  refer={props.refer}
                 />
               ) : (
                 <CategoryCardLoader className={"mt-[15px]"} />
@@ -713,6 +714,7 @@ export default function Watch(props) {
                   data={animeInfo.related_data}
                   className="mt-[15px]"
                   selectL={selectL}
+                  refer={props.refer}
                 />
               ) : (
                 <SidecardLoader className={"mt-[25px]"} />
@@ -743,6 +745,7 @@ export default function Watch(props) {
                   className="mt-[15px]"
                   limit={10}
                   selectL={selectL}
+                  refer={props.refer}
                 />
               )}
               <div
@@ -757,7 +760,7 @@ export default function Watch(props) {
             </div>
           </div>
         </div>
-        <Footer />
+        <Footer refer={props.refer}/>
       </SessionProvider>
     </>
   );

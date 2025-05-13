@@ -7,7 +7,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 
-const Trending = ({ trending, selectL }) => {
+const Trending = ({ trending, selectL , refer }) => {
   const language = selectL;
 
   return (
@@ -40,7 +40,7 @@ const Trending = ({ trending, selectL }) => {
               className="text-center flex text-[18px] justify-center items-center"
             >
               <Link
-                href={`/watch/${item.id}`}
+                href={`/watch/${item.id}${refer ? `?refer=${refer}` : ""}`}
                 className="w-full h-auto pb-[115%] relative inline-block overflow-hidden max-[575px]:pb-[150%]"
               >
                 {/* Side number and title */}

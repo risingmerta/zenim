@@ -10,7 +10,7 @@ import useToolTipPosition from "@/hooks/useToolTipPosition";
 import Qtip from "../qtip/Qtip";
 import Link from "next/link";
 
-function Topten({ data, className, selectL }) {
+function Topten({ data, className, selectL , refer }) {
   const language = selectL;
   const [activePeriod, setActivePeriod] = useState("today");
   const [hoveredItem, setHoveredItem] = useState(null);
@@ -130,13 +130,13 @@ function Topten({ data, className, selectL }) {
                       }}
                       onMouseLeave={handleMouseLeave}
                     >
-                      <Qtip id={item.id} />
+                      <Qtip id={item.id} refer={refer}/>
                     </div>
                   )}
 
                 <div className="flex flex-col ml-4 space-y-2">
                   <Link
-                    href={`/${item.id}`}
+                    href={`/${item.id}${refer ? `?refer=${refer}` : ""}`}
                     className="text-[1em] font-[500] hover:cursor-pointer hover:text-[#00f2fe] transform transition-all ease-out line-clamp-1 max-[478px]:line-clamp-2 max-[478px]:text-[14px]"
                     onClick={() => handleNavigate(item.id)}
                   >

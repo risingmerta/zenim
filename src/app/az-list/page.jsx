@@ -4,11 +4,12 @@ import React from "react";
 
 export default async function page({ searchParams }) {
   const search = await searchParams;
+  const refer = search?.refer;
   const page = search.page || 1;
   return (
     <div>
       <AtoZ path={`az-list`} page={page} />
-      {/* <Advertize /> */}
+      {refer && <Advertize refer={refer} />}
     </div>
   );
 }

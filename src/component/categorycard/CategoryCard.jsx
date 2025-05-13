@@ -25,6 +25,7 @@ const CategoryCard = React.memo(
     path,
     limit,
     selectL,
+    refer,
   }) => {
     const language = selectL;
     const router = useRouter();
@@ -104,7 +105,7 @@ const CategoryCard = React.memo(
           </h1>
           {showViewMore && (
             <Link
-              href={`/${path}`}
+              href={`/${path}${refer ? `?refer=${refer}` : ""}`}
               className="flex w-fit items-baseline h-fit rounded-3xl gap-x-1 group"
             >
               <p className="text-white text-[12px] font-semibold h-fit leading-0 group-hover:text-[#00f2fe] transition-all ease-out">
@@ -136,8 +137,8 @@ const CategoryCard = React.memo(
                       router.push(
                         `${
                           path === "top-upcoming"
-                            ? `/${item.id}`
-                            : `/watch/${item.id}`
+                            ? `/${item.id}${refer ? `?refer=${refer}` : ""}`
+                            : `/watch/${item.id}${refer ? `?refer=${refer}` : ""}`
                         }`
                       )
                     }
@@ -206,12 +207,12 @@ const CategoryCard = React.memo(
                               : "opacity-0 translate-y-2"
                           }`}
                         >
-                          <Qtip id={item.id} />
+                          <Qtip id={item.id} refer={refer}/>
                         </div>
                       )}
                   </div>
                   <Link
-                    href={`/${item.id}`}
+                    href={`/${item.id}${refer ? `?refer=${refer}` : ""}`}
                     className="text-white font-semibold mt-1 item-title hover:text-[#00f2fe] hover:cursor-pointer line-clamp-1"
                   >
                     {language === "EN" ? item.title : item.japanese_title}
@@ -253,8 +254,8 @@ const CategoryCard = React.memo(
                     router.push(
                       `${
                         path === "top-upcoming"
-                          ? `/${item.id}`
-                          : `/watch/${item.id}`
+                          ? `/${item.id}${refer ? `?refer=${refer}` : ""}`
+                          : `/watch/${item.id}${refer ? `?refer=${refer}` : ""}`
                       }`
                     )
                   }
@@ -315,12 +316,12 @@ const CategoryCard = React.memo(
                             : "opacity-0 translate-y-2"
                         }`}
                       >
-                        <Qtip id={item.id} />
+                        <Qtip id={item.id} refer={refer}/>
                       </div>
                     )}
                 </div>
                 <Link
-                  href={`/${item.id}`}
+                  href={`/${item.id}${refer ? `?refer=${refer}` : ""}`}
                   className="text-white font-semibold mt-1 item-title hover:text-[#00f2fe] hover:cursor-pointer line-clamp-1"
                 >
                   {language === "EN" ? item.title : item.japanese_title}

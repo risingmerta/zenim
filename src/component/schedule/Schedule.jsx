@@ -214,7 +214,7 @@ const Schedule = (props) => {
             : []
           ).map((item, idx) => (
             <Link
-              href={`/${item.id}`}
+              href={`/${item.id}${props.refer ? `?refer=${props.refer}` : ""}`}
               key={idx}
               className="w-full flex justify-between py-4 border-[#FFFFFF0D] border-b-[1px] group cursor-pointer max-[325px]:py-2"
             >

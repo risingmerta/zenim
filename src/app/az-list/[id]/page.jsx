@@ -17,12 +17,13 @@ export async function generateMetadata({ params }) {
 export default async function page({ params, searchParams }) {
   const param = await params;
   const search = await searchParams;
+  const refer = search?.refer;
   const id = param.id;
   const page = search.page || 1;
   return (
     <div>
       <AtoZ path={`az-list/${id}`} page={page} />
-      {/* <Advertize /> */}
+      {refer && <Advertize refer={refer} />}
     </div>
   );
 }

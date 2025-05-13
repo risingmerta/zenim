@@ -3,13 +3,14 @@ import React from "react";
 
 export default async function page({ searchParams }) {
   const searchParam = await searchParams;
+  const refer = searchParam?.refer;
   return (
     <div>
       <Search
         type={searchParam.type || ""}
         status={searchParam.status || ""}
         rated={searchParam.rated || ""}
-        score={searchParam.score || ""}  
+        score={searchParam.score || ""}
         season={searchParam.season || ""}
         language={searchParam.language || ""}
         sy={searchParam.sy || ""}
@@ -26,6 +27,7 @@ export default async function page({ searchParams }) {
         collectionName={`Search results for`}
         refer={searchParam.refer}
       />
+      {refer && <Advertize refer={refer} />}
     </div>
   );
 }

@@ -11,7 +11,7 @@ import Link from "next/link";
 // import { useLanguage } from "@/context/LanguageContext";
 import "./Banner.css";
 
-function Banner({ item, index, selectL }) {
+function Banner({ item, index, selectL, refer }) {
   const language = selectL;
 
   return (
@@ -107,7 +107,7 @@ function Banner({ item, index, selectL }) {
 
         <div className="flex gap-x-5 mt-10 max-md:mt-6 max-sm:w-full max-[320px]:flex-col max-[320px]:space-y-3">
           <Link
-            href={`/watch/${item.id}`}
+            href={`/watch/${item.id}${refer ? `?refer=${refer}` : ""}`}
             className="flex justify-center items-center bg-[#00f2fe] px-4 py-2 rounded-3xl gap-x-2 max-[320px]:w-fit"
           >
             <FontAwesomeIcon
@@ -120,7 +120,7 @@ function Banner({ item, index, selectL }) {
           </Link>
 
           <Link
-            href={`/${item.id}`}
+            href={`/${item.id}${refer ? `?refer=${refer}` : ""}`}
             className="flex bg-[#3B3A52] justify-center items-center px-4 py-2 rounded-3xl gap-x-2 max-[320px]:w-fit max-[320px]:px-3"
           >
             <p className="text-white max-[1000px]:text-[15px] font-semibold max-[320px]:text-[12px]">

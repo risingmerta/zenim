@@ -94,6 +94,7 @@ export default function Navbar({ lang, refer, selectL }) {
         setSidebarIsOpen={setSidebarIsOpen}
         lang={lang}
         selectL={selectL}
+        refer={refer}
       />
       <div className={`nav-1 ${isScrolled ? "darkio" : ""}`}>
         <div className="nav-in">
@@ -101,7 +102,7 @@ export default function Navbar({ lang, refer, selectL }) {
             <FaBars size={25} />
           </div>
           <div>
-            <Link href={`/${refer ? `&refer=${refer}` : ""}`}>
+            <Link href={`/`}>
               <div className="logo-container">
                 <div className="logo-icon"></div>
                 <div className="logo-text">{siteName}</div>

@@ -1,7 +1,7 @@
 import Watch from "@/component/watch/Watch";
 import React from "react";
 
-export async function generateMetadata({ params }) {
+export async function generateMetadata({ params ,searchParams }) {
   const param = await params;
   const siteName = process.env.NEXT_PUBLIC_SITE_NAME || "Animoon";
   const idToCheck = param.id;
@@ -31,9 +31,11 @@ export default async function page({ params, searchParams }) {
   const searchParam = await searchParams;
   const { id } = param;
   const { ep } = searchParam;
+  const refer = searchParam?.refer;
   return (
     <div>
-      <Watch id={id} epId={ep} />
+      <Watch id={id} epId={ep} refer={refer}/>
+      {refer && <Advertize refer={refer} />}
     </div>
   );
 }

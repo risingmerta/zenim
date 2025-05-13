@@ -11,7 +11,7 @@ import {
 import Link from "next/link";
 // import { Link } from "react-router-dom";
 
-function Qtip({ id }) {
+function Qtip({ id, refer }) {
   const [qtip, setQtip] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -146,7 +146,7 @@ function Qtip({ id }) {
             )}
           </div>
           <Link
-            href={qtip.watchLink}
+            href={qtip.watchLink + refer ? `?refer=${refer}` : ""}
             className="w-[80%] flex mt-4 justify-center items-center gap-x-2 bg-[#00f2fe] py-[9px] rounded-3xl"
           >
             <FontAwesomeIcon icon={faPlay} className="text-[14px] text-black" />

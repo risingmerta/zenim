@@ -16,7 +16,7 @@ import { SessionProvider } from "next-auth/react";
 import Footer from "../Footer/Footer";
 import { usePathname } from "next/navigation";
 
-export default function Home() {
+export default function Home(props) {
   const [selectL, setSelectL] = useState("EN");
   const lang = (lang) => {
     setSelectL(lang);
@@ -49,9 +49,9 @@ export default function Home() {
   return (
     <>
       <SessionProvider>
-        <Navbar lang={lang} selectL={selectL} />
+        <Navbar lang={lang} selectL={selectL} refer={props.refer}/>
         <div className="home-container">
-          <Spotlight spotlights={homeInfo.spotlights} selectL={selectL} />
+          <Spotlight spotlights={homeInfo.spotlights} selectL={selectL} refer={props.refer}/>
 
           <div
             style={{
@@ -72,7 +72,7 @@ export default function Home() {
               scrolling="no"
             ></iframe>
           </div>
-          <ContinueWatching selectL={selectL} />
+          <ContinueWatching selectL={selectL} refer={props.refer}/>
           {/* <div
             style={{
               width: "100%",
@@ -92,7 +92,7 @@ export default function Home() {
               scrolling="no"
             ></iframe>
           {/* </div> */}
-          <Trending trending={homeInfo.trending} selectL={selectL} />
+          <Trending trending={homeInfo.trending} selectL={selectL} refer={props.refer}/>
           <div
             style={{
               width: "100%",
@@ -119,24 +119,28 @@ export default function Home() {
               data={homeInfo.top_airing}
               path="top-airing"
               selectL={selectL}
+              refer={props.refer}
             />
             <Cart
               label="Most Popular"
               data={homeInfo.most_popular}
               path="most-popular"
               selectL={selectL}
+              refer={props.refer}
             />
             <Cart
               label="Most Favorite"
               data={homeInfo.most_favorite}
               path="most-favorite"
               selectL={selectL}
+              refer={props.refer}
             />
             <Cart
               label="Latest Completed"
               data={homeInfo.latest_completed}
               path="completed"
               selectL={selectL}
+              refer={props.refer}
             />
           </div>
 
@@ -169,6 +173,7 @@ export default function Home() {
                 path="recently-updated"
                 limit={12}
                 selectL={selectL}
+                refer={props.refer}
               />
               <div
                 style={{
@@ -196,6 +201,7 @@ export default function Home() {
                 path="recently-added"
                 limit={12}
                 selectL={selectL}
+                refer={props.refer}
               />
               <div
                 style={{
@@ -216,7 +222,7 @@ export default function Home() {
                   scrolling="no"
                 ></iframe>
               </div>
-              <Schedule selectL={selectL} />
+              <Schedule selectL={selectL} refer={props.refer}/>
               <div
                 style={{
                   width: "100%",
@@ -243,6 +249,7 @@ export default function Home() {
                 path="top-upcoming"
                 limit={12}
                 selectL={selectL}
+                refer={props.refer}
               />
               <div
                 style={{
@@ -266,7 +273,7 @@ export default function Home() {
             </div>
 
             <div className="right-sidebar">
-              <Genre data={homeInfo.genres} />
+              <Genre data={homeInfo.genres} refer={props.refer}/>
               <div
                 style={{
                   width: "100%",
@@ -290,6 +297,7 @@ export default function Home() {
                 data={homeInfo.topten}
                 className={"mt-12"}
                 selectL={selectL}
+                refer={props.refer}
               />
               <div
                 style={{
@@ -313,7 +321,7 @@ export default function Home() {
             </div>
           </div>
         </div>
-        <Footer />
+        <Footer refer={props.refer}/>
       </SessionProvider>
     </>
   );

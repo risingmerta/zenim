@@ -21,6 +21,7 @@ export async function generateMetadata({ params }) {
 export default async function page({ params, searchParams }) {
   const param = await params;
   const searchParam = await searchParams;
+  const refer = searchParam?.refer;
   const id = param.id;
   const page = searchParam.page || 1;
   return (
@@ -30,7 +31,7 @@ export default async function page({ params, searchParams }) {
         label={id.split("-")?.join(" ")}
         pagel={page}
       />
-      {/* <Advertize /> */}
+      {refer && <Advertize refer={refer} />}
     </div>
   );
 }

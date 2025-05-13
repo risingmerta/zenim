@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Link from "next/link";
-function Genre({ data }) {
+function Genre({ data, refer }) {
   const colors = [
     "#A4B389",
     "#00f2fe",
@@ -27,7 +27,7 @@ function Genre({ data }) {
               const textColor = colors[index % colors.length];
               return (
                 <Link
-                  href={`/genre/${item}`}
+                  href={`/genre/${item}${refer ? `?refer=${refer}` : ""}`}
                   key={index}
                   className="rounded-[4px] py-2 px-3 hover:bg-[#555462] hover:cursor-pointer max-[478px]:bg-[#373646] max-[478px]:py-[6px]"
                   style={{ color: textColor }}

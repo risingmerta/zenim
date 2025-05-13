@@ -12,7 +12,7 @@ import Qtip from "../qtip/Qtip";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 
-function Cart({ label, data, path, selectL }) {
+function Cart({ label, data, path, selectL ,refer }) {
   const language = selectL;
   const router = useRouter();
   const [hoveredItem, setHoveredItem] = useState(null);
@@ -75,13 +75,13 @@ function Cart({ label, data, path, selectL }) {
                   }}
                   onMouseLeave={handleImageLeave}
                 >
-                  <Qtip id={item.id} />
+                  <Qtip id={item.id} refer={refer}/>
                 </div>
               )}
 
               <div className="flex flex-col ml-4 space-y-2 w-full">
                 <Link
-                  href={`/${item.id}`}
+                  href={`/${item.id}${refer ? `?refer=${refer}` : ""}`}
                   className="w-full line-clamp-2 text-[1em] font-[500] hover:cursor-pointer hover:text-[#00f2fe] transform transition-all ease-out max-[1200px]:text-[14px]"
                 >
                   {language === "EN" ? item.title : item.japanese_title}
@@ -117,7 +117,7 @@ function Cart({ label, data, path, selectL }) {
             </div>
           ))}
         <Link
-          href={`/${path}`}
+          href={`/${path}${refer ? `?refer=${refer}` : ""}`}
           className="flex w-fit items-baseline rounded-3xl gap-x-2 group"
         >
           <p className="text-white text-[17px] h-fit leading-4 group-hover:text-[#00f2fe] transform transition-all ease-out">

@@ -1,6 +1,6 @@
-import Advertize from '@/component/Advertize/Advertize'
-import Producer from '@/component/producer/Producer'
-import React from 'react'
+import Advertize from "@/component/Advertize/Advertize";
+import Producer from "@/component/producer/Producer";
+import React from "react";
 
 export async function generateMetadata({ params }) {
   const param = await params;
@@ -18,17 +18,16 @@ export async function generateMetadata({ params }) {
   };
 }
 
-export default async function page({ params , searchParams }) {
-    const param = await params
-    const search = await searchParams
-    const id = param.id
-    const page = search.page || 1
+export default async function page({ params, searchParams }) {
+  const param = await params;
+  const search = await searchParams;
+  const refer = search?.refer;
+  const id = param.id;
+  const page = search.page || 1;
   return (
     <div>
       <Producer id={id} page={page} />
-      {/* <Advertize /> */}
+      {refer && <Advertize refer={refer} />}
     </div>
-  )
+  );
 }
-
-

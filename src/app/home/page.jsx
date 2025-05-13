@@ -7,8 +7,8 @@ export default async function page({ searchParams }) {
   const refer = seacrhParam?.refer;
   return (
     <div>
-      <Home />
-      {refer && <Advertize refer={refer}/>}
+      <Home refer={refer} />
+      {refer && <Advertize refer={refer} />}
     </div>
   );
 }

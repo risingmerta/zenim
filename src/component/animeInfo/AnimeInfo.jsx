@@ -37,7 +37,7 @@ function InfoItem({ label, value, isProducer = true, adDiv }) {
                     .replace(/[&'"^%$#@!()+=<>:;,.?/\\|{}[\]`~*_]/g, "")
                     .split(" ")
                     .join("-")
-                    .replace(/-+/g, "-")}`}
+                    .replace(/-+/g, "-")}${refer ? `?refer=${refer}` : ""}`}
                   key={index}
                   className="cursor-pointer hover:text-[#00f2fe]"
                 >
@@ -56,7 +56,7 @@ function InfoItem({ label, value, isProducer = true, adDiv }) {
                 .replace(/[&'"^%$#@!()+=<>:;,.?/\\|{}[\]`~*_]/g, "")
                 .split(" ")
                 .join("-")
-                .replace(/-+/g, "-")}`}
+                .replace(/-+/g, "-")}${refer ? `?refer=${refer}` : ""}`}
               className="cursor-pointer hover:text-[#00f2fe]"
             >
               {value}
@@ -84,7 +84,7 @@ function Tag({ bgColor, index, icon, text }) {
   );
 }
 
-export default function AnimeInfo({ random = false, idd, adDiv }) {
+export default function AnimeInfo({ random = false, idd, refer }) {
   const [selectL, setSelectL] = useState("EN");
   const language = selectL;
   const id = random ? null : idd;
@@ -156,7 +156,7 @@ export default function AnimeInfo({ random = false, idd, adDiv }) {
     return <Error />;
   }
   if (!animeInfo) {
-    router.push("/404-not-found-page");
+    router.push(`/404-not-found-page${refer ? `?refer=${refer}` : ""}`);
     return undefined;
   }
   const { title, japanese_title, poster, animeInfo: info } = animeInfo;
@@ -188,7 +188,7 @@ export default function AnimeInfo({ random = false, idd, adDiv }) {
   return (
     <>
       <SessionProvider>
-        <Navbar lang={lang} selectL={selectL}/>
+        <Navbar lang={lang} selectL={selectL} refer={refer}/>
 
         <div className="infoContainer">
           <img
@@ -218,7 +218,7 @@ export default function AnimeInfo({ random = false, idd, adDiv }) {
                 ].map(([text, link], index) => (
                   <li key={index} className="flex gap-x-3 items-center">
                     <Link
-                      href={`/${link}`}
+                      href={`/${link}${refer ? `?refer=${refer}` : ""}`}
                       className="text-white hover:text-[#00f2fe] text-[15px] font-semibold"
                     >
                       {text}
@@ -264,7 +264,7 @@ export default function AnimeInfo({ random = false, idd, adDiv }) {
               {animeInfo?.animeInfo?.Status?.toLowerCase() !==
               "not-yet-aired" ? (
                 <Link
-                  href={`/watch/${animeInfo.id}`}
+                  href={`/watch/${animeInfo.id}${refer ? `?refer=${refer}` : ""}`}
                   className="flex gap-x-2 px-6 py-2 bg-[#00f2fe] w-fit text-black items-center rounded-3xl mt-5"
                 >
                   <FontAwesomeIcon
@@ -275,7 +275,7 @@ export default function AnimeInfo({ random = false, idd, adDiv }) {
                 </Link>
               ) : (
                 <Link
-                  href={`/${animeInfo.id}`}
+                  href={`/${animeInfo.id}${refer ? `?refer=${refer}` : ""}`}
                   className="flex gap-x-2 px-6 py-2 bg-[#00f2fe] w-fit text-black items-center rounded-3xl mt-5"
                 >
                   <p className="text-lg font-medium">Not released</p>
@@ -354,7 +354,7 @@ export default function AnimeInfo({ random = false, idd, adDiv }) {
                   <div className="flex flex-wrap gap-2">
                     {info.Genres.map((genre, index) => (
                       <Link
-                        href={`/genre/${genre.split(" ").join("-")}`}
+                        href={`/genre/${genre.split(" ").join("-")}${refer ? `?refer=${refer}` : ""}`}
                         key={index}
                         className="text-[14px] font-semibold px-2 py-[1px] border border-gray-400 rounded-2xl hover:text-[#00f2fe]"
                       >
@@ -368,7 +368,7 @@ export default function AnimeInfo({ random = false, idd, adDiv }) {
                 { label: "Studios", value: info?.Studios },
                 { label: "Producers", value: info?.Producers },
               ].map(({ label, value }, index) => (
-                <InfoItem key={index} label={label} value={value}/>
+                <InfoItem key={index} label={label} value={value} />
               ))}
               {/* <p className="text-[14px] mt-4 custom-xl:hidden">
               {`${website_name} is the best site to watch `}
@@ -409,7 +409,7 @@ export default function AnimeInfo({ random = false, idd, adDiv }) {
                 <div className="flex flex-wrap gap-4 max-[575px]:grid max-[575px]:grid-cols-3 max-[575px]:gap-3 max-[480px]:grid-cols-2">
                   {seasons.map((season, index) => (
                     <Link
-                      href={`/${season.id}`}
+                      href={`/${season.id}${refer ? `?refer=${refer}` : ""}`}
                       key={index}
                       className={`relative w-[20%] h-[60px] rounded-lg overflow-hidden cursor-pointer group ${
                         id === String(season.id)
@@ -487,6 +487,7 @@ export default function AnimeInfo({ random = false, idd, adDiv }) {
                 showViewMore={false}
                 className={"mt-8"}
                 selectL={selectL}
+                refer={refer}
               />
             )}
           </div>
@@ -497,6 +498,7 @@ export default function AnimeInfo({ random = false, idd, adDiv }) {
                 data={animeInfo.related_data}
                 className="mt-8"
                 selectL={selectL}
+                refer={refer}
               />
             )}
 
@@ -526,6 +528,7 @@ export default function AnimeInfo({ random = false, idd, adDiv }) {
                 className="mt-[40px]"
                 limit={10}
                 selectL={selectL}
+                refer={refer}
               />
             )}
 
@@ -550,7 +553,7 @@ export default function AnimeInfo({ random = false, idd, adDiv }) {
             </div>
           </div>
         </div>
-        <Footer />
+        <Footer refer={refer}/>
       </SessionProvider>
     </>
   );

@@ -41,7 +41,7 @@ export default function NavSidebar(props) {
         <div className="navigation-link-list">
           <ul>
             <li>
-              <Link href={`/${props.refer ? `?refer=${props.refer}` : ''}`}>Home</Link>
+              <Link href={`/home${props.refer ? `?refer=${props.refer}` : ''}`}>Home</Link>
             </li>
             <li>
               <Link href={`/most-popular${props.refer ? `?refer=${props.refer}` : ''}`}>

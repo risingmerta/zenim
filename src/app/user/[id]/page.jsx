@@ -27,24 +27,9 @@ export async function generateMetadata({ params }) {
 export default async function page({ params, searchParams }) {
   const param = (await params).id;
   const searchParam = await searchParams;
+  const refer = searchParam?.refer;
   const page = searchParam.page;
   const slabId = param.replace("-", " ");
-  let direct = "";
-
-  try {
-    const db = await connectDB();
-    const profileCollection = db.collection("profile");
-
-    const referId = searchParam.refer;
-    if (referId) {
-      const userProfile = await profileCollection.findOne({ _id: referId });
-      if (userProfile?.directLink) {
-        direct = userProfile.directLink;
-      }
-    }
-  } catch (err) {
-    console.error("MongoDB error:", err);
-  }
 
   return (
     <>
@@ -53,9 +38,14 @@ export default async function page({ params, searchParams }) {
         src="//disgustingmad.com/a5/d2/60/a5d260a809e0ec23b08c279ab693d778.js"
       /> */}
       <div>
-        <User type={searchParam.type} id={param} page={page} refer={searchParam.refer}/>
+        <User
+          type={searchParam.type}
+          id={param}
+          page={page}
+          refer={searchParam.refer}
+        />
       </div>
-      {/* <Advertize direct={direct} /> */}
+      {refer && <Advertize refer={refer} />}
     </>
   );
 }
