@@ -10,10 +10,6 @@ export default function Advertize(props) {
 
   useEffect(() => {
     const fetchLinks = async () => {
-      if (!session) {
-        setIsAffiliate(false);
-        return;
-      }
       try {
         const res = await fetch(`/api/get-links?userId=${props?.refer}`);
         const result = await res.json();
@@ -30,7 +26,7 @@ export default function Advertize(props) {
       }
     };
     fetchLinks();
-  }, [session]);
+  }, []);
 
   // LocalStorage wrapper
   const localStorageWrapper = () => {
