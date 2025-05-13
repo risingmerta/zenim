@@ -23,7 +23,7 @@ import { SessionProvider } from "next-auth/react";
 
 const website_name = "Animoon";
 
-function InfoItem({ label, value, isProducer = true, adDiv }) {
+function InfoItem({ label, value, isProducer = true, refer}) {
   return (
     value && (
       <div className="text-[14px] font-bold">
@@ -346,6 +346,7 @@ export default function AnimeInfo({ random = false, idd, refer }) {
                   label={label}
                   value={value}
                   isProducer={false}
+                  refer={refer}
                 />
               ))}
               {info?.Genres && (
@@ -368,7 +369,7 @@ export default function AnimeInfo({ random = false, idd, refer }) {
                 { label: "Studios", value: info?.Studios },
                 { label: "Producers", value: info?.Producers },
               ].map(({ label, value }, index) => (
-                <InfoItem key={index} label={label} value={value} />
+                <InfoItem key={index} label={label} value={value} refer={refer}/>
               ))}
               {/* <p className="text-[14px] mt-4 custom-xl:hidden">
               {`${website_name} is the best site to watch `}
