@@ -192,7 +192,7 @@ export default function AnimeInfo({ random = false, idd, adDiv }) {
 
         <div className="infoContainer">
           <img
-            src={`https://wsrv.nl/?url=${poster}`}
+            src={poster}
             alt={`${title} Poster`}
             className="backgroundPoster"
           />
@@ -200,7 +200,7 @@ export default function AnimeInfo({ random = false, idd, adDiv }) {
           <div className="animeInfoBox">
             <div className="relative w-[180px] h-[270px] max-[575px]:w-[140px] max-[575px]:h-[200px] flex-shrink-0">
               <img
-                src={`https://wsrv.nl/?url=${poster}`}
+                src={poster}
                 alt={`${title} Poster`}
                 className="w-full h-full object-cover object-center flex-shrink-0"
               />
