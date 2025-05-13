@@ -2,6 +2,14 @@ import AtoZ from "@/component/a2z/AtoZ";
 import Advertize from "@/component/Advertize/Advertize";
 import React from "react";
 
+export async function generateMetadata() {
+  const label = "A to Z";
+  return {
+    title: `${label} Anime - ${siteName}`,
+    // description: `Watch ${label} Anime online free on ${siteName}.`,
+  };
+}
+
 export default async function page({ searchParams }) {
   const search = await searchParams;
   const refer = search?.refer;
