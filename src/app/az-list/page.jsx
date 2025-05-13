@@ -8,7 +8,7 @@ export default async function page({ searchParams }) {
   return (
     <div>
       <AtoZ path={`az-list`} page={page} />
-      <Advertize />
+      {/* <Advertize /> */}
     </div>
   );
 }

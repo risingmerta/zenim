@@ -22,7 +22,7 @@ export default async function page({ params, searchParams }) {
   return (
     <div>
       <AtoZ path={`az-list/${id}`} page={page} />
-      <Advertize />
+      {/* <Advertize /> */}
     </div>
   );
 }

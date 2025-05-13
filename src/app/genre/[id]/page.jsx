@@ -30,7 +30,7 @@ export default async function page({ params, searchParams }) {
         label={id.split("-")?.join(" ")}
         pagel={page}
       />
-      <Advertize />
+      {/* <Advertize /> */}
     </div>
   );
 }

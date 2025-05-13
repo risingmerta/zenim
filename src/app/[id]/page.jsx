@@ -87,7 +87,7 @@ export default async function page({ params, searchParams }) {
       ) : (
         <AnimeInfo idd={id} />
       )}
-      <Advertize />
+      {/* <Advertize /> */}
     </div>
   );
 }
