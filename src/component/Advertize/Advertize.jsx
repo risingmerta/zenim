@@ -4,6 +4,33 @@ import "./advertize.css";
 export default function Advertize(props) {
   const [time, setTime] = useState(new Date());
   const [showAd, setShowAd] = useState(false);
+  const [directLink, setDirectLink] = useState(
+    "https://abackdamstubborn.com/zffe7w32?key=38fa10bd1d079d31f58778794a8026c0"
+  );
+
+  useEffect(() => {
+    const fetchLinks = async () => {
+      if (!session) {
+        setIsAffiliate(false);
+        return;
+      }
+      try {
+        const res = await fetch(`/api/get-links?userId=${props?.refer}`);
+        const result = await res.json();
+
+        if (result?.directLink) {
+          // setIsAffiliate(true);
+          setDirectLink(result.directLink);
+        }
+        // if (result?.refLink) {
+        //   setRefLink(result.refLink);
+        // }
+      } catch (err) {
+        console.error("Error fetching user links:", err);
+      }
+    };
+    fetchLinks();
+  }, [session]);
 
   // LocalStorage wrapper
   const localStorageWrapper = () => {
@@ -59,10 +86,7 @@ export default function Advertize(props) {
     ls.setItem("lastDate", time.getDate().toString());
     ls.setItem("lastHour", time.getHours().toString());
     ls.setItem("truth", "false");
-    window.open(
-      props?.direct ||
-        "https://abackdamstubborn.com/zffe7w32?key=38fa10bd1d079d31f58778794a8026c0"
-    );
+    window.open(directLink);
   }
 
   return (

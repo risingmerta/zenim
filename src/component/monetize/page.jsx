@@ -119,7 +119,12 @@ export default function AffiliatePage(props) {
               and earn!
             </p>
             <div className="box">
-              <div className="boxTitle">Your Referral Link</div>
+              <div className="boxTitle">Start Earning now</div>
+              <p className="text">
+                Go ahead — copy and share this link now. Then after a few hours,
+                check your Adsterra account to see the results!
+              </p>
+
               <input
                 type="text"
                 readOnly
