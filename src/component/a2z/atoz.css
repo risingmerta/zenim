@@ -20,11 +20,13 @@
 }
 .adCluster {
   display: flex;
+  flex-direction: row;
   flex-wrap: wrap;
   width: 100%;
 }
 .adClusterChild {
   display: flex;
+  flex-direction: row;
   flex-wrap: wrap;
   width: 100%;
 }
