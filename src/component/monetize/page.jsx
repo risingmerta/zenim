@@ -110,6 +110,26 @@ export default function AffiliatePage(props) {
         />
       )}
 
+      <div
+        style={{
+          width: "100%",
+          display: "flex",
+          justifyContent: "center",
+          margin: "10px 0",
+        }}
+      >
+        <iframe
+          src="/ad5"
+          style={{
+            width: "fit-content",
+            height: "100px",
+            border: "none",
+            overflow: "hidden",
+          }}
+          scrolling="no"
+        ></iframe>
+      </div>
+
       <div className="container">
         {isAffiliate ? (
           <>
@@ -266,6 +286,26 @@ export default function AffiliatePage(props) {
           onClose={() => setShowToast(false)}
         />
       )}
+
+      <div
+        style={{
+          width: "100%",
+          display: "flex",
+          justifyContent: "center",
+          margin: "10px 0",
+        }}
+      >
+        <iframe
+          src="/ad6"
+          style={{
+            width: "fit-content",
+            height: "100px",
+            border: "none",
+            overflow: "hidden",
+          }}
+          scrolling="no"
+        ></iframe>
+      </div>
 
       <div>
         <Footer refer={props.refer} />

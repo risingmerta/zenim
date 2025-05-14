@@ -56,8 +56,46 @@ export default function AtoZ({ path, pagel }) {
   return (
     <>
       <SessionProvider>
-        <Navbar lang={lang} selectL={selectL}/>
+        <Navbar lang={lang} selectL={selectL} />
         <div className="max-w-[1260px] mx-auto px-[15px] flex flex-col mt-[64px] max-md:mt-[50px]">
+          <div
+          style={{
+            width: "100%",
+            display: "flex",
+            justifyContent: "center",
+            margin: "10px 0",
+          }}
+        >
+          <iframe
+            src="/ad6"
+            style={{
+              width: "fit-content",
+              height: "100px",
+              border: "none",
+              overflow: "hidden",
+            }}
+            scrolling="no"
+          ></iframe>
+        </div>
+          <div
+            style={{
+              width: "100%",
+              display: "flex",
+              justifyContent: "center",
+              margin: "10px 0",
+            }}
+          >
+            <iframe
+              src="/ad3"
+              style={{
+                width: "fit-content",
+                height: "100px",
+                border: "none",
+                overflow: "hidden",
+              }}
+              scrolling="no"
+            ></iframe>
+          </div>
           <ul className="flex gap-x-2 mt-[50px] items-center w-fit max-[1200px]:hidden">
             <li className="flex gap-x-3 items-center">
               <Link
@@ -70,6 +108,25 @@ export default function AtoZ({ path, pagel }) {
             </li>
             <li className="font-light">A-Z List</li>
           </ul>
+          <div
+            style={{
+              width: "100%",
+              display: "flex",
+              justifyContent: "center",
+              margin: "10px 0",
+            }}
+          >
+            <iframe
+              src="/ad2"
+              style={{
+                width: "fit-content",
+                height: "100px",
+                border: "none",
+                overflow: "hidden",
+              }}
+              scrolling="no"
+            ></iframe>
+          </div>
           <div className="flex flex-col gap-y-5 mt-6">
             <h1 className="font-bold text-2xl text-[#00f2fe] max-[478px]:text-[18px]">
               Sort By Letters
@@ -119,13 +176,70 @@ export default function AtoZ({ path, pagel }) {
                   selectL={selectL}
                 />
               )}
+              <div
+                style={{
+                  width: "100%",
+                  display: "flex",
+                  justifyContent: "center",
+                  margin: "10px 0",
+                }}
+              >
+                <iframe
+                  src="/ad"
+                  style={{
+                    width: "fit-content",
+                    height: "100px",
+                    border: "none",
+                    overflow: "hidden",
+                  }}
+                  scrolling="no"
+                ></iframe>
+              </div>
               <PageSlider
                 page={page}
                 totalPages={totalPages}
                 handlePageChange={handlePageChange}
               />
+              <div
+          style={{
+            width: "100%",
+            display: "flex",
+            justifyContent: "center",
+            margin: "10px 0",
+          }}
+        >
+          <iframe
+            src="/ad6"
+            style={{
+              width: "fit-content",
+              height: "100px",
+              border: "none",
+              overflow: "hidden",
+            }}
+            scrolling="no"
+          ></iframe>
+        </div>
             </div>
           </div>
+        </div>
+        <div
+          style={{
+            width: "100%",
+            display: "flex",
+            justifyContent: "center",
+            margin: "10px 0",
+          }}
+        >
+          <iframe
+            src="/ad4"
+            style={{
+              width: "fit-content",
+              height: "100px",
+              border: "none",
+              overflow: "hidden",
+            }}
+            scrolling="no"
+          ></iframe>
         </div>
         <Footer />
       </SessionProvider>

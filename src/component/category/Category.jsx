@@ -85,7 +85,26 @@ export default function Category({ path, label, pagel }) {
   return (
     <>
       <SessionProvider>
-        <Navbar lang={lang} selectL={selectL}/>
+        <Navbar lang={lang} selectL={selectL} />
+        <div
+          style={{
+            width: "100%",
+            display: "flex",
+            justifyContent: "center",
+            margin: "10px 0",
+          }}
+        >
+          <iframe
+            src="/ad"
+            style={{
+              width: "fit-content",
+              height: "100px",
+              border: "none",
+              overflow: "hidden",
+            }}
+            scrolling="no"
+          ></iframe>
+        </div>
         <div className="w-full flex flex-col gap-y-4 mt-[64px] max-md:mt-[50px]">
           {/* Share Anime Banner */}
           <div className="w-full flex gap-x-4 items-center bg-[#191826] p-5 max-[575px]:px-3 max-[320px]:hidden">
@@ -100,6 +119,26 @@ export default function Category({ path, label, pagel }) {
               </p>
               <p className="text-[16px] text-white">to your friends</p>
             </div>
+          </div>
+
+          <div
+            style={{
+              width: "100%",
+              display: "flex",
+              justifyContent: "center",
+              margin: "10px 0",
+            }}
+          >
+            <iframe
+              src="/ad2"
+              style={{
+                width: "fit-content",
+                height: "100px",
+                border: "none",
+                overflow: "hidden",
+              }}
+              scrolling="no"
+            ></iframe>
           </div>
 
           {/* Main Content */}
@@ -125,6 +164,25 @@ export default function Category({ path, label, pagel }) {
                       selectL={selectL}
                     />
                   )}
+                  <div
+                    style={{
+                      width: "100%",
+                      display: "flex",
+                      justifyContent: "center",
+                      margin: "10px 0",
+                    }}
+                  >
+                    <iframe
+                      src="/ad3"
+                      style={{
+                        width: "fit-content",
+                        height: "100px",
+                        border: "none",
+                        overflow: "hidden",
+                      }}
+                      scrolling="no"
+                    ></iframe>
+                  </div>
                   <PageSlider
                     page={page}
                     totalPages={totalPages}
@@ -134,6 +192,26 @@ export default function Category({ path, label, pagel }) {
               )}
             </div>
 
+            <div
+              style={{
+                width: "100%",
+                display: "flex",
+                justifyContent: "center",
+                margin: "10px 0",
+              }}
+            >
+              <iframe
+                src="/ad4"
+                style={{
+                  width: "fit-content",
+                  height: "100px",
+                  border: "none",
+                  overflow: "hidden",
+                }}
+                scrolling="no"
+              ></iframe>
+            </div>
+
             {/* Sidebar */}
             <div className="w-full flex flex-col gap-y-10">
               {homeInfoLoading ? (
@@ -141,9 +219,51 @@ export default function Category({ path, label, pagel }) {
               ) : (
                 <>
                   {homeInfo?.topten && (
-                    <Topten data={homeInfo.topten} className="mt-0" selectL={selectL}/>
+                    <Topten
+                      data={homeInfo.topten}
+                      className="mt-0"
+                      selectL={selectL}
+                    />
                   )}
+                  <div
+                    style={{
+                      width: "100%",
+                      display: "flex",
+                      justifyContent: "center",
+                      margin: "10px 0",
+                    }}
+                  >
+                    <iframe
+                      src="/ad5"
+                      style={{
+                        width: "fit-content",
+                        height: "100px",
+                        border: "none",
+                        overflow: "hidden",
+                      }}
+                      scrolling="no"
+                    ></iframe>
+                  </div>
                   {homeInfo?.genres && <Genre data={homeInfo.genres} />}
+                  <div
+                    style={{
+                      width: "100%",
+                      display: "flex",
+                      justifyContent: "center",
+                      margin: "10px 0",
+                    }}
+                  >
+                    <iframe
+                      src="/ad6"
+                      style={{
+                        width: "fit-content",
+                        height: "100px",
+                        border: "none",
+                        overflow: "hidden",
+                      }}
+                      scrolling="no"
+                    ></iframe>
+                  </div>
                 </>
               )}
             </div>

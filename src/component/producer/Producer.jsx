@@ -80,6 +80,25 @@ export default function Producer(props) {
     <>
       <SessionProvider>
         <Navbar lang={lang} selectL={selectL} />
+        <div
+          style={{
+            width: "100%",
+            display: "flex",
+            justifyContent: "center",
+            margin: "10px 0",
+          }}
+        >
+          <iframe
+            src="/ad"
+            style={{
+              width: "fit-content",
+              height: "100px",
+              border: "none",
+              overflow: "hidden",
+            }}
+            scrolling="no"
+          ></iframe>
+        </div>
         <div className="w-full flex flex-col gap-y-4 mt-[100px] max-md:mt-[50px]">
           {producerInfo ? (
             <div className="category-layout">
@@ -105,6 +124,25 @@ export default function Producer(props) {
                       selectL={selectL}
                     />
                   )}
+                  <div
+                    style={{
+                      width: "100%",
+                      display: "flex",
+                      justifyContent: "center",
+                      margin: "10px 0",
+                    }}
+                  >
+                    <iframe
+                      src="/ad2"
+                      style={{
+                        width: "fit-content",
+                        height: "100px",
+                        border: "none",
+                        overflow: "hidden",
+                      }}
+                      scrolling="no"
+                    ></iframe>
+                  </div>
                   <PageSlider
                     page={page}
                     totalPages={totalPages}
@@ -112,6 +150,25 @@ export default function Producer(props) {
                   />
                 </div>
               )}
+              <div
+                style={{
+                  width: "100%",
+                  display: "flex",
+                  justifyContent: "center",
+                  margin: "10px 0",
+                }}
+              >
+                <iframe
+                  src="/ad3"
+                  style={{
+                    width: "fit-content",
+                    height: "100px",
+                    border: "none",
+                    overflow: "hidden",
+                  }}
+                  scrolling="no"
+                ></iframe>
+              </div>
               <div className="w-full flex flex-col gap-y-10">
                 {homeInfoLoading ? (
                   <SidecardLoader />
@@ -124,7 +181,45 @@ export default function Producer(props) {
                         selectL={selectL}
                       />
                     )}
+                    <div
+                      style={{
+                        width: "100%",
+                        display: "flex",
+                        justifyContent: "center",
+                        margin: "10px 0",
+                      }}
+                    >
+                      <iframe
+                        src="/ad4"
+                        style={{
+                          width: "fit-content",
+                          height: "100px",
+                          border: "none",
+                          overflow: "hidden",
+                        }}
+                        scrolling="no"
+                      ></iframe>
+                    </div>
                     {homeInfo?.genres && <Genre data={homeInfo.genres} />}
+                    <div
+                      style={{
+                        width: "100%",
+                        display: "flex",
+                        justifyContent: "center",
+                        margin: "10px 0",
+                      }}
+                    >
+                      <iframe
+                        src="/ad5"
+                        style={{
+                          width: "fit-content",
+                          height: "100px",
+                          border: "none",
+                          overflow: "hidden",
+                        }}
+                        scrolling="no"
+                      ></iframe>
+                    </div>
                   </>
                 )}
               </div>
@@ -132,6 +227,25 @@ export default function Producer(props) {
           ) : (
             <Error />
           )}
+        </div>
+        <div
+          style={{
+            width: "100%",
+            display: "flex",
+            justifyContent: "center",
+            margin: "10px 0",
+          }}
+        >
+          <iframe
+            src="/ad6"
+            style={{
+              width: "fit-content",
+              height: "100px",
+              border: "none",
+              overflow: "hidden",
+            }}
+            scrolling="no"
+          ></iframe>
         </div>
         <Footer />
       </SessionProvider>
