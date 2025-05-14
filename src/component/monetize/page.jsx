@@ -110,7 +110,7 @@ export default function AffiliatePage(props) {
         />
       )}
 
-      <div
+      {/* <div
         style={{
           width: "100%",
           display: "flex",
@@ -128,7 +128,7 @@ export default function AffiliatePage(props) {
           }}
           scrolling="no"
         ></iframe>
-      </div>
+      </div> */}
 
       <div className="container">
         {isAffiliate ? (
@@ -287,7 +287,7 @@ export default function AffiliatePage(props) {
         />
       )}
 
-      <div
+      {/* <div
         style={{
           width: "100%",
           display: "flex",
@@ -305,7 +305,7 @@ export default function AffiliatePage(props) {
           }}
           scrolling="no"
         ></iframe>
-      </div>
+      </div> */}
 
       <div>
         <Footer refer={props.refer} />
