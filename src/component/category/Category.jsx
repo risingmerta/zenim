@@ -169,7 +169,8 @@ export default function Category({ path, label, pagel }) {
                       width: "100%",
                       display: "flex",
                       justifyContent: "center",
-                      margin: "10px 0",
+                      marginTop: "10px",
+                      marginBottom: "-40px", // pull next section up
                     }}
                   >
                     <iframe
@@ -193,7 +194,7 @@ export default function Category({ path, label, pagel }) {
                       width: "100%",
                       display: "flex",
                       justifyContent: "center",
-                      margin: "10px 0",
+                      margin: "20px 0",
                     }}
                   >
                     <iframe

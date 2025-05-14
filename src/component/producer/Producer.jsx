@@ -129,7 +129,8 @@ export default function Producer(props) {
                       width: "100%",
                       display: "flex",
                       justifyContent: "center",
-                      margin: "10px 0",
+                      marginTop: "10px",
+                      marginBottom: "-40px", // pull next section up
                     }}
                   >
                     <iframe
@@ -148,28 +149,28 @@ export default function Producer(props) {
                     totalPages={totalPages}
                     handlePageChange={handlePageChange}
                   />
-                <div
-                style={{
-                  width: "100%",
-                  display: "flex",
-                  justifyContent: "center",
-                  margin: "10px 0",
-                }}
-              >
-                <iframe
-                  src="/ad3"
-                  style={{
-                    width: "fit-content",
-                    height: "100px",
-                    border: "none",
-                    overflow: "hidden",
-                  }}
-                  scrolling="no"
-                ></iframe>
-              </div>
+                  <div
+                    style={{
+                      width: "100%",
+                      display: "flex",
+                      justifyContent: "center",
+                      margin: "20px 0",
+                    }}
+                  >
+                    <iframe
+                      src="/ad3"
+                      style={{
+                        width: "fit-content",
+                        height: "100px",
+                        border: "none",
+                        overflow: "hidden",
+                      }}
+                      scrolling="no"
+                    ></iframe>
+                  </div>
                 </div>
               )}
-              
+
               <div className="w-full flex flex-col gap-y-10">
                 {homeInfoLoading ? (
                   <SidecardLoader />
