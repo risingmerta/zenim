@@ -218,11 +218,11 @@ export default function Category({ path, label, pagel }) {
                       display: "flex",
                       justifyContent: "center",
                       marginTop: "10px",
-                      marginBottom: "-40px", // pull next section up
+                      marginBottom: "-40px",
                     }}
                   >
                     <iframe
-                      src="/ad3"
+                      src="/ad6"
                       style={{
                         width: "fit-content",
                         height: "100px",
@@ -231,6 +231,30 @@ export default function Category({ path, label, pagel }) {
                       }}
                       scrolling="no"
                     ></iframe>
+                    <div className="adClusterMain">
+                      <iframe
+                        src="/ad3"
+                        style={{
+                          width: "fit-content",
+                          height: "100px",
+                          border: "none",
+                          overflow: "hidden",
+                        }}
+                        scrolling="no"
+                      ></iframe>
+                    </div>
+                    <div className="adCluster">
+                      <iframe
+                        src="/ad2"
+                        style={{
+                          width: "fit-content",
+                          height: "100px",
+                          border: "none",
+                          overflow: "hidden",
+                        }}
+                        scrolling="no"
+                      ></iframe>
+                    </div>
                   </div>
                   <PageSlider
                     page={page}
@@ -242,11 +266,11 @@ export default function Category({ path, label, pagel }) {
                       width: "100%",
                       display: "flex",
                       justifyContent: "center",
-                      margin: "20px 0",
+                      margin: "10px 0",
                     }}
                   >
                     <iframe
-                      src="/ad4"
+                      src="/ad5"
                       style={{
                         width: "fit-content",
                         height: "100px",
@@ -255,6 +279,30 @@ export default function Category({ path, label, pagel }) {
                       }}
                       scrolling="no"
                     ></iframe>
+                    <div className="adClusterMain">
+                      <iframe
+                        src="/ad"
+                        style={{
+                          width: "fit-content",
+                          height: "100px",
+                          border: "none",
+                          overflow: "hidden",
+                        }}
+                        scrolling="no"
+                      ></iframe>
+                    </div>
+                    <div className="adCluster">
+                      <iframe
+                        src="/ad2"
+                        style={{
+                          width: "fit-content",
+                          height: "100px",
+                          border: "none",
+                          overflow: "hidden",
+                        }}
+                        scrolling="no"
+                      ></iframe>
+                    </div>
                   </div>
                 </>
               )}

@@ -75,32 +75,32 @@ export default function Home(props) {
               }}
               scrolling="no"
             ></iframe>
+            <div className="adClusterMain">
+              <iframe
+                src="/ad"
+                style={{
+                  width: "fit-content",
+                  height: "100px",
+                  border: "none",
+                  overflow: "hidden",
+                }}
+                scrolling="no"
+              ></iframe>
+            </div>
+            <div className="adCluster">
+              <iframe
+                src="/ad2"
+                style={{
+                  width: "fit-content",
+                  height: "100px",
+                  border: "none",
+                  overflow: "hidden",
+                }}
+                scrolling="no"
+              ></iframe>
+            </div>
           </div>
           <ContinueWatching selectL={selectL} refer={props.refer} />
-          <div
-            style={{
-              width: "100%",
-              display: "flex",
-              justifyContent: "center",
-              margin: "10px 0",
-            }}
-          >
-            <iframe
-              src="/ad2"
-              style={{
-                width: "fit-content",
-                height: "100px",
-                border: "none",
-                overflow: "hidden",
-              }}
-              scrolling="no"
-            ></iframe>
-          </div>
-          <Trending
-            trending={homeInfo.trending}
-            selectL={selectL}
-            refer={props.refer}
-          />
           <div
             style={{
               width: "100%",
@@ -119,6 +119,78 @@ export default function Home(props) {
               }}
               scrolling="no"
             ></iframe>
+            <div className="adClusterMain">
+              <iframe
+                src="/ad3"
+                style={{
+                  width: "fit-content",
+                  height: "100px",
+                  border: "none",
+                  overflow: "hidden",
+                }}
+                scrolling="no"
+              ></iframe>
+            </div>
+            <div className="adCluster">
+              <iframe
+                src="/ad4"
+                style={{
+                  width: "fit-content",
+                  height: "100px",
+                  border: "none",
+                  overflow: "hidden",
+                }}
+                scrolling="no"
+              ></iframe>
+            </div>
+          </div>
+          <Trending
+            trending={homeInfo.trending}
+            selectL={selectL}
+            refer={props.refer}
+          />
+          <div
+            style={{
+              width: "100%",
+              display: "flex",
+              justifyContent: "center",
+              margin: "10px 0",
+            }}
+          >
+            <iframe
+              src="/ad6"
+              style={{
+                width: "fit-content",
+                height: "100px",
+                border: "none",
+                overflow: "hidden",
+              }}
+              scrolling="no"
+            ></iframe>
+            <div className="adClusterMain">
+              <iframe
+                src="/ad"
+                style={{
+                  width: "fit-content",
+                  height: "100px",
+                  border: "none",
+                  overflow: "hidden",
+                }}
+                scrolling="no"
+              ></iframe>
+            </div>
+            <div className="adCluster">
+              <iframe
+                src="/ad2"
+                style={{
+                  width: "fit-content",
+                  height: "100px",
+                  border: "none",
+                  overflow: "hidden",
+                }}
+                scrolling="no"
+              ></iframe>
+            </div>
           </div>
 
           <div className="mt-10 flex gap-6 max-[1200px]:px-4 max-[1200px]:grid max-[1200px]:grid-cols-2 max-[1200px]:mt-12 max-[1200px]:gap-y-10 max-[680px]:grid-cols-1">
@@ -161,7 +233,7 @@ export default function Home(props) {
             }}
           >
             <iframe
-              src="/ad4"
+              src="/ad5"
               style={{
                 width: "fit-content",
                 height: "100px",
@@ -170,6 +242,30 @@ export default function Home(props) {
               }}
               scrolling="no"
             ></iframe>
+            <div className="adClusterMain">
+              <iframe
+                src="/ad3"
+                style={{
+                  width: "fit-content",
+                  height: "100px",
+                  border: "none",
+                  overflow: "hidden",
+                }}
+                scrolling="no"
+              ></iframe>
+            </div>
+            <div className="adCluster">
+              <iframe
+                src="/ad4"
+                style={{
+                  width: "fit-content",
+                  height: "100px",
+                  border: "none",
+                  overflow: "hidden",
+                }}
+                scrolling="no"
+              ></iframe>
+            </div>
           </div>
 
           <div className="main-content-grid">
@@ -192,7 +288,7 @@ export default function Home(props) {
                 }}
               >
                 <iframe
-                  src="/ad3"
+                  src="/ad6"
                   style={{
                     width: "fit-content",
                     height: "100px",
@@ -201,6 +297,30 @@ export default function Home(props) {
                   }}
                   scrolling="no"
                 ></iframe>
+                <div className="adClusterMain">
+                  <iframe
+                    src="/ad"
+                    style={{
+                      width: "fit-content",
+                      height: "100px",
+                      border: "none",
+                      overflow: "hidden",
+                    }}
+                    scrolling="no"
+                  ></iframe>
+                </div>
+                <div className="adCluster">
+                  <iframe
+                    src="/ad2"
+                    style={{
+                      width: "fit-content",
+                      height: "100px",
+                      border: "none",
+                      overflow: "hidden",
+                    }}
+                    scrolling="no"
+                  ></iframe>
+                </div>
               </div>
               <CategoryCard
                 label={`New On ${website_name}`}
@@ -220,7 +340,7 @@ export default function Home(props) {
                 }}
               >
                 <iframe
-                  src="/ad"
+                  src="/ad5"
                   style={{
                     width: "fit-content",
                     height: "100px",
@@ -229,6 +349,30 @@ export default function Home(props) {
                   }}
                   scrolling="no"
                 ></iframe>
+                <div className="adClusterMain">
+                  <iframe
+                    src="/ad4"
+                    style={{
+                      width: "fit-content",
+                      height: "100px",
+                      border: "none",
+                      overflow: "hidden",
+                    }}
+                    scrolling="no"
+                  ></iframe>
+                </div>
+                <div className="adCluster">
+                  <iframe
+                    src="/ad3"
+                    style={{
+                      width: "fit-content",
+                      height: "100px",
+                      border: "none",
+                      overflow: "hidden",
+                    }}
+                    scrolling="no"
+                  ></iframe>
+                </div>
               </div>
               <Schedule selectL={selectL} refer={props.refer} />
               <div
@@ -240,7 +384,7 @@ export default function Home(props) {
                 }}
               >
                 <iframe
-                  src="/ad4"
+                  src="/ad6"
                   style={{
                     width: "fit-content",
                     height: "100px",
@@ -249,6 +393,30 @@ export default function Home(props) {
                   }}
                   scrolling="no"
                 ></iframe>
+                <div className="adClusterMain">
+                  <iframe
+                    src="/ad"
+                    style={{
+                      width: "fit-content",
+                      height: "100px",
+                      border: "none",
+                      overflow: "hidden",
+                    }}
+                    scrolling="no"
+                  ></iframe>
+                </div>
+                <div className="adCluster">
+                  <iframe
+                    src="/ad2"
+                    style={{
+                      width: "fit-content",
+                      height: "100px",
+                      border: "none",
+                      overflow: "hidden",
+                    }}
+                    scrolling="no"
+                  ></iframe>
+                </div>
               </div>
               <CategoryCard
                 label="Top Upcoming"
@@ -268,7 +436,7 @@ export default function Home(props) {
                 }}
               >
                 <iframe
-                  src="/ad6"
+                  src="/ad5"
                   style={{
                     width: "fit-content",
                     height: "100px",
@@ -277,6 +445,30 @@ export default function Home(props) {
                   }}
                   scrolling="no"
                 ></iframe>
+                <div className="adClusterMain">
+                  <iframe
+                    src="/ad4"
+                    style={{
+                      width: "fit-content",
+                      height: "100px",
+                      border: "none",
+                      overflow: "hidden",
+                    }}
+                    scrolling="no"
+                  ></iframe>
+                </div>
+                <div className="adCluster">
+                  <iframe
+                    src="/ad3"
+                    style={{
+                      width: "fit-content",
+                      height: "100px",
+                      border: "none",
+                      overflow: "hidden",
+                    }}
+                    scrolling="no"
+                  ></iframe>
+                </div>
               </div>
             </div>
 
@@ -313,7 +505,7 @@ export default function Home(props) {
                   display: "flex",
                   justifyContent: "center",
                   margin: "10px 0",
-                }}
+                }} 
               >
                 <iframe
                   src="/ad4"

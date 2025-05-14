@@ -23,7 +23,7 @@ import { SessionProvider } from "next-auth/react";
 
 const website_name = "Animoon";
 
-function InfoItem({ label, value, isProducer = true, refer}) {
+function InfoItem({ label, value, isProducer = true, refer }) {
   return (
     value && (
       <div className="text-[14px] font-bold">
@@ -188,7 +188,7 @@ export default function AnimeInfo({ random = false, idd, refer }) {
   return (
     <>
       <SessionProvider>
-        <Navbar lang={lang} selectL={selectL} refer={refer}/>
+        <Navbar lang={lang} selectL={selectL} refer={refer} />
 
         <div className="infoContainer">
           <img
@@ -264,7 +264,9 @@ export default function AnimeInfo({ random = false, idd, refer }) {
               {animeInfo?.animeInfo?.Status?.toLowerCase() !==
               "not-yet-aired" ? (
                 <Link
-                  href={`/watch/${animeInfo.id}${refer ? `?refer=${refer}` : ""}`}
+                  href={`/watch/${animeInfo.id}${
+                    refer ? `?refer=${refer}` : ""
+                  }`}
                   className="flex gap-x-2 px-6 py-2 bg-[#00f2fe] w-fit text-black items-center rounded-3xl mt-5"
                 >
                   <FontAwesomeIcon
@@ -355,7 +357,9 @@ export default function AnimeInfo({ random = false, idd, refer }) {
                   <div className="flex flex-wrap gap-2">
                     {info.Genres.map((genre, index) => (
                       <Link
-                        href={`/genre/${genre.split(" ").join("-")}${refer ? `?refer=${refer}` : ""}`}
+                        href={`/genre/${genre.split(" ").join("-")}${
+                          refer ? `?refer=${refer}` : ""
+                        }`}
                         key={index}
                         className="text-[14px] font-semibold px-2 py-[1px] border border-gray-400 rounded-2xl hover:text-[#00f2fe]"
                       >
@@ -369,7 +373,12 @@ export default function AnimeInfo({ random = false, idd, refer }) {
                 { label: "Studios", value: info?.Studios },
                 { label: "Producers", value: info?.Producers },
               ].map(({ label, value }, index) => (
-                <InfoItem key={index} label={label} value={value} refer={refer}/>
+                <InfoItem
+                  key={index}
+                  label={label}
+                  value={value}
+                  refer={refer}
+                />
               ))}
               {/* <p className="text-[14px] mt-4 custom-xl:hidden">
               {`${website_name} is the best site to watch `}
@@ -386,7 +395,7 @@ export default function AnimeInfo({ random = false, idd, refer }) {
             width: "100%",
             display: "flex",
             justifyContent: "center",
-            margin: "10px 0",
+            marginTop: "70px",
           }}
         >
           <iframe
@@ -399,97 +408,219 @@ export default function AnimeInfo({ random = false, idd, refer }) {
             }}
             scrolling="no"
           ></iframe>
+          <div className="adClusterMain">
+            <iframe
+              src="/ad"
+              style={{
+                width: "fit-content",
+                height: "100px",
+                border: "none",
+                overflow: "hidden",
+              }}
+              scrolling="no"
+            ></iframe>
+          </div>
+          <div className="adCluster">
+            <iframe
+              src="/ad2"
+              style={{
+                width: "fit-content",
+                height: "100px",
+                border: "none",
+                overflow: "hidden",
+              }}
+              scrolling="no"
+            ></iframe>
+          </div>
         </div>
         <div className="mainLayoutGrid">
           <div>
             {seasons?.length > 0 && (
-              <div className="flex flex-col gap-y-7 mt-8">
-                <h1 className="w-fit text-2xl text-[#00f2fe] max-[478px]:text-[18px] font-bold">
-                  More Seasons
-                </h1>
-                <div className="flex flex-wrap gap-4 max-[575px]:grid max-[575px]:grid-cols-3 max-[575px]:gap-3 max-[480px]:grid-cols-2">
-                  {seasons.map((season, index) => (
-                    <Link
-                      href={`/${season.id}${refer ? `?refer=${refer}` : ""}`}
-                      key={index}
-                      className={`relative w-[20%] h-[60px] rounded-lg overflow-hidden cursor-pointer group ${
-                        id === String(season.id)
-                          ? "border border-[#00f2fe]"
-                          : ""
-                      } max-[1200px]:w-[140px] max-[575px]:w-full`}
-                    >
-                      <p
-                        className={`text-[13px] text-center font-bold absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full px-2 z-30 line-clamp-2 group-hover:text-[#00f2fe] ${
+              <>
+                <div className="flex flex-col gap-y-7 mt-8">
+                  <h1 className="w-fit text-2xl text-[#00f2fe] max-[478px]:text-[18px] font-bold">
+                    More Seasons
+                  </h1>
+                  <div className="flex flex-wrap gap-4 max-[575px]:grid max-[575px]:grid-cols-3 max-[575px]:gap-3 max-[480px]:grid-cols-2">
+                    {seasons.map((season, index) => (
+                      <Link
+                        href={`/${season.id}${refer ? `?refer=${refer}` : ""}`}
+                        key={index}
+                        className={`relative w-[20%] h-[60px] rounded-lg overflow-hidden cursor-pointer group ${
                           id === String(season.id)
-                            ? "text-[#00f2fe]"
-                            : "text-white"
-                        }`}
+                            ? "border border-[#00f2fe]"
+                            : ""
+                        } max-[1200px]:w-[140px] max-[575px]:w-full`}
                       >
-                        {season.season}
-                      </p>
-                      <div className="absolute inset-0 z-10 bg-[url('https://i.postimg.cc/pVGY6RXd/thumb.png')] bg-repeat"></div>
-                      <img
-                        src={season.season_poster}
-                        alt=""
-                        className="w-full h-full object-cover blur-[3px] opacity-50"
-                      />
-                    </Link>
-                  ))}
+                        <p
+                          className={`text-[13px] text-center font-bold absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full px-2 z-30 line-clamp-2 group-hover:text-[#00f2fe] ${
+                            id === String(season.id)
+                              ? "text-[#00f2fe]"
+                              : "text-white"
+                          }`}
+                        >
+                          {season.season}
+                        </p>
+                        <div className="absolute inset-0 z-10 bg-[url('https://i.postimg.cc/pVGY6RXd/thumb.png')] bg-repeat"></div>
+                        <img
+                          src={season.season_poster}
+                          alt=""
+                          className="w-full h-full object-cover blur-[3px] opacity-50"
+                        />
+                      </Link>
+                    ))}
+                  </div>
                 </div>
-              </div>
-            )}
-            <div
-              style={{
-                width: "100%",
-                display: "flex",
-                justifyContent: "center",
-                margin: "10px 0",
-              }}
-            >
-              <iframe
-                src="/ad4"
-                style={{
-                  width: "fit-content",
-                  height: "100px",
-                  border: "none",
-                  overflow: "hidden",
-                }}
-                scrolling="no"
-              ></iframe>
-            </div>
-            {animeInfo?.charactersVoiceActors.length > 0 && (
-              <Voiceactor animeInfo={animeInfo} />
+                <div
+                  style={{
+                    width: "100%",
+                    display: "flex",
+                    justifyContent: "center",
+                    marginTop: "70px",
+                  }}
+                >
+                  <iframe
+                    src="/ad6"
+                    style={{
+                      width: "fit-content",
+                      height: "100px",
+                      border: "none",
+                      overflow: "hidden",
+                    }}
+                    scrolling="no"
+                  ></iframe>
+                  <div className="adClusterMain">
+                    <iframe
+                      src="/ad"
+                      style={{
+                        width: "fit-content",
+                        height: "100px",
+                        border: "none",
+                        overflow: "hidden",
+                      }}
+                      scrolling="no"
+                    ></iframe>
+                  </div>
+                  <div className="adCluster">
+                    <iframe
+                      src="/ad2"
+                      style={{
+                        width: "fit-content",
+                        height: "100px",
+                        border: "none",
+                        overflow: "hidden",
+                      }}
+                      scrolling="no"
+                    ></iframe>
+                  </div>
+                </div>
+              </>
             )}
 
-            <div
-              style={{
-                width: "100%",
-                display: "flex",
-                justifyContent: "center",
-                margin: "10px 0",
-              }}
-            >
-              <iframe
-                src="/ad3"
-                style={{
-                  width: "fit-content",
-                  height: "100px",
-                  border: "none",
-                  overflow: "hidden",
-                }}
-                scrolling="no"
-              ></iframe>
-            </div>
+            {animeInfo?.charactersVoiceActors.length > 0 && (
+              <>
+                <Voiceactor animeInfo={animeInfo} />
+                <div
+                  style={{
+                    width: "100%",
+                    display: "flex",
+                    justifyContent: "center",
+                    marginTop: "70px",
+                  }}
+                >
+                  <iframe
+                    src="/ad6"
+                    style={{
+                      width: "fit-content",
+                      height: "100px",
+                      border: "none",
+                      overflow: "hidden",
+                    }}
+                    scrolling="no"
+                  ></iframe>
+                  <div className="adClusterMain">
+                    <iframe
+                      src="/ad"
+                      style={{
+                        width: "fit-content",
+                        height: "100px",
+                        border: "none",
+                        overflow: "hidden",
+                      }}
+                      scrolling="no"
+                    ></iframe>
+                  </div>
+                  <div className="adCluster">
+                    <iframe
+                      src="/ad2"
+                      style={{
+                        width: "fit-content",
+                        height: "100px",
+                        border: "none",
+                        overflow: "hidden",
+                      }}
+                      scrolling="no"
+                    ></iframe>
+                  </div>
+                </div>
+              </>
+            )}
+
             {animeInfo.recommended_data.length > 0 && (
-              <CategoryCard
-                label="Recommended for you"
-                data={animeInfo.recommended_data}
-                limit={animeInfo.recommended_data.length}
-                showViewMore={false}
-                className={"mt-8"}
-                selectL={selectL}
-                refer={refer}
-              />
+              <>
+                <CategoryCard
+                  label="Recommended for you"
+                  data={animeInfo.recommended_data}
+                  limit={animeInfo.recommended_data.length}
+                  showViewMore={false}
+                  className={"mt-8"}
+                  selectL={selectL}
+                  refer={refer}
+                />
+                <div
+                  style={{
+                    width: "100%",
+                    display: "flex",
+                    justifyContent: "center",
+                    marginTop: "70px",
+                  }}
+                >
+                  <iframe
+                    src="/ad6"
+                    style={{
+                      width: "fit-content",
+                      height: "100px",
+                      border: "none",
+                      overflow: "hidden",
+                    }}
+                    scrolling="no"
+                  ></iframe>
+                  <div className="adClusterMain">
+                    <iframe
+                      src="/ad"
+                      style={{
+                        width: "fit-content",
+                        height: "100px",
+                        border: "none",
+                        overflow: "hidden",
+                      }}
+                      scrolling="no"
+                    ></iframe>
+                  </div>
+                  <div className="adCluster">
+                    <iframe
+                      src="/ad2"
+                      style={{
+                        width: "fit-content",
+                        height: "100px",
+                        border: "none",
+                        overflow: "hidden",
+                      }}
+                      scrolling="no"
+                    ></iframe>
+                  </div>
+                </div>
+              </>
             )}
           </div>
           <div>
@@ -554,7 +685,7 @@ export default function AnimeInfo({ random = false, idd, refer }) {
             </div>
           </div>
         </div>
-        <Footer refer={refer}/>
+        <Footer refer={refer} />
       </SessionProvider>
     </>
   );

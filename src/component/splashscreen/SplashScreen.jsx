@@ -140,25 +140,30 @@ export default function SplashScreen() {
             }}
             scrolling="no"
           ></iframe>
-        </div>
-        <div
-          style={{
-            width: "100%",
-            display: "flex",
-            justifyContent: "center",
-            margin: "10px 0",
-          }}
-        >
-          <iframe
-            src="/ad5"
-            style={{
-              width: "fit-content",
-              height: "100px",
-              border: "none",
-              overflow: "hidden",
-            }}
-            scrolling="no"
-          ></iframe>
+          <div className="adClusterMain">
+            <iframe
+              src="/ad"
+              style={{
+                width: "fit-content",
+                height: "100px",
+                border: "none",
+                overflow: "hidden",
+              }}
+              scrolling="no"
+            ></iframe>
+          </div>
+          <div className="adCluster">
+            <iframe
+              src="/ad2"
+              style={{
+                width: "fit-content",
+                height: "100px",
+                border: "none",
+                overflow: "hidden",
+              }}
+              scrolling="no"
+            ></iframe>
+          </div>
         </div>
 
         <div className="splashscreen min-h-[480px] min-[1200px]:min-h-[520px] bg-[#2B2A3C] rounded-[40px] flex relative mt-7 max-[780px]:w-full items-stretch max-[780px]:rounded-[30px] max-[520px]:rounded-none max-[520px]:min-h-fit max-[520px]:pb-4 max-[520px]:mt-4">
@@ -231,7 +236,7 @@ export default function SplashScreen() {
           }}
         >
           <iframe
-            src="/ad4"
+            src="/ad5"
             style={{
               width: "fit-content",
               height: "100px",
@@ -240,65 +245,31 @@ export default function SplashScreen() {
             }}
             scrolling="no"
           ></iframe>
+          <div className="adClusterMain">
+            <iframe
+              src="/ad4"
+              style={{
+                width: "fit-content",
+                height: "100px",
+                border: "none",
+                overflow: "hidden",
+              }}
+              scrolling="no"
+            ></iframe>
+          </div>
+          <div className="adCluster">
+            <iframe
+              src="/ad3"
+              style={{
+                width: "fit-content",
+                height: "100px",
+                border: "none",
+                overflow: "hidden",
+              }}
+              scrolling="no"
+            ></iframe>
+          </div>
         </div>
-      </div>
-
-      <div
-        style={{
-          width: "100%",
-          display: "flex",
-          justifyContent: "center",
-          margin: "10px 0",
-        }}
-      >
-        <iframe
-          src="/ad3"
-          style={{
-            width: "fit-content",
-            height: "100px",
-            border: "none",
-            overflow: "hidden",
-          }}
-          scrolling="no"
-        ></iframe>
-      </div>
-      <div
-        style={{
-          width: "100%",
-          display: "flex",
-          justifyContent: "center",
-          margin: "10px 0",
-        }}
-      >
-        <iframe
-          src="/ad2"
-          style={{
-            width: "fit-content",
-            height: "100px",
-            border: "none",
-            overflow: "hidden",
-          }}
-          scrolling="no"
-        ></iframe>
-      </div>
-      <div
-        style={{
-          width: "100%",
-          display: "flex",
-          justifyContent: "center",
-          margin: "10px 0",
-        }}
-      >
-        <iframe
-          src="/ad"
-          style={{
-            width: "fit-content",
-            height: "100px",
-            border: "none",
-            overflow: "hidden",
-          }}
-          scrolling="no"
-        ></iframe>
       </div>
       <div className="mt-10 text-[14px] text-center pb-4">
         © {logoTitle} All rights reserved.

@@ -172,7 +172,7 @@ export default function AtoZ({ path, pagel }) {
                 }}
               >
                 <iframe
-                  src="/ad"
+                  src="/ad6"
                   style={{
                     width: "fit-content",
                     height: "100px",
@@ -181,6 +181,30 @@ export default function AtoZ({ path, pagel }) {
                   }}
                   scrolling="no"
                 ></iframe>
+                <div className="adClusterMain">
+                  <iframe
+                    src="/ad"
+                    style={{
+                      width: "fit-content",
+                      height: "100px",
+                      border: "none",
+                      overflow: "hidden",
+                    }}
+                    scrolling="no"
+                  ></iframe>
+                </div>
+                <div className="adCluster">
+                  <iframe
+                    src="/ad2"
+                    style={{
+                      width: "fit-content",
+                      height: "100px",
+                      border: "none",
+                      overflow: "hidden",
+                    }}
+                    scrolling="no"
+                  ></iframe>
+                </div>
               </div>
               <PageSlider
                 page={page}
@@ -195,16 +219,49 @@ export default function AtoZ({ path, pagel }) {
                   margin: "20px 0",
                 }}
               >
-                <iframe
-                  src="/ad6"
+                <div
                   style={{
-                    width: "fit-content",
-                    height: "100px",
-                    border: "none",
-                    overflow: "hidden",
+                    width: "100%",
+                    display: "flex",
+                    justifyContent: "center",
+                    margin: "10px 0",
                   }}
-                  scrolling="no"
-                ></iframe>
+                >
+                  <iframe
+                    src="/ad6"
+                    style={{
+                      width: "fit-content",
+                      height: "100px",
+                      border: "none",
+                      overflow: "hidden",
+                    }}
+                    scrolling="no"
+                  ></iframe>
+                  <div className="adClusterMain">
+                    <iframe
+                      src="/ad"
+                      style={{
+                        width: "fit-content",
+                        height: "100px",
+                        border: "none",
+                        overflow: "hidden",
+                      }}
+                      scrolling="no"
+                    ></iframe>
+                  </div>
+                  <div className="adCluster">
+                    <iframe
+                      src="/ad2"
+                      style={{
+                        width: "fit-content",
+                        height: "100px",
+                        border: "none",
+                        overflow: "hidden",
+                      }}
+                      scrolling="no"
+                    ></iframe>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
