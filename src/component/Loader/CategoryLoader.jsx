@@ -12,6 +12,25 @@ function CategoryLoader() {
     <>
       <SessionProvider>
         <Navbar />
+        <div
+          style={{
+            width: "100%",
+            display: "flex",
+            justifyContent: "center",
+            margin: "10px 0",
+          }}
+        >
+          <iframe
+            src="/ad"
+            style={{
+              width: "fit-content",
+              height: "100px",
+              border: "none",
+              overflow: "hidden",
+            }}
+            scrolling="no"
+          ></iframe>
+        </div>
         <div className="w-full flex flex-col gap-y-4 mt-[64px] max-md:mt-[50px]">
           <div className="flex gap-x-4 items-center p-5 mt-4">
             <Skeleton className="w-[60px] h-[60px] rounded-full bg-gray-500 max-[575px]:hidden" />
@@ -21,8 +40,65 @@ function CategoryLoader() {
             </div>
           </div>
           <div className="categorylayout">
+            <div
+              style={{
+                width: "100%",
+                display: "flex",
+                justifyContent: "center",
+                margin: "10px 0",
+              }}
+            >
+              <iframe
+                src="/ad2"
+                style={{
+                  width: "fit-content",
+                  height: "100px",
+                  border: "none",
+                  overflow: "hidden",
+                }}
+                scrolling="no"
+              ></iframe>
+            </div>
             <CategoryCardLoader className={"mt-[0px]"} />
+            <div
+              style={{
+                width: "100%",
+                display: "flex",
+                justifyContent: "center",
+                margin: "10px 0",
+              }}
+            >
+              <iframe
+                src="/ad3"
+                style={{
+                  width: "fit-content",
+                  height: "100px",
+                  border: "none",
+                  overflow: "hidden",
+                }}
+                scrolling="no"
+              ></iframe>
+            </div>
             <SidecardLoader />
+            <div
+              style={{
+                width: "100%",
+                display: "flex",
+                justifyContent: "center",
+                margin: "10px 0",
+              }}
+            >
+              <iframe
+                src="/ad4"
+                style={{
+                  width: "fit-content",
+                  height: "100px",
+                  border: "none",
+                  overflow: "hidden",
+                }}
+                scrolling="no"
+              ></iframe>
+            </div>
           </div>
         </div>
         <Footer />

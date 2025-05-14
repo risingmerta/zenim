@@ -15,6 +15,25 @@ function AtoZLoader() {
     <>
       <SessionProvider>
         <Navbar />
+        <div
+          style={{
+            width: "100%",
+            display: "flex",
+            justifyContent: "center",
+            margin: "10px 0",
+          }}
+        >
+          <iframe
+            src="/ad6"
+            style={{
+              width: "fit-content",
+              height: "100px",
+              border: "none",
+              overflow: "hidden",
+            }}
+            scrolling="no"
+          ></iframe>
+        </div>
         <div className="max-w-[1260px] mx-auto px-[15px] flex flex-col mt-[64px] max-md:mt-[50px]">
           <ul className="flex gap-x-4 mt-[50px] items-center w-fit max-[1200px]:hidden">
             <Skeleton className="w-[50px] h-[15px]" />
@@ -29,7 +48,45 @@ function AtoZLoader() {
               />
             </div>
           </div>
+          <div
+            style={{
+              width: "100%",
+              display: "flex",
+              justifyContent: "center",
+              margin: "10px 0",
+            }}
+          >
+            <iframe
+              src="/ad5"
+              style={{
+                width: "fit-content",
+                height: "100px",
+                border: "none",
+                overflow: "hidden",
+              }}
+              scrolling="no"
+            ></iframe>
+          </div>
           <CategoryCardLoader showLabelSkeleton={false} />
+          <div
+            style={{
+              width: "100%",
+              display: "flex",
+              justifyContent: "center",
+              margin: "10px 0",
+            }}
+          >
+            <iframe
+              src="/ad3"
+              style={{
+                width: "fit-content",
+                height: "100px",
+                border: "none",
+                overflow: "hidden",
+              }}
+              scrolling="no"
+            ></iframe>
+          </div>
         </div>
         <Footer />
       </SessionProvider>
