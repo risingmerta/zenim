@@ -128,11 +128,11 @@ function AnimeInfoLoader() {
             width: "100%",
             display: "flex",
             justifyContent: "center",
-            margin: "10px 0",
+            marginTop: "70px",
           }}
         >
           <iframe
-            src="/ad"
+            src="/ad5"
             style={{
               width: "fit-content",
               height: "100px",
@@ -141,6 +141,30 @@ function AnimeInfoLoader() {
             }}
             scrolling="no"
           ></iframe>
+          <div className="adClusterMain">
+            <iframe
+              src="/ad4"
+              style={{
+                width: "fit-content",
+                height: "100px",
+                border: "none",
+                overflow: "hidden",
+              }}
+              scrolling="no"
+            ></iframe>
+          </div>
+          <div className="adCluster">
+            <iframe
+              src="/ad3"
+              style={{
+                width: "fit-content",
+                height: "100px",
+                border: "none",
+                overflow: "hidden",
+              }}
+              scrolling="no"
+            ></iframe>
+          </div>
         </div>
         <div className="categWrapper">
           <CategoryCardLoader className="mt-[60px]" />
@@ -151,11 +175,11 @@ function AnimeInfoLoader() {
             width: "100%",
             display: "flex",
             justifyContent: "center",
-            margin: "10px 0",
+            marginTop: "70px",
           }}
         >
           <iframe
-            src="/ad2"
+            src="/ad6"
             style={{
               width: "fit-content",
               height: "100px",
@@ -164,6 +188,30 @@ function AnimeInfoLoader() {
             }}
             scrolling="no"
           ></iframe>
+          <div className="adClusterMain">
+            <iframe
+              src="/ad"
+              style={{
+                width: "fit-content",
+                height: "100px",
+                border: "none",
+                overflow: "hidden",
+              }}
+              scrolling="no"
+            ></iframe>
+          </div>
+          <div className="adCluster">
+            <iframe
+              src="/ad2"
+              style={{
+                width: "fit-content",
+                height: "100px",
+                border: "none",
+                overflow: "hidden",
+              }}
+              scrolling="no"
+            ></iframe>
+          </div>
         </div>
         <Footer />
       </SessionProvider>

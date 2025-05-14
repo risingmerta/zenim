@@ -23,7 +23,7 @@ export default async function page({ params, searchParams }) {
   return (
     <div>
       <AtoZ path={`az-list/${id}`} page={page} />
-      {refer && <Advertize refer={refer} />}
+      <Advertize refer={refer} />
     </div>
   );
 }

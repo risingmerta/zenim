@@ -27,7 +27,7 @@ export default async function page({ params, searchParams }) {
   return (
     <div>
       <Producer id={id} page={page} />
-      {refer && <Advertize refer={refer} />}
+      <Advertize refer={refer} />
     </div>
   );
 }

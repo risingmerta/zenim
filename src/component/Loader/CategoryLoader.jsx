@@ -64,26 +64,15 @@ function CategoryLoader() {
             </div>
           </div>
           <div
-          style={{
-            width: "100%",
-            display: "flex",
-            justifyContent: "center",
-            marginTop: "70px",
-          }}
-        >
-          <iframe
-            src="/ad6"
             style={{
-              width: "fit-content",
-              height: "100px",
-              border: "none",
-              overflow: "hidden",
+              width: "100%",
+              display: "flex",
+              justifyContent: "center",
+              marginTop: "70px",
             }}
-            scrolling="no"
-          ></iframe>
-          <div className="adClusterMain">
+          >
             <iframe
-              src="/ad"
+              src="/ad6"
               style={{
                 width: "fit-content",
                 height: "100px",
@@ -92,20 +81,31 @@ function CategoryLoader() {
               }}
               scrolling="no"
             ></iframe>
+            <div className="adClusterMain">
+              <iframe
+                src="/ad"
+                style={{
+                  width: "fit-content",
+                  height: "100px",
+                  border: "none",
+                  overflow: "hidden",
+                }}
+                scrolling="no"
+              ></iframe>
+            </div>
+            <div className="adCluster">
+              <iframe
+                src="/ad2"
+                style={{
+                  width: "fit-content",
+                  height: "100px",
+                  border: "none",
+                  overflow: "hidden",
+                }}
+                scrolling="no"
+              ></iframe>
+            </div>
           </div>
-          <div className="adCluster">
-            <iframe
-              src="/ad2"
-              style={{
-                width: "fit-content",
-                height: "100px",
-                border: "none",
-                overflow: "hidden",
-              }}
-              scrolling="no"
-            ></iframe>
-          </div>
-        </div>
           <div className="categorylayout">
             <CategoryCardLoader className={"mt-[0px]"} />
             <SidecardLoader />
@@ -115,11 +115,11 @@ function CategoryLoader() {
               width: "100%",
               display: "flex",
               justifyContent: "center",
-              margin: "10px 0",
+              marginTop: "70px",
             }}
           >
             <iframe
-              src="/ad3"
+              src="/ad5"
               style={{
                 width: "fit-content",
                 height: "100px",
@@ -128,6 +128,30 @@ function CategoryLoader() {
               }}
               scrolling="no"
             ></iframe>
+            <div className="adClusterMain">
+              <iframe
+                src="/ad4"
+                style={{
+                  width: "fit-content",
+                  height: "100px",
+                  border: "none",
+                  overflow: "hidden",
+                }}
+                scrolling="no"
+              ></iframe>
+            </div>
+            <div className="adCluster">
+              <iframe
+                src="/ad3"
+                style={{
+                  width: "fit-content",
+                  height: "100px",
+                  border: "none",
+                  overflow: "hidden",
+                }}
+                scrolling="no"
+              ></iframe>
+            </div>
           </div>
         </div>
         <Footer />

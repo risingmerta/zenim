@@ -8,7 +8,7 @@ export default async function page({ searchParams }) {
   return (
     <div>
       <Home refer={refer} />
-      {refer && <Advertize refer={refer} />}
+      <Advertize refer={refer} />
     </div>
   );
 }

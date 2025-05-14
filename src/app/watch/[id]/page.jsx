@@ -1,3 +1,4 @@
+import Advertize from "@/component/Advertize/Advertize";
 import Watch from "@/component/watch/Watch";
 import React from "react";
 
@@ -35,7 +36,7 @@ export default async function page({ params, searchParams }) {
   return (
     <div>
       <Watch id={id} epId={ep} refer={refer}/>
-      {refer && <Advertize refer={refer} />}
+      <Advertize refer={refer} />
     </div>
   );
 }

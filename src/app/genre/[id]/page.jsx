@@ -31,7 +31,7 @@ export default async function page({ params, searchParams }) {
         label={id.split("-")?.join(" ")}
         pagel={page}
       />
-      {refer && <Advertize refer={refer} />}
+      <Advertize refer={refer} />
     </div>
   );
 }

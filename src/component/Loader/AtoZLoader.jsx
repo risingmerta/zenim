@@ -5,7 +5,7 @@ import CategoryCardLoader from "./CategoryCardLoader";
 import Navbar from "../Navbar/Navbar";
 import Footer from "../Footer/Footer";
 import "./atozInfoLoader.css";
- 
+
 const SkeletonItems = ({ count, className }) =>
   [...Array(count)].map((_, index) => (
     <Skeleton key={index} className={className} />
@@ -79,11 +79,11 @@ function AtoZLoader() {
               width: "100%",
               display: "flex",
               justifyContent: "center",
-              margin: "10px 0",
+              marginTop: "70px",
             }}
           >
             <iframe
-              src="/ad3"
+              src="/ad5"
               style={{
                 width: "fit-content",
                 height: "100px",
@@ -92,6 +92,30 @@ function AtoZLoader() {
               }}
               scrolling="no"
             ></iframe>
+            <div className="adClusterMain">
+              <iframe
+                src="/ad4"
+                style={{
+                  width: "fit-content",
+                  height: "100px",
+                  border: "none",
+                  overflow: "hidden",
+                }}
+                scrolling="no"
+              ></iframe>
+            </div>
+            <div className="adCluster">
+              <iframe
+                src="/ad3"
+                style={{
+                  width: "fit-content",
+                  height: "100px",
+                  border: "none",
+                  overflow: "hidden",
+                }}
+                scrolling="no"
+              ></iframe>
+            </div>
           </div>
         </div>
         <Footer />

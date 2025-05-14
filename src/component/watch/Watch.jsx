@@ -543,7 +543,7 @@ export default function Watch(props) {
               width: "100%",
               display: "flex",
               justifyContent: "center",
-              margin: "20px 0",
+              marginTop: "70px",
             }}
           >
             <iframe
@@ -556,6 +556,30 @@ export default function Watch(props) {
               }}
               scrolling="no"
             ></iframe>
+            <div className="adClusterMain">
+              <iframe
+                src="/ad"
+                style={{
+                  width: "fit-content",
+                  height: "100px",
+                  border: "none",
+                  overflow: "hidden",
+                }}
+                scrolling="no"
+              ></iframe>
+            </div>
+            <div className="adCluster">
+              <iframe
+                src="/ad2"
+                style={{
+                  width: "fit-content",
+                  height: "100px",
+                  border: "none",
+                  overflow: "hidden",
+                }}
+                scrolling="no"
+              ></iframe>
+            </div>
           </div>
           <div className="w-full flex gap-x-4 items-center bg-[#191826] p-5 max-[575px]:px-3 max-[320px]:hidden">
             <img
@@ -575,7 +599,7 @@ export default function Watch(props) {
               width: "100%",
               display: "flex",
               justifyContent: "center",
-              margin: "20px 0",
+              marginTop: "70px",
             }}
           >
             <iframe
@@ -588,62 +612,139 @@ export default function Watch(props) {
               }}
               scrolling="no"
             ></iframe>
+            <div className="adClusterMain">
+              <iframe
+                src="/ad4"
+                style={{
+                  width: "fit-content",
+                  height: "100px",
+                  border: "none",
+                  overflow: "hidden",
+                }}
+                scrolling="no"
+              ></iframe>
+            </div>
+            <div className="adCluster">
+              <iframe
+                src="/ad3"
+                style={{
+                  width: "fit-content",
+                  height: "100px",
+                  border: "none",
+                  overflow: "hidden",
+                }}
+                scrolling="no"
+              ></iframe>
+            </div>
           </div>
           <div className="contentWrapper">
             <div className="mt-[15px] flex flex-col gap-y-7">
               {animeInfo?.charactersVoiceActors.length > 0 && (
-                <Voiceactor animeInfo={animeInfo} className="!mt-0" />
+                <>
+                  <Voiceactor animeInfo={animeInfo} className="!mt-0" />
+                  <div
+                    style={{
+                      width: "100%",
+                      display: "flex",
+                      justifyContent: "center",
+                      marginTop: "70px",
+                    }}
+                  >
+                    <iframe
+                      src="/ad6"
+                      style={{
+                        width: "fit-content",
+                        height: "100px",
+                        border: "none",
+                        overflow: "hidden",
+                      }}
+                      scrolling="no"
+                    ></iframe>
+                    <div className="adClusterMain">
+                      <iframe
+                        src="/ad"
+                        style={{
+                          width: "fit-content",
+                          height: "100px",
+                          border: "none",
+                          overflow: "hidden",
+                        }}
+                        scrolling="no"
+                      ></iframe>
+                    </div>
+                    <div className="adCluster">
+                      <iframe
+                        src="/ad2"
+                        style={{
+                          width: "fit-content",
+                          height: "100px",
+                          border: "none",
+                          overflow: "hidden",
+                        }}
+                        scrolling="no"
+                      ></iframe>
+                    </div>
+                  </div>
+                </>
               )}
-              <div
-                style={{
-                  width: "100%",
-                  display: "flex",
-                  justifyContent: "center",
-                  margin: "20px 0",
-                }}
-              >
-                <iframe
-                  src="/ad3"
-                  style={{
-                    width: "fit-content",
-                    height: "100px",
-                    border: "none",
-                    overflow: "hidden",
-                  }}
-                  scrolling="no"
-                ></iframe>
-              </div>
+
               {animeInfo?.recommended_data.length > 0 ? (
-                <CategoryCard
-                  label="Recommended for you"
-                  data={animeInfo?.recommended_data}
-                  limit={animeInfo?.recommended_data.length}
-                  showViewMore={false}
-                  selectL={selectL}
-                  refer={props.refer}
-                />
+                <>
+                  <CategoryCard
+                    label="Recommended for you"
+                    data={animeInfo?.recommended_data}
+                    limit={animeInfo?.recommended_data.length}
+                    showViewMore={false}
+                    selectL={selectL}
+                    refer={props.refer}
+                  />
+                  <div
+                    style={{
+                      width: "100%",
+                      display: "flex",
+                      justifyContent: "center",
+                      marginTop: "70px",
+                    }}
+                  >
+                    <iframe
+                      src="/ad5"
+                      style={{
+                        width: "fit-content",
+                        height: "100px",
+                        border: "none",
+                        overflow: "hidden",
+                      }}
+                      scrolling="no"
+                    ></iframe>
+                    <div className="adClusterMain">
+                      <iframe
+                        src="/ad4"
+                        style={{
+                          width: "fit-content",
+                          height: "100px",
+                          border: "none",
+                          overflow: "hidden",
+                        }}
+                        scrolling="no"
+                      ></iframe>
+                    </div>
+                    <div className="adCluster">
+                      <iframe
+                        src="/ad3"
+                        style={{
+                          width: "fit-content",
+                          height: "100px",
+                          border: "none",
+                          overflow: "hidden",
+                        }}
+                        scrolling="no"
+                      ></iframe>
+                    </div>
+                  </div>
+                </>
               ) : (
                 <CategoryCardLoader className={"mt-[15px]"} />
               )}
-              <div
-                style={{
-                  width: "100%",
-                  display: "flex",
-                  justifyContent: "center",
-                  margin: "20px 0",
-                }}
-              >
-                <iframe
-                  src="/ad4"
-                  style={{
-                    width: "fit-content",
-                    height: "100px",
-                    border: "none",
-                    overflow: "hidden",
-                  }}
-                  scrolling="no"
-                ></iframe>
-              </div>
             </div>
             <div>
               {animeInfo && animeInfo.related_data ? (

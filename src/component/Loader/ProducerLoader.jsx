@@ -5,13 +5,13 @@ import Navbar from "../Navbar/Navbar";
 import CategoryCardLoader from "./CategoryCardLoader";
 import SidecardLoader from "./SidecardLoader";
 import "./producerLoader.css";
- 
+
 function ProducerLoader() {
   return (
     <>
       <SessionProvider>
         <Navbar />
-                <div
+        <div
           style={{
             width: "100%",
             display: "flex",
@@ -60,11 +60,11 @@ function ProducerLoader() {
               width: "100%",
               display: "flex",
               justifyContent: "center",
-              margin: "10px 0",
+              marginTop: "70px",
             }}
           >
             <iframe
-              src="/ad2"
+              src="/ad5"
               style={{
                 width: "fit-content",
                 height: "100px",
@@ -73,6 +73,30 @@ function ProducerLoader() {
               }}
               scrolling="no"
             ></iframe>
+            <div className="adClusterMain">
+              <iframe
+                src="/ad4"
+                style={{
+                  width: "fit-content",
+                  height: "100px",
+                  border: "none",
+                  overflow: "hidden",
+                }}
+                scrolling="no"
+              ></iframe>
+            </div>
+            <div className="adCluster">
+              <iframe
+                src="/ad3"
+                style={{
+                  width: "fit-content",
+                  height: "100px",
+                  border: "none",
+                  overflow: "hidden",
+                }}
+                scrolling="no"
+              ></iframe>
+            </div>
           </div>
           <div className="page-container">
             <CategoryCardLoader className={"mt-[0px]"} />
@@ -83,11 +107,11 @@ function ProducerLoader() {
               width: "100%",
               display: "flex",
               justifyContent: "center",
-              margin: "10px 0",
+              marginTop: "70px",
             }}
           >
             <iframe
-              src="/ad3"
+              src="/ad6"
               style={{
                 width: "fit-content",
                 height: "100px",
@@ -96,6 +120,30 @@ function ProducerLoader() {
               }}
               scrolling="no"
             ></iframe>
+            <div className="adClusterMain">
+              <iframe
+                src="/ad"
+                style={{
+                  width: "fit-content",
+                  height: "100px",
+                  border: "none",
+                  overflow: "hidden",
+                }}
+                scrolling="no"
+              ></iframe>
+            </div>
+            <div className="adCluster">
+              <iframe
+                src="/ad2"
+                style={{
+                  width: "fit-content",
+                  height: "100px",
+                  border: "none",
+                  overflow: "hidden",
+                }}
+                scrolling="no"
+              ></iframe>
+            </div>
           </div>
         </div>
         <Footer />

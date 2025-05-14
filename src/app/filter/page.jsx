@@ -1,3 +1,4 @@
+import Advertize from "@/component/Advertize/Advertize";
 import Search from "@/component/search/Search";
 import React from "react";
 
@@ -27,7 +28,7 @@ export default async function page({ searchParams }) {
         collectionName={`Search results for`}
         refer={searchParam.refer}
       />
-      {refer && <Advertize refer={refer} />}
+      <Advertize refer={refer} />
     </div>
   );
 }

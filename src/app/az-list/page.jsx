@@ -18,7 +18,7 @@ export default async function page({ searchParams }) {
   return (
     <div>
       <AtoZ path={`az-list`} page={page} />
-      {refer && <Advertize refer={refer} />}
+      <Advertize refer={refer} />
     </div>
   );
 }

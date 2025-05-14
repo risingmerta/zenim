@@ -84,11 +84,16 @@ export default async function page({ params, searchParams }) {
   return (
     <div>
       {categRoutes.find((item) => item === param.id) ? (
-        <Category path={id} label={id.split("-")?.join(" ")} pagel={page} refer={refer}/>
+        <Category
+          path={id}
+          label={id.split("-")?.join(" ")}
+          pagel={page}
+          refer={refer}
+        />
       ) : (
         <AnimeInfo idd={id} refer={refer} />
       )}
-      {refer && <Advertize refer={refer} />}
+      <Advertize refer={refer} />
     </div>
   );
 }
