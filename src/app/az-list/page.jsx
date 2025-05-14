@@ -3,6 +3,7 @@ import Advertize from "@/component/Advertize/Advertize";
 import React from "react";
 
 export async function generateMetadata() {
+  const siteName = process.env.NEXT_PUBLIC_SITE_NAME || "Animoon";
   const label = "A to Z";
   return {
     title: `${label} Anime - ${siteName}`,
