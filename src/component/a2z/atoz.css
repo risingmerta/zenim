@@ -18,3 +18,17 @@
   background-color: #00f2fe;
   color: black;
 }
+.adCluster {
+  display: flex;
+  flex-wrap: wrap;
+}
+.adClusterChild {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+@media screen and (max-width: 1000px) {
+  .adClusterChild {
+    display: none;
+  }
+}

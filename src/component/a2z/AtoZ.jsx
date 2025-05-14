@@ -58,44 +58,6 @@ export default function AtoZ({ path, pagel }) {
       <SessionProvider>
         <Navbar lang={lang} selectL={selectL} />
         <div className="max-w-[1260px] mx-auto px-[15px] flex flex-col mt-[64px] max-md:mt-[50px]">
-          <div
-          style={{
-            width: "100%",
-            display: "flex",
-            justifyContent: "center",
-            margin: "10px 0",
-          }}
-        >
-          <iframe
-            src="/ad6"
-            style={{
-              width: "fit-content",
-              height: "100px",
-              border: "none",
-              overflow: "hidden",
-            }}
-            scrolling="no"
-          ></iframe>
-        </div>
-          <div
-            style={{
-              width: "100%",
-              display: "flex",
-              justifyContent: "center",
-              margin: "10px 0",
-            }}
-          >
-            <iframe
-              src="/ad3"
-              style={{
-                width: "fit-content",
-                height: "100px",
-                border: "none",
-                overflow: "hidden",
-              }}
-              scrolling="no"
-            ></iframe>
-          </div>
           <ul className="flex gap-x-2 mt-[50px] items-center w-fit max-[1200px]:hidden">
             <li className="flex gap-x-3 items-center">
               <Link
@@ -108,24 +70,66 @@ export default function AtoZ({ path, pagel }) {
             </li>
             <li className="font-light">A-Z List</li>
           </ul>
-          <div
-            style={{
-              width: "100%",
-              display: "flex",
-              justifyContent: "center",
-              margin: "10px 0",
-            }}
-          >
-            <iframe
-              src="/ad2"
+          <div className="adCluster">
+            <div
               style={{
-                width: "fit-content",
-                height: "100px",
-                border: "none",
-                overflow: "hidden",
+                width: "100%",
+                display: "flex",
+                justifyContent: "center",
+                margin: "10px 0",
               }}
-              scrolling="no"
-            ></iframe>
+            >
+              <iframe
+                src="/ad6"
+                style={{
+                  width: "fit-content",
+                  height: "100px",
+                  border: "none",
+                  overflow: "hidden",
+                }}
+                scrolling="no"
+              ></iframe>
+            </div>
+            <div className="adClusterChild">
+              <div
+                style={{
+                  width: "100%",
+                  display: "flex",
+                  justifyContent: "center",
+                  margin: "10px 0",
+                }}
+              >
+                <iframe
+                  src="/ad3"
+                  style={{
+                    width: "fit-content",
+                    height: "100px",
+                    border: "none",
+                    overflow: "hidden",
+                  }}
+                  scrolling="no"
+                ></iframe>
+              </div>
+              <div
+                style={{
+                  width: "100%",
+                  display: "flex",
+                  justifyContent: "center",
+                  margin: "10px 0",
+                }}
+              >
+                <iframe
+                  src="/ad2"
+                  style={{
+                    width: "fit-content",
+                    height: "100px",
+                    border: "none",
+                    overflow: "hidden",
+                  }}
+                  scrolling="no"
+                ></iframe>
+              </div>
+            </div>
           </div>
           <div className="flex flex-col gap-y-5 mt-6">
             <h1 className="font-bold text-2xl text-[#00f2fe] max-[478px]:text-[18px]">
@@ -181,7 +185,8 @@ export default function AtoZ({ path, pagel }) {
                   width: "100%",
                   display: "flex",
                   justifyContent: "center",
-                  margin: "10px 0",
+                  marginTop: "10px",
+                  marginBottom: "40px",
                 }}
               >
                 <iframe
@@ -201,45 +206,26 @@ export default function AtoZ({ path, pagel }) {
                 handlePageChange={handlePageChange}
               />
               <div
-          style={{
-            width: "100%",
-            display: "flex",
-            justifyContent: "center",
-            margin: "10px 0",
-          }}
-        >
-          <iframe
-            src="/ad6"
-            style={{
-              width: "fit-content",
-              height: "100px",
-              border: "none",
-              overflow: "hidden",
-            }}
-            scrolling="no"
-          ></iframe>
-        </div>
+                style={{
+                  width: "100%",
+                  display: "flex",
+                  justifyContent: "center",
+                  margin: "20px 0",
+                }}
+              >
+                <iframe
+                  src="/ad6"
+                  style={{
+                    width: "fit-content",
+                    height: "100px",
+                    border: "none",
+                    overflow: "hidden",
+                  }}
+                  scrolling="no"
+                ></iframe>
+              </div>
             </div>
           </div>
-        </div>
-        <div
-          style={{
-            width: "100%",
-            display: "flex",
-            justifyContent: "center",
-            margin: "10px 0",
-          }}
-        >
-          <iframe
-            src="/ad4"
-            style={{
-              width: "fit-content",
-              height: "100px",
-              border: "none",
-              overflow: "hidden",
-            }}
-            scrolling="no"
-          ></iframe>
         </div>
         <Footer />
       </SessionProvider>
