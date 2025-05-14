@@ -6,7 +6,7 @@
   width: 100%;
   overflow: hidden;
   color: white;
-  margin-top: 64px;
+  margin-top: 70px;
 }
 
 .backgroundPoster {
@@ -67,6 +67,6 @@
 /* Responsive for <= 768px (max-md) */
 @media (max-width: 768px) {
   .infoContainer {
-    margin-top: 50px;
+    margin-top: 70px;
   }
 }

@@ -48,7 +48,7 @@
 
 @media (max-width: 1200px) {
   .layoutWrapper {
-    margin-top: 64px;
+    margin-top: 70px;
   }
   .contentWrapper {
     display: flex;
@@ -64,6 +64,6 @@
 
 @media (max-width: 768px) {
   .layoutWrapper {
-    margin-top: 50px;
+    margin-top: 70px;
   }
 }
