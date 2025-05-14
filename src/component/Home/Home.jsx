@@ -20,7 +20,7 @@ export default function Home(props) {
   const [selectL, setSelectL] = useState("EN");
   const lang = (lang) => {
     setSelectL(lang);
-  }; 
+  };
   const website_name = "Animoon";
   const [homeInfo, setHomeInfo] = useState(null);
   const [homeInfoLoading, setHomeInfoLoading] = useState(true);
@@ -49,9 +49,13 @@ export default function Home(props) {
   return (
     <>
       <SessionProvider>
-        <Navbar lang={lang} selectL={selectL} refer={props.refer}/>
+        <Navbar lang={lang} selectL={selectL} refer={props.refer} />
         <div className="home-container">
-          <Spotlight spotlights={homeInfo.spotlights} selectL={selectL} refer={props.refer}/>
+          <Spotlight
+            spotlights={homeInfo.spotlights}
+            selectL={selectL}
+            refer={props.refer}
+          />
 
           <div
             style={{
@@ -72,27 +76,31 @@ export default function Home(props) {
               scrolling="no"
             ></iframe>
           </div>
-          <ContinueWatching selectL={selectL} refer={props.refer}/>
-          {/* <div
+          <ContinueWatching selectL={selectL} refer={props.refer} />
+          <div
             style={{
               width: "100%",
               display: "flex",
               justifyContent: "center",
               margin: "10px 0",
             }}
-          > */}
+          >
             <iframe
-              src="/banner"
-              // style={{
-              //   width: "fit-content",
-              //   height: "100px",
-              //   border: "none",
-              //   overflow: "hidden",
-              // }}
+              src="/ad2"
+              style={{
+                width: "fit-content",
+                height: "100px",
+                border: "none",
+                overflow: "hidden",
+              }}
               scrolling="no"
             ></iframe>
-          {/* </div> */}
-          <Trending trending={homeInfo.trending} selectL={selectL} refer={props.refer}/>
+          </div>
+          <Trending
+            trending={homeInfo.trending}
+            selectL={selectL}
+            refer={props.refer}
+          />
           <div
             style={{
               width: "100%",
@@ -222,7 +230,7 @@ export default function Home(props) {
                   scrolling="no"
                 ></iframe>
               </div>
-              <Schedule selectL={selectL} refer={props.refer}/>
+              <Schedule selectL={selectL} refer={props.refer} />
               <div
                 style={{
                   width: "100%",
@@ -273,7 +281,7 @@ export default function Home(props) {
             </div>
 
             <div className="right-sidebar">
-              <Genre data={homeInfo.genres} refer={props.refer}/>
+              <Genre data={homeInfo.genres} refer={props.refer} />
               <div
                 style={{
                   width: "100%",
@@ -321,7 +329,7 @@ export default function Home(props) {
             </div>
           </div>
         </div>
-        <Footer refer={props.refer}/>
+        <Footer refer={props.refer} />
       </SessionProvider>
     </>
   );
