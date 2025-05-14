@@ -148,9 +148,7 @@ export default function Producer(props) {
                     totalPages={totalPages}
                     handlePageChange={handlePageChange}
                   />
-                </div>
-              )}
-              <div
+                <div
                 style={{
                   width: "100%",
                   display: "flex",
@@ -169,6 +167,9 @@ export default function Producer(props) {
                   scrolling="no"
                 ></iframe>
               </div>
+                </div>
+              )}
+              
               <div className="w-full flex flex-col gap-y-10">
                 {homeInfoLoading ? (
                   <SidecardLoader />

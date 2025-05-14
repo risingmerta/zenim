@@ -91,7 +91,7 @@ export default function Category({ path, label, pagel }) {
             width: "100%",
             display: "flex",
             justifyContent: "center",
-            margin: "10px 0",
+            marginTop: "65px",
           }}
         >
           <iframe
@@ -188,30 +188,28 @@ export default function Category({ path, label, pagel }) {
                     totalPages={totalPages}
                     handlePageChange={handlePageChange}
                   />
+                  <div
+                    style={{
+                      width: "100%",
+                      display: "flex",
+                      justifyContent: "center",
+                      margin: "10px 0",
+                    }}
+                  >
+                    <iframe
+                      src="/ad4"
+                      style={{
+                        width: "fit-content",
+                        height: "100px",
+                        border: "none",
+                        overflow: "hidden",
+                      }}
+                      scrolling="no"
+                    ></iframe>
+                  </div>
                 </>
               )}
             </div>
-
-            <div
-              style={{
-                width: "100%",
-                display: "flex",
-                justifyContent: "center",
-                margin: "10px 0",
-              }}
-            >
-              <iframe
-                src="/ad4"
-                style={{
-                  width: "fit-content",
-                  height: "100px",
-                  border: "none",
-                  overflow: "hidden",
-                }}
-                scrolling="no"
-              ></iframe>
-            </div>
-
             {/* Sidebar */}
             <div className="w-full flex flex-col gap-y-10">
               {homeInfoLoading ? (
