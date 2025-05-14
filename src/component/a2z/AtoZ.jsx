@@ -70,17 +70,27 @@ export default function AtoZ({ path, pagel }) {
             </li>
             <li className="font-light">A-Z List</li>
           </ul>
-          <div className="adCluster">
-            <div
+          <div
+            style={{
+              width: "100%",
+              display: "flex",
+              justifyContent: "center",
+              margin: "10px 0",
+            }}
+          >
+            <iframe
+              src="/ad6"
               style={{
-                width: "100%",
-                display: "flex",
-                justifyContent: "center",
-                margin: "10px 0",
+                width: "fit-content",
+                height: "100px",
+                border: "none",
+                overflow: "hidden",
               }}
-            >
+              scrolling="no"
+            ></iframe>
+            <div className="adCluster">
               <iframe
-                src="/ad6"
+                src="/ad"
                 style={{
                   width: "fit-content",
                   height: "100px",
@@ -89,46 +99,16 @@ export default function AtoZ({ path, pagel }) {
                 }}
                 scrolling="no"
               ></iframe>
-            </div>
-            <div className="adClusterChild">
-              <div
+              <iframe
+                src="/ad2"
                 style={{
-                  width: "100%",
-                  display: "flex",
-                  justifyContent: "center",
-                  margin: "10px 0",
+                  width: "fit-content",
+                  height: "100px",
+                  border: "none",
+                  overflow: "hidden",
                 }}
-              >
-                <iframe
-                  src="/ad3"
-                  style={{
-                    width: "fit-content",
-                    height: "100px",
-                    border: "none",
-                    overflow: "hidden",
-                  }}
-                  scrolling="no"
-                ></iframe>
-              </div>
-              <div
-                style={{
-                  width: "100%",
-                  display: "flex",
-                  justifyContent: "center",
-                  margin: "10px 0",
-                }}
-              >
-                <iframe
-                  src="/ad2"
-                  style={{
-                    width: "fit-content",
-                    height: "100px",
-                    border: "none",
-                    overflow: "hidden",
-                  }}
-                  scrolling="no"
-                ></iframe>
-              </div>
+                scrolling="no"
+              ></iframe>
             </div>
           </div>
           <div className="flex flex-col gap-y-5 mt-6">
