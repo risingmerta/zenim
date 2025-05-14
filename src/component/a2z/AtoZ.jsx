@@ -88,7 +88,7 @@ export default function AtoZ({ path, pagel }) {
               }}
               scrolling="no"
             ></iframe>
-            <div className="adCluster">
+            <div className="adClusterMain">
               <iframe
                 src="/ad"
                 style={{
@@ -99,6 +99,8 @@ export default function AtoZ({ path, pagel }) {
                 }}
                 scrolling="no"
               ></iframe>
+            </div>
+            <div className="adCluster">
               <iframe
                 src="/ad2"
                 style={{
@@ -166,7 +168,7 @@ export default function AtoZ({ path, pagel }) {
                   display: "flex",
                   justifyContent: "center",
                   marginTop: "10px",
-                  marginBottom: "40px",
+                  marginBottom: "-40px",
                 }}
               >
                 <iframe
