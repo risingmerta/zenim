@@ -99,66 +99,47 @@ function AnimeInfoLoader() {
             </div>
           </div>
         </div>
+        <div
+          style={{
+            width: "100%",
+            display: "flex",
+            justifyContent: "center",
+            margin: "10px 0",
+          }}
+        >
+          <iframe
+            src="/ad"
+            style={{
+              width: "fit-content",
+              height: "100px",
+              border: "none",
+              overflow: "hidden",
+            }}
+            scrolling="no"
+          ></iframe>
+        </div>
         <div className="categWrapper">
-          <div
-            style={{
-              width: "100%",
-              display: "flex",
-              justifyContent: "center",
-              margin: "10px 0",
-            }}
-          >
-            <iframe
-              src="/ad1"
-              style={{
-                width: "fit-content",
-                height: "100px",
-                border: "none",
-                overflow: "hidden",
-              }}
-              scrolling="no"
-            ></iframe>
-          </div>
           <CategoryCardLoader className="mt-[60px]" />
-          <div
-            style={{
-              width: "100%",
-              display: "flex",
-              justifyContent: "center",
-              margin: "10px 0",
-            }}
-          >
-            <iframe
-              src="/ad6"
-              style={{
-                width: "fit-content",
-                height: "100px",
-                border: "none",
-                overflow: "hidden",
-              }}
-              scrolling="no"
-            ></iframe>
-          </div>
           <SidecardLoader className="mt-[60px]" />
-          <div
+        </div>
+        <div
+          style={{
+            width: "100%",
+            display: "flex",
+            justifyContent: "center",
+            margin: "10px 0",
+          }}
+        >
+          <iframe
+            src="/ad2"
             style={{
-              width: "100%",
-              display: "flex",
-              justifyContent: "center",
-              margin: "10px 0",
+              width: "fit-content",
+              height: "100px",
+              border: "none",
+              overflow: "hidden",
             }}
-          >
-            <iframe
-              src="/ad5"
-              style={{
-                width: "fit-content",
-                height: "100px",
-                border: "none",
-                overflow: "hidden",
-              }}
-              scrolling="no"
-            ></iframe>
-          </div>
+            scrolling="no"
+          ></iframe>
         </div>
         <Footer />
       </SessionProvider>

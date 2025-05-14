@@ -31,66 +31,47 @@ function ProducerLoader() {
           ></iframe>
         </div>
         <div className="w-full mt-[100px] flex flex-col gap-y-4 max-md:mt-[50px]">
+          <div
+            style={{
+              width: "100%",
+              display: "flex",
+              justifyContent: "center",
+              margin: "10px 0",
+            }}
+          >
+            <iframe
+              src="/ad2"
+              style={{
+                width: "fit-content",
+                height: "100px",
+                border: "none",
+                overflow: "hidden",
+              }}
+              scrolling="no"
+            ></iframe>
+          </div>
           <div className="page-container">
-            <div
-              style={{
-                width: "100%",
-                display: "flex",
-                justifyContent: "center",
-                margin: "10px 0",
-              }}
-            >
-              <iframe
-                src="/ad2"
-                style={{
-                  width: "fit-content",
-                  height: "100px",
-                  border: "none",
-                  overflow: "hidden",
-                }}
-                scrolling="no"
-              ></iframe>
-            </div>
             <CategoryCardLoader className={"mt-[0px]"} />
-            <div
-              style={{
-                width: "100%",
-                display: "flex",
-                justifyContent: "center",
-                margin: "10px 0",
-              }}
-            >
-              <iframe
-                src="/ad3"
-                style={{
-                  width: "fit-content",
-                  height: "100px",
-                  border: "none",
-                  overflow: "hidden",
-                }}
-                scrolling="no"
-              ></iframe>
-            </div>
             <SidecardLoader />
-            <div
+          </div>
+          <div
+            style={{
+              width: "100%",
+              display: "flex",
+              justifyContent: "center",
+              margin: "10px 0",
+            }}
+          >
+            <iframe
+              src="/ad3"
               style={{
-                width: "100%",
-                display: "flex",
-                justifyContent: "center",
-                margin: "10px 0",
+                width: "fit-content",
+                height: "100px",
+                border: "none",
+                overflow: "hidden",
               }}
-            >
-              <iframe
-                src="/ad4"
-                style={{
-                  width: "fit-content",
-                  height: "100px",
-                  border: "none",
-                  overflow: "hidden",
-                }}
-                scrolling="no"
-              ></iframe>
-            </div>
+              scrolling="no"
+            ></iframe>
           </div>
         </div>
         <Footer />
