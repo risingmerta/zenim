@@ -5,7 +5,7 @@ import CategoryCardLoader from "./CategoryCardLoader";
 import Navbar from "../Navbar/Navbar";
 import Footer from "../Footer/Footer";
 import "./atozInfoLoader.css";
-
+ 
 const SkeletonItems = ({ count, className }) =>
   [...Array(count)].map((_, index) => (
     <Skeleton key={index} className={className} />

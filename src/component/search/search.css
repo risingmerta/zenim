@@ -8,6 +8,26 @@
   column-gap: 1.5rem; /* 24px */
 }
 
+.adCluster {
+  display: flex;
+}
+
+.adClusterMain {
+  display: flex;
+}
+
+@media screen and (max-width: 1000px) {
+  .adCluster {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .adClusterMain {
+    display: none;
+  }
+}
+
 /* For screens <= 1200px */
 @media (max-width: 1200px) {
   .main-layout {

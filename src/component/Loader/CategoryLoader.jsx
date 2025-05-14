@@ -64,13 +64,36 @@ function CategoryLoader() {
             </div>
           </div>
           <div
+          style={{
+            width: "100%",
+            display: "flex",
+            justifyContent: "center",
+            marginTop: "70px",
+          }}
+        >
+          <iframe
+            src="/ad6"
             style={{
-              width: "100%",
-              display: "flex",
-              justifyContent: "center",
-              margin: "10px 0",
+              width: "fit-content",
+              height: "100px",
+              border: "none",
+              overflow: "hidden",
             }}
-          >
+            scrolling="no"
+          ></iframe>
+          <div className="adClusterMain">
+            <iframe
+              src="/ad"
+              style={{
+                width: "fit-content",
+                height: "100px",
+                border: "none",
+                overflow: "hidden",
+              }}
+              scrolling="no"
+            ></iframe>
+          </div>
+          <div className="adCluster">
             <iframe
               src="/ad2"
               style={{
@@ -82,6 +105,7 @@ function CategoryLoader() {
               scrolling="no"
             ></iframe>
           </div>
+        </div>
           <div className="categorylayout">
             <CategoryCardLoader className={"mt-[0px]"} />
             <SidecardLoader />

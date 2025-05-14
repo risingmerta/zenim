@@ -91,11 +91,11 @@ export default function Category({ path, label, pagel }) {
             width: "100%",
             display: "flex",
             justifyContent: "center",
-            marginTop: "65px",
+            marginTop: "70px",
           }}
         >
           <iframe
-            src="/ad"
+            src="/ad6"
             style={{
               width: "fit-content",
               height: "100px",
@@ -104,6 +104,30 @@ export default function Category({ path, label, pagel }) {
             }}
             scrolling="no"
           ></iframe>
+          <div className="adClusterMain">
+            <iframe
+              src="/ad"
+              style={{
+                width: "fit-content",
+                height: "100px",
+                border: "none",
+                overflow: "hidden",
+              }}
+              scrolling="no"
+            ></iframe>
+          </div>
+          <div className="adCluster">
+            <iframe
+              src="/ad2"
+              style={{
+                width: "fit-content",
+                height: "100px",
+                border: "none",
+                overflow: "hidden",
+              }}
+              scrolling="no"
+            ></iframe>
+          </div>
         </div>
         <div className="w-full flex flex-col gap-y-4 mt-[10px] max-md:mt-[10px]">
           {/* Share Anime Banner */}
@@ -126,11 +150,11 @@ export default function Category({ path, label, pagel }) {
               width: "100%",
               display: "flex",
               justifyContent: "center",
-              margin: "10px 0",
+              marginTop: "70px",
             }}
           >
             <iframe
-              src="/ad2"
+              src="/ad6"
               style={{
                 width: "fit-content",
                 height: "100px",
@@ -139,6 +163,30 @@ export default function Category({ path, label, pagel }) {
               }}
               scrolling="no"
             ></iframe>
+            <div className="adClusterMain">
+              <iframe
+                src="/ad"
+                style={{
+                  width: "fit-content",
+                  height: "100px",
+                  border: "none",
+                  overflow: "hidden",
+                }}
+                scrolling="no"
+              ></iframe>
+            </div>
+            <div className="adCluster">
+              <iframe
+                src="/ad2"
+                style={{
+                  width: "fit-content",
+                  height: "100px",
+                  border: "none",
+                  overflow: "hidden",
+                }}
+                scrolling="no"
+              ></iframe>
+            </div>
           </div>
 
           {/* Main Content */}

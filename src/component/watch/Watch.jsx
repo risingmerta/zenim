@@ -105,7 +105,9 @@ export default function Watch(props) {
   // Handle URL updates when episodeId changes
   useEffect(() => {
     if (episodeId) {
-      const newUrl = `/watch/${animeId}?ep=${episodeId}${props.refer ? `&refer=${props.refer}` : ""}`;
+      const newUrl = `/watch/${animeId}?ep=${episodeId}${
+        props.refer ? `&refer=${props.refer}` : ""
+      }`;
       if (isFirstSet.current) {
         // Initial load: replace history entry
         router.push(newUrl, { replace: true });
@@ -194,98 +196,6 @@ export default function Watch(props) {
     ]);
   }, [animeId, animeInfo]);
 
-  const pathname = usePathname();
-
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      const adContainer = document.getElementById("ad-container");
-      if (adContainer) {
-        adContainer.innerHTML = `
-            <iframe
-              src="/ad"
-              style="width: fit-content; height: 100px; border: none; overflow: hidden;"
-              scrolling="no"
-            ></iframe>
-          `;
-      }
-    }
-  }, [pathname]);
-
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      const adContainer = document.getElementById("ad-container2");
-      if (adContainer) {
-        adContainer.innerHTML = `
-            <iframe
-              src="/ad2"
-              style="width: fit-content; height: 100px; border: none; overflow: hidden;"
-              scrolling="no"
-            ></iframe>
-          `;
-      }
-    }
-  }, [pathname]);
-
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      const adContainer = document.getElementById("ad-container3");
-      if (adContainer) {
-        adContainer.innerHTML = `
-            <iframe
-              src="/ad3"
-              style="width: fit-content; height: 100px; border: none; overflow: hidden;"
-              scrolling="no"
-            ></iframe>
-          `;
-      }
-    }
-  }, [pathname]);
-
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      const adContainer = document.getElementById("ad-container4");
-      if (adContainer) {
-        adContainer.innerHTML = `
-            <iframe
-              src="/ad4"
-              style="width: fit-content; height: 100px; border: none; overflow: hidden;"
-              scrolling="no"
-            ></iframe>
-          `;
-      }
-    }
-  }, [pathname]);
-
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      const adContainer = document.getElementById("ad-container5");
-      if (adContainer) {
-        adContainer.innerHTML = `
-            <iframe
-              src="/ad5"
-              style="width: fit-content; height: 100px; border: none; overflow: hidden;"
-              scrolling="no"
-            ></iframe>
-          `;
-      }
-    }
-  }, [pathname]);
-
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      const adContainer = document.getElementById("ad-container6");
-      if (adContainer) {
-        adContainer.innerHTML = `
-            <iframe
-              src="/ad6"
-              style="width: fit-content; height: 100px; border: none; overflow: hidden;"
-              scrolling="no"
-            ></iframe>
-          `;
-      }
-    }
-  }, [pathname]);
-
   let WatchedEpisodes = [];
 
   if (typeof window !== "undefined") {
@@ -317,7 +227,7 @@ export default function Watch(props) {
   return (
     <>
       <SessionProvider>
-        <Navbar lang={lang} selectL={selectL}/>
+        <Navbar lang={lang} selectL={selectL} />
         <div className="w-full h-fit flex flex-col justify-center items-center relative">
           <div className="w-full relative max-[1400px]:px-[30px] max-[1200px]:px-[80px] max-[1024px]:px-0">
             <img
@@ -330,15 +240,6 @@ export default function Watch(props) {
               className="backgroundImage"
             />
             <div className="backgroundOverlay"></div>
-            <div
-              id="ad-container"
-              style={{
-                width: "100%",
-                display: "flex",
-                justifyContent: "center",
-                marginTop: "65px",
-              }}
-            ></div>
             <div className="layoutWrapper">
               {animeInfo && (
                 <ul className="flex absolute left-4 top-[-40px] gap-x-2 items-center w-fit max-[1200px]:hidden">
@@ -348,7 +249,9 @@ export default function Watch(props) {
                   ].map(([text, link], index) => (
                     <li key={index} className="flex gap-x-3 items-center">
                       <Link
-                        href={`/${link}${props.refer ? `?refer=${props.refer}` : ""}`}
+                        href={`/${link}${
+                          props.refer ? `?refer=${props.refer}` : ""
+                        }`}
                         className="text-white hover:text-[#FFBADE] text-[15px] font-semibold"
                       >
                         {text}
@@ -457,7 +360,9 @@ export default function Watch(props) {
                       <div className="flex flex-wrap gap-4 max-[575px]:grid max-[575px]:grid-cols-3 max-[575px]:gap-3 max-[480px]:grid-cols-2">
                         {seasons.map((season, index) => (
                           <Link
-                            href={`/${season.id}${props.refer ? `?refer=${props.refer}` : ""}`}
+                            href={`/${season.id}${
+                              props.refer ? `?refer=${props.refer}` : ""
+                            }`}
                             key={index}
                             className={`relative w-[20%] h-[60px] rounded-lg overflow-hidden cursor-pointer group ${
                               animeId === String(season.id)
@@ -622,7 +527,9 @@ export default function Watch(props) {
                     {` DUB in HD quality.`}
                   </p>
                   <Link
-                    href={`/${animeId}${props.refer ? `?refer=${props.refer}` : ""}`}
+                    href={`/${animeId}${
+                      props.refer ? `?refer=${props.refer}` : ""
+                    }`}
                     className="w-fit text-[13px] bg-white rounded-[12px] px-[10px] py-1 text-black"
                   >
                     View detail
@@ -632,14 +539,24 @@ export default function Watch(props) {
             </div>
           </div>
           <div
-            id="ad-container6"
             style={{
               width: "100%",
               display: "flex",
               justifyContent: "center",
-              margin: "10px 0",
+              margin: "20px 0",
             }}
-          ></div>
+          >
+            <iframe
+              src="/ad6"
+              style={{
+                width: "fit-content",
+                height: "100px",
+                border: "none",
+                overflow: "hidden",
+              }}
+              scrolling="no"
+            ></iframe>
+          </div>
           <div className="w-full flex gap-x-4 items-center bg-[#191826] p-5 max-[575px]:px-3 max-[320px]:hidden">
             <img
               src="https://i.postimg.cc/d34WWyNQ/share-icon.gif"
@@ -654,28 +571,48 @@ export default function Watch(props) {
             </div>
           </div>
           <div
-            id="ad-container2"
             style={{
               width: "100%",
               display: "flex",
               justifyContent: "center",
-              margin: "10px 0",
+              margin: "20px 0",
             }}
-          ></div>
+          >
+            <iframe
+              src="/ad5"
+              style={{
+                width: "fit-content",
+                height: "100px",
+                border: "none",
+                overflow: "hidden",
+              }}
+              scrolling="no"
+            ></iframe>
+          </div>
           <div className="contentWrapper">
             <div className="mt-[15px] flex flex-col gap-y-7">
               {animeInfo?.charactersVoiceActors.length > 0 && (
                 <Voiceactor animeInfo={animeInfo} className="!mt-0" />
               )}
               <div
-                id="ad-container3"
                 style={{
                   width: "100%",
                   display: "flex",
                   justifyContent: "center",
-                  margin: "10px 0",
+                  margin: "20px 0",
                 }}
-              ></div>
+              >
+                <iframe
+                  src="/ad3"
+                  style={{
+                    width: "fit-content",
+                    height: "100px",
+                    border: "none",
+                    overflow: "hidden",
+                  }}
+                  scrolling="no"
+                ></iframe>
+              </div>
               {animeInfo?.recommended_data.length > 0 ? (
                 <CategoryCard
                   label="Recommended for you"
@@ -689,25 +626,26 @@ export default function Watch(props) {
                 <CategoryCardLoader className={"mt-[15px]"} />
               )}
               <div
-                id="ad-container4"
                 style={{
                   width: "100%",
                   display: "flex",
                   justifyContent: "center",
-                  margin: "10px 0",
+                  margin: "20px 0",
                 }}
-              ></div>
+              >
+                <iframe
+                  src="/ad4"
+                  style={{
+                    width: "fit-content",
+                    height: "100px",
+                    border: "none",
+                    overflow: "hidden",
+                  }}
+                  scrolling="no"
+                ></iframe>
+              </div>
             </div>
             <div>
-              <div
-                id="ad-container5"
-                style={{
-                  width: "100%",
-                  display: "flex",
-                  justifyContent: "center",
-                  margin: "10px 0",
-                }}
-              ></div>
               {animeInfo && animeInfo.related_data ? (
                 <Sidecard
                   label="Related Anime"
@@ -724,11 +662,11 @@ export default function Watch(props) {
                   width: "100%",
                   display: "flex",
                   justifyContent: "center",
-                  margin: "10px 0",
+                  margin: "20px 0",
                 }}
               >
                 <iframe
-                  src="/ad5"
+                  src="/ad"
                   style={{
                     width: "fit-content",
                     height: "100px",
@@ -749,18 +687,28 @@ export default function Watch(props) {
                 />
               )}
               <div
-                id="ad-container6"
                 style={{
                   width: "100%",
                   display: "flex",
                   justifyContent: "center",
-                  margin: "10px 0",
+                  margin: "20px 0",
                 }}
-              ></div>
+              >
+                <iframe
+                  src="/ad2"
+                  style={{
+                    width: "fit-content",
+                    height: "100px",
+                    border: "none",
+                    overflow: "hidden",
+                  }}
+                  scrolling="no"
+                ></iframe>
+              </div>
             </div>
           </div>
         </div>
-        <Footer refer={props.refer}/>
+        <Footer refer={props.refer} />
       </SessionProvider>
     </>
   );

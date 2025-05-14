@@ -395,7 +395,7 @@ export default function Search(props) {
           }}
         >
           <iframe
-            src="/ad"
+            src="/ad6"
             style={{
               width: "fit-content",
               height: "100px",
@@ -404,6 +404,30 @@ export default function Search(props) {
             }}
             scrolling="no"
           ></iframe>
+          <div className="adClusterMain">
+            <iframe
+              src="/ad"
+              style={{
+                width: "fit-content",
+                height: "100px",
+                border: "none",
+                overflow: "hidden",
+              }}
+              scrolling="no"
+            ></iframe>
+          </div>
+          <div className="adCluster">
+            <iframe
+              src="/ad2"
+              style={{
+                width: "fit-content",
+                height: "100px",
+                border: "none",
+                overflow: "hidden",
+              }}
+              scrolling="no"
+            ></iframe>
+          </div>
         </div>
         <div className="main-layout">
           <div>
