@@ -386,6 +386,25 @@ export default function Search(props) {
     <>
       <SessionProvider>
         <Navbar lang={lang} selectL={selectL} />
+        <div
+          style={{
+            width: "100%",
+            display: "flex",
+            justifyContent: "center",
+            margin: "10px 0",
+          }}
+        >
+          <iframe
+            src="/ad"
+            style={{
+              width: "fit-content",
+              height: "100px",
+              border: "none",
+              overflow: "hidden",
+            }}
+            scrolling="no"
+          ></iframe>
+        </div>
         <div className="main-layout">
           <div>
             <div className="filter-container">
@@ -512,6 +531,25 @@ export default function Search(props) {
                 Apply Filters
               </button>
             </div>
+            <div
+              style={{
+                width: "100%",
+                display: "flex",
+                justifyContent: "center",
+                margin: "10px 0",
+              }}
+            >
+              <iframe
+                src="/ad2"
+                style={{
+                  width: "fit-content",
+                  height: "100px",
+                  border: "none",
+                  overflow: "hidden",
+                }}
+                scrolling="no"
+              ></iframe>
+            </div>
             {loading ? (
               <CategoryCardLoader className={"max-[478px]:mt-2"} />
             ) : page > totalPages ? (
@@ -535,11 +573,49 @@ export default function Search(props) {
                   className={"mt-0"}
                   selectL={selectL}
                 />
+                <div
+                  style={{
+                    width: "100%",
+                    display: "flex",
+                    justifyContent: "center",
+                    margin: "10px 0",
+                  }}
+                >
+                  <iframe
+                    src="/ad3"
+                    style={{
+                      width: "fit-content",
+                      height: "100px",
+                      border: "none",
+                      overflow: "hidden",
+                    }}
+                    scrolling="no"
+                  ></iframe>
+                </div>
                 <PageSlider
                   page={parseInt(searchParams || "1", 10)}
                   totalPages={totalPages}
                   handlePageChange={handlePageChange}
                 />
+                <div
+                  style={{
+                    width: "100%",
+                    display: "flex",
+                    justifyContent: "center",
+                    margin: "10px 0",
+                  }}
+                >
+                  <iframe
+                    src="/ad4"
+                    style={{
+                      width: "fit-content",
+                      height: "100px",
+                      border: "none",
+                      overflow: "hidden",
+                    }}
+                    scrolling="no"
+                  ></iframe>
+                </div>
               </div>
             ) : error ? (
               <p className="font-bold text-2xl text-[#00f2fe] max-[478px]:text-[18px]">
@@ -562,7 +638,45 @@ export default function Search(props) {
                     selectL={selectL}
                   />
                 )}
+                <div
+                  style={{
+                    width: "100%",
+                    display: "flex",
+                    justifyContent: "center",
+                    margin: "10px 0",
+                  }}
+                >
+                  <iframe
+                    src="/ad5"
+                    style={{
+                      width: "fit-content",
+                      height: "100px",
+                      border: "none",
+                      overflow: "hidden",
+                    }}
+                    scrolling="no"
+                  ></iframe>
+                </div>
                 {homeInfo?.genres && <Genre data={homeInfo.genres} />}
+                <div
+                  style={{
+                    width: "100%",
+                    display: "flex",
+                    justifyContent: "center",
+                    margin: "10px 0",
+                  }}
+                >
+                  <iframe
+                    src="/ad6"
+                    style={{
+                      width: "fit-content",
+                      height: "100px",
+                      border: "none",
+                      overflow: "hidden",
+                    }}
+                    scrolling="no"
+                  ></iframe>
+                </div>
               </>
             )}
           </div>
