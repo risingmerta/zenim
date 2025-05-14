@@ -17,11 +17,11 @@ function CategoryLoader() {
             width: "100%",
             display: "flex",
             justifyContent: "center",
-            margin: "10px 0",
+            marginTop: "70px",
           }}
         >
           <iframe
-            src="/ad"
+            src="/ad6"
             style={{
               width: "fit-content",
               height: "100px",
@@ -30,6 +30,30 @@ function CategoryLoader() {
             }}
             scrolling="no"
           ></iframe>
+          <div className="adClusterMain">
+            <iframe
+              src="/ad"
+              style={{
+                width: "fit-content",
+                height: "100px",
+                border: "none",
+                overflow: "hidden",
+              }}
+              scrolling="no"
+            ></iframe>
+          </div>
+          <div className="adCluster">
+            <iframe
+              src="/ad2"
+              style={{
+                width: "fit-content",
+                height: "100px",
+                border: "none",
+                overflow: "hidden",
+              }}
+              scrolling="no"
+            ></iframe>
+          </div>
         </div>
         <div className="w-full flex flex-col gap-y-4 mt-[64px] max-md:mt-[50px]">
           <div className="flex gap-x-4 items-center p-5 mt-4">

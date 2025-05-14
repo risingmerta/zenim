@@ -4,6 +4,7 @@ import { Skeleton } from "../ui/Skeleton/Skeleton";
 import CategoryCardLoader from "./CategoryCardLoader";
 import Navbar from "../Navbar/Navbar";
 import Footer from "../Footer/Footer";
+import "./atozInfoLoader.css";
 
 const SkeletonItems = ({ count, className }) =>
   [...Array(count)].map((_, index) => (
@@ -20,7 +21,7 @@ function AtoZLoader() {
             width: "100%",
             display: "flex",
             justifyContent: "center",
-            margin: "10px 0",
+            marginTop: "70px",
           }}
         >
           <iframe
@@ -33,8 +34,32 @@ function AtoZLoader() {
             }}
             scrolling="no"
           ></iframe>
+          <div className="adClusterMain">
+            <iframe
+              src="/ad"
+              style={{
+                width: "fit-content",
+                height: "100px",
+                border: "none",
+                overflow: "hidden",
+              }}
+              scrolling="no"
+            ></iframe>
+          </div>
+          <div className="adCluster">
+            <iframe
+              src="/ad2"
+              style={{
+                width: "fit-content",
+                height: "100px",
+                border: "none",
+                overflow: "hidden",
+              }}
+              scrolling="no"
+            ></iframe>
+          </div>
         </div>
-        <div className="max-w-[1260px] mx-auto px-[15px] flex flex-col mt-[64px] max-md:mt-[50px]">
+        <div className="max-w-[1260px] mx-auto px-[15px] flex flex-col mt-[10px] max-md:mt-[10px]">
           <ul className="flex gap-x-4 mt-[50px] items-center w-fit max-[1200px]:hidden">
             <Skeleton className="w-[50px] h-[15px]" />
             <Skeleton className="w-[70px] h-[15px]" />

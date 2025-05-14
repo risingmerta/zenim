@@ -18,6 +18,26 @@
   flex-direction: column;
 }
 
+.adCluster {
+  display: flex;
+}
+
+.adClusterMain {
+  display: flex;
+}
+
+@media screen and (max-width: 1000px) {
+  .adCluster {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .adClusterMain {
+    display: none;
+  }
+}
+
 @media (max-width: 1200px) {
   .categWrapper {
     display: flex;
