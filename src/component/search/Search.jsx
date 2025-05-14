@@ -578,8 +578,8 @@ export default function Search(props) {
                     width: "100%",
                     display: "flex",
                     justifyContent: "center",
-                    margin: "10px 0",
-                    marginBottom: "40px",
+                    marginTop: "10px",
+                    marginBottom: "-40px", // pull next section up
                   }}
                 >
                   <iframe
