@@ -1,8 +1,9 @@
 import Advertize from "@/component/Advertize/Advertize";
 import Watch from "@/component/watch/Watch";
+import Script from "next/script";
 import React from "react";
 
-export async function generateMetadata({ params ,searchParams }) {
+export async function generateMetadata({ params, searchParams }) {
   const param = await params;
   const siteName = process.env.NEXT_PUBLIC_SITE_NAME || "Animoon";
   const idToCheck = param.id;
@@ -35,8 +36,16 @@ export default async function page({ params, searchParams }) {
   const refer = searchParam?.refer;
   return (
     <div>
-      <Watch id={id} epId={ep} refer={refer}/>
-      <Advertize refer={refer} />
+      <Watch id={id} epId={ep} refer={refer} />
+      {refer && <Advertize refer={refer} />}
+      <Script
+        src="//abackdamstubborn.com/b7/2f/b2/b72fb2e5a32c00a413ee2bb7ea85b317.js"
+        strategy="afterInteractive"
+        // "afterInteractive" means load script after page hydration
+        onError={(e) => {
+          console.error("Script failed to load", e);
+        }}
+      />
     </div>
   );
 }
