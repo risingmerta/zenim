@@ -112,7 +112,7 @@ function Servers({
                       <p className="text-[13px] font-semibold">
                         {item.serverName}
                       </p>
-                    </div>
+                    </div> 
                   ))}
                 </div>
               </div>
