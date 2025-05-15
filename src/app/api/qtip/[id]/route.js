@@ -7,7 +7,7 @@ export async function GET(req, { params }) {
     const workerUrls = process.env.WORKER_URL?.split(",") || [];
     const baseUrl = workerUrls.length
       ? workerUrls[Math.floor(Math.random() * workerUrls.length)]
-      : "https://vimal.animoon.me/api";
+      : "https://api.animoon.me/api";
 
     const finalId = id?.split("-").pop();
     const response = await axios.get(`${baseUrl}/qtip/${finalId}`);

@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export default async function fetchVoiceActorInfo(id, page) {
-  const api_url = "https://vimal.animoon.me/api";
+  const api_url = "https://api.animoon.me/api";
   try {
     const response = await axios.get(
       `${api_url}/character/list/${id}?page=${page}`

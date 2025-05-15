@@ -19,7 +19,7 @@ const getSearch = async (
   keyword,
   onSear
 ) => {
-  const api_url = "https://vimal.animoon.me/api";
+  const api_url = "https://api.animoon.me/api";
   if (!page) page = 1;
   try {
     let url = onSear

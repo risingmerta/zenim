@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export default async function getStreamInfo(animeId,episodeId,serverName,type) {
-  const api_url = "https://vimal.animoon.me/api";
+  const api_url = "https://api.animoon.me/api";
   try {
     const response = await axios.get(`${api_url}/stream?id=${animeId}?ep=${episodeId}&server=${serverName}&type=${type}`);
     return response.data.results;

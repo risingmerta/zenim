@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const getProducer = async (producer, page) => {
-  const api_url = "https://vimal.animoon.me/api";
+  const api_url = "https://api.animoon.me/api";
   try {
     const response = await axios.get(`${api_url}/producer/${producer}?page=${page}`);
     return response.data.results;

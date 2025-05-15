@@ -3,7 +3,7 @@ import axios from "axios";
 const getTopSearch = async () => {
   try {
     // let workerUrls = import.meta.env.VITE_WORKER_URL?.split(",");
-    let baseUrl = "https://vimal.animoon.me/api";
+    let baseUrl = "https://api.animoon.me/api";
     const storedData = localStorage.getItem("topSearch");
     if (storedData) {
       const { data, timestamp } = JSON.parse(storedData);

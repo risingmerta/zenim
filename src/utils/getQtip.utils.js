@@ -3,7 +3,7 @@ import axios from "axios";
 const getQtip = async (id) => {
   try {
     // let workerUrls = import.meta.env.VITE_WORKER_URL?.split(",");
-    let baseUrl = "https://vimal.animoon.me/api";
+    let baseUrl = "https://api.animoon.me/api";
     if (!baseUrl) throw new Error("No API endpoint defined.");
     const response = await axios.get(`${baseUrl}/qtip/${id.split("-").pop()}`);
     return response.data.results;

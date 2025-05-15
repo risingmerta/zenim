@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export default async function getEpisodes(id) {
-  const api_url = "https://vimal.animoon.me/api";
+  const api_url = "https://api.animoon.me/api";
   try {
     const url = `/api/info?id=${id}&epi=true`;
     const response = await fetch(url);
