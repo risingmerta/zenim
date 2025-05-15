@@ -19,7 +19,15 @@ const getSearch = async (
   keyword,
   onSear
 ) => {
-  const api_url = "https://api.animoon.me/api";
+  const apis = [
+    "https://api.animoon.me/api",
+    // "https://api1.animoon.me/api",
+    "https://api2.animoon.me/api",
+    "https://api3.animoon.me/api",
+    // "https://vimal.animoon.me/api",
+  ];
+
+  const api_url = apis[Math.floor(Math.random() * apis.length)];
   if (!page) page = 1;
   try {
     let url = onSear

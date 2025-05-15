@@ -1,4 +1,5 @@
 import { connectDB } from "@/lib/mongoClient";
+import axios from "axios";
 
 export async function GET(req) {
   try {
@@ -7,11 +8,20 @@ export async function GET(req) {
     const epi = searchParams.get("epi") === "true";
     const random = searchParams.get("random") === "true";
 
+    const apis = [
+      "https://api.animoon.me/api",
+      // "https://api1.animoon.me/api",
+      "https://api2.animoon.me/api",
+      "https://api3.animoon.me/api",
+      // "https://vimal.animoon.me/api",
+    ];
+    const api_url = apis[Math.floor(Math.random() * apis.length)];
+
     const db = await connectDB();
     const animeInfoCol = db.collection("animeInfo");
 
+    // Handle random
     if (random) {
-      // Get all IDs
       const allDocs = await animeInfoCol.find({}).project({ _id: 1 }).toArray();
       if (!allDocs.length)
         return new Response("No entries found", { status: 404 });
@@ -26,13 +36,49 @@ export async function GET(req) {
       return new Response("Missing ID", { status: 400 });
     }
 
-    const doc = await animeInfoCol.findOne({ _id: id });
+    let doc = await animeInfoCol.findOne({ _id: id });
 
     if (!doc) {
       return new Response("Anime not found", { status: 404 });
     }
 
-    const respo = epi ? doc.episode.results : doc.info.results;
+    let infoData = doc.info?.results;
+    let episodeData = doc.episode?.results;
+
+    // Fetch and store missing info
+    if (!infoData?.data?.title) {
+      try {
+        const fallbackInfo = await axios.get(`${api_url}/info?id=${id}`);
+        infoData = fallbackInfo.data.results;
+
+        await animeInfoCol.updateOne(
+          { _id: id },
+          { $set: { "info.results": infoData } }
+        );
+      } catch (err) {
+        console.error("Error fetching fallback info:", err.message);
+      }
+    }
+
+    // Fetch and store missing episodes
+    if (
+      epi &&
+      (!episodeData?.episodes?.[0]?.title || !episodeData.episodes?.length)
+    ) {
+      try {
+        const fallbackEpisodes = await axios.get(`${api_url}/episodes/${id}`);
+        episodeData = fallbackEpisodes.data.results;
+
+        await animeInfoCol.updateOne(
+          { _id: id },
+          { $set: { "episode.results": episodeData } }
+        );
+      } catch (err) {
+        console.error("Error fetching fallback episodes:", err.message);
+      }
+    }
+
+    const respo = epi ? episodeData : infoData;
 
     return Response.json(respo);
   } catch (error) {

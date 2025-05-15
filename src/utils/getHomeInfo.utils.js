@@ -4,7 +4,15 @@ const CACHE_KEY = "homeInfoCache";
 const CACHE_DURATION = 24 * 60 * 60 * 1000;
 
 export default async function getHomeInfo() {
-  const api_url = "https://api.animoon.me/api";
+  const apis = [
+    "https://api.animoon.me/api",
+    // "https://api1.animoon.me/api",
+    "https://api2.animoon.me/api",
+    "https://api3.animoon.me/api",
+    // "https://vimal.animoon.me/api",
+  ];
+
+  const api_url = apis[Math.floor(Math.random() * apis.length)];
 
   const currentTime = Date.now();
   const cachedData = JSON.parse(localStorage.getItem(CACHE_KEY));

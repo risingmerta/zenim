@@ -1,7 +1,15 @@
 import axios from "axios";
 
 export default async function fetchAnimeInfo(id, random = false) {
-  const api_url = "https://api.animoon.me/api";
+  const apis = [
+    "https://api.animoon.me/api",
+    // "https://api1.animoon.me/api",
+    "https://api2.animoon.me/api",
+    "https://api3.animoon.me/api",
+    // "https://vimal.animoon.me/api",
+  ];
+
+  const api_url = apis[Math.floor(Math.random() * apis.length)];
   try {
     if (random) {
       const id = await axios.get(`${api_url}/random/id`);
