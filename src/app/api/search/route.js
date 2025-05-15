@@ -3,13 +3,22 @@ export async function GET(req) {
   const keyword = searchParams.get("keyword"); // Extract the 'keyword' query parameter
 
   if (!keyword) {
-    return new Response(
-      JSON.stringify({ error: "Keyword is required" }),
-      { status: 400 }
-    );
+    return new Response(JSON.stringify({ error: "Keyword is required" }), {
+      status: 400,
+    });
   }
 
-  const externalApiUrl = `https://vimal.animoon.me/api/search/suggest?keyword=${keyword}`;
+  const apis = [
+    "https://api.animoon.me/api",
+    // "https://api1.animoon.me/api",
+    "https://api2.animoon.me/api",
+    "https://api3.animoon.me/api",
+    // "https://vimal.animoon.me/api",
+  ];
+
+  const api_url = apis[Math.floor(Math.random() * apis.length)];
+
+  const externalApiUrl = `${api_url}/search/suggest?keyword=${keyword}`;
 
   try {
     // Fetch data from the external API
@@ -34,9 +43,8 @@ export async function GET(req) {
     }
   } catch (error) {
     console.error("Error fetching data from API:", error);
-    return new Response(
-      JSON.stringify({ error: "Internal server error" }),
-      { status: 500 }
-    );
+    return new Response(JSON.stringify({ error: "Internal server error" }), {
+      status: 500,
+    });
   }
 }
