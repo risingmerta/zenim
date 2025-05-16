@@ -16,7 +16,7 @@ function AtoZLoader() {
     <>
       <SessionProvider>
         <Navbar />
-        <div
+        {/* <div
           style={{
             width: "100%",
             display: "flex",
@@ -58,7 +58,7 @@ function AtoZLoader() {
               scrolling="no"
             ></iframe>
           </div>
-        </div>
+        </div> */}
         <div className="max-w-[1260px] mx-auto px-[15px] flex flex-col mt-[10px] max-md:mt-[10px]">
           <ul className="flex gap-x-4 mt-[50px] items-center w-fit max-[1200px]:hidden">
             <Skeleton className="w-[50px] h-[15px]" />
@@ -74,7 +74,7 @@ function AtoZLoader() {
             </div>
           </div>
           <CategoryCardLoader showLabelSkeleton={false} />
-          <div
+          {/* <div
             style={{
               width: "100%",
               display: "flex",
@@ -116,7 +116,7 @@ function AtoZLoader() {
                 scrolling="no"
               ></iframe>
             </div>
-          </div>
+          </div> */}
         </div>
         <Footer />
       </SessionProvider>

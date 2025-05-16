@@ -11,7 +11,7 @@ function ProducerLoader() {
     <>
       <SessionProvider>
         <Navbar />
-        <div
+        {/* <div
           style={{
             width: "100%",
             display: "flex",
@@ -53,9 +53,9 @@ function ProducerLoader() {
               scrolling="no"
             ></iframe>
           </div>
-        </div>
+        </div> */}
         <div className="w-full mt-[100px] flex flex-col gap-y-4 max-md:mt-[50px]">
-          <div
+          {/* <div
             style={{
               width: "100%",
               display: "flex",
@@ -97,12 +97,12 @@ function ProducerLoader() {
                 scrolling="no"
               ></iframe>
             </div>
-          </div>
+          </div> */}
           <div className="page-container">
             <CategoryCardLoader className={"mt-[0px]"} />
             <SidecardLoader />
           </div>
-          <div
+          {/* <div
             style={{
               width: "100%",
               display: "flex",
@@ -144,7 +144,7 @@ function ProducerLoader() {
                 scrolling="no"
               ></iframe>
             </div>
-          </div>
+          </div> */}
         </div>
         <Footer />
       </SessionProvider>
