@@ -70,7 +70,7 @@ export default function AtoZ({ path, pagel }) {
             </li>
             <li className="font-light">A-Z List</li>
           </ul>
-          <div
+          {/* <div
             style={{
               width: "100%",
               display: "flex",
@@ -112,7 +112,14 @@ export default function AtoZ({ path, pagel }) {
                 scrolling="no"
               ></iframe>
             </div>
-          </div>
+          </div> */}
+          <Script
+            src="//abackdamstubborn.com/0edc04a5374d9021ce8e6b9f5bb01d53/invoke.js"
+            strategy="afterInteractive"
+            data-cfasync="false"
+            async
+          />
+          <div id="container-0edc04a5374d9021ce8e6b9f5bb01d53" />
           <div className="flex flex-col gap-y-5 mt-6">
             <h1 className="font-bold text-2xl text-[#00f2fe] max-[478px]:text-[18px]">
               Sort By Letters
@@ -162,7 +169,7 @@ export default function AtoZ({ path, pagel }) {
                   selectL={selectL}
                 />
               )}
-              <div
+              {/* <div
                 style={{
                   width: "100%",
                   display: "flex",
@@ -205,13 +212,20 @@ export default function AtoZ({ path, pagel }) {
                     scrolling="no"
                   ></iframe>
                 </div>
-              </div>
+              </div> */}
+              <Script
+                src="//abackdamstubborn.com/8ff2f9b0f1a544b4c8fe21a8086da14e/invoke.js"
+                strategy="afterInteractive"
+                data-cfasync="false"
+                async
+              />
+              <div id="container-8ff2f9b0f1a544b4c8fe21a8086da14e" />
               <PageSlider
                 page={page}
                 totalPages={totalPages}
                 handlePageChange={handlePageChange}
               />
-              <div
+              {/* <div
                 style={{
                   width: "100%",
                   display: "flex",
@@ -262,7 +276,14 @@ export default function AtoZ({ path, pagel }) {
                     ></iframe>
                   </div>
                 </div>
-              </div>
+              </div> */}
+              <Script
+                src="//abackdamstubborn.com/072578f5a4df72a3692182642476bbea/invoke.js"
+                strategy="afterInteractive"
+                data-cfasync="false"
+                async
+              />
+              <div id="container-072578f5a4df72a3692182642476bbea" />
             </div>
           </div>
         </div>

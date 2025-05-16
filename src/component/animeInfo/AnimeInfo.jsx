@@ -684,7 +684,7 @@ export default function AnimeInfo({ random = false, idd, refer }) {
             </div> */}
             <Script
               src="//abackdamstubborn.com/dbafd6a4e452fd720e2121278664c057/invoke.js"
-              strategy="afterInteractive"
+              strategy="afterInteractive" 
               data-cfasync="false"
               async
             />

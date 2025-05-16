@@ -86,7 +86,7 @@ export default function Category({ path, label, pagel }) {
     <>
       <SessionProvider>
         <Navbar lang={lang} selectL={selectL} />
-        <div
+        {/* <div
           style={{
             width: "100%",
             display: "flex",
@@ -128,7 +128,7 @@ export default function Category({ path, label, pagel }) {
               scrolling="no"
             ></iframe>
           </div>
-        </div>
+        </div> */}
         <div className="w-full flex flex-col gap-y-4 mt-[10px] max-md:mt-[10px]">
           {/* Share Anime Banner */}
           <div className="w-full flex gap-x-4 items-center bg-[#191826] p-5 max-[575px]:px-3 max-[320px]:hidden">
@@ -145,7 +145,7 @@ export default function Category({ path, label, pagel }) {
             </div>
           </div>
 
-          <div
+          {/* <div
             style={{
               width: "100%",
               display: "flex",
@@ -187,7 +187,14 @@ export default function Category({ path, label, pagel }) {
                 scrolling="no"
               ></iframe>
             </div>
-          </div>
+          </div> */}
+          <Script
+            src="//abackdamstubborn.com/0edc04a5374d9021ce8e6b9f5bb01d53/invoke.js"
+            strategy="afterInteractive"
+            data-cfasync="false"
+            async
+          />
+          <div id="container-0edc04a5374d9021ce8e6b9f5bb01d53" />
 
           {/* Main Content */}
           <div className="category-layout">
@@ -212,7 +219,7 @@ export default function Category({ path, label, pagel }) {
                       selectL={selectL}
                     />
                   )}
-                  <div
+                  {/* <div
                     style={{
                       width: "100%",
                       display: "flex",
@@ -255,13 +262,20 @@ export default function Category({ path, label, pagel }) {
                         scrolling="no"
                       ></iframe>
                     </div>
-                  </div>
+                  </div> */}
+                  <Script
+                    src="//abackdamstubborn.com/8ff2f9b0f1a544b4c8fe21a8086da14e/invoke.js"
+                    strategy="afterInteractive"
+                    data-cfasync="false"
+                    async
+                  />
+                  <div id="container-8ff2f9b0f1a544b4c8fe21a8086da14e" />
                   <PageSlider
                     page={page}
                     totalPages={totalPages}
                     handlePageChange={handlePageChange}
                   />
-                  <div
+                  {/* <div
                     style={{
                       width: "100%",
                       display: "flex",
@@ -303,7 +317,14 @@ export default function Category({ path, label, pagel }) {
                         scrolling="no"
                       ></iframe>
                     </div>
-                  </div>
+                  </div> */}
+                  <Script
+                    src="//abackdamstubborn.com/072578f5a4df72a3692182642476bbea/invoke.js"
+                    strategy="afterInteractive"
+                    data-cfasync="false"
+                    async
+                  />
+                  <div id="container-072578f5a4df72a3692182642476bbea" />
                 </>
               )}
             </div>
@@ -320,7 +341,7 @@ export default function Category({ path, label, pagel }) {
                       selectL={selectL}
                     />
                   )}
-                  <div
+                  {/* <div
                     style={{
                       width: "100%",
                       display: "flex",
@@ -338,9 +359,16 @@ export default function Category({ path, label, pagel }) {
                       }}
                       scrolling="no"
                     ></iframe>
-                  </div>
+                  </div> */}
+                  <Script
+                    src="//abackdamstubborn.com/cd746754796510a55d9ef4d9a4260a75/invoke.js"
+                    strategy="afterInteractive"
+                    data-cfasync="false"
+                    async
+                  />
+                  <div id="container-cd746754796510a55d9ef4d9a4260a75" />
                   {homeInfo?.genres && <Genre data={homeInfo.genres} />}
-                  <div
+                  {/* <div
                     style={{
                       width: "100%",
                       display: "flex",
@@ -358,7 +386,14 @@ export default function Category({ path, label, pagel }) {
                       }}
                       scrolling="no"
                     ></iframe>
-                  </div>
+                  </div> */}
+                  <Script
+                    src="//abackdamstubborn.com/dbafd6a4e452fd720e2121278664c057/invoke.js"
+                    strategy="afterInteractive"
+                    data-cfasync="false"
+                    async
+                  />
+                  <div id="container-dbafd6a4e452fd720e2121278664c057" />
                 </>
               )}
             </div>
@@ -369,4 +404,3 @@ export default function Category({ path, label, pagel }) {
     </>
   );
 }
- 
