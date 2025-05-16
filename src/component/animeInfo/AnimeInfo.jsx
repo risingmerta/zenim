@@ -435,12 +435,12 @@ export default function AnimeInfo({ random = false, idd, refer }) {
           </div>
         </div> */}
         <Script
-          src="//abackdamstubborn.com/0859fb809e643c637c15e0aeb8d5b17a/invoke.js"
+          src="//abackdamstubborn.com/0edc04a5374d9021ce8e6b9f5bb01d53/invoke.js"
           strategy="afterInteractive"
           data-cfasync="false"
           async
         />
-        <div id="container-0859fb809e643c637c15e0aeb8d5b17a" />
+        <div id="container-0edc04a5374d9021ce8e6b9f5bb01d53" />
         <div className="mainLayoutGrid">
           <div>
             {seasons?.length > 0 && (
@@ -522,6 +522,13 @@ export default function AnimeInfo({ random = false, idd, refer }) {
                     ></iframe>
                   </div>
                 </div> */}
+                <Script
+                  src="//abackdamstubborn.com/0edc04a5374d9021ce8e6b9f5bb01d53/invoke.js"
+                  strategy="afterInteractive"
+                  data-cfasync="false"
+                  async
+                />
+                <div id="container-0edc04a5374d9021ce8e6b9f5bb01d53" />
               </>
             )}
 
@@ -571,6 +578,13 @@ export default function AnimeInfo({ random = false, idd, refer }) {
                     ></iframe>
                   </div>
                 </div> */}
+                <Script
+                  src="//abackdamstubborn.com/0edc04a5374d9021ce8e6b9f5bb01d53/invoke.js"
+                  strategy="afterInteractive"
+                  data-cfasync="false"
+                  async
+                />
+                <div id="container-0edc04a5374d9021ce8e6b9f5bb01d53" />
               </>
             )}
 
@@ -628,6 +642,13 @@ export default function AnimeInfo({ random = false, idd, refer }) {
                     ></iframe>
                   </div>
                 </div> */}
+                <Script
+                  src="//abackdamstubborn.com/0edc04a5374d9021ce8e6b9f5bb01d53/invoke.js"
+                  strategy="afterInteractive"
+                  data-cfasync="false"
+                  async
+                />
+                <div id="container-0edc04a5374d9021ce8e6b9f5bb01d53" />
               </>
             )}
           </div>
@@ -661,6 +682,13 @@ export default function AnimeInfo({ random = false, idd, refer }) {
                 scrolling="no"
               ></iframe>
             </div> */}
+            <Script
+              src="//abackdamstubborn.com/0edc04a5374d9021ce8e6b9f5bb01d53/invoke.js"
+              strategy="afterInteractive"
+              data-cfasync="false"
+              async
+            />
+            <div id="container-0edc04a5374d9021ce8e6b9f5bb01d53" />
             {homeInfo && homeInfo.most_popular && (
               <Sidecard
                 label="Most Popular"
@@ -691,6 +719,13 @@ export default function AnimeInfo({ random = false, idd, refer }) {
                 scrolling="no"
               ></iframe>
             </div> */}
+            <Script
+              src="//abackdamstubborn.com/0edc04a5374d9021ce8e6b9f5bb01d53/invoke.js"
+              strategy="afterInteractive"
+              data-cfasync="false"
+              async
+            />
+            <div id="container-0edc04a5374d9021ce8e6b9f5bb01d53" />
           </div>
         </div>
         <Footer refer={refer} />

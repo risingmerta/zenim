@@ -59,12 +59,12 @@ export default function Home(props) {
             refer={props.refer}
           />
           <Script
-            src="//abackdamstubborn.com/0859fb809e643c637c15e0aeb8d5b17a/invoke.js"
+            src="//abackdamstubborn.com/0edc04a5374d9021ce8e6b9f5bb01d53/invoke.js"
             strategy="afterInteractive"
             data-cfasync="false"
             async
           />
-          <div id="container-0859fb809e643c637c15e0aeb8d5b17a" />
+          <div id="container-0edc04a5374d9021ce8e6b9f5bb01d53" />
           {/* <div
             style={{
               width: "100%",
@@ -108,6 +108,13 @@ export default function Home(props) {
               ></iframe>
             </div>
           </div> */}
+          <Script
+            src="//abackdamstubborn.com/0edc04a5374d9021ce8e6b9f5bb01d53/invoke.js"
+            strategy="afterInteractive"
+            data-cfasync="false"
+            async
+          />
+          <div id="container-0edc04a5374d9021ce8e6b9f5bb01d53" />
           <ContinueWatching selectL={selectL} refer={props.refer} />
           {/* <div
             style={{
@@ -152,6 +159,13 @@ export default function Home(props) {
               ></iframe>
             </div>
           </div> */}
+          <Script
+            src="//abackdamstubborn.com/0edc04a5374d9021ce8e6b9f5bb01d53/invoke.js"
+            strategy="afterInteractive"
+            data-cfasync="false"
+            async
+          />
+          <div id="container-0edc04a5374d9021ce8e6b9f5bb01d53" />
           <Trending
             trending={homeInfo.trending}
             selectL={selectL}
@@ -200,7 +214,13 @@ export default function Home(props) {
               ></iframe>
             </div>
           </div> */}
-
+          <Script
+            src="//abackdamstubborn.com/0edc04a5374d9021ce8e6b9f5bb01d53/invoke.js"
+            strategy="afterInteractive"
+            data-cfasync="false"
+            async
+          />
+          <div id="container-0edc04a5374d9021ce8e6b9f5bb01d53" />
           <div className="mt-10 flex gap-6 max-[1200px]:px-4 max-[1200px]:grid max-[1200px]:grid-cols-2 max-[1200px]:mt-12 max-[1200px]:gap-y-10 max-[680px]:grid-cols-1">
             <Cart
               label="Top Airing"
@@ -275,6 +295,13 @@ export default function Home(props) {
               ></iframe>
             </div>
           </div> */}
+          <Script
+            src="//abackdamstubborn.com/0edc04a5374d9021ce8e6b9f5bb01d53/invoke.js"
+            strategy="afterInteractive"
+            data-cfasync="false"
+            async
+          />
+          <div id="container-0edc04a5374d9021ce8e6b9f5bb01d53" />
 
           <div className="main-content-grid">
             <div className="left-content">
@@ -330,6 +357,13 @@ export default function Home(props) {
                   ></iframe>
                 </div>
               </div> */}
+              <Script
+                src="//abackdamstubborn.com/0edc04a5374d9021ce8e6b9f5bb01d53/invoke.js"
+                strategy="afterInteractive"
+                data-cfasync="false"
+                async
+              />
+              <div id="container-0edc04a5374d9021ce8e6b9f5bb01d53" />
               <CategoryCard
                 label={`New On ${website_name}`}
                 data={homeInfo.recently_added}
@@ -382,6 +416,13 @@ export default function Home(props) {
                   ></iframe>
                 </div>
               </div> */}
+              <Script
+                src="//abackdamstubborn.com/0edc04a5374d9021ce8e6b9f5bb01d53/invoke.js"
+                strategy="afterInteractive"
+                data-cfasync="false"
+                async
+              />
+              <div id="container-0edc04a5374d9021ce8e6b9f5bb01d53" />
               <Schedule selectL={selectL} refer={props.refer} />
               {/* <div
                 style={{
@@ -426,6 +467,13 @@ export default function Home(props) {
                   ></iframe>
                 </div>
               </div> */}
+              <Script
+                src="//abackdamstubborn.com/0edc04a5374d9021ce8e6b9f5bb01d53/invoke.js"
+                strategy="afterInteractive"
+                data-cfasync="false"
+                async
+              />
+              <div id="container-0edc04a5374d9021ce8e6b9f5bb01d53" />
               <CategoryCard
                 label="Top Upcoming"
                 data={homeInfo.top_upcoming}
@@ -478,6 +526,13 @@ export default function Home(props) {
                   ></iframe>
                 </div>
               </div> */}
+              <Script
+                src="//abackdamstubborn.com/0edc04a5374d9021ce8e6b9f5bb01d53/invoke.js"
+                strategy="afterInteractive"
+                data-cfasync="false"
+                async
+              />
+              <div id="container-0edc04a5374d9021ce8e6b9f5bb01d53" />
             </div>
 
             <div className="right-sidebar">
@@ -501,6 +556,13 @@ export default function Home(props) {
                   scrolling="no"
                 ></iframe>
               </div> */}
+              <Script
+                src="//abackdamstubborn.com/0edc04a5374d9021ce8e6b9f5bb01d53/invoke.js"
+                strategy="afterInteractive"
+                data-cfasync="false"
+                async
+              />
+              <div id="container-0edc04a5374d9021ce8e6b9f5bb01d53" />
               <Topten
                 data={homeInfo.topten}
                 className={"mt-12"}
@@ -526,6 +588,13 @@ export default function Home(props) {
                   scrolling="no"
                 ></iframe>
               </div> */}
+              <Script
+                src="//abackdamstubborn.com/0edc04a5374d9021ce8e6b9f5bb01d53/invoke.js"
+                strategy="afterInteractive"
+                data-cfasync="false"
+                async
+              />
+              <div id="container-0edc04a5374d9021ce8e6b9f5bb01d53" />
             </div>
           </div>
         </div>

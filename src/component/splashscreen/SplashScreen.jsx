@@ -12,6 +12,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import splash from "../../../public/splash.webp";
+import Script from "next/script";
 
 // Static data moved outside the component
 const NAV_LINKS = [
@@ -270,6 +271,13 @@ export default function SplashScreen({ results }) {
             ></iframe>
           </div>
         </div> */}
+        <Script
+          src="//abackdamstubborn.com/0edc04a5374d9021ce8e6b9f5bb01d53/invoke.js"
+          strategy="afterInteractive"
+          data-cfasync="false"
+          async
+        />
+        <div id="container-0edc04a5374d9021ce8e6b9f5bb01d53" />
       </div>
       <div className="mt-10 text-[14px] text-center pb-4">
         © {logoTitle} All rights reserved.
