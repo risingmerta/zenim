@@ -3,7 +3,7 @@ import SplashScreen from "@/component/splashscreen/SplashScreen";
 import Script from "next/script";
 import React from "react";
 
-export default async function page() {
+export default async function Page() {
   let results = [];
   try {
     const apis = [
@@ -22,7 +22,6 @@ export default async function page() {
     results = data?.results || [];
   } catch (error) {
     console.error("Error fetching top search data:", error);
-    return null;
   }
   return (
     <div>
