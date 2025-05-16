@@ -58,7 +58,7 @@ export default function Home(props) {
             refer={props.refer}
           />
 
-          <div
+          {/* <div
             style={{
               width: "100%",
               display: "flex",
@@ -100,9 +100,9 @@ export default function Home(props) {
                 scrolling="no"
               ></iframe>
             </div>
-          </div>
+          </div> */}
           <ContinueWatching selectL={selectL} refer={props.refer} />
-          <div
+          {/* <div
             style={{
               width: "100%",
               display: "flex",
@@ -144,13 +144,13 @@ export default function Home(props) {
                 scrolling="no"
               ></iframe>
             </div>
-          </div>
+          </div> */}
           <Trending
             trending={homeInfo.trending}
             selectL={selectL}
             refer={props.refer}
           />
-          <div
+          {/* <div
             style={{
               width: "100%",
               display: "flex",
@@ -192,7 +192,7 @@ export default function Home(props) {
                 scrolling="no"
               ></iframe>
             </div>
-          </div>
+          </div> */}
 
           <div className="mt-10 flex gap-6 max-[1200px]:px-4 max-[1200px]:grid max-[1200px]:grid-cols-2 max-[1200px]:mt-12 max-[1200px]:gap-y-10 max-[680px]:grid-cols-1">
             <Cart
@@ -225,7 +225,7 @@ export default function Home(props) {
             />
           </div>
 
-          <div
+          {/* <div
             style={{
               width: "100%",
               display: "flex",
@@ -267,7 +267,7 @@ export default function Home(props) {
                 scrolling="no"
               ></iframe>
             </div>
-          </div>
+          </div> */}
 
           <div className="main-content-grid">
             <div className="left-content">
@@ -280,7 +280,7 @@ export default function Home(props) {
                 selectL={selectL}
                 refer={props.refer}
               />
-              <div
+              {/* <div
                 style={{
                   width: "100%",
                   display: "flex",
@@ -322,7 +322,7 @@ export default function Home(props) {
                     scrolling="no"
                   ></iframe>
                 </div>
-              </div>
+              </div> */}
               <CategoryCard
                 label={`New On ${website_name}`}
                 data={homeInfo.recently_added}
@@ -332,7 +332,7 @@ export default function Home(props) {
                 selectL={selectL}
                 refer={props.refer}
               />
-              <div
+              {/* <div
                 style={{
                   width: "100%",
                   display: "flex",
@@ -374,9 +374,9 @@ export default function Home(props) {
                     scrolling="no"
                   ></iframe>
                 </div>
-              </div>
+              </div> */}
               <Schedule selectL={selectL} refer={props.refer} />
-              <div
+              {/* <div
                 style={{
                   width: "100%",
                   display: "flex",
@@ -418,7 +418,7 @@ export default function Home(props) {
                     scrolling="no"
                   ></iframe>
                 </div>
-              </div>
+              </div> */}
               <CategoryCard
                 label="Top Upcoming"
                 data={homeInfo.top_upcoming}
@@ -428,7 +428,7 @@ export default function Home(props) {
                 selectL={selectL}
                 refer={props.refer}
               />
-              <div
+              {/* <div
                 style={{
                   width: "100%",
                   display: "flex",
@@ -470,12 +470,12 @@ export default function Home(props) {
                     scrolling="no"
                   ></iframe>
                 </div>
-              </div>
+              </div> */}
             </div>
 
             <div className="right-sidebar">
               <Genre data={homeInfo.genres} refer={props.refer} />
-              <div
+              {/* <div
                 style={{
                   width: "100%",
                   display: "flex",
@@ -493,14 +493,14 @@ export default function Home(props) {
                   }}
                   scrolling="no"
                 ></iframe>
-              </div>
+              </div> */}
               <Topten
                 data={homeInfo.topten}
                 className={"mt-12"}
                 selectL={selectL}
                 refer={props.refer}
               />
-              <div
+              {/* <div
                 style={{
                   width: "100%",
                   display: "flex",
@@ -518,7 +518,7 @@ export default function Home(props) {
                   }}
                   scrolling="no"
                 ></iframe>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>
