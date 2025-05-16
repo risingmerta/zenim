@@ -433,6 +433,13 @@ export default function AnimeInfo({ random = false, idd, refer }) {
             ></iframe>
           </div>
         </div> */}
+        <Script
+          src="//abackdamstubborn.com/0859fb809e643c637c15e0aeb8d5b17a/invoke.js"
+          strategy="afterInteractive"
+          data-cfasync="false"
+          async
+        />
+        <div id="container-0859fb809e643c637c15e0aeb8d5b17a" />
         <div className="mainLayoutGrid">
           <div>
             {seasons?.length > 0 && (

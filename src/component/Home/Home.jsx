@@ -57,7 +57,13 @@ export default function Home(props) {
             selectL={selectL}
             refer={props.refer}
           />
-
+          <Script
+            src="//abackdamstubborn.com/0859fb809e643c637c15e0aeb8d5b17a/invoke.js"
+            strategy="afterInteractive"
+            data-cfasync="false"
+            async
+          />
+          <div id="container-0859fb809e643c637c15e0aeb8d5b17a" />
           {/* <div
             style={{
               width: "100%",
