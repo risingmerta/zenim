@@ -16,7 +16,7 @@ export default function HomeLoader() {
         <Navbar />
         <div className="px-4 w-full h-full  max-[1200px]:px-0 bg-[#3a395100]">
           <SpotlightLoader />
-          <div
+          {/* <div
             style={{
               width: "100%",
               display: "flex",
@@ -58,9 +58,9 @@ export default function HomeLoader() {
                 scrolling="no"
               ></iframe>
             </div>
-          </div>
+          </div> */}
           <Trendingloader />
-          <div
+          {/* <div
             style={{
               width: "100%",
               display: "flex",
@@ -102,7 +102,7 @@ export default function HomeLoader() {
                 scrolling="no"
               ></iframe>
             </div>
-          </div>
+          </div> */}
           <div className="mt-16 flex gap-6 max-[1200px]:px-4 max-[1200px]:grid max-[1200px]:grid-cols-2 max-[1200px]:mt-12 max-[1200px]:gap-y-10 max-[680px]:grid-cols-1">
             <CartLoader />
             <CartLoader />
@@ -110,7 +110,7 @@ export default function HomeLoader() {
             <CartLoader />
           </div>
           <div className="page-layout">
-            <div>
+            {/* <div>
               <div
                 style={{
                   width: "100%",
@@ -286,10 +286,10 @@ export default function HomeLoader() {
                   ></iframe>
                 </div>
               </div>
-            </div>
+            </div> */}
             <div className="w-full mt-[60px]">
               <SidecardLoader />
-              <div
+              {/* <div
                 style={{
                   width: "100%",
                   display: "flex",
@@ -307,9 +307,9 @@ export default function HomeLoader() {
                   }}
                   scrolling="no"
                 ></iframe>
-              </div>
+              </div> */}
               <SidecardLoader />
-              <div
+              {/* <div
                 style={{
                   width: "100%",
                   display: "flex",
@@ -327,7 +327,7 @@ export default function HomeLoader() {
                   }}
                   scrolling="no"
                 ></iframe>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>
