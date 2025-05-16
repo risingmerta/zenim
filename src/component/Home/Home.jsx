@@ -22,7 +22,8 @@ export default function Home(props) {
     setSelectL(lang);
   };
   const website_name = "Animoon";
-  const [homeInfo, setHomeInfo] = useState(props.data);
+  // const [homeInfo, setHomeInfo] = useState(props.data);
+  const homeInfo = props.data;
   const [homeInfoLoading, setHomeInfoLoading] = useState(false);
   const [error, setError] = useState(null);
 
