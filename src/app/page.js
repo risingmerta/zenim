@@ -8,10 +8,8 @@ export default async function Page() {
   try {
     const apis = [
       "https://api.animoon.me/api",
-      // "https://api1.animoon.me/api",
       "https://api2.animoon.me/api",
       "https://api3.animoon.me/api",
-      // "https://vimal.animoon.me/api",
     ];
 
     const baseUrl = apis[Math.floor(Math.random() * apis.length)];
