@@ -4,40 +4,45 @@ import Script from "next/script";
 import React from "react";
 
 export default async function page({ searchParams }) {
-  const res = await fetch("https://kaori.animoon.me/api/home", {
-    next: { revalidate: 3600 },
-  });
-  const data = await res.json();
+  let dataToCache = {};
+  try {
+    const res = await fetch("https://kaori.animoon.me/api/home", {
+      next: { revalidate: 3600 },
+    });
+    const data = await res.json();
+    const {
+      spotlights,
+      trending,
+      topTen: topten,
+      today: todaySchedule,
+      topAiring: top_airing,
+      mostPopular: most_popular,
+      mostFavorite: most_favorite,
+      latestCompleted: latest_completed,
+      latestEpisode: latest_episode,
+      topUpcoming: top_upcoming,
+      recentlyAdded: recently_added,
+      genres,
+    } = data?.data;
 
-  const {
-    spotlights,
-    trending,
-    topTen: topten,
-    today: todaySchedule,
-    topAiring: top_airing,
-    mostPopular: most_popular,
-    mostFavorite: most_favorite,
-    latestCompleted: latest_completed,
-    latestEpisode: latest_episode,
-    topUpcoming: top_upcoming,
-    recentlyAdded: recently_added,
-    genres,
-  } = data.results;
+    dataToCache = {
+      spotlights,
+      trending,
+      topten,
+      todaySchedule,
+      top_airing,
+      most_popular,
+      most_favorite,
+      latest_completed,
+      latest_episode,
+      top_upcoming,
+      recently_added,
+      genres,
+    };
+  } catch (err) {
+    console.error("Failed to load homepage data:", err);
+  }
 
-  const dataToCache = {
-    spotlights,
-    trending,
-    topten,
-    todaySchedule,
-    top_airing,
-    most_popular,
-    most_favorite,
-    latest_completed,
-    latest_episode,
-    top_upcoming,
-    recently_added,
-    genres,
-  };
   const seacrhParam = await searchParams;
   const refer = seacrhParam?.refer;
   return (
