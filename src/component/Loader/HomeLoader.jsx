@@ -8,7 +8,8 @@ import Trendingloader from "./TrendingLoader";
 import "./homeLoader.css";
 import Navbar from "../Navbar/Navbar";
 import Footer from "../Footer/Footer";
-function HomeLoader() {
+
+export default function HomeLoader() {
   return (
     <>
       <SessionProvider>
@@ -335,5 +336,3 @@ function HomeLoader() {
     </>
   );
 }
-
-export default HomeLoader;

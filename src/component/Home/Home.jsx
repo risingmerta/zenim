@@ -22,25 +22,25 @@ export default function Home(props) {
     setSelectL(lang);
   };
   const website_name = "Animoon";
-  const [homeInfo, setHomeInfo] = useState(null);
-  const [homeInfoLoading, setHomeInfoLoading] = useState(true);
+  const [homeInfo, setHomeInfo] = useState(props.data);
+  const [homeInfoLoading, setHomeInfoLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  useEffect(() => {
-    const fetchHomeInfo = async () => {
-      try {
-        const res = await fetch("/api/home");
-        const data = await res.json();
-        setHomeInfo(data);
-      } catch (err) {
-        console.error("Error fetching home info:", err);
-        setError(err);
-      } finally {
-        setHomeInfoLoading(false);
-      }
-    };
-    fetchHomeInfo();
-  }, []);
+  // useEffect(() => {
+  //   const fetchHomeInfo = async () => {
+  //     try {
+  //       const res = await fetch("/api/home");
+  //       const data = await res.json();
+  //       setHomeInfo(data);
+  //     } catch (err) {
+  //       console.error("Error fetching home info:", err);
+  //       setError(err);
+  //     } finally {
+  //       setHomeInfoLoading(false);
+  //     }
+  //   };
+  //   fetchHomeInfo();
+  // }, []);
 
   if (homeInfoLoading) return <Loader type="home" />;
   if (error) return <Error />;
@@ -505,7 +505,7 @@ export default function Home(props) {
                   display: "flex",
                   justifyContent: "center",
                   margin: "10px 0",
-                }} 
+                }}
               >
                 <iframe
                   src="/ad4"

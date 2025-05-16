@@ -27,7 +27,7 @@ const getTopSearch = async () => {
         JSON.stringify({ data: results, timestamp: Date.now() })
       );
       return results;
-    }
+    } 
     return [];
   } catch (error) {
     console.error("Error fetching top search data:", error);
