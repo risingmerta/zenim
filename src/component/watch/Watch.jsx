@@ -538,7 +538,7 @@ export default function Watch(props) {
               </div>
             </div>
           </div>
-          <div
+          {/* <div
             style={{
               width: "100%",
               display: "flex",
@@ -580,7 +580,14 @@ export default function Watch(props) {
                 scrolling="no"
               ></iframe>
             </div>
-          </div>
+          </div> */}
+          <Script
+            src="//abackdamstubborn.com/0edc04a5374d9021ce8e6b9f5bb01d53/invoke.js"
+            strategy="afterInteractive"
+            data-cfasync="false"
+            async
+          />
+          <div id="container-0edc04a5374d9021ce8e6b9f5bb01d53" />
           <div className="w-full flex gap-x-4 items-center bg-[#191826] p-5 max-[575px]:px-3 max-[320px]:hidden">
             <img
               src="https://i.postimg.cc/d34WWyNQ/share-icon.gif"
@@ -594,7 +601,7 @@ export default function Watch(props) {
               <p className="text-[16px] text-white">to your friends</p>
             </div>
           </div>
-          <div
+          {/* <div
             style={{
               width: "100%",
               display: "flex",
@@ -636,13 +643,20 @@ export default function Watch(props) {
                 scrolling="no"
               ></iframe>
             </div>
-          </div>
+          </div> */}
+          <Script
+            src="//abackdamstubborn.com/8ff2f9b0f1a544b4c8fe21a8086da14e/invoke.js"
+            strategy="afterInteractive"
+            data-cfasync="false"
+            async
+          />
+          <div id="container-8ff2f9b0f1a544b4c8fe21a8086da14e" />
           <div className="contentWrapper">
             <div className="mt-[15px] flex flex-col gap-y-7">
               {animeInfo?.charactersVoiceActors.length > 0 && (
                 <>
                   <Voiceactor animeInfo={animeInfo} className="!mt-0" />
-                  <div
+                  {/* <div
                     style={{
                       width: "100%",
                       display: "flex",
@@ -684,7 +698,14 @@ export default function Watch(props) {
                         scrolling="no"
                       ></iframe>
                     </div>
-                  </div>
+                  </div> */}
+                  <Script
+                    src="//abackdamstubborn.com/072578f5a4df72a3692182642476bbea/invoke.js"
+                    strategy="afterInteractive"
+                    data-cfasync="false"
+                    async
+                  />
+                  <div id="container-072578f5a4df72a3692182642476bbea" />
                 </>
               )}
 
@@ -698,49 +719,13 @@ export default function Watch(props) {
                     selectL={selectL}
                     refer={props.refer}
                   />
-                  <div
-                    style={{
-                      width: "100%",
-                      display: "flex",
-                      justifyContent: "center",
-                      marginTop: "70px",
-                    }}
-                  >
-                    <iframe
-                      src="/ad5"
-                      style={{
-                        width: "fit-content",
-                        height: "100px",
-                        border: "none",
-                        overflow: "hidden",
-                      }}
-                      scrolling="no"
-                    ></iframe>
-                    <div className="adClusterMain">
-                      <iframe
-                        src="/ad4"
-                        style={{
-                          width: "fit-content",
-                          height: "100px",
-                          border: "none",
-                          overflow: "hidden",
-                        }}
-                        scrolling="no"
-                      ></iframe>
-                    </div>
-                    <div className="adCluster">
-                      <iframe
-                        src="/ad3"
-                        style={{
-                          width: "fit-content",
-                          height: "100px",
-                          border: "none",
-                          overflow: "hidden",
-                        }}
-                        scrolling="no"
-                      ></iframe>
-                    </div>
-                  </div>
+                  <Script
+                    src="//abackdamstubborn.com/cd746754796510a55d9ef4d9a4260a75/invoke.js"
+                    strategy="afterInteractive"
+                    data-cfasync="false"
+                    async
+                  />
+                  <div id="container-cd746754796510a55d9ef4d9a4260a75" />
                 </>
               ) : (
                 <CategoryCardLoader className={"mt-[15px]"} />
@@ -758,7 +743,7 @@ export default function Watch(props) {
               ) : (
                 <SidecardLoader className={"mt-[25px]"} />
               )}
-              <div
+              {/* <div
                 style={{
                   width: "100%",
                   display: "flex",
@@ -776,7 +761,14 @@ export default function Watch(props) {
                   }}
                   scrolling="no"
                 ></iframe>
-              </div>
+              </div> */}
+              <Script
+                src="//abackdamstubborn.com/dbafd6a4e452fd720e2121278664c057/invoke.js"
+                strategy="afterInteractive"
+                data-cfasync="false"
+                async
+              />
+              <div id="container-dbafd6a4e452fd720e2121278664c057" />
               {homeInfo && homeInfo.most_popular && (
                 <Sidecard
                   label="Most Popular"
@@ -787,7 +779,7 @@ export default function Watch(props) {
                   refer={props.refer}
                 />
               )}
-              <div
+              {/* <div
                 style={{
                   width: "100%",
                   display: "flex",
@@ -805,7 +797,14 @@ export default function Watch(props) {
                   }}
                   scrolling="no"
                 ></iframe>
-              </div>
+              </div> */}
+              <Script
+                src="//abackdamstubborn.com/747f4fcb7dc611b1e8d9ed8822f2c89c/invoke.js"
+                strategy="afterInteractive"
+                data-cfasync="false"
+                async
+              />
+              <div id="container-747f4fcb7dc611b1e8d9ed8822f2c89c" />
             </div>
           </div>
         </div>

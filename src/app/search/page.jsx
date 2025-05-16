@@ -30,11 +30,11 @@ export default async function page({ searchParams }) {
         refer={searchParam.refer}
       />
       {refer && <Advertize refer={refer} />}
-      <Script
+      {/* <Script
         src="//abackdamstubborn.com/b7/2f/b2/b72fb2e5a32c00a413ee2bb7ea85b317.js"
         strategy="afterInteractive"
         // "afterInteractive" means load script after page hydration
-      />
+      /> */}
     </div>
   );
 }
