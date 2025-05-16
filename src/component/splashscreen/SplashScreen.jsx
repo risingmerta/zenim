@@ -24,23 +24,23 @@ const NAV_LINKS = [
 
 const logoTitle = "Animoon";
 
-const useTopSearch = () => {
-  const [topSearch, setTopSearch] = useState([]);
-  useEffect(() => {
-    const fetchTopSearch = async () => {
-      const data = await getTopSearch();
-      if (data) setTopSearch(data);
-    };
-    fetchTopSearch();
-  }, []);
-  return topSearch;
-};
+// const useTopSearch = () => {
+//   const [topSearch, setTopSearch] = useState([]);
+//   useEffect(() => {
+//     const fetchTopSearch = async () => {
+//       const data = await getTopSearch();
+//       if (data) setTopSearch(data);
+//     };
+//     fetchTopSearch();
+//   }, []);
+//   return topSearch;
+// };
 
-export default function SplashScreen() {
+export default function SplashScreen({ results }) {
   const router = useRouter();
   const [search, setSearch] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const topSearch = useTopSearch();
+  const topSearch = results;
 
   const handleSearchSubmit = useCallback(() => {
     const trimmedSearch = search.trim();

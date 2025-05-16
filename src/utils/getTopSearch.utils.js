@@ -1,17 +1,17 @@
 import axios from "axios";
- 
+
 const getTopSearch = async () => {
   try {
     // let workerUrls = import.meta.env.VITE_WORKER_URL?.split(",");
-  const apis = [
-    "https://api.animoon.me/api",
-    // "https://api1.animoon.me/api",
-    "https://api2.animoon.me/api",
-    "https://api3.animoon.me/api",
-    // "https://vimal.animoon.me/api",
-  ];
+    const apis = [
+      "https://api.animoon.me/api",
+      // "https://api1.animoon.me/api",
+      "https://api2.animoon.me/api",
+      "https://api3.animoon.me/api",
+      // "https://vimal.animoon.me/api",
+    ];
 
-  const baseUrl = apis[Math.floor(Math.random() * apis.length)];
+    const baseUrl = apis[Math.floor(Math.random() * apis.length)];
     const storedData = localStorage.getItem("topSearch");
     if (storedData) {
       const { data, timestamp } = JSON.parse(storedData);
