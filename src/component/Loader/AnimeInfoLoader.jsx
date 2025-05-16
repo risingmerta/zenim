@@ -17,7 +17,7 @@ function AnimeInfoLoader() {
     <>
       <SessionProvider>
         <Navbar />
-        <div
+        {/* <div
           style={{
             width: "100%",
             display: "flex",
@@ -59,7 +59,7 @@ function AnimeInfoLoader() {
               scrolling="no"
             ></iframe>
           </div>
-        </div>
+        </div> */}
         <div className="categLay">
           <Skeleton
             className="absolute inset-0 w-full h-full blur-lg z-[-900] bg-gray-500"
@@ -123,7 +123,7 @@ function AnimeInfoLoader() {
             </div>
           </div>
         </div>
-        <div
+        {/* <div
           style={{
             width: "100%",
             display: "flex",
@@ -165,12 +165,12 @@ function AnimeInfoLoader() {
               scrolling="no"
             ></iframe>
           </div>
-        </div>
+        </div> */}
         <div className="categWrapper">
           <CategoryCardLoader className="mt-[60px]" />
           <SidecardLoader className="mt-[60px]" />
         </div>
-        <div
+        {/* <div
           style={{
             width: "100%",
             display: "flex",
@@ -212,7 +212,7 @@ function AnimeInfoLoader() {
               scrolling="no"
             ></iframe>
           </div>
-        </div>
+        </div> */}
         <Footer />
       </SessionProvider>
     </>

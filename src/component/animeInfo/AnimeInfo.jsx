@@ -390,7 +390,7 @@ export default function AnimeInfo({ random = false, idd, refer }) {
             </div>
           </div>
         </div>
-        <div
+        {/* <div
           style={{
             width: "100%",
             display: "flex",
@@ -432,7 +432,7 @@ export default function AnimeInfo({ random = false, idd, refer }) {
               scrolling="no"
             ></iframe>
           </div>
-        </div>
+        </div> */}
         <div className="mainLayoutGrid">
           <div>
             {seasons?.length > 0 && (
@@ -471,7 +471,7 @@ export default function AnimeInfo({ random = false, idd, refer }) {
                     ))}
                   </div>
                 </div>
-                <div
+                {/* <div
                   style={{
                     width: "100%",
                     display: "flex",
@@ -513,14 +513,14 @@ export default function AnimeInfo({ random = false, idd, refer }) {
                       scrolling="no"
                     ></iframe>
                   </div>
-                </div>
+                </div> */}
               </>
             )}
 
             {animeInfo?.charactersVoiceActors.length > 0 && (
               <>
                 <Voiceactor animeInfo={animeInfo} />
-                <div
+                {/* <div
                   style={{
                     width: "100%",
                     display: "flex",
@@ -562,7 +562,7 @@ export default function AnimeInfo({ random = false, idd, refer }) {
                       scrolling="no"
                     ></iframe>
                   </div>
-                </div>
+                </div> */}
               </>
             )}
 
@@ -577,7 +577,7 @@ export default function AnimeInfo({ random = false, idd, refer }) {
                   selectL={selectL}
                   refer={refer}
                 />
-                <div
+                {/* <div
                   style={{
                     width: "100%",
                     display: "flex",
@@ -619,7 +619,7 @@ export default function AnimeInfo({ random = false, idd, refer }) {
                       scrolling="no"
                     ></iframe>
                   </div>
-                </div>
+                </div> */}
               </>
             )}
           </div>
@@ -634,7 +634,7 @@ export default function AnimeInfo({ random = false, idd, refer }) {
               />
             )}
 
-            <div
+            {/* <div
               style={{
                 width: "100%",
                 display: "flex",
@@ -652,7 +652,7 @@ export default function AnimeInfo({ random = false, idd, refer }) {
                 }}
                 scrolling="no"
               ></iframe>
-            </div>
+            </div> */}
             {homeInfo && homeInfo.most_popular && (
               <Sidecard
                 label="Most Popular"
@@ -664,7 +664,7 @@ export default function AnimeInfo({ random = false, idd, refer }) {
               />
             )}
 
-            <div
+            {/* <div
               style={{
                 width: "100%",
                 display: "flex",
@@ -682,7 +682,7 @@ export default function AnimeInfo({ random = false, idd, refer }) {
                 }}
                 scrolling="no"
               ></iframe>
-            </div>
+            </div> */}
           </div>
         </div>
         <Footer refer={refer} />
