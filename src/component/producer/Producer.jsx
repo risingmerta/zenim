@@ -15,6 +15,7 @@ import "./producer.css";
 import { SessionProvider } from "next-auth/react";
 import Navbar from "../Navbar/Navbar";
 import Footer from "../Footer/Footer";
+import Script from "next/script";
 
 export default function Producer(props) {
   const [selectL, setSelectL] = useState("EN");
@@ -144,13 +145,13 @@ export default function Producer(props) {
                       scrolling="no"
                     ></iframe>
                   </div> */}
-                                  <Script
-                  src="//abackdamstubborn.com/8ff2f9b0f1a544b4c8fe21a8086da14e/invoke.js"
-                  strategy="afterInteractive"
-                  data-cfasync="false"
-                  async
-                />
-                <div id="container-8ff2f9b0f1a544b4c8fe21a8086da14e" />
+                  <Script
+                    src="//abackdamstubborn.com/8ff2f9b0f1a544b4c8fe21a8086da14e/invoke.js"
+                    strategy="afterInteractive"
+                    data-cfasync="false"
+                    async
+                  />
+                  <div id="container-8ff2f9b0f1a544b4c8fe21a8086da14e" />
                   <PageSlider
                     page={page}
                     totalPages={totalPages}
@@ -175,13 +176,13 @@ export default function Producer(props) {
                       scrolling="no"
                     ></iframe>
                   </div> */}
-                                  <Script
-                                    src="//abackdamstubborn.com/072578f5a4df72a3692182642476bbea/invoke.js"
-                                    strategy="afterInteractive"
-                                    data-cfasync="false"
-                                    async
-                                  />
-                                  <div id="container-072578f5a4df72a3692182642476bbea" />
+                  <Script
+                    src="//abackdamstubborn.com/072578f5a4df72a3692182642476bbea/invoke.js"
+                    strategy="afterInteractive"
+                    data-cfasync="false"
+                    async
+                  />
+                  <div id="container-072578f5a4df72a3692182642476bbea" />
                 </div>
               )}
 
@@ -216,13 +217,13 @@ export default function Producer(props) {
                         scrolling="no"
                       ></iframe>
                     </div> */}
-                                    <Script
-                                      src="//abackdamstubborn.com/cd746754796510a55d9ef4d9a4260a75/invoke.js"
-                                      strategy="afterInteractive"
-                                      data-cfasync="false"
-                                      async
-                                    />
-                                    <div id="container-cd746754796510a55d9ef4d9a4260a75" />
+                    <Script
+                      src="//abackdamstubborn.com/cd746754796510a55d9ef4d9a4260a75/invoke.js"
+                      strategy="afterInteractive"
+                      data-cfasync="false"
+                      async
+                    />
+                    <div id="container-cd746754796510a55d9ef4d9a4260a75" />
                     {homeInfo?.genres && <Genre data={homeInfo.genres} />}
                     {/* <div
                       style={{
@@ -243,13 +244,13 @@ export default function Producer(props) {
                         scrolling="no"
                       ></iframe>
                     </div> */}
-                                <Script
-              src="//abackdamstubborn.com/dbafd6a4e452fd720e2121278664c057/invoke.js"
-              strategy="afterInteractive" 
-              data-cfasync="false"
-              async
-            />
-            <div id="container-dbafd6a4e452fd720e2121278664c057" />
+                    <Script
+                      src="//abackdamstubborn.com/dbafd6a4e452fd720e2121278664c057/invoke.js"
+                      strategy="afterInteractive"
+                      data-cfasync="false"
+                      async
+                    />
+                    <div id="container-dbafd6a4e452fd720e2121278664c057" />
                   </>
                 )}
               </div>

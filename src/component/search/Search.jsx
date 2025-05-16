@@ -13,6 +13,7 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { SessionProvider } from "next-auth/react";
 import Navbar from "../Navbar/Navbar";
 import Footer from "../Footer/Footer";
+import Script from "next/script";
 
 export default function Search(props) {
   const [selectL, setSelectL] = useState("EN");
@@ -386,7 +387,7 @@ export default function Search(props) {
     <>
       <SessionProvider>
         <Navbar lang={lang} selectL={selectL} />
-        <div
+        {/* <div
           style={{
             width: "100%",
             display: "flex",
@@ -428,7 +429,7 @@ export default function Search(props) {
               scrolling="no"
             ></iframe>
           </div>
-        </div>
+        </div> */}
         <div className="main-layout">
           <div>
             <div className="filter-container">
@@ -555,7 +556,7 @@ export default function Search(props) {
                 Apply Filters
               </button>
             </div>
-            <div
+            {/* <div
               style={{
                 width: "100%",
                 display: "flex",
@@ -573,7 +574,14 @@ export default function Search(props) {
                 }}
                 scrolling="no"
               ></iframe>
-            </div>
+            </div> */}
+            <Script
+              src="//abackdamstubborn.com/0edc04a5374d9021ce8e6b9f5bb01d53/invoke.js"
+              strategy="afterInteractive"
+              data-cfasync="false"
+              async
+            />
+            <div id="container-0edc04a5374d9021ce8e6b9f5bb01d53" />
             {loading ? (
               <CategoryCardLoader className={"max-[478px]:mt-2"} />
             ) : page > totalPages ? (
@@ -597,7 +605,7 @@ export default function Search(props) {
                   className={"mt-0"}
                   selectL={selectL}
                 />
-                <div
+                {/* <div
                   style={{
                     width: "100%",
                     display: "flex",
@@ -616,13 +624,20 @@ export default function Search(props) {
                     }}
                     scrolling="no"
                   ></iframe>
-                </div>
+                </div> */}
+                <Script
+                  src="//abackdamstubborn.com/8ff2f9b0f1a544b4c8fe21a8086da14e/invoke.js"
+                  strategy="afterInteractive"
+                  data-cfasync="false"
+                  async
+                />
+                <div id="container-8ff2f9b0f1a544b4c8fe21a8086da14e" />
                 <PageSlider
                   page={parseInt(searchParams || "1", 10)}
                   totalPages={totalPages}
                   handlePageChange={handlePageChange}
                 />
-                <div
+                {/* <div
                   style={{
                     width: "100%",
                     display: "flex",
@@ -640,7 +655,14 @@ export default function Search(props) {
                     }}
                     scrolling="no"
                   ></iframe>
-                </div>
+                </div> */}
+                <Script
+                  src="//abackdamstubborn.com/072578f5a4df72a3692182642476bbea/invoke.js"
+                  strategy="afterInteractive"
+                  data-cfasync="false"
+                  async
+                />
+                <div id="container-072578f5a4df72a3692182642476bbea" />
               </div>
             ) : error ? (
               <p className="font-bold text-2xl text-[#00f2fe] max-[478px]:text-[18px]">
@@ -663,7 +685,7 @@ export default function Search(props) {
                     selectL={selectL}
                   />
                 )}
-                <div
+                {/* <div
                   style={{
                     width: "100%",
                     display: "flex",
@@ -681,9 +703,16 @@ export default function Search(props) {
                     }}
                     scrolling="no"
                   ></iframe>
-                </div>
+                </div> */}
+                <Script
+                  src="//abackdamstubborn.com/cd746754796510a55d9ef4d9a4260a75/invoke.js"
+                  strategy="afterInteractive"
+                  data-cfasync="false"
+                  async
+                />
+                <div id="container-cd746754796510a55d9ef4d9a4260a75" />
                 {homeInfo?.genres && <Genre data={homeInfo.genres} />}
-                <div
+                {/* <div
                   style={{
                     width: "100%",
                     display: "flex",
@@ -701,7 +730,14 @@ export default function Search(props) {
                     }}
                     scrolling="no"
                   ></iframe>
-                </div>
+                </div> */}
+                <Script
+                  src="//abackdamstubborn.com/dbafd6a4e452fd720e2121278664c057/invoke.js"
+                  strategy="afterInteractive"
+                  data-cfasync="false"
+                  async
+                />
+                <div id="container-dbafd6a4e452fd720e2121278664c057" />
               </>
             )}
           </div>

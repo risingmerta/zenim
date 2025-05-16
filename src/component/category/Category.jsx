@@ -13,6 +13,7 @@ import "./category.css";
 import Navbar from "../Navbar/Navbar";
 import Footer from "../Footer/Footer";
 import { SessionProvider } from "next-auth/react";
+import Script from "next/script";
 
 export default function Category({ path, label, pagel }) {
   const [selectL, setSelectL] = useState("EN");

@@ -10,6 +10,7 @@ import "./atoz.css";
 import Footer from "../Footer/Footer";
 import Navbar from "../Navbar/Navbar";
 import { SessionProvider } from "next-auth/react";
+import Script from "next/script";
 
 export default function AtoZ({ path, pagel }) {
   const [selectL, setSelectL] = useState("EN");
