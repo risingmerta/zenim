@@ -15,6 +15,7 @@ import Navbar from "../Navbar/Navbar";
 import { SessionProvider } from "next-auth/react";
 import Footer from "../Footer/Footer";
 import { usePathname } from "next/navigation";
+import Script from "next/script";
 
 export default function Home(props) {
   const [selectL, setSelectL] = useState("EN");
