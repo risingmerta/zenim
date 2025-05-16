@@ -26,6 +26,7 @@ import Link from "next/link";
 import Navbar from "../Navbar/Navbar";
 import Footer from "../Footer/Footer";
 import { SessionProvider } from "next-auth/react";
+import Script from "next/script";
 
 const website_name = "Animoon";
 
