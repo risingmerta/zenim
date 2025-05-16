@@ -58,7 +58,7 @@ export default function AtoZ({ path, pagel }) {
     <>
       <SessionProvider>
         <Navbar lang={lang} selectL={selectL} />
-        <div className="max-w-[1260px] mx-auto px-[15px] flex flex-col mt-[64px] max-md:mt-[50px]">
+        <div className="max-w-[1260px] mx-auto px-[15px] flex flex-col mt-[70px] max-md:mt-[70px]">
           <ul className="flex gap-x-2 mt-[50px] items-center w-fit max-[1200px]:hidden">
             <li className="flex gap-x-3 items-center">
               <Link

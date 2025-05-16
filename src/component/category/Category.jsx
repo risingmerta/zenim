@@ -130,7 +130,7 @@ export default function Category({ path, label, pagel }) {
             ></iframe>
           </div>
         </div> */}
-        <div className="w-full flex flex-col gap-y-4 mt-[10px] max-md:mt-[10px]">
+        <div className="w-full flex flex-col gap-y-4 mt-[70px] max-md:mt-[70px]">
           {/* Share Anime Banner */}
           <div className="w-full flex gap-x-4 items-center bg-[#191826] p-5 max-[575px]:px-3 max-[320px]:hidden">
             <img

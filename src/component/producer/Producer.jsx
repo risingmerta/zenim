@@ -100,7 +100,7 @@ export default function Producer(props) {
             scrolling="no"
           ></iframe>
         </div> */}
-        <div className="w-full flex flex-col gap-y-4 mt-[10px] max-md:mt-[10px]">
+        <div className="w-full flex flex-col gap-y-4 mt-[70px] max-md:mt-[70px]">
           {producerInfo ? (
             <div className="category-layout">
               {page > totalPages ? (
