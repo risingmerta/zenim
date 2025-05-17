@@ -28,6 +28,20 @@ export default function Home(props) {
   const [homeInfoLoading, setHomeInfoLoading] = useState(false);
   const [error, setError] = useState(null);
 
+  useEffect(() => {
+    // Delay to ensure both containers are on the page
+    const timeout = setTimeout(() => {
+      try {
+        // Try to run both ad scripts manually
+        window?.invoke?.(); // Many ad scripts expose a global function like this
+      } catch (e) {
+        console.error("Ad error:", e);
+      }
+    }, 1000); // Delay allows DOM to load
+
+    return () => clearTimeout(timeout);
+  }, []);
+
   // useEffect(() => {
   //   const fetchHomeInfo = async () => {
   //     try {
@@ -60,7 +74,7 @@ export default function Home(props) {
           />
           <Script
             src="//abackdamstubborn.com/0edc04a5374d9021ce8e6b9f5bb01d53/invoke.js"
-            strategy="afterInteractive"
+            strategy="lazyOnload"
             data-cfasync="false"
             async
           />
@@ -202,7 +216,7 @@ export default function Home(props) {
           </div> */}
           <Script
             src="//abackdamstubborn.com/8ff2f9b0f1a544b4c8fe21a8086da14e/invoke.js"
-            strategy="afterInteractive"
+            strategy="lazyOnload"
             data-cfasync="false"
             async
           />
@@ -283,7 +297,7 @@ export default function Home(props) {
           </div> */}
           <Script
             src="//abackdamstubborn.com/072578f5a4df72a3692182642476bbea/invoke.js"
-            strategy="afterInteractive"
+            strategy="lazyOnload"
             data-cfasync="false"
             async
           />
@@ -345,7 +359,7 @@ export default function Home(props) {
               </div> */}
               <Script
                 src="//abackdamstubborn.com/cd746754796510a55d9ef4d9a4260a75/invoke.js"
-                strategy="afterInteractive"
+                strategy="lazyOnload"
                 data-cfasync="false"
                 async
               />
@@ -402,13 +416,13 @@ export default function Home(props) {
                   ></iframe>
                 </div>
               </div> */}
-            <Script
-              src="//abackdamstubborn.com/dbafd6a4e452fd720e2121278664c057/invoke.js"
-              strategy="afterInteractive"
-              data-cfasync="false"
-              async
-            />
-            <div id="container-dbafd6a4e452fd720e2121278664c057" />
+              <Script
+                src="//abackdamstubborn.com/dbafd6a4e452fd720e2121278664c057/invoke.js"
+                strategy="lazyOnload"
+                data-cfasync="false"
+                async
+              />
+              <div id="container-dbafd6a4e452fd720e2121278664c057" />
               <Schedule selectL={selectL} refer={props.refer} />
               {/* <div
                 style={{
@@ -453,13 +467,13 @@ export default function Home(props) {
                   ></iframe>
                 </div>
               </div> */}
-            <Script
-              src="//abackdamstubborn.com/747f4fcb7dc611b1e8d9ed8822f2c89c/invoke.js"
-              strategy="afterInteractive"
-              data-cfasync="false"
-              async
-            />
-            <div id="container-747f4fcb7dc611b1e8d9ed8822f2c89c" />
+              <Script
+                src="//abackdamstubborn.com/747f4fcb7dc611b1e8d9ed8822f2c89c/invoke.js"
+                strategy="lazyOnload"
+                data-cfasync="false"
+                async
+              />
+              <div id="container-747f4fcb7dc611b1e8d9ed8822f2c89c" />
               <CategoryCard
                 label="Top Upcoming"
                 data={homeInfo.top_upcoming}
@@ -514,7 +528,7 @@ export default function Home(props) {
               </div> */}
               {/* <Script
                 src="//abackdamstubborn.com/0edc04a5374d9021ce8e6b9f5bb01d53/invoke.js"
-                strategy="afterInteractive"
+                strategy="lazyOnload"
                 data-cfasync="false"
                 async
               />
@@ -544,7 +558,7 @@ export default function Home(props) {
               </div> */}
               {/* <Script
                 src="//abackdamstubborn.com/0edc04a5374d9021ce8e6b9f5bb01d53/invoke.js"
-                strategy="afterInteractive"
+                strategy="lazyOnload"
                 data-cfasync="false"
                 async
               />
@@ -576,7 +590,7 @@ export default function Home(props) {
               </div> */}
               {/* <Script
                 src="//abackdamstubborn.com/0edc04a5374d9021ce8e6b9f5bb01d53/invoke.js"
-                strategy="afterInteractive"
+                strategy="lazyOnload"
                 data-cfasync="false"
                 async
               />
