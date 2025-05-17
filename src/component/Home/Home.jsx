@@ -17,8 +17,7 @@ import Footer from "../Footer/Footer";
 import { usePathname } from "next/navigation";
 import Script from "next/script";
 
-export default function Home({ refer, data, children }) {
-  const childrenArray = Array.isArray(children) ? children : [children];
+export default function Home({ refer, data }) {
   const [selectL, setSelectL] = useState("EN");
   const lang = (lang) => {
     setSelectL(lang);
@@ -109,7 +108,7 @@ export default function Home({ refer, data, children }) {
               ></iframe>
             </div>
           </div> */}
-          {childrenArray[0]}
+
           <ContinueWatching selectL={selectL} refer={refer} />
           {/* <div
             style={{
@@ -209,7 +208,7 @@ export default function Home({ refer, data, children }) {
             async
           />
           <div id="container-8ff2f9b0f1a544b4c8fe21a8086da14e" /> */}
-          {childrenArray[1]}
+
           <div className="mt-10 flex gap-6 max-[1200px]:px-4 max-[1200px]:grid max-[1200px]:grid-cols-2 max-[1200px]:mt-12 max-[1200px]:gap-y-10 max-[680px]:grid-cols-1">
             <Cart
               label="Top Airing"
@@ -291,7 +290,7 @@ export default function Home({ refer, data, children }) {
             async
           />
           <div id="container-072578f5a4df72a3692182642476bbea" /> */}
-          {childrenArray[2]}
+
           <div className="main-content-grid">
             <div className="left-content">
               <CategoryCard
@@ -353,7 +352,7 @@ export default function Home({ refer, data, children }) {
                 async
               />
               <div id="container-cd746754796510a55d9ef4d9a4260a75" /> */}
-              {childrenArray[3]}
+
               <CategoryCard
                 label={`New On ${website_name}`}
                 data={homeInfo.recently_added}
@@ -413,7 +412,7 @@ export default function Home({ refer, data, children }) {
               async
             />
             <div id="container-dbafd6a4e452fd720e2121278664c057" /> */}
-              {childrenArray[4]}
+
               <Schedule selectL={selectL} refer={refer} />
               {/* <div
                 style={{
@@ -465,7 +464,7 @@ export default function Home({ refer, data, children }) {
               async
             />
             <div id="container-747f4fcb7dc611b1e8d9ed8822f2c89c" /> */}
-              {childrenArray[5]}
+
               <CategoryCard
                 label="Top Upcoming"
                 data={homeInfo.top_upcoming}
