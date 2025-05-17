@@ -75,7 +75,7 @@ export default function Home(props) {
               }}
               scrolling="no"
             ></iframe>
-            <div className="adClusterMain">
+            {/* <div className="adClusterMain">
               <iframe
                 src="/ad"
                 style={{
@@ -98,7 +98,7 @@ export default function Home(props) {
                 }}
                 scrolling="no"
               ></iframe>
-            </div>
+            </div> */}
           </div>
           <ContinueWatching selectL={selectL} refer={props.refer} />
           <div
@@ -119,7 +119,7 @@ export default function Home(props) {
               }}
               scrolling="no"
             ></iframe>
-            <div className="adClusterMain">
+            {/* <div className="adClusterMain">
               <iframe
                 src="/ad3"
                 style={{
@@ -142,7 +142,7 @@ export default function Home(props) {
                 }}
                 scrolling="no"
               ></iframe>
-            </div>
+            </div> */}
           </div>
           <Trending
             trending={homeInfo.trending}
@@ -167,7 +167,7 @@ export default function Home(props) {
               }}
               scrolling="no"
             ></iframe>
-            <div className="adClusterMain">
+            {/* <div className="adClusterMain">
               <iframe
                 src="/ad"
                 style={{
@@ -190,7 +190,7 @@ export default function Home(props) {
                 }}
                 scrolling="no"
               ></iframe>
-            </div>
+            </div> */}
           </div>
 
           <div className="mt-10 flex gap-6 max-[1200px]:px-4 max-[1200px]:grid max-[1200px]:grid-cols-2 max-[1200px]:mt-12 max-[1200px]:gap-y-10 max-[680px]:grid-cols-1">
@@ -242,7 +242,7 @@ export default function Home(props) {
               }}
               scrolling="no"
             ></iframe>
-            <div className="adClusterMain">
+            {/* <div className="adClusterMain">
               <iframe
                 src="/ad3"
                 style={{
@@ -265,7 +265,7 @@ export default function Home(props) {
                 }}
                 scrolling="no"
               ></iframe>
-            </div>
+            </div> */}
           </div>
 
           <div className="main-content-grid">
@@ -297,7 +297,7 @@ export default function Home(props) {
                   }}
                   scrolling="no"
                 ></iframe>
-                <div className="adClusterMain">
+                {/* <div className="adClusterMain">
                   <iframe
                     src="/ad"
                     style={{
@@ -320,7 +320,7 @@ export default function Home(props) {
                     }}
                     scrolling="no"
                   ></iframe>
-                </div>
+                </div> */}
               </div>
               <CategoryCard
                 label={`New On ${website_name}`}
@@ -349,7 +349,7 @@ export default function Home(props) {
                   }}
                   scrolling="no"
                 ></iframe>
-                <div className="adClusterMain">
+                {/* <div className="adClusterMain">
                   <iframe
                     src="/ad4"
                     style={{
@@ -372,7 +372,7 @@ export default function Home(props) {
                     }}
                     scrolling="no"
                   ></iframe>
-                </div>
+                </div> */}
               </div>
               <Schedule selectL={selectL} refer={props.refer} />
               <div
@@ -393,7 +393,7 @@ export default function Home(props) {
                   }}
                   scrolling="no"
                 ></iframe>
-                <div className="adClusterMain">
+                {/* <div className="adClusterMain">
                   <iframe
                     src="/ad"
                     style={{
@@ -416,7 +416,7 @@ export default function Home(props) {
                     }}
                     scrolling="no"
                   ></iframe>
-                </div>
+                </div> */}
               </div>
               <CategoryCard
                 label="Top Upcoming"
@@ -445,7 +445,7 @@ export default function Home(props) {
                   }}
                   scrolling="no"
                 ></iframe>
-                <div className="adClusterMain">
+                {/* <div className="adClusterMain">
                   <iframe
                     src="/ad4"
                     style={{
@@ -468,7 +468,7 @@ export default function Home(props) {
                     }}
                     scrolling="no"
                   ></iframe>
-                </div>
+                </div> */}
               </div>
             </div>
 
