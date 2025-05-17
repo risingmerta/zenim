@@ -197,6 +197,8 @@ export default function Watch(props) {
     ]);
   }, [animeId, animeInfo]);
 
+
+
   let WatchedEpisodes = [];
 
   if (typeof window !== "undefined") {
