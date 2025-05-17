@@ -58,13 +58,13 @@ export default function Home({ refer, data }) {
             selectL={selectL}
             refer={refer}
           />
-          {/* <Script
+          <Script
             src="//abackdamstubborn.com/0edc04a5374d9021ce8e6b9f5bb01d53/invoke.js"
-            strategy="afterInteractive"
+            strategy="lazyOnload"
             data-cfasync="false"
             async
           />
-          <div id="container-0edc04a5374d9021ce8e6b9f5bb01d53" /> */}
+          <div id="container-0edc04a5374d9021ce8e6b9f5bb01d53" />
           {/* <div
             style={{
               width: "100%",
@@ -201,13 +201,13 @@ export default function Home({ refer, data }) {
               ></iframe>
             </div>
           </div> */}
-          {/* <Script
+          <Script
             src="//abackdamstubborn.com/8ff2f9b0f1a544b4c8fe21a8086da14e/invoke.js"
-            strategy="afterInteractive"
+            strategy="lazyOnload"
             data-cfasync="false"
             async
           />
-          <div id="container-8ff2f9b0f1a544b4c8fe21a8086da14e" /> */}
+          <div id="container-8ff2f9b0f1a544b4c8fe21a8086da14e" />
 
           <div className="mt-10 flex gap-6 max-[1200px]:px-4 max-[1200px]:grid max-[1200px]:grid-cols-2 max-[1200px]:mt-12 max-[1200px]:gap-y-10 max-[680px]:grid-cols-1">
             <Cart
