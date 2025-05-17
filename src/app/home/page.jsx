@@ -115,6 +115,20 @@ export default async function page({ searchParams }) {
         strategy="afterInteractive"
         // "afterInteractive" means load script after page hydration
       /> */}
+      <Script
+        src="//abackdamstubborn.com/0edc04a5374d9021ce8e6b9f5bb01d53/invoke.js"
+        strategy="afterInteractive"
+        data-cfasync="false"
+        async
+      />
+      <div id="container-0edc04a5374d9021ce8e6b9f5bb01d53" />{" "}
+      <Script
+        src="//abackdamstubborn.com/747f4fcb7dc611b1e8d9ed8822f2c89c/invoke.js"
+        strategy="afterInteractive"
+        data-cfasync="false"
+        async
+      />
+      <div id="container-747f4fcb7dc611b1e8d9ed8822f2c89c" />
     </div>
   );
 }
