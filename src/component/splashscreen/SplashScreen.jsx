@@ -13,6 +13,7 @@ import { useRouter } from "next/navigation";
 import Image from "next/image";
 import splash from "../../../public/splash.webp";
 import Script from "next/script";
+import AdComponent from "../adComponent/adComponent";
 
 // Static data moved outside the component
 const NAV_LINKS = [
@@ -271,6 +272,7 @@ export default function SplashScreen({ results }) {
             ></iframe>
           </div>
         </div> */}
+        <AdComponent id="dbafd6a4e452fd720e2121278664c057" />
       </div>
       <div className="mt-10 text-[14px] text-center pb-4">
         © {logoTitle} All rights reserved.

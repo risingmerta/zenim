@@ -16,6 +16,7 @@ import { SessionProvider } from "next-auth/react";
 import Footer from "../Footer/Footer";
 import { usePathname } from "next/navigation";
 import Script from "next/script";
+import AdComponent from "../adComponent/adComponent";
 
 export default function Home(props) {
   const [selectL, setSelectL] = useState("EN");
@@ -27,36 +28,6 @@ export default function Home(props) {
   const homeInfo = props.data;
   const [homeInfoLoading, setHomeInfoLoading] = useState(false);
   const [error, setError] = useState(null);
-
-  useEffect(() => {
-    // Delay to ensure both containers are on the page
-    const timeout = setTimeout(() => {
-      try {
-        // Try to run both ad scripts manually
-        window?.invoke?.(); // Many ad scripts expose a global function like this
-      } catch (e) {
-        console.error("Ad error:", e);
-      }
-    }, 1000); // Delay allows DOM to load
-
-    return () => clearTimeout(timeout);
-  }, []);
-
-  // useEffect(() => {
-  //   const fetchHomeInfo = async () => {
-  //     try {
-  //       const res = await fetch("/api/home");
-  //       const data = await res.json();
-  //       setHomeInfo(data);
-  //     } catch (err) {
-  //       console.error("Error fetching home info:", err);
-  //       setError(err);
-  //     } finally {
-  //       setHomeInfoLoading(false);
-  //     }
-  //   };
-  //   fetchHomeInfo();
-  // }, []);
 
   if (homeInfoLoading) return <Loader type="home" />;
   if (error) return <Error />;
@@ -72,155 +43,14 @@ export default function Home(props) {
             selectL={selectL}
             refer={props.refer}
           />
-          <Script
-            src="//abackdamstubborn.com/0edc04a5374d9021ce8e6b9f5bb01d53/invoke.js"
-            strategy="lazyOnload"
-            data-cfasync="false"
-            async
-          />
-          <div id="container-0edc04a5374d9021ce8e6b9f5bb01d53" />
-          {/* <div
-            style={{
-              width: "100%",
-              display: "flex",
-              justifyContent: "center",
-              margin: "10px 0",
-            }}
-          >
-            <iframe
-              src="/ad6"
-              style={{
-                width: "fit-content",
-                height: "100px",
-                border: "none",
-                overflow: "hidden",
-              }}
-              scrolling="no"
-            ></iframe>
-            <div className="adClusterMain">
-              <iframe
-                src="/ad"
-                style={{
-                  width: "fit-content",
-                  height: "100px",
-                  border: "none",
-                  overflow: "hidden",
-                }}
-                scrolling="no"
-              ></iframe>
-            </div>
-            <div className="adCluster">
-              <iframe
-                src="/ad2"
-                style={{
-                  width: "fit-content",
-                  height: "100px",
-                  border: "none",
-                  overflow: "hidden",
-                }}
-                scrolling="no"
-              ></iframe>
-            </div>
-          </div> */}
+          <AdComponent id="0edc04a5374d9021ce8e6b9f5bb01d53" />
           <ContinueWatching selectL={selectL} refer={props.refer} />
-          {/* <div
-            style={{
-              width: "100%",
-              display: "flex",
-              justifyContent: "center",
-              margin: "10px 0",
-            }}
-          >
-            <iframe
-              src="/ad5"
-              style={{
-                width: "fit-content",
-                height: "100px",
-                border: "none",
-                overflow: "hidden",
-              }}
-              scrolling="no"
-            ></iframe>
-            <div className="adClusterMain">
-              <iframe
-                src="/ad3"
-                style={{
-                  width: "fit-content",
-                  height: "100px",
-                  border: "none",
-                  overflow: "hidden",
-                }}
-                scrolling="no"
-              ></iframe>
-            </div>
-            <div className="adCluster">
-              <iframe
-                src="/ad4"
-                style={{
-                  width: "fit-content",
-                  height: "100px",
-                  border: "none",
-                  overflow: "hidden",
-                }}
-                scrolling="no"
-              ></iframe>
-            </div>
-          </div> */}
           <Trending
             trending={homeInfo.trending}
             selectL={selectL}
             refer={props.refer}
           />
-          {/* <div
-            style={{
-              width: "100%",
-              display: "flex",
-              justifyContent: "center",
-              margin: "10px 0",
-            }}
-          >
-            <iframe
-              src="/ad6"
-              style={{
-                width: "fit-content",
-                height: "100px",
-                border: "none",
-                overflow: "hidden",
-              }}
-              scrolling="no"
-            ></iframe>
-            <div className="adClusterMain">
-              <iframe
-                src="/ad"
-                style={{
-                  width: "fit-content",
-                  height: "100px",
-                  border: "none",
-                  overflow: "hidden",
-                }}
-                scrolling="no"
-              ></iframe>
-            </div>
-            <div className="adCluster">
-              <iframe
-                src="/ad2"
-                style={{
-                  width: "fit-content",
-                  height: "100px",
-                  border: "none",
-                  overflow: "hidden",
-                }}
-                scrolling="no"
-              ></iframe>
-            </div>
-          </div> */}
-          <Script
-            src="//abackdamstubborn.com/8ff2f9b0f1a544b4c8fe21a8086da14e/invoke.js"
-            strategy="lazyOnload"
-            data-cfasync="false"
-            async
-          />
-          <div id="container-8ff2f9b0f1a544b4c8fe21a8086da14e" />
+          <AdComponent id="8ff2f9b0f1a544b4c8fe21a8086da14e" />
           <div className="mt-10 flex gap-6 max-[1200px]:px-4 max-[1200px]:grid max-[1200px]:grid-cols-2 max-[1200px]:mt-12 max-[1200px]:gap-y-10 max-[680px]:grid-cols-1">
             <Cart
               label="Top Airing"
@@ -251,58 +81,7 @@ export default function Home(props) {
               refer={props.refer}
             />
           </div>
-
-          {/* <div
-            style={{
-              width: "100%",
-              display: "flex",
-              justifyContent: "center",
-              margin: "10px 0",
-            }}
-          >
-            <iframe
-              src="/ad5"
-              style={{
-                width: "fit-content",
-                height: "100px",
-                border: "none",
-                overflow: "hidden",
-              }}
-              scrolling="no"
-            ></iframe>
-            <div className="adClusterMain">
-              <iframe
-                src="/ad3"
-                style={{
-                  width: "fit-content",
-                  height: "100px",
-                  border: "none",
-                  overflow: "hidden",
-                }}
-                scrolling="no"
-              ></iframe>
-            </div>
-            <div className="adCluster">
-              <iframe
-                src="/ad4"
-                style={{
-                  width: "fit-content",
-                  height: "100px",
-                  border: "none",
-                  overflow: "hidden",
-                }}
-                scrolling="no"
-              ></iframe>
-            </div>
-          </div> */}
-          <Script
-            src="//abackdamstubborn.com/072578f5a4df72a3692182642476bbea/invoke.js"
-            strategy="lazyOnload"
-            data-cfasync="false"
-            async
-          />
-          <div id="container-072578f5a4df72a3692182642476bbea" />
-
+          <AdComponent id="072578f5a4df72a3692182642476bbea" />
           <div className="main-content-grid">
             <div className="left-content">
               <CategoryCard
@@ -314,56 +93,7 @@ export default function Home(props) {
                 selectL={selectL}
                 refer={props.refer}
               />
-              {/* <div
-                style={{
-                  width: "100%",
-                  display: "flex",
-                  justifyContent: "center",
-                  margin: "10px 0",
-                }}
-              >
-                <iframe
-                  src="/ad6"
-                  style={{
-                    width: "fit-content",
-                    height: "100px",
-                    border: "none",
-                    overflow: "hidden",
-                  }}
-                  scrolling="no"
-                ></iframe>
-                <div className="adClusterMain">
-                  <iframe
-                    src="/ad"
-                    style={{
-                      width: "fit-content",
-                      height: "100px",
-                      border: "none",
-                      overflow: "hidden",
-                    }}
-                    scrolling="no"
-                  ></iframe>
-                </div>
-                <div className="adCluster">
-                  <iframe
-                    src="/ad2"
-                    style={{
-                      width: "fit-content",
-                      height: "100px",
-                      border: "none",
-                      overflow: "hidden",
-                    }}
-                    scrolling="no"
-                  ></iframe>
-                </div>
-              </div> */}
-              <Script
-                src="//abackdamstubborn.com/cd746754796510a55d9ef4d9a4260a75/invoke.js"
-                strategy="lazyOnload"
-                data-cfasync="false"
-                async
-              />
-              <div id="container-cd746754796510a55d9ef4d9a4260a75" />
+              <AdComponent id="cd746754796510a55d9ef4d9a4260a75" />
               <CategoryCard
                 label={`New On ${website_name}`}
                 data={homeInfo.recently_added}
@@ -373,107 +103,9 @@ export default function Home(props) {
                 selectL={selectL}
                 refer={props.refer}
               />
-              {/* <div
-                style={{
-                  width: "100%",
-                  display: "flex",
-                  justifyContent: "center",
-                  margin: "10px 0",
-                }}
-              >
-                <iframe
-                  src="/ad5"
-                  style={{
-                    width: "fit-content",
-                    height: "100px",
-                    border: "none",
-                    overflow: "hidden",
-                  }}
-                  scrolling="no"
-                ></iframe>
-                <div className="adClusterMain">
-                  <iframe
-                    src="/ad4"
-                    style={{
-                      width: "fit-content",
-                      height: "100px",
-                      border: "none",
-                      overflow: "hidden",
-                    }}
-                    scrolling="no"
-                  ></iframe>
-                </div>
-                <div className="adCluster">
-                  <iframe
-                    src="/ad3"
-                    style={{
-                      width: "fit-content",
-                      height: "100px",
-                      border: "none",
-                      overflow: "hidden",
-                    }}
-                    scrolling="no"
-                  ></iframe>
-                </div>
-              </div> */}
-              <Script
-                src="//abackdamstubborn.com/dbafd6a4e452fd720e2121278664c057/invoke.js"
-                strategy="lazyOnload"
-                data-cfasync="false"
-                async
-              />
-              <div id="container-dbafd6a4e452fd720e2121278664c057" />
+              <AdComponent id="dbafd6a4e452fd720e2121278664c057" />
               <Schedule selectL={selectL} refer={props.refer} />
-              {/* <div
-                style={{
-                  width: "100%",
-                  display: "flex",
-                  justifyContent: "center",
-                  margin: "10px 0",
-                }}
-              >
-                <iframe
-                  src="/ad6"
-                  style={{
-                    width: "fit-content",
-                    height: "100px",
-                    border: "none",
-                    overflow: "hidden",
-                  }}
-                  scrolling="no"
-                ></iframe>
-                <div className="adClusterMain">
-                  <iframe
-                    src="/ad"
-                    style={{
-                      width: "fit-content",
-                      height: "100px",
-                      border: "none",
-                      overflow: "hidden",
-                    }}
-                    scrolling="no"
-                  ></iframe>
-                </div>
-                <div className="adCluster">
-                  <iframe
-                    src="/ad2"
-                    style={{
-                      width: "fit-content",
-                      height: "100px",
-                      border: "none",
-                      overflow: "hidden",
-                    }}
-                    scrolling="no"
-                  ></iframe>
-                </div>
-              </div> */}
-              <Script
-                src="//abackdamstubborn.com/747f4fcb7dc611b1e8d9ed8822f2c89c/invoke.js"
-                strategy="lazyOnload"
-                data-cfasync="false"
-                async
-              />
-              <div id="container-747f4fcb7dc611b1e8d9ed8822f2c89c" />
+              <AdComponent id="747f4fcb7dc611b1e8d9ed8822f2c89c" />
               <CategoryCard
                 label="Top Upcoming"
                 data={homeInfo.top_upcoming}
@@ -483,118 +115,17 @@ export default function Home(props) {
                 selectL={selectL}
                 refer={props.refer}
               />
-              {/* <div
-                style={{
-                  width: "100%",
-                  display: "flex",
-                  justifyContent: "center",
-                  margin: "10px 0",
-                }}
-              >
-                <iframe
-                  src="/ad5"
-                  style={{
-                    width: "fit-content",
-                    height: "100px",
-                    border: "none",
-                    overflow: "hidden",
-                  }}
-                  scrolling="no"
-                ></iframe>
-                <div className="adClusterMain">
-                  <iframe
-                    src="/ad4"
-                    style={{
-                      width: "fit-content",
-                      height: "100px",
-                      border: "none",
-                      overflow: "hidden",
-                    }}
-                    scrolling="no"
-                  ></iframe>
-                </div>
-                <div className="adCluster">
-                  <iframe
-                    src="/ad3"
-                    style={{
-                      width: "fit-content",
-                      height: "100px",
-                      border: "none",
-                      overflow: "hidden",
-                    }}
-                    scrolling="no"
-                  ></iframe>
-                </div>
-              </div> */}
-              {/* <Script
-                src="//abackdamstubborn.com/0edc04a5374d9021ce8e6b9f5bb01d53/invoke.js"
-                strategy="lazyOnload"
-                data-cfasync="false"
-                async
-              />
-              <div id="container-0edc04a5374d9021ce8e6b9f5bb01d53" /> */}
             </div>
 
             <div className="right-sidebar">
               <Genre data={homeInfo.genres} refer={props.refer} />
-              {/* <div
-                style={{
-                  width: "100%",
-                  display: "flex",
-                  justifyContent: "center",
-                  margin: "10px 0",
-                }}
-              >
-                <iframe
-                  src="/ad5"
-                  style={{
-                    width: "fit-content",
-                    height: "100px",
-                    border: "none",
-                    overflow: "hidden",
-                  }}
-                  scrolling="no"
-                ></iframe>
-              </div> */}
-              {/* <Script
-                src="//abackdamstubborn.com/0edc04a5374d9021ce8e6b9f5bb01d53/invoke.js"
-                strategy="lazyOnload"
-                data-cfasync="false"
-                async
-              />
-              <div id="container-0edc04a5374d9021ce8e6b9f5bb01d53" /> */}
+
               <Topten
                 data={homeInfo.topten}
                 className={"mt-12"}
                 selectL={selectL}
                 refer={props.refer}
               />
-              {/* <div
-                style={{
-                  width: "100%",
-                  display: "flex",
-                  justifyContent: "center",
-                  margin: "10px 0",
-                }}
-              >
-                <iframe
-                  src="/ad4"
-                  style={{
-                    width: "fit-content",
-                    height: "100px",
-                    border: "none",
-                    overflow: "hidden",
-                  }}
-                  scrolling="no"
-                ></iframe>
-              </div> */}
-              {/* <Script
-                src="//abackdamstubborn.com/0edc04a5374d9021ce8e6b9f5bb01d53/invoke.js"
-                strategy="lazyOnload"
-                data-cfasync="false"
-                async
-              />
-              <div id="container-0edc04a5374d9021ce8e6b9f5bb01d53" /> */}
             </div>
           </div>
         </div>
