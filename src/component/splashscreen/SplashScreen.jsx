@@ -12,8 +12,6 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import splash from "../../../public/splash.webp";
-import Script from "next/script";
-import AdComponent from "../adComponent/adComponent";
 
 // Static data moved outside the component
 const NAV_LINKS = [
@@ -124,7 +122,7 @@ export default function SplashScreen({ results }) {
           )}
         </nav>
 
-        {/* <div
+        <div
           style={{
             width: "100%",
             display: "flex",
@@ -166,7 +164,7 @@ export default function SplashScreen({ results }) {
               scrolling="no"
             ></iframe>
           </div>
-        </div> */}
+        </div>
 
         <div className="splashscreen min-h-[480px] min-[1200px]:min-h-[520px] bg-[#2B2A3C] rounded-[40px] flex relative mt-7 max-[780px]:w-full items-stretch max-[780px]:rounded-[30px] max-[520px]:rounded-none max-[520px]:min-h-fit max-[520px]:pb-4 max-[520px]:mt-4">
           <div className="h-auto flex flex-col w-[700px] relative z-40 px-20 py-20 left-0 max-[1200px]:py-12 max-[780px]:px-12 max-[520px]:py-4 max-[520px]:px-8">
@@ -228,7 +226,7 @@ export default function SplashScreen({ results }) {
             />
           </div>
         </div>
-        {/* 
+
         <div
           style={{
             width: "100%",
@@ -271,8 +269,7 @@ export default function SplashScreen({ results }) {
               scrolling="no"
             ></iframe>
           </div>
-        </div> */}
-        <AdComponent id="dbafd6a4e452fd720e2121278664c057" />
+        </div>
       </div>
       <div className="mt-10 text-[14px] text-center pb-4">
         © {logoTitle} All rights reserved.

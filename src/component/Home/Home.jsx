@@ -15,8 +15,6 @@ import Navbar from "../Navbar/Navbar";
 import { SessionProvider } from "next-auth/react";
 import Footer from "../Footer/Footer";
 import { usePathname } from "next/navigation";
-import Script from "next/script";
-import AdComponent from "../adComponent/adComponent";
 
 export default function Home(props) {
   const [selectL, setSelectL] = useState("EN");
@@ -24,10 +22,25 @@ export default function Home(props) {
     setSelectL(lang);
   };
   const website_name = "Animoon";
-  // const [homeInfo, setHomeInfo] = useState(props.data);
-  const homeInfo = props.data;
-  const [homeInfoLoading, setHomeInfoLoading] = useState(false);
+  const [homeInfo, setHomeInfo] = useState(props.data);
+  const [homeInfoLoading, setHomeInfoLoading] = useState(true);
   const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchHomeInfo = async () => {
+      try {
+        const res = await fetch("/api/home");
+        const data = await res.json();
+        setHomeInfo(data);
+      } catch (err) {
+        console.error("Error fetching home info:", err);
+        setError(err);
+      } finally {
+        setHomeInfoLoading(false);
+      }
+    };
+    fetchHomeInfo();
+  }, []);
 
   if (homeInfoLoading) return <Loader type="home" />;
   if (error) return <Error />;
@@ -43,14 +56,143 @@ export default function Home(props) {
             selectL={selectL}
             refer={props.refer}
           />
-          <AdComponent id="0edc04a5374d9021ce8e6b9f5bb01d53" />
+
+          <div
+            style={{
+              width: "100%",
+              display: "flex",
+              justifyContent: "center",
+              margin: "10px 0",
+            }}
+          >
+            <iframe
+              src="/ad6"
+              style={{
+                width: "fit-content",
+                height: "100px",
+                border: "none",
+                overflow: "hidden",
+              }}
+              scrolling="no"
+            ></iframe>
+            <div className="adClusterMain">
+              <iframe
+                src="/ad"
+                style={{
+                  width: "fit-content",
+                  height: "100px",
+                  border: "none",
+                  overflow: "hidden",
+                }}
+                scrolling="no"
+              ></iframe>
+            </div>
+            <div className="adCluster">
+              <iframe
+                src="/ad2"
+                style={{
+                  width: "fit-content",
+                  height: "100px",
+                  border: "none",
+                  overflow: "hidden",
+                }}
+                scrolling="no"
+              ></iframe>
+            </div>
+          </div>
           <ContinueWatching selectL={selectL} refer={props.refer} />
+          <div
+            style={{
+              width: "100%",
+              display: "flex",
+              justifyContent: "center",
+              margin: "10px 0",
+            }}
+          >
+            <iframe
+              src="/ad5"
+              style={{
+                width: "fit-content",
+                height: "100px",
+                border: "none",
+                overflow: "hidden",
+              }}
+              scrolling="no"
+            ></iframe>
+            <div className="adClusterMain">
+              <iframe
+                src="/ad3"
+                style={{
+                  width: "fit-content",
+                  height: "100px",
+                  border: "none",
+                  overflow: "hidden",
+                }}
+                scrolling="no"
+              ></iframe>
+            </div>
+            <div className="adCluster">
+              <iframe
+                src="/ad4"
+                style={{
+                  width: "fit-content",
+                  height: "100px",
+                  border: "none",
+                  overflow: "hidden",
+                }}
+                scrolling="no"
+              ></iframe>
+            </div>
+          </div>
           <Trending
             trending={homeInfo.trending}
             selectL={selectL}
             refer={props.refer}
           />
-          <AdComponent id="8ff2f9b0f1a544b4c8fe21a8086da14e" />
+          <div
+            style={{
+              width: "100%",
+              display: "flex",
+              justifyContent: "center",
+              margin: "10px 0",
+            }}
+          >
+            <iframe
+              src="/ad6"
+              style={{
+                width: "fit-content",
+                height: "100px",
+                border: "none",
+                overflow: "hidden",
+              }}
+              scrolling="no"
+            ></iframe>
+            <div className="adClusterMain">
+              <iframe
+                src="/ad"
+                style={{
+                  width: "fit-content",
+                  height: "100px",
+                  border: "none",
+                  overflow: "hidden",
+                }}
+                scrolling="no"
+              ></iframe>
+            </div>
+            <div className="adCluster">
+              <iframe
+                src="/ad2"
+                style={{
+                  width: "fit-content",
+                  height: "100px",
+                  border: "none",
+                  overflow: "hidden",
+                }}
+                scrolling="no"
+              ></iframe>
+            </div>
+          </div>
+
           <div className="mt-10 flex gap-6 max-[1200px]:px-4 max-[1200px]:grid max-[1200px]:grid-cols-2 max-[1200px]:mt-12 max-[1200px]:gap-y-10 max-[680px]:grid-cols-1">
             <Cart
               label="Top Airing"
@@ -81,7 +223,51 @@ export default function Home(props) {
               refer={props.refer}
             />
           </div>
-          <AdComponent id="072578f5a4df72a3692182642476bbea" />
+
+          <div
+            style={{
+              width: "100%",
+              display: "flex",
+              justifyContent: "center",
+              margin: "10px 0",
+            }}
+          >
+            <iframe
+              src="/ad5"
+              style={{
+                width: "fit-content",
+                height: "100px",
+                border: "none",
+                overflow: "hidden",
+              }}
+              scrolling="no"
+            ></iframe>
+            <div className="adClusterMain">
+              <iframe
+                src="/ad3"
+                style={{
+                  width: "fit-content",
+                  height: "100px",
+                  border: "none",
+                  overflow: "hidden",
+                }}
+                scrolling="no"
+              ></iframe>
+            </div>
+            <div className="adCluster">
+              <iframe
+                src="/ad4"
+                style={{
+                  width: "fit-content",
+                  height: "100px",
+                  border: "none",
+                  overflow: "hidden",
+                }}
+                scrolling="no"
+              ></iframe>
+            </div>
+          </div>
+
           <div className="main-content-grid">
             <div className="left-content">
               <CategoryCard
@@ -93,7 +279,49 @@ export default function Home(props) {
                 selectL={selectL}
                 refer={props.refer}
               />
-              <AdComponent id="cd746754796510a55d9ef4d9a4260a75" />
+              <div
+                style={{
+                  width: "100%",
+                  display: "flex",
+                  justifyContent: "center",
+                  margin: "10px 0",
+                }}
+              >
+                <iframe
+                  src="/ad6"
+                  style={{
+                    width: "fit-content",
+                    height: "100px",
+                    border: "none",
+                    overflow: "hidden",
+                  }}
+                  scrolling="no"
+                ></iframe>
+                <div className="adClusterMain">
+                  <iframe
+                    src="/ad"
+                    style={{
+                      width: "fit-content",
+                      height: "100px",
+                      border: "none",
+                      overflow: "hidden",
+                    }}
+                    scrolling="no"
+                  ></iframe>
+                </div>
+                <div className="adCluster">
+                  <iframe
+                    src="/ad2"
+                    style={{
+                      width: "fit-content",
+                      height: "100px",
+                      border: "none",
+                      overflow: "hidden",
+                    }}
+                    scrolling="no"
+                  ></iframe>
+                </div>
+              </div>
               <CategoryCard
                 label={`New On ${website_name}`}
                 data={homeInfo.recently_added}
@@ -103,9 +331,93 @@ export default function Home(props) {
                 selectL={selectL}
                 refer={props.refer}
               />
-              <AdComponent id="dbafd6a4e452fd720e2121278664c057" />
+              <div
+                style={{
+                  width: "100%",
+                  display: "flex",
+                  justifyContent: "center",
+                  margin: "10px 0",
+                }}
+              >
+                <iframe
+                  src="/ad5"
+                  style={{
+                    width: "fit-content",
+                    height: "100px",
+                    border: "none",
+                    overflow: "hidden",
+                  }}
+                  scrolling="no"
+                ></iframe>
+                <div className="adClusterMain">
+                  <iframe
+                    src="/ad4"
+                    style={{
+                      width: "fit-content",
+                      height: "100px",
+                      border: "none",
+                      overflow: "hidden",
+                    }}
+                    scrolling="no"
+                  ></iframe>
+                </div>
+                <div className="adCluster">
+                  <iframe
+                    src="/ad3"
+                    style={{
+                      width: "fit-content",
+                      height: "100px",
+                      border: "none",
+                      overflow: "hidden",
+                    }}
+                    scrolling="no"
+                  ></iframe>
+                </div>
+              </div>
               <Schedule selectL={selectL} refer={props.refer} />
-              <AdComponent id="747f4fcb7dc611b1e8d9ed8822f2c89c" />
+              <div
+                style={{
+                  width: "100%",
+                  display: "flex",
+                  justifyContent: "center",
+                  margin: "10px 0",
+                }}
+              >
+                <iframe
+                  src="/ad6"
+                  style={{
+                    width: "fit-content",
+                    height: "100px",
+                    border: "none",
+                    overflow: "hidden",
+                  }}
+                  scrolling="no"
+                ></iframe>
+                <div className="adClusterMain">
+                  <iframe
+                    src="/ad"
+                    style={{
+                      width: "fit-content",
+                      height: "100px",
+                      border: "none",
+                      overflow: "hidden",
+                    }}
+                    scrolling="no"
+                  ></iframe>
+                </div>
+                <div className="adCluster">
+                  <iframe
+                    src="/ad2"
+                    style={{
+                      width: "fit-content",
+                      height: "100px",
+                      border: "none",
+                      overflow: "hidden",
+                    }}
+                    scrolling="no"
+                  ></iframe>
+                </div>
+              </div>
               <CategoryCard
                 label="Top Upcoming"
                 data={homeInfo.top_upcoming}
@@ -115,17 +427,97 @@ export default function Home(props) {
                 selectL={selectL}
                 refer={props.refer}
               />
+              <div
+                style={{
+                  width: "100%",
+                  display: "flex",
+                  justifyContent: "center",
+                  margin: "10px 0",
+                }}
+              >
+                <iframe
+                  src="/ad5"
+                  style={{
+                    width: "fit-content",
+                    height: "100px",
+                    border: "none",
+                    overflow: "hidden",
+                  }}
+                  scrolling="no"
+                ></iframe>
+                <div className="adClusterMain">
+                  <iframe
+                    src="/ad4"
+                    style={{
+                      width: "fit-content",
+                      height: "100px",
+                      border: "none",
+                      overflow: "hidden",
+                    }}
+                    scrolling="no"
+                  ></iframe>
+                </div>
+                <div className="adCluster">
+                  <iframe
+                    src="/ad3"
+                    style={{
+                      width: "fit-content",
+                      height: "100px",
+                      border: "none",
+                      overflow: "hidden",
+                    }}
+                    scrolling="no"
+                  ></iframe>
+                </div>
+              </div>
             </div>
 
             <div className="right-sidebar">
               <Genre data={homeInfo.genres} refer={props.refer} />
-
+              <div
+                style={{
+                  width: "100%",
+                  display: "flex",
+                  justifyContent: "center",
+                  margin: "10px 0",
+                }}
+              >
+                <iframe
+                  src="/ad5"
+                  style={{
+                    width: "fit-content",
+                    height: "100px",
+                    border: "none",
+                    overflow: "hidden",
+                  }}
+                  scrolling="no"
+                ></iframe>
+              </div>
               <Topten
                 data={homeInfo.topten}
                 className={"mt-12"}
                 selectL={selectL}
                 refer={props.refer}
               />
+              <div
+                style={{
+                  width: "100%",
+                  display: "flex",
+                  justifyContent: "center",
+                  margin: "10px 0",
+                }}
+              >
+                <iframe
+                  src="/ad4"
+                  style={{
+                    width: "fit-content",
+                    height: "100px",
+                    border: "none",
+                    overflow: "hidden",
+                  }}
+                  scrolling="no"
+                ></iframe>
+              </div>
             </div>
           </div>
         </div>
