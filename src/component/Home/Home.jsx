@@ -17,14 +17,15 @@ import Footer from "../Footer/Footer";
 import { usePathname } from "next/navigation";
 import Script from "next/script";
 
-export default function Home(props) {
+export default function Home({ refer, data, children }) {
+  const childrenArray = Array.isArray(children) ? children : [children];
   const [selectL, setSelectL] = useState("EN");
   const lang = (lang) => {
     setSelectL(lang);
   };
   const website_name = "Animoon";
   // const [homeInfo, setHomeInfo] = useState(props.data);
-  const homeInfo = props.data;
+  const homeInfo = data;
   const [homeInfoLoading, setHomeInfoLoading] = useState(false);
   const [error, setError] = useState(null);
 
@@ -51,20 +52,20 @@ export default function Home(props) {
   return (
     <>
       <SessionProvider>
-        <Navbar lang={lang} selectL={selectL} refer={props.refer} />
+        <Navbar lang={lang} selectL={selectL} refer={refer} />
         <div className="home-container">
           <Spotlight
             spotlights={homeInfo.spotlights}
             selectL={selectL}
-            refer={props.refer}
+            refer={refer}
           />
-          <Script
+          {/* <Script
             src="//abackdamstubborn.com/0edc04a5374d9021ce8e6b9f5bb01d53/invoke.js"
             strategy="afterInteractive"
             data-cfasync="false"
             async
           />
-          <div id="container-0edc04a5374d9021ce8e6b9f5bb01d53" />
+          <div id="container-0edc04a5374d9021ce8e6b9f5bb01d53" /> */}
           {/* <div
             style={{
               width: "100%",
@@ -108,7 +109,8 @@ export default function Home(props) {
               ></iframe>
             </div>
           </div> */}
-          <ContinueWatching selectL={selectL} refer={props.refer} />
+          {childrenArray[0]}
+          <ContinueWatching selectL={selectL} refer={refer} />
           {/* <div
             style={{
               width: "100%",
@@ -155,7 +157,7 @@ export default function Home(props) {
           <Trending
             trending={homeInfo.trending}
             selectL={selectL}
-            refer={props.refer}
+            refer={refer}
           />
           {/* <div
             style={{
@@ -200,41 +202,42 @@ export default function Home(props) {
               ></iframe>
             </div>
           </div> */}
-          <Script
+          {/* <Script
             src="//abackdamstubborn.com/8ff2f9b0f1a544b4c8fe21a8086da14e/invoke.js"
             strategy="afterInteractive"
             data-cfasync="false"
             async
           />
-          <div id="container-8ff2f9b0f1a544b4c8fe21a8086da14e" />
+          <div id="container-8ff2f9b0f1a544b4c8fe21a8086da14e" /> */}
+          {childrenArray[1]}
           <div className="mt-10 flex gap-6 max-[1200px]:px-4 max-[1200px]:grid max-[1200px]:grid-cols-2 max-[1200px]:mt-12 max-[1200px]:gap-y-10 max-[680px]:grid-cols-1">
             <Cart
               label="Top Airing"
               data={homeInfo.top_airing}
               path="top-airing"
               selectL={selectL}
-              refer={props.refer}
+              refer={refer}
             />
             <Cart
               label="Most Popular"
               data={homeInfo.most_popular}
               path="most-popular"
               selectL={selectL}
-              refer={props.refer}
+              refer={refer}
             />
             <Cart
               label="Most Favorite"
               data={homeInfo.most_favorite}
               path="most-favorite"
               selectL={selectL}
-              refer={props.refer}
+              refer={refer}
             />
             <Cart
               label="Latest Completed"
               data={homeInfo.latest_completed}
               path="completed"
               selectL={selectL}
-              refer={props.refer}
+              refer={refer}
             />
           </div>
 
@@ -281,14 +284,14 @@ export default function Home(props) {
               ></iframe>
             </div>
           </div> */}
-          <Script
+          {/* <Script
             src="//abackdamstubborn.com/072578f5a4df72a3692182642476bbea/invoke.js"
             strategy="afterInteractive"
             data-cfasync="false"
             async
           />
-          <div id="container-072578f5a4df72a3692182642476bbea" />
-
+          <div id="container-072578f5a4df72a3692182642476bbea" /> */}
+          {childrenArray[2]}
           <div className="main-content-grid">
             <div className="left-content">
               <CategoryCard
@@ -298,7 +301,7 @@ export default function Home(props) {
                 path="recently-updated"
                 limit={12}
                 selectL={selectL}
-                refer={props.refer}
+                refer={refer}
               />
               {/* <div
                 style={{
@@ -343,13 +346,14 @@ export default function Home(props) {
                   ></iframe>
                 </div>
               </div> */}
-              <Script
+              {/* <Script
                 src="//abackdamstubborn.com/cd746754796510a55d9ef4d9a4260a75/invoke.js"
                 strategy="afterInteractive"
                 data-cfasync="false"
                 async
               />
-              <div id="container-cd746754796510a55d9ef4d9a4260a75" />
+              <div id="container-cd746754796510a55d9ef4d9a4260a75" /> */}
+              {childrenArray[3]}
               <CategoryCard
                 label={`New On ${website_name}`}
                 data={homeInfo.recently_added}
@@ -357,7 +361,7 @@ export default function Home(props) {
                 path="recently-added"
                 limit={12}
                 selectL={selectL}
-                refer={props.refer}
+                refer={refer}
               />
               {/* <div
                 style={{
@@ -402,14 +406,15 @@ export default function Home(props) {
                   ></iframe>
                 </div>
               </div> */}
-            <Script
+              {/* <Script
               src="//abackdamstubborn.com/dbafd6a4e452fd720e2121278664c057/invoke.js"
               strategy="afterInteractive"
               data-cfasync="false"
               async
             />
-            <div id="container-dbafd6a4e452fd720e2121278664c057" />
-              <Schedule selectL={selectL} refer={props.refer} />
+            <div id="container-dbafd6a4e452fd720e2121278664c057" /> */}
+              {childrenArray[4]}
+              <Schedule selectL={selectL} refer={refer} />
               {/* <div
                 style={{
                   width: "100%",
@@ -453,13 +458,14 @@ export default function Home(props) {
                   ></iframe>
                 </div>
               </div> */}
-            <Script
+              {/* <Script
               src="//abackdamstubborn.com/747f4fcb7dc611b1e8d9ed8822f2c89c/invoke.js"
               strategy="afterInteractive"
               data-cfasync="false"
               async
             />
-            <div id="container-747f4fcb7dc611b1e8d9ed8822f2c89c" />
+            <div id="container-747f4fcb7dc611b1e8d9ed8822f2c89c" /> */}
+              {childrenArray[5]}
               <CategoryCard
                 label="Top Upcoming"
                 data={homeInfo.top_upcoming}
@@ -467,7 +473,7 @@ export default function Home(props) {
                 path="top-upcoming"
                 limit={12}
                 selectL={selectL}
-                refer={props.refer}
+                refer={refer}
               />
               {/* <div
                 style={{
@@ -522,7 +528,7 @@ export default function Home(props) {
             </div>
 
             <div className="right-sidebar">
-              <Genre data={homeInfo.genres} refer={props.refer} />
+              <Genre data={homeInfo.genres} refer={refer} />
               {/* <div
                 style={{
                   width: "100%",
@@ -553,7 +559,7 @@ export default function Home(props) {
                 data={homeInfo.topten}
                 className={"mt-12"}
                 selectL={selectL}
-                refer={props.refer}
+                refer={refer}
               />
               {/* <div
                 style={{
@@ -584,7 +590,7 @@ export default function Home(props) {
             </div>
           </div>
         </div>
-        <Footer refer={props.refer} />
+        <Footer refer={refer} />
       </SessionProvider>
     </>
   );
