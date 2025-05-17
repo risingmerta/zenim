@@ -17,14 +17,14 @@ import Footer from "../Footer/Footer";
 import { usePathname } from "next/navigation";
 import Script from "next/script";
 
-export default function Home({ refer, data }) {
+export default function Home(props) {
   const [selectL, setSelectL] = useState("EN");
   const lang = (lang) => {
     setSelectL(lang);
   };
   const website_name = "Animoon";
   // const [homeInfo, setHomeInfo] = useState(props.data);
-  const homeInfo = data;
+  const homeInfo = props.data;
   const [homeInfoLoading, setHomeInfoLoading] = useState(false);
   const [error, setError] = useState(null);
 
@@ -51,16 +51,16 @@ export default function Home({ refer, data }) {
   return (
     <>
       <SessionProvider>
-        <Navbar lang={lang} selectL={selectL} refer={refer} />
+        <Navbar lang={lang} selectL={selectL} refer={props.refer} />
         <div className="home-container">
           <Spotlight
             spotlights={homeInfo.spotlights}
             selectL={selectL}
-            refer={refer}
+            refer={props.refer}
           />
           <Script
             src="//abackdamstubborn.com/0edc04a5374d9021ce8e6b9f5bb01d53/invoke.js"
-            strategy="lazyOnload"
+            strategy="afterInteractive"
             data-cfasync="false"
             async
           />
@@ -108,8 +108,7 @@ export default function Home({ refer, data }) {
               ></iframe>
             </div>
           </div> */}
-
-          <ContinueWatching selectL={selectL} refer={refer} />
+          <ContinueWatching selectL={selectL} refer={props.refer} />
           {/* <div
             style={{
               width: "100%",
@@ -156,7 +155,7 @@ export default function Home({ refer, data }) {
           <Trending
             trending={homeInfo.trending}
             selectL={selectL}
-            refer={refer}
+            refer={props.refer}
           />
           {/* <div
             style={{
@@ -203,40 +202,39 @@ export default function Home({ refer, data }) {
           </div> */}
           <Script
             src="//abackdamstubborn.com/8ff2f9b0f1a544b4c8fe21a8086da14e/invoke.js"
-            strategy="lazyOnload"
+            strategy="afterInteractive"
             data-cfasync="false"
             async
           />
           <div id="container-8ff2f9b0f1a544b4c8fe21a8086da14e" />
-
           <div className="mt-10 flex gap-6 max-[1200px]:px-4 max-[1200px]:grid max-[1200px]:grid-cols-2 max-[1200px]:mt-12 max-[1200px]:gap-y-10 max-[680px]:grid-cols-1">
             <Cart
               label="Top Airing"
               data={homeInfo.top_airing}
               path="top-airing"
               selectL={selectL}
-              refer={refer}
+              refer={props.refer}
             />
             <Cart
               label="Most Popular"
               data={homeInfo.most_popular}
               path="most-popular"
               selectL={selectL}
-              refer={refer}
+              refer={props.refer}
             />
             <Cart
               label="Most Favorite"
               data={homeInfo.most_favorite}
               path="most-favorite"
               selectL={selectL}
-              refer={refer}
+              refer={props.refer}
             />
             <Cart
               label="Latest Completed"
               data={homeInfo.latest_completed}
               path="completed"
               selectL={selectL}
-              refer={refer}
+              refer={props.refer}
             />
           </div>
 
@@ -283,13 +281,13 @@ export default function Home({ refer, data }) {
               ></iframe>
             </div>
           </div> */}
-          {/* <Script
+          <Script
             src="//abackdamstubborn.com/072578f5a4df72a3692182642476bbea/invoke.js"
             strategy="afterInteractive"
             data-cfasync="false"
             async
           />
-          <div id="container-072578f5a4df72a3692182642476bbea" /> */}
+          <div id="container-072578f5a4df72a3692182642476bbea" />
 
           <div className="main-content-grid">
             <div className="left-content">
@@ -300,7 +298,7 @@ export default function Home({ refer, data }) {
                 path="recently-updated"
                 limit={12}
                 selectL={selectL}
-                refer={refer}
+                refer={props.refer}
               />
               {/* <div
                 style={{
@@ -345,14 +343,13 @@ export default function Home({ refer, data }) {
                   ></iframe>
                 </div>
               </div> */}
-              {/* <Script
+              <Script
                 src="//abackdamstubborn.com/cd746754796510a55d9ef4d9a4260a75/invoke.js"
                 strategy="afterInteractive"
                 data-cfasync="false"
                 async
               />
-              <div id="container-cd746754796510a55d9ef4d9a4260a75" /> */}
-
+              <div id="container-cd746754796510a55d9ef4d9a4260a75" />
               <CategoryCard
                 label={`New On ${website_name}`}
                 data={homeInfo.recently_added}
@@ -360,7 +357,7 @@ export default function Home({ refer, data }) {
                 path="recently-added"
                 limit={12}
                 selectL={selectL}
-                refer={refer}
+                refer={props.refer}
               />
               {/* <div
                 style={{
@@ -405,15 +402,14 @@ export default function Home({ refer, data }) {
                   ></iframe>
                 </div>
               </div> */}
-              {/* <Script
+            <Script
               src="//abackdamstubborn.com/dbafd6a4e452fd720e2121278664c057/invoke.js"
               strategy="afterInteractive"
               data-cfasync="false"
               async
             />
-            <div id="container-dbafd6a4e452fd720e2121278664c057" /> */}
-
-              <Schedule selectL={selectL} refer={refer} />
+            <div id="container-dbafd6a4e452fd720e2121278664c057" />
+              <Schedule selectL={selectL} refer={props.refer} />
               {/* <div
                 style={{
                   width: "100%",
@@ -457,14 +453,13 @@ export default function Home({ refer, data }) {
                   ></iframe>
                 </div>
               </div> */}
-              {/* <Script
+            <Script
               src="//abackdamstubborn.com/747f4fcb7dc611b1e8d9ed8822f2c89c/invoke.js"
               strategy="afterInteractive"
               data-cfasync="false"
               async
             />
-            <div id="container-747f4fcb7dc611b1e8d9ed8822f2c89c" /> */}
-
+            <div id="container-747f4fcb7dc611b1e8d9ed8822f2c89c" />
               <CategoryCard
                 label="Top Upcoming"
                 data={homeInfo.top_upcoming}
@@ -472,7 +467,7 @@ export default function Home({ refer, data }) {
                 path="top-upcoming"
                 limit={12}
                 selectL={selectL}
-                refer={refer}
+                refer={props.refer}
               />
               {/* <div
                 style={{
@@ -527,7 +522,7 @@ export default function Home({ refer, data }) {
             </div>
 
             <div className="right-sidebar">
-              <Genre data={homeInfo.genres} refer={refer} />
+              <Genre data={homeInfo.genres} refer={props.refer} />
               {/* <div
                 style={{
                   width: "100%",
@@ -558,7 +553,7 @@ export default function Home({ refer, data }) {
                 data={homeInfo.topten}
                 className={"mt-12"}
                 selectL={selectL}
-                refer={refer}
+                refer={props.refer}
               />
               {/* <div
                 style={{
@@ -589,7 +584,7 @@ export default function Home({ refer, data }) {
             </div>
           </div>
         </div>
-        <Footer refer={refer} />
+        <Footer refer={props.refer} />
       </SessionProvider>
     </>
   );
