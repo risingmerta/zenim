@@ -67,7 +67,7 @@ export default function Watch(props) {
   const [activeServerId, setActiveServerId] = useState(null);
   const [activeServerType, setActiveServerType] = useState(null);
   const [serverLoading, setServerLoading] = useState(true);
-  const [nextEpisodeSchedule, setNextEpisodeSchedule] = useState(null);
+  const nextEpisodeSchedule = props.scheduleData;
   const isServerFetchInProgress = useRef(false);
   const isStreamFetchInProgress = useRef(false);
 
@@ -124,18 +124,6 @@ export default function Watch(props) {
     };
 
     fetchInitialData();
-  }, [props.id]);
-
-  useEffect(() => {
-    const fetchNextEpisodeSchedule = async () => {
-      try {
-        const data = props.scheduleData;
-        setNextEpisodeSchedule(data);
-      } catch (err) {
-        console.error("Error fetching next episode schedule:", err);
-      }
-    };
-    fetchNextEpisodeSchedule();
   }, [props.id]);
 
   useEffect(() => {
