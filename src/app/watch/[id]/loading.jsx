@@ -11,7 +11,7 @@ const loading = () => {
       <div className="w-full h-fit flex flex-col justify-center items-center relative">
         <div className="w-full relative max-[1400px]:px-[30px] max-[1200px]:px-[80px] max-[1024px]:px-0">
           <img
-            src={"https://i.postimg.cc/rFZnx5tQ/2-Kn-Kzog-md.webp"}
+            src={""}
             alt={`Poster`}
             className="backgroundImage"
           />
