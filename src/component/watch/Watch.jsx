@@ -247,9 +247,12 @@ export default function Watch(props) {
       try {
         const server = servers.find((srv) => srv.data_id === activeServerId);
         if (server) {
-          const data = props.allStreamData.find(
+          const datal = props.allStreamData.find(
             (item) => item.stream?.results?.streamingLink?.id === activeServerId
           );
+
+          const data = datal?.stream?.results;
+
           setStreamInfo(data);
           console.log(data);
           setStreamUrl(data?.streamingLink?.link?.file || null);
