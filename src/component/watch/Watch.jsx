@@ -92,7 +92,7 @@ if (props.scheduleData?.releaseDate && props.scheduleData?.time) {
       hour12: true,
     });
 
-    message = `🚀 Estimated the next episode will come at ${formattedDate}`;
+    message = `${formattedDate}`;
   }
 } else {
   message = "";
@@ -610,7 +610,7 @@ if (props.scheduleData?.releaseDate && props.scheduleData?.time) {
                       </div>
                     </div>
                   )}
-                  {showNextEpisodeSchedule && (
+                  {message && showNextEpisodeSchedule && (
                     <div className="p-4">
                       <div className="w-full px-4 rounded-md bg-[#0088CC] flex items-center justify-between gap-x-2">
                         <div className="w-full h-fit">
