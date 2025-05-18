@@ -232,14 +232,14 @@ export default function Watch(props) {
 
   // Fetch stream info only when episodeId, activeServerId, and servers are ready
   useEffect(() => {
-    // if (
-    //   !episodeId ||
-    //   !activeServerId ||
-    //   !servers ||
-    //   isServerFetchInProgress.current ||
-    //   isStreamFetchInProgress.current
-    // )
-    //   return;
+    if (
+      !episodeId ||
+      !activeServerId ||
+      !servers ||
+      isServerFetchInProgress.current ||
+      isStreamFetchInProgress.current
+    )
+      return;
 
     const fetchStreamInfo = async () => {
       isStreamFetchInProgress.current = true;
@@ -247,12 +247,12 @@ export default function Watch(props) {
       try {
         const server = servers.find((srv) => srv.data_id === activeServerId);
         if (server) {
-          const datal = props.allStreamData.find(
-            (item) => item.stream?.results?.streamingLink?.id === activeServerId
+          const data = await getStreamInfo(
+            animeId,
+            episodeId,
+            server.serverName.toLowerCase(),
+            server.type.toLowerCase()
           );
-
-          const data = datal?.stream?.results;
-
           setStreamInfo(data);
           console.log(data);
           setStreamUrl(data?.streamingLink?.link?.file || null);
