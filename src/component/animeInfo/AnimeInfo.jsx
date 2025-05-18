@@ -85,60 +85,31 @@ function Tag({ bgColor, index, icon, text }) {
   );
 }
 
-export default function AnimeInfo({ random = false, idd, refer }) {
+export default function AnimeInfo({
+  random = false,
+  idd,
+  refer,
+  infoData,
+  homeData,
+}) {
   const [selectL, setSelectL] = useState("EN");
   const language = selectL;
   const id = random ? null : idd;
   const [isFull, setIsFull] = useState(false);
-  const [animeInfo, setAnimeInfo] = useState(null);
+  const animeInfo = infoData;
   const [seasons, setSeasons] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [homeInfo, setHomeInfo] = useState(null);
-  const [homeInfoLoading, setHomeInfoLoading] = useState(true);
+  const homeInfo = homeData;
   const lang = (lang) => {
     setSelectL(lang);
   };
 
-  useEffect(() => {
-    const fetchHomeInfo = async () => {
-      try {
-        const res = await fetch("/api/home");
-        const data = await res.json();
-        setHomeInfo(data);
-      } catch (err) {
-        console.error("Error fetching home info:", err);
-        setError(err);
-      } finally {
-        setHomeInfoLoading(false);
-      }
-    };
-    fetchHomeInfo();
-  }, []);
   const router = useRouter();
   useEffect(() => {
     if (id === "404-not-found-page") {
       console.log("404 got!");
       return null;
-    } else {
-      const fetchAnimeInfo = async () => {
-        setLoading(true);
-        try {
-          const url = random ? `/api/info?random=true` : `/api/info?id=${id}`;
-          const response = await fetch(url);
-          const data = await response.json();
-          setSeasons(data?.seasons);
-          setAnimeInfo(data.data);
-        } catch (err) {
-          console.error("Error fetching anime info:", err);
-          setError(err);
-        } finally {
-          setLoading(false);
-        }
-      };
-      fetchAnimeInfo();
-      typeof window !== "undefined" &&
-        window.scrollTo({ top: 0, behavior: "smooth" });
     }
   }, [id, random]);
   // useEffect(() => {
@@ -434,7 +405,7 @@ export default function AnimeInfo({ random = false, idd, refer }) {
             ></iframe>
           </div>
         </div> */}
-        <Script 
+        <Script
           src="//abackdamstubborn.com/0edc04a5374d9021ce8e6b9f5bb01d53/invoke.js"
           strategy="afterInteractive"
           data-cfasync="false"
@@ -684,7 +655,7 @@ export default function AnimeInfo({ random = false, idd, refer }) {
             </div> */}
             <Script
               src="//abackdamstubborn.com/dbafd6a4e452fd720e2121278664c057/invoke.js"
-              strategy="afterInteractive" 
+              strategy="afterInteractive"
               data-cfasync="false"
               async
             />

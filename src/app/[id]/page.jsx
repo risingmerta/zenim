@@ -1,6 +1,7 @@
 import Advertize from "@/component/Advertize/Advertize";
 import AnimeInfo from "@/component/animeInfo/AnimeInfo";
 import Category from "@/component/category/Category";
+import { connectDB } from "@/lib/mongoClient";
 import Script from "next/script";
 import React from "react";
 
@@ -65,6 +66,7 @@ export default async function page({ params, searchParams }) {
   const refer = searchParam?.refer;
   const id = param.id;
   const page = searchParam.page || 1;
+
   const categRoutes = [
     "top-airing",
     "most-popular",
@@ -81,6 +83,82 @@ export default async function page({ params, searchParams }) {
     "ona",
     "tv",
   ];
+
+  let infoData = null;
+  let episodeData = null;
+  let randomData = null;
+  let datapp = null;
+
+  if (categRoutes.find((item) => item === param.id)) {
+    const apis = [
+      "https://api.animoon.me/api",
+      "https://api2.animoon.me/api",
+      "https://api3.animoon.me/api",
+    ];
+    const api_url = apis[Math.floor(Math.random() * apis.length)];
+
+    const db = await connectDB();
+
+    // Fetch homepage data
+
+    try {
+      const doc = await db.collection("animoon-home").findOne({});
+      datapp = doc || (await fetch(`${api_url}`).then((res) => res.json()));
+    } catch (error) {
+      console.error("Error fetching homepage data:", error.message);
+    }
+
+    const animeInfoCol = db.collection("animeInfo");
+
+    // Handle ?random=true
+    const allDocs = await animeInfoCol.find({}).project({ _id: 1 }).toArray();
+    if (allDocs.length) {
+      const randomDoc = allDocs[Math.floor(Math.random() * allDocs.length)];
+      const fetched = await animeInfoCol.findOne({ _id: randomDoc._id });
+      randomData = fetched?.info?.results ?? null;
+    }
+
+    if (id) {
+      const doc = await animeInfoCol.findOne({ _id: id });
+
+      if (doc) {
+        infoData = doc.info?.results ?? null;
+        episodeData = doc.episode?.results ?? null;
+
+        // Fetch missing info
+        if (!infoData?.data?.title) {
+          try {
+            const { data } = await axios.get(`${api_url}/info?id=${id}`);
+            infoData = data.results;
+            await animeInfoCol.updateOne(
+              { _id: id },
+              { $set: { "info.results": infoData } }
+            );
+          } catch (err) {
+            console.error("Error fetching fallback info:", err.message);
+          }
+        }
+
+        // Fetch missing episodes
+        if (
+          !episodeData?.episodes?.[0]?.title ||
+          !episodeData.episodes?.length
+        ) {
+          try {
+            const { data } = await axios.get(`${api_url}/episodes/${id}`);
+            episodeData = data.results;
+            await animeInfoCol.updateOne(
+              { _id: id },
+              { $set: { "episode.results": episodeData } }
+            );
+          } catch (err) {
+            console.error("Error fetching fallback episodes:", err.message);
+          }
+        }
+      }
+    }
+  }
+
   return (
     <div>
       {categRoutes.find((item) => item === param.id) ? (
@@ -91,7 +169,12 @@ export default async function page({ params, searchParams }) {
           refer={refer}
         />
       ) : (
-        <AnimeInfo idd={id} refer={refer} />
+        <AnimeInfo
+          idd={id}
+          refer={refer}
+          infoData={infoData}
+          homeData={datapp}
+        />
       )}
       {refer && <Advertize refer={refer} />}
       {/* <Script
