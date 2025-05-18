@@ -131,7 +131,7 @@ export default async function Page({ params, searchParams }) {
     } catch (err) {
       console.error("Error fetching servers/streams:", err.message);
     }
-  }
+  } 
 
   return (
     <div>
