@@ -71,33 +71,32 @@ export default function Watch(props) {
   const isServerFetchInProgress = useRef(false);
   const isStreamFetchInProgress = useRef(false);
 
-let message;
+  let message;
 
-if (props.scheduleData?.releaseDate && props.scheduleData?.time) {
-  // Combine release date and time (UTC-safe)
-  const dateStr = `${props.scheduleData?.releaseDate}T${props.scheduleData?.time}:00Z`;
+  if (props.scheduleData?.releaseDate && props.scheduleData?.time) {
+    // Combine release date and time (UTC-safe)
+    const dateStr = `${props.scheduleData?.releaseDate}T${props.scheduleData?.time}:00Z`;
 
-  const nextEpisodeDate = new Date(dateStr);
+    const nextEpisodeDate = new Date(dateStr);
 
-  if (isNaN(nextEpisodeDate)) {
-    message = "🚨 There was an error with the episode schedule date.";
+    if (isNaN(nextEpisodeDate)) {
+      message = "🚨 There was an error with the episode schedule date.";
+    } else {
+      const formattedDate = nextEpisodeDate.toLocaleString("en-US", {
+        month: "numeric",
+        day: "numeric",
+        year: "numeric",
+        hour: "numeric",
+        minute: "2-digit",
+        second: "2-digit",
+        hour12: true,
+      });
+
+      message = `${formattedDate}`;
+    }
   } else {
-    const formattedDate = nextEpisodeDate.toLocaleString("en-US", {
-      month: "numeric",
-      day: "numeric",
-      year: "numeric",
-      hour: "numeric",
-      minute: "2-digit",
-      second: "2-digit",
-      hour12: true,
-    });
-
-    message = `${formattedDate}`;
+    message = "";
   }
-} else {
-  message = "";
-}
-
 
   useEffect(() => {
     setEpisodes(null);
@@ -744,7 +743,7 @@ if (props.scheduleData?.releaseDate && props.scheduleData?.time) {
               </div>
             </div>
           </div>
-          {/* <div
+          <div
             style={{
               width: "100%",
               display: "flex",
@@ -753,7 +752,7 @@ if (props.scheduleData?.releaseDate && props.scheduleData?.time) {
             }}
           >
             <iframe
-              src="/ad6"
+              src="/ad"
               style={{
                 width: "fit-content",
                 height: "100px",
@@ -762,38 +761,7 @@ if (props.scheduleData?.releaseDate && props.scheduleData?.time) {
               }}
               scrolling="no"
             ></iframe>
-            <div className="adClusterMain">
-              <iframe
-                src="/ad"
-                style={{
-                  width: "fit-content",
-                  height: "100px",
-                  border: "none",
-                  overflow: "hidden",
-                }}
-                scrolling="no"
-              ></iframe>
-            </div>
-            <div className="adCluster">
-              <iframe
-                src="/ad2"
-                style={{
-                  width: "fit-content",
-                  height: "100px",
-                  border: "none",
-                  overflow: "hidden",
-                }}
-                scrolling="no"
-              ></iframe>
-            </div>
-          </div> */}
-          <Script
-            src="//abackdamstubborn.com/0edc04a5374d9021ce8e6b9f5bb01d53/invoke.js"
-            strategy="afterInteractive"
-            data-cfasync="false"
-            async
-          />
-          <div id="container-0edc04a5374d9021ce8e6b9f5bb01d53" />
+          </div>
           <div className="w-full flex gap-x-4 items-center bg-[#191826] p-5 max-[575px]:px-3 max-[320px]:hidden">
             <img
               src="https://i.postimg.cc/d34WWyNQ/share-icon.gif"
@@ -807,7 +775,7 @@ if (props.scheduleData?.releaseDate && props.scheduleData?.time) {
               <p className="text-[16px] text-white">to your friends</p>
             </div>
           </div>
-          {/* <div
+          <div
             style={{
               width: "100%",
               display: "flex",
@@ -816,7 +784,7 @@ if (props.scheduleData?.releaseDate && props.scheduleData?.time) {
             }}
           >
             <iframe
-              src="/ad5"
+              src="/ad2"
               style={{
                 width: "fit-content",
                 height: "100px",
@@ -825,93 +793,12 @@ if (props.scheduleData?.releaseDate && props.scheduleData?.time) {
               }}
               scrolling="no"
             ></iframe>
-            <div className="adClusterMain">
-              <iframe
-                src="/ad4"
-                style={{
-                  width: "fit-content",
-                  height: "100px",
-                  border: "none",
-                  overflow: "hidden",
-                }}
-                scrolling="no"
-              ></iframe>
-            </div>
-            <div className="adCluster">
-              <iframe
-                src="/ad3"
-                style={{
-                  width: "fit-content",
-                  height: "100px",
-                  border: "none",
-                  overflow: "hidden",
-                }}
-                scrolling="no"
-              ></iframe>
-            </div>
-          </div> */}
-          <Script
-            src="//abackdamstubborn.com/8ff2f9b0f1a544b4c8fe21a8086da14e/invoke.js"
-            strategy="afterInteractive"
-            data-cfasync="false"
-            async
-          />
-          <div id="container-8ff2f9b0f1a544b4c8fe21a8086da14e" />
+          </div>
           <div className="contentWrapper">
             <div className="mt-[15px] flex flex-col gap-y-7">
               {animeInfo?.charactersVoiceActors.length > 0 && (
                 <>
                   <Voiceactor animeInfo={animeInfo} className="!mt-0" />
-                  {/* <div
-                    style={{
-                      width: "100%",
-                      display: "flex",
-                      justifyContent: "center",
-                      marginTop: "70px",
-                    }}
-                  >
-                    <iframe
-                      src="/ad6"
-                      style={{
-                        width: "fit-content",
-                        height: "100px",
-                        border: "none",
-                        overflow: "hidden",
-                      }}
-                      scrolling="no"
-                    ></iframe>
-                    <div className="adClusterMain">
-                      <iframe
-                        src="/ad"
-                        style={{
-                          width: "fit-content",
-                          height: "100px",
-                          border: "none",
-                          overflow: "hidden",
-                        }}
-                        scrolling="no"
-                      ></iframe>
-                    </div>
-                    <div className="adCluster">
-                      <iframe
-                        src="/ad2"
-                        style={{
-                          width: "fit-content",
-                          height: "100px",
-                          border: "none",
-                          overflow: "hidden",
-                        }}
-                        scrolling="no"
-                      ></iframe>
-                    </div>
-                  </div> */}
-                  <Script
-                    src="//abackdamstubborn.com/072578f5a4df72a3692182642476bbea/invoke.js"
-                    strategy="afterInteractive"
-                    data-cfasync="false"
-                    async
-                  />
-                  <div id="container-072578f5a4df72a3692182642476bbea" />
                 </>
               )}
 
@@ -925,13 +812,6 @@ if (props.scheduleData?.releaseDate && props.scheduleData?.time) {
                     selectL={selectL}
                     refer={props.refer}
                   />
-                  <Script
-                    src="//abackdamstubborn.com/cd746754796510a55d9ef4d9a4260a75/invoke.js"
-                    strategy="afterInteractive"
-                    data-cfasync="false"
-                    async
-                  />
-                  <div id="container-cd746754796510a55d9ef4d9a4260a75" />
                 </>
               ) : (
                 <CategoryCardLoader className={"mt-[15px]"} />
@@ -949,32 +829,6 @@ if (props.scheduleData?.releaseDate && props.scheduleData?.time) {
               ) : (
                 <SidecardLoader className={"mt-[25px]"} />
               )}
-              {/* <div
-                style={{
-                  width: "100%",
-                  display: "flex",
-                  justifyContent: "center",
-                  margin: "20px 0",
-                }}
-              >
-                <iframe
-                  src="/ad"
-                  style={{
-                    width: "fit-content",
-                    height: "100px",
-                    border: "none",
-                    overflow: "hidden",
-                  }}
-                  scrolling="no"
-                ></iframe>
-              </div> */}
-              <Script
-                src="//abackdamstubborn.com/dbafd6a4e452fd720e2121278664c057/invoke.js"
-                strategy="afterInteractive"
-                data-cfasync="false"
-                async
-              />
-              <div id="container-dbafd6a4e452fd720e2121278664c057" />
               {homeInfo && homeInfo.most_popular && (
                 <Sidecard
                   label="Most Popular"
@@ -985,32 +839,6 @@ if (props.scheduleData?.releaseDate && props.scheduleData?.time) {
                   refer={props.refer}
                 />
               )}
-              {/* <div
-                style={{
-                  width: "100%",
-                  display: "flex",
-                  justifyContent: "center",
-                  margin: "20px 0",
-                }}
-              >
-                <iframe
-                  src="/ad2"
-                  style={{
-                    width: "fit-content",
-                    height: "100px",
-                    border: "none",
-                    overflow: "hidden",
-                  }}
-                  scrolling="no"
-                ></iframe>
-              </div> */}
-              <Script
-                src="//abackdamstubborn.com/747f4fcb7dc611b1e8d9ed8822f2c89c/invoke.js"
-                strategy="afterInteractive"
-                data-cfasync="false"
-                async
-              />
-              <div id="container-747f4fcb7dc611b1e8d9ed8822f2c89c" />
             </div>
           </div>
         </div>
