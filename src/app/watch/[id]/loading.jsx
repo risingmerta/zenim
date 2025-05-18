@@ -3,6 +3,7 @@ import BouncingLoader from "@/component/ui/bouncingloader/Bouncingloader";
 import { Skeleton } from "@/component/ui/Skeleton/Skeleton";
 import React from "react";
 import "./loading.css";
+import CategoryCardLoader from "@/component/Loader/CategoryCardLoader";
 
 const loading = () => {
   return (
