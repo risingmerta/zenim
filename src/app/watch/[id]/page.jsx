@@ -146,7 +146,7 @@ export default async function Page({ params, searchParams }) {
         serverData={serverData}
         randomData={randomData}
       />
-      {refer && <Advertize refer={refer} />}
+      <Advertize refer={refer} />
     </div>
   );
 }
