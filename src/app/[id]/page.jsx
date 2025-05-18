@@ -88,6 +88,7 @@ export default async function page({ params, searchParams }) {
   let episodeData = null;
   let randomData = null;
   let datapp = null;
+  let home = null;
 
   if (categRoutes.find((item) => item !== param.id)) {
     const apis = [
@@ -108,54 +109,87 @@ export default async function page({ params, searchParams }) {
       console.error("Error fetching homepage data:", error.message);
     }
 
-    const res = await fetch(`${api_url}/info?id=${param.id}`)
-    const dat = await res.json()
+    const {
+      spotlights,
+      trending,
+      topTen: topten,
+      today: todaySchedule,
+      topAiring: top_airing,
+      mostPopular: most_popular,
+      mostFavorite: most_favorite,
+      latestCompleted: latest_completed,
+      latestEpisode: latest_episode,
+      topUpcoming: top_upcoming,
+      recentlyAdded: recently_added,
+      genres,
+    } = datapp.data;
 
-    infoData = dat.results
-    // const animeInfoCol = db.collection("animeInfo");
+    const dataToCache = {
+      spotlights,
+      trending,
+      topten,
+      todaySchedule,
+      top_airing,
+      most_popular,
+      most_favorite,
+      latest_completed,
+      latest_episode,
+      top_upcoming,
+      recently_added,
+      genres,
+    };
 
-    // // Handle ?random=true
-    // const allDocs = await animeInfoCol.find({}).project({ _id: 1 }).toArray();
-    // if (allDocs.length) {
-    //   const randomDoc = allDocs[Math.floor(Math.random() * allDocs.length)];
-    //   const fetched = await animeInfoCol.findOne({ _id: randomDoc._id });
-    //   randomData = fetched?.info?.results ?? null;
-    // }
+    home = dataToCache
 
-    // const doc = await animeInfoCol.findOne({ _id: param.id });
+    const animeInfoCol = db.collection("animeInfo");
 
-    // if (doc) {
-    //   infoData = doc.info?.results ?? null;
-    //   episodeData = doc.episode?.results ?? null;
+    // Handle ?random=true
+    const allDocs = await animeInfoCol.find({}).project({ _id: 1 }).toArray();
+    if (allDocs.length) {
+      const randomDoc = allDocs[Math.floor(Math.random() * allDocs.length)];
+      const fetched = await animeInfoCol.findOne({ _id: randomDoc._id });
+      randomData = fetched?.info?.results ?? null;
+    }
 
-    //   // Fetch missing info
-    //   if (!infoData?.data?.title) {
-    //     try {
-    //       const { data } = await axios.get(`${api_url}/info?id=${param.id}`);
-    //       infoData = data.results;
-    //       await animeInfoCol.updateOne(
-    //         { _id: param.id },
-    //         { $set: { "info.results": infoData } }
-    //       );
-    //     } catch (err) {
-    //       console.error("Error fetching fallback info:", err.message);
-    //     }
-    //   }
+    if (id) {
+      const doc = await animeInfoCol.findOne({ _id: id });
 
-    //   // Fetch missing episodes
-    //   if (!episodeData?.episodes?.[0]?.title || !episodeData.episodes?.length) {
-    //     try {
-    //       const { data } = await axios.get(`${api_url}/episodes/${param.id}`);
-    //       episodeData = data.results;
-    //       await animeInfoCol.updateOne(
-    //         { _id: param.id },
-    //         { $set: { "episode.results": episodeData } }
-    //       );
-    //     } catch (err) {
-    //       console.error("Error fetching fallback episodes:", err.message);
-    //     }
-    //   }
-    // }
+      if (doc) {
+        infoData = doc.info?.results ?? null;
+        episodeData = doc.episode?.results ?? null;
+
+        // Fetch missing info
+        if (!infoData?.data?.title) {
+          try {
+            const { data } = await axios.get(`${api_url}/info?id=${id}`);
+            infoData = data.results;
+            await animeInfoCol.updateOne(
+              { _id: id },
+              { $set: { "info.results": infoData } }
+            );
+          } catch (err) {
+            console.error("Error fetching fallback info:", err.message);
+          }
+        }
+
+        // Fetch missing episodes
+        if (
+          !episodeData?.episodes?.[0]?.title ||
+          !episodeData.episodes?.length
+        ) {
+          try {
+            const { data } = await axios.get(`${api_url}/episodes/${id}`);
+            episodeData = data.results;
+            await animeInfoCol.updateOne(
+              { _id: id },
+              { $set: { "episode.results": episodeData } }
+            );
+          } catch (err) {
+            console.error("Error fetching fallback episodes:", err.message);
+          }
+        }
+      }
+    }
   }
 
   return (
@@ -172,7 +206,7 @@ export default async function page({ params, searchParams }) {
           idd={id}
           refer={refer}
           infoData={infoData}
-          homeData={datapp}
+          homeData={home}
         />
       )}
       {refer && <Advertize refer={refer} />}
