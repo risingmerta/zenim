@@ -232,14 +232,14 @@ export default function Watch(props) {
 
   // Fetch stream info only when episodeId, activeServerId, and servers are ready
   useEffect(() => {
-    if (
-      !episodeId ||
-      !activeServerId ||
-      !servers ||
-      isServerFetchInProgress.current ||
-      isStreamFetchInProgress.current
-    )
-      return;
+    // if (
+    //   !episodeId ||
+    //   !activeServerId ||
+    //   !servers ||
+    //   isServerFetchInProgress.current ||
+    //   isStreamFetchInProgress.current
+    // )
+    //   return;
 
     const fetchStreamInfo = async () => {
       isStreamFetchInProgress.current = true;
