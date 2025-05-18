@@ -89,7 +89,7 @@ export default async function page({ params, searchParams }) {
   let randomData = null;
   let datapp = null;
 
-  if (categRoutes.find((item) => item === param.id)) {
+  if (categRoutes.find((item) => item !== param.id)) {
     const apis = [
       "https://api.animoon.me/api",
       "https://api2.animoon.me/api",
@@ -111,7 +111,7 @@ export default async function page({ params, searchParams }) {
     const res = await fetch(`${api_url}/info?id=${param.id}`)
     const dat = await res.json()
 
-    infoData = dat.results.data
+    infoData = dat.results
     // const animeInfoCol = db.collection("animeInfo");
 
     // // Handle ?random=true

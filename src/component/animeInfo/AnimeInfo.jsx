@@ -96,8 +96,8 @@ export default function AnimeInfo({
   const language = selectL;
   const id = random ? null : idd;
   const [isFull, setIsFull] = useState(false);
-  const animeInfo = infoData;
-  const [seasons, setSeasons] = useState(null);
+  const animeInfo = infoData.data;
+  const seasons = infoData.season;
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const homeInfo = homeData;
