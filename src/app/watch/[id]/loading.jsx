@@ -1,5 +1,4 @@
 import SidecardLoader from "@/component/Loader/SidecardLoader";
-import Sidecard from "@/component/sidecard/Sidecard";
 import BouncingLoader from "@/component/ui/bouncingloader/Bouncingloader";
 import { Skeleton } from "@/component/ui/Skeleton/Skeleton";
 import React from "react";
