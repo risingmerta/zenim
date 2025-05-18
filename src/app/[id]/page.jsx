@@ -122,7 +122,7 @@ export default async function page({ params, searchParams }) {
       topUpcoming: top_upcoming,
       recentlyAdded: recently_added,
       genres,
-    } = datapp.data;
+    } = datapp;
 
     const dataToCache = {
       spotlights,
