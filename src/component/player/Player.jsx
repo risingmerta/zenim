@@ -99,8 +99,6 @@ export default function Player({
     }
   }, [streamUrl, intro, outro]);
 
-  continueWatching;
-
   const playM3u8 = (video, url, art) => {
     if (Hls.isSupported()) {
       if (art.hls) art.hls.destroy();
