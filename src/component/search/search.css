@@ -2,7 +2,7 @@
   width: 100%;
   padding-left: 1rem;
   padding-right: 1rem;
-  margin-top: 10px;
+  margin-top: 70px;
   display: grid;
   grid-template-columns: minmax(0, 75%) minmax(0, 25%);
   column-gap: 1.5rem; /* 24px */
