@@ -120,7 +120,6 @@ export default async function Page({ params, searchParams }) {
   let episodeId = ep ? `${id}?ep=${ep}` : episodeData?.episodes?.[0]?.id;
 
   let serverData = [];
-  let allStreamData = [];
 
   if (episodeId) {
     try {
@@ -129,28 +128,6 @@ export default async function Page({ params, searchParams }) {
       serverData = serverRes.data.results;
 
       // Step 2: fetch stream data for each server
-      const streamPromises = serverData.map(async (server) => {
-        try {
-          const streamRes = await axios.get(
-            `${api_url}/stream?id=${episodeId}&server=${server.serverName.toLowerCase()}&type=${
-              server.type
-            }`
-          );
-          return {
-            serverName: server.serverName,
-            type: server.type,
-            stream: streamRes.data,
-          };
-        } catch (err) {
-          console.warn(
-            `Stream fetch failed for ${server.serverName}:`,
-            err.message
-          );
-          return null;
-        }
-      });
-
-      allStreamData = (await Promise.all(streamPromises)).filter(Boolean);
     } catch (err) {
       console.error("Error fetching servers/streams:", err.message);
     }
@@ -167,7 +144,6 @@ export default async function Page({ params, searchParams }) {
         episodeData={episodeData}
         scheduleData={dati}
         serverData={serverData}
-        allStreamData={allStreamData}
         randomData={randomData}
       />
       {refer && <Advertize refer={refer} />}
