@@ -43,24 +43,8 @@ export default function Watch(props) {
   const [tags, setTags] = useState([]);
   const language = selectL;
   const [error, setError] = useState(null);
-  const [homeInfo, setHomeInfo] = useState(null);
-  const [homeInfoLoading, setHomeInfoLoading] = useState(true);
+  const homeInfo = props.homeData;
 
-  useEffect(() => {
-    const fetchHomeInfo = async () => {
-      try {
-        const res = await fetch("/api/home");
-        const data = await res.json();
-        setHomeInfo(data);
-      } catch (err) {
-        console.error("Error fetching home info:", err);
-        setError(err);
-      } finally {
-        setHomeInfoLoading(false);
-      }
-    };
-    fetchHomeInfo();
-  }, []);
   const isFirstSet = useRef(true);
   const [showNextEpisodeSchedule, setShowNextEpisodeSchedule] = useState(true);
   // const [error, setError] = useState(null);
@@ -610,39 +594,38 @@ export default function Watch(props) {
                       </div>
                     </div>
                   )}
-                  {nextEpisodeSchedule?.nextEpisodeSchedule &&
-                    showNextEpisodeSchedule && (
-                      <div className="p-4">
-                        <div className="w-full px-4 rounded-md bg-[#0088CC] flex items-center justify-between gap-x-2">
-                          <div className="w-full h-fit">
-                            <span className="text-[18px]">🚀</span>
-                            {" Estimated the next episode will come at "}
-                            <span className="text-[13.4px] font-medium">
-                              {new Date(
-                                new Date(
-                                  nextEpisodeSchedule.nextEpisodeSchedule
-                                ).getTime() -
-                                  new Date().getTimezoneOffset() * 60000
-                              ).toLocaleDateString("en-GB", {
-                                day: "2-digit",
-                                month: "2-digit",
-                                year: "numeric",
-                                hour: "2-digit",
-                                minute: "2-digit",
-                                second: "2-digit",
-                                hour12: true,
-                              })}
-                            </span>
-                          </div>
-                          <span
-                            className="text-[25px] h-fit font-extrabold text-[#80C4E6] mb-1 cursor-pointer"
-                            onClick={() => setShowNextEpisodeSchedule(false)}
-                          >
-                            ×
+                  {nextEpisodeSchedule && showNextEpisodeSchedule && (
+                    <div className="p-4">
+                      <div className="w-full px-4 rounded-md bg-[#0088CC] flex items-center justify-between gap-x-2">
+                        <div className="w-full h-fit">
+                          <span className="text-[18px]">🚀</span>
+                          {" Estimated the next episode will come at "}
+                          <span className="text-[13.4px] font-medium">
+                            {new Date(
+                              new Date(
+                                `${nextEpisodeSchedule.releaseDate}T${nextEpisodeSchedule.time}:00Z`
+                              ).getTime() -
+                                new Date().getTimezoneOffset() * 60000
+                            ).toLocaleString("en-GB", {
+                              day: "2-digit",
+                              month: "2-digit",
+                              year: "numeric",
+                              hour: "2-digit",
+                              minute: "2-digit",
+                              second: "2-digit",
+                              hour12: true,
+                            })}
                           </span>
                         </div>
+                        <span
+                          className="text-[25px] h-fit font-extrabold text-[#80C4E6] mb-1 cursor-pointer"
+                          onClick={() => setShowNextEpisodeSchedule(false)}
+                        >
+                          ×
+                        </span>
                       </div>
-                    )}
+                    </div>
+                  )}
                 </div>
               </div>
               <div className="flex flex-col gap-y-4 items-start ml-8 max-[1400px]:ml-0 max-[1400px]:mt-10 max-[1400px]:flex-row max-[1400px]:gap-x-6 max-[1024px]:px-[30px] max-[1024px]:mt-8 max-[500px]:mt-4 max-[500px]:px-4">
