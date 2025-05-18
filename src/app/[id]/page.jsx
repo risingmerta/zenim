@@ -111,7 +111,7 @@ export default async function page({ params, searchParams }) {
     const res = await fetch(`${api_url}/info?id=${param.id}`)
     const dat = await res.json()
 
-    infoData = dat.results
+    infoData = dat.results.data
     // const animeInfoCol = db.collection("animeInfo");
 
     // // Handle ?random=true
