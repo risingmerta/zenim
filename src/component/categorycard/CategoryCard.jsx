@@ -106,6 +106,10 @@ const CategoryCard = React.memo(
           {showViewMore && (
             <Link
               href={`/${path}${refer ? `?refer=${refer}` : ""}`}
+              onClick={() =>
+                typeof window !== "undefined" &&
+                window.scrollTo({ top: 0, behavior: "smooth" })
+              }
               className="flex w-fit items-baseline h-fit rounded-3xl gap-x-1 group"
             >
               <p className="text-white text-[12px] font-semibold h-fit leading-0 group-hover:text-[#00f2fe] transition-all ease-out">
@@ -131,16 +135,16 @@ const CategoryCard = React.memo(
                   style={{ height: "fit-content" }}
                   ref={(el) => (cardRefs.current[index] = el)}
                 >
-                  <div
+                  <Link
+                    href={
+                      path === "top-upcoming"
+                        ? `/${item.id}${refer ? `?refer=${refer}` : ""}`
+                        : `/watch/${item.id}${refer ? `?refer=${refer}` : ""}`
+                    }
                     className="w-full relative group hover:cursor-pointer"
                     onClick={() =>
-                      router.push(
-                        `${
-                          path === "top-upcoming"
-                            ? `/${item.id}${refer ? `?refer=${refer}` : ""}`
-                            : `/watch/${item.id}${refer ? `?refer=${refer}` : ""}`
-                        }`
-                      )
+                      typeof window !== "undefined" &&
+                      window.scrollTo({ top: 0, behavior: "smooth" })
                     }
                     onMouseEnter={() => handleMouseEnter(item, index)}
                     onMouseLeave={handleMouseLeave}
@@ -207,13 +211,17 @@ const CategoryCard = React.memo(
                               : "opacity-0 translate-y-2"
                           }`}
                         >
-                          <Qtip id={item.id} refer={refer}/>
+                          <Qtip id={item.id} refer={refer} />
                         </div>
                       )}
-                  </div>
+                  </Link>
                   <Link
                     href={`/${item.id}${refer ? `?refer=${refer}` : ""}`}
                     className="text-white font-semibold mt-1 item-title hover:text-[#00f2fe] hover:cursor-pointer line-clamp-1"
+                    onClick={() =>
+                      typeof window !== "undefined" &&
+                      window.scrollTo({ top: 0, behavior: "smooth" })
+                    }
                   >
                     {language === "EN" ? item.title : item.japanese_title}
                   </Link>
@@ -248,16 +256,16 @@ const CategoryCard = React.memo(
                 style={{ height: "fit-content" }}
                 ref={(el) => (cardRefs.current[index] = el)}
               >
-                <div
+                <Link
+                  href={
+                    path === "top-upcoming"
+                      ? `/${item.id}${refer ? `?refer=${refer}` : ""}`
+                      : `/watch/${item.id}${refer ? `?refer=${refer}` : ""}`
+                  }
                   className="w-full relative group hover:cursor-pointer"
                   onClick={() =>
-                    router.push(
-                      `${
-                        path === "top-upcoming"
-                          ? `/${item.id}${refer ? `?refer=${refer}` : ""}`
-                          : `/watch/${item.id}${refer ? `?refer=${refer}` : ""}`
-                      }`
-                    )
+                    typeof window !== "undefined" &&
+                    window.scrollTo({ top: 0, behavior: "smooth" })
                   }
                   onMouseEnter={() => handleMouseEnter(item, index)}
                   onMouseLeave={handleMouseLeave}
@@ -316,12 +324,16 @@ const CategoryCard = React.memo(
                             : "opacity-0 translate-y-2"
                         }`}
                       >
-                        <Qtip id={item.id} refer={refer}/>
+                        <Qtip id={item.id} refer={refer} />
                       </div>
                     )}
-                </div>
+                </Link>
                 <Link
                   href={`/${item.id}${refer ? `?refer=${refer}` : ""}`}
+                  onClick={() =>
+                    typeof window !== "undefined" &&
+                    window.scrollTo({ top: 0, behavior: "smooth" })
+                  }
                   className="text-white font-semibold mt-1 item-title hover:text-[#00f2fe] hover:cursor-pointer line-clamp-1"
                 >
                   {language === "EN" ? item.title : item.japanese_title}
