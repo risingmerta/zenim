@@ -1,3 +1,4 @@
+"use client"
 import SidecardLoader from "@/component/Loader/SidecardLoader";
 import BouncingLoader from "@/component/ui/bouncingloader/Bouncingloader";
 import { Skeleton } from "@/component/ui/Skeleton/Skeleton";
