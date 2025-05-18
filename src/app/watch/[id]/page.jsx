@@ -142,7 +142,7 @@ export default async function Page({ params, searchParams }) {
         homeData={datapp}
         infoData={infoData}
         episodeData={episodeData}
-        scheduleData={dati}
+        scheduleData={dati?.schedule}
         serverData={serverData}
         randomData={randomData}
       />
