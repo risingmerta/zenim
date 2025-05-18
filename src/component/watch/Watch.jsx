@@ -71,6 +71,36 @@ export default function Watch(props) {
   const isServerFetchInProgress = useRef(false);
   const isStreamFetchInProgress = useRef(false);
 
+  let message;
+
+  if (props.scheduleData?.releaseDate && props.scheduleData?.time) {
+    // Combine release date and time
+    const dateStr = `${props.scheduleData?.releaseDate}T${props.scheduleData?.time}:00`; // Convert to ISO format (2025-04-28T00:45:00)
+
+    // Create a Date object from the combined string
+    const nextEpisodeDate = new Date(dateStr);
+
+    // Check if the date is valid
+    if (isNaN(nextEpisodeDate)) {
+      message = "🚨 There was an error with the episode schedule date.";
+    } else {
+      const formattedDate = nextEpisodeDate?.toLocaleString("en-US", {
+        month: "numeric",
+        day: "numeric",
+        year: "numeric",
+        hour: "numeric",
+        minute: "2-digit",
+        second: "2-digit",
+        hour12: true,
+      });
+
+      // Prepare the new message
+      message = `🚀 Estimated the next episode will come at ${formattedDate}`;
+    }
+  } else {
+    message = "";
+  }
+
   useEffect(() => {
     setEpisodes(null);
     setEpisodeId(null);
@@ -582,27 +612,14 @@ export default function Watch(props) {
                       </div>
                     </div>
                   )}
-                  {nextEpisodeSchedule && showNextEpisodeSchedule && (
+                  {showNextEpisodeSchedule && (
                     <div className="p-4">
                       <div className="w-full px-4 rounded-md bg-[#0088CC] flex items-center justify-between gap-x-2">
                         <div className="w-full h-fit">
                           <span className="text-[18px]">🚀</span>
                           {" Estimated the next episode will come at "}
                           <span className="text-[13.4px] font-medium">
-                            {new Date(
-                              new Date(
-                                `${nextEpisodeSchedule.releaseDate}T${nextEpisodeSchedule.time}:00Z`
-                              ).getTime() -
-                                new Date().getTimezoneOffset() * 60000
-                            ).toLocaleString("en-GB", {
-                              day: "2-digit",
-                              month: "2-digit",
-                              year: "numeric",
-                              hour: "2-digit",
-                              minute: "2-digit",
-                              second: "2-digit",
-                              hour12: true,
-                            })}
+                            {message}
                           </span>
                         </div>
                         <span
