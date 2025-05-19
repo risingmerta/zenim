@@ -93,6 +93,27 @@ export default async function Page({ params, searchParams }) {
           console.error("Error fetching fallback episodes:", err.message);
         }
       }
+    } else {
+      try {
+        const { data } = await axios.get(`${api_url}/info?id=${id}`);
+        infoData = data.results;
+        await animeInfoCol.updateOne(
+          { _id: id },
+          { $set: { "info.results": infoData } }
+        );
+      } catch (err) {
+        console.error("Error fetching fallback info:", err.message);
+      }
+      try {
+        const { data } = await axios.get(`${api_url}/episodes/${id}`);
+        episodeData = data.results;
+        await animeInfoCol.updateOne(
+          { _id: id },
+          { $set: { "episode.results": episodeData } }
+        );
+      } catch (err) {
+        console.error("Error fetching fallback episodes:", err.message);
+      }
     }
   }
 
@@ -131,7 +152,7 @@ export default async function Page({ params, searchParams }) {
     } catch (err) {
       console.error("Error fetching servers/streams:", err.message);
     }
-  } 
+  }
 
   return (
     <div>

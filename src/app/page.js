@@ -38,7 +38,7 @@ export default async function Page() {
         async
       />
       <div id="container-0edc04a5374d9021ce8e6b9f5bb01d53" /> */}
-      <AdComponent />
+      {/* <AdComponent /> */}
     </div>
   );
 }

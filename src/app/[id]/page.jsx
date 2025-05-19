@@ -139,7 +139,7 @@ export default async function page({ params, searchParams }) {
       genres,
     };
 
-    home = dataToCache
+    home = dataToCache;
 
     const animeInfoCol = db.collection("animeInfo");
 
@@ -188,6 +188,27 @@ export default async function page({ params, searchParams }) {
             console.error("Error fetching fallback episodes:", err.message);
           }
         }
+      } else {
+        try {
+          const { data } = await axios.get(`${api_url}/info?id=${id}`);
+          infoData = data.results;
+          await animeInfoCol.updateOne(
+            { _id: id },
+            { $set: { "info.results": infoData } }
+          );
+        } catch (err) {
+          console.error("Error fetching fallback info:", err.message);
+        }
+        try {
+          const { data } = await axios.get(`${api_url}/episodes/${id}`);
+          episodeData = data.results;
+          await animeInfoCol.updateOne(
+            { _id: id },
+            { $set: { "episode.results": episodeData } }
+          );
+        } catch (err) {
+          console.error("Error fetching fallback episodes:", err.message);
+        }
       }
     }
   }
@@ -202,12 +223,7 @@ export default async function page({ params, searchParams }) {
           refer={refer}
         />
       ) : (
-        <AnimeInfo
-          idd={id}
-          refer={refer}
-          infoData={infoData}
-          homeData={home}
-        />
+        <AnimeInfo idd={id} refer={refer} infoData={infoData} homeData={home} />
       )}
       <Advertize refer={refer} />
       {/* <Script
