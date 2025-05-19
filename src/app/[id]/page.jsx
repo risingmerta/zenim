@@ -141,78 +141,17 @@ export default async function page({ params, searchParams }) {
 
     home = dataToCache;
 
-    const animeInfoCol = db.collection("animeInfo");
-
     // Handle ?random=true
-    const allDocs = await animeInfoCol.find({}).project({ _id: 1 }).toArray();
-    if (allDocs.length) {
-      const randomDoc = allDocs[Math.floor(Math.random() * allDocs.length)];
-      const fetched = await animeInfoCol.findOne({ _id: randomDoc._id });
-      randomData = fetched?.info?.results ?? null;
-    }
+    try {
+      const [infoRes, episodeRes] = await Promise.all([
+        axios.get(`${api_url}/info?id=${id}`),
+        axios.get(`${api_url}/episodes/${id}`),
+      ]);
 
-    if (id) {
-      const doc = await animeInfoCol.findOne({ _id: id });
-
-      if (doc) {
-        infoData = doc.info?.results ?? null;
-        episodeData = doc.episode?.results ?? null;
-
-        // Fetch missing info
-        if (!infoData?.data?.title) {
-          try {
-            const { data } = await axios.get(`${api_url}/info?id=${id}`);
-            infoData = data.results;
-            await animeInfoCol.updateOne(
-              { _id: id },
-              { $set: { "info.results": infoData } }
-            );
-          } catch (err) {
-            console.error("Error fetching fallback info:", err.message);
-          }
-        }
-
-        // Fetch missing episodes
-        if (
-          !episodeData?.episodes?.length ||
-          !episodeData.episodes?.[0]?.title
-        ) {
-          try {
-            const { data } = await axios.get(`${api_url}/episodes/${id}`);
-            episodeData = data.results;
-            await animeInfoCol.updateOne(
-              { _id: id },
-              { $set: { "episode.results": episodeData } }
-            );
-          } catch (err) {
-            console.error("Error fetching fallback episodes:", err.message);
-          }
-        }
-      } else {
-        // Document doesn't exist — fetch and insert everything
-        try {
-          const [infoRes, episodeRes] = await Promise.all([
-            axios.get(`${api_url}/info?id=${id}`),
-            axios.get(`${api_url}/episodes/${id}`),
-          ]);
-
-          infoData = infoRes.data.results;
-          episodeData = episodeRes.data.results;
-
-          await animeInfoCol.updateOne(
-            { _id: id },
-            {
-              $set: {
-                "info.results": infoData,
-                "episode.results": episodeData,
-              },
-            },
-            { upsert: true }
-          );
-        } catch (err) {
-          console.error("Error fetching data for new document:", err.message);
-        }
-      }
+      infoData = infoRes.data.results;
+      episodeData = episodeRes.data.results;
+    } catch (err) {
+      console.error("Error fetching data for new document:", err.message);
     }
   }
 
