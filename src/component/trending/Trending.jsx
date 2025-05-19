@@ -9,12 +9,22 @@ import "swiper/css/pagination";
 
 const Trending = ({ trending, selectL, refer }) => {
   const language = selectL;
-  let lastWatchedEpId = "";
-  if (typeof window !== "undefined") {
-    lastWatchedEpId = localStorage.getItem(item.id + "-last")
-      ? localStorage.getItem(item.id + "-last")
-      : "";
-  }
+  const getLink = (itemId, refer) => {
+    let lastWatchedEpId = "";
+    if (typeof window !== "undefined") {
+      lastWatchedEpId = localStorage.getItem(itemId + "-last")
+        ? localStorage.getItem(itemId + "-last")
+        : "";
+    }
+    const basePath = lastWatchedEpId
+      ? `/watch/${itemId + "?ep=" + lastWatchedEpId}`
+      : `/watch/${itemId}`;
+    return refer
+      ? lastWatchedEpId
+        ? `${basePath}&refer=${refer}`
+        : `${basePath}?refer=${refer}`
+      : basePath;
+  };
   return (
     <div className="mt-6 max-[1200px]:px-4 max-md:px-0">
       <h1 className="text-[#00f2fe] text-2xl font-bold max-md:pl-4">
@@ -45,13 +55,7 @@ const Trending = ({ trending, selectL, refer }) => {
               className="text-center flex text-[18px] justify-center items-center"
             >
               <Link
-                href={
-                  lastWatchedEpId
-                    ? `/watch/${item.id + "?ep=" + lastWatchedEpId}${
-                        refer ? `&refer=${refer}` : ""
-                      }`
-                    : `/watch/${item.id}${refer ? `?refer=${refer}` : ""}`
-                }
+                href={getLink(item.id, refer)}
                 className="w-full h-auto pb-[115%] relative inline-block overflow-hidden max-[575px]:pb-[150%]"
               >
                 {/* Side number and title */}
