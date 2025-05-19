@@ -28,6 +28,7 @@ import Footer from "../Footer/Footer";
 import { SessionProvider } from "next-auth/react";
 import Script from "next/script";
 import getStreamInfo from "@/utils/getStreamInfo.utils";
+import getServers from "@/utils/getServers.utils";
 
 const website_name = "Animoon";
 
@@ -175,7 +176,10 @@ export default function Watch(props) {
       isServerFetchInProgress.current = true;
       setServerLoading(true);
       try {
-        const data = props.serverData;
+        let data = props.serverData;
+        if (serverLoading && data) {
+          data = await getServers(animeId, episodeId);
+        }
         const filteredServers = data?.filter(
           (server) =>
             server.serverName === "HD-3" ||
