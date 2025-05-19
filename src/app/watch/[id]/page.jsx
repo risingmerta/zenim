@@ -140,23 +140,6 @@ export default async function Page({ params, searchParams }) {
     console.error("Failed to fetch schedule:", error.message);
   }
 
-  // Determine episodeId for server data
-  let episodeId = ep ? `${id}?ep=${ep}` : episodeData?.episodes?.[0]?.id;
-
-  let serverData = [];
-
-  if (episodeId) {
-    try {
-      // Step 1: fetch all servers
-      const serverRes = await axios.get(`${api_url}/servers/${episodeId}`);
-      serverData = serverRes.data.results;
-
-      // Step 2: fetch stream data for each server
-    } catch (err) {
-      console.error("Error fetching servers/streams:", err.message);
-    }
-  }
-
   return (
     <div>
       <Watch
@@ -167,7 +150,6 @@ export default async function Page({ params, searchParams }) {
         infoData={infoData}
         episodeData={episodeData}
         scheduleData={dati?.schedule}
-        serverData={serverData}
         randomData={randomData}
       />
       <Advertize refer={refer} />
