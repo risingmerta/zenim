@@ -150,71 +150,67 @@ export default async function page({ params, searchParams }) {
     }
 
     // --- If ID is provided
-    if (id) {
-      const doc = await animeInfoCol.findOne({ _id: id });
+    const doc = await animeInfoCol.findOne({ _id: id });
 
-      if (doc) {
-        infoData = doc.info?.results ?? null;
-        episodeData = doc.episode?.results ?? null;
+    if (doc) {
+      infoData = doc.info?.results ?? null;
+      episodeData = doc.episode?.results ?? null;
 
-        // Fetch missing info
-        if (!infoData?.data?.title) {
-          try {
-            const { data } = await axios.get(`${api_url}/info?id=${id}`);
-            infoData = data.results ?? null;
-            await animeInfoCol.updateOne(
-              { _id: id },
-              { $set: { "info.results": infoData } }
-            );
-          } catch (err) {
-            console.error("Error fetching fallback info:", err.message);
-          }
-        }
-
-        // Fetch missing episodes
-        if (
-          !episodeData?.episodes?.length ||
-          !episodeData.episodes?.[0]?.title
-        ) {
-          try {
-            const { data } = await axios.get(`${api_url}/episodes/${id}`);
-            episodeData = data.results ?? null;
-            await animeInfoCol.updateOne(
-              { _id: id },
-              { $set: { "episode.results": episodeData } }
-            );
-          } catch (err) {
-            console.error("Error fetching fallback episodes:", err.message);
-          }
-        }
-      } else {
-        // Doc doesn't exist — create new with fetched data
+      // Fetch missing info
+      if (!infoData?.data?.title) {
         try {
-          const [infoRes, episodeRes] = await Promise.all([
-            axios.get(`${api_url}/info?id=${id}`),
-            axios.get(`${api_url}/episodes/${id}`),
-          ]);
-
-          infoData = infoRes.data?.results ?? null;
-          episodeData = episodeRes.data?.results ?? null;
-
-          if (infoData || episodeData) {
-            await animeInfoCol.updateOne(
-              { _id: id },
-              {
-                $set: {
-                  "info.results": infoData,
-                  "episode.results": episodeData,
-                },
-              },
-              { upsert: true }
-            );
-          }
+          const { data } = await axios.get(`${api_url}/info?id=${id}`);
+          infoData = data.results ?? null;
+          await animeInfoCol.updateOne(
+            { _id: id },
+            { $set: { "info.results": infoData } }
+          );
         } catch (err) {
-          console.error("Error fetching data for new document:", err.message);
-          infoData = null;
-          episodeData = null;
+          console.error("Error fetching fallback info:", err.message);
         }
+      }
+
+      // Fetch missing episodes
+      if (!episodeData?.episodes?.length || !episodeData.episodes?.[0]?.title) {
+        try {
+          const { data } = await axios.get(`${api_url}/episodes/${id}`);
+          episodeData = data.results ?? null;
+          await animeInfoCol.updateOne(
+            { _id: id },
+            { $set: { "episode.results": episodeData } }
+          );
+        } catch (err) {
+          console.error("Error fetching fallback episodes:", err.message);
+        }
+      }
+    }
+    if (!doc) {
+      // Doc doesn't exist — create new with fetched data
+      try {
+        const [infoRes, episodeRes] = await Promise.all([
+          axios.get(`${api_url}/info?id=${id}`),
+          axios.get(`${api_url}/episodes/${id}`),
+        ]);
+
+        infoData = infoRes.data?.results ?? null;
+        episodeData = episodeRes.data?.results ?? null;
+
+        if (infoData || episodeData) {
+          await animeInfoCol.updateOne(
+            { _id: id },
+            {
+              $set: {
+                "info.results": infoData,
+                "episode.results": episodeData,
+              },
+            },
+            { upsert: true }
+          );
+        }
+      } catch (err) {
+        console.error("Error fetching data for new document:", err.message);
+        infoData = null;
+        episodeData = null;
       }
     }
   }
