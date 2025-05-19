@@ -2,6 +2,7 @@ import Advertize from "@/component/Advertize/Advertize";
 import AnimeInfo from "@/component/animeInfo/AnimeInfo";
 import Category from "@/component/category/Category";
 import { connectDB } from "@/lib/mongoClient";
+import axios from "axios";
 import Script from "next/script";
 import React from "react";
 
