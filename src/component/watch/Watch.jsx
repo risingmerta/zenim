@@ -176,10 +176,7 @@ export default function Watch(props) {
       isServerFetchInProgress.current = true;
       setServerLoading(true);
       try {
-        let data = props.serverData;
-        if (serverLoading && data) {
-          data = await getServers(animeId, episodeId);
-        }
+        const data = await getServers(animeId, episodeId);
         const filteredServers = data?.filter(
           (server) =>
             server.serverName === "HD-3" ||
@@ -520,7 +517,9 @@ export default function Watch(props) {
                         autoNext={autoNext}
                         episodeId={episodeId}
                         episodes={episodes}
-                        playNext={(id) => setEpisodeId(id) & setServerLoading(true)}
+                        playNext={(id) =>
+                          setEpisodeId(id) & setServerLoading(true)
+                        }
                         animeInfo={animeInfo}
                         episodeNum={activeEpisodeNum}
                         streamInfo={streamInfo}
