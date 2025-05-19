@@ -516,7 +516,7 @@ export default function Watch(props) {
                         autoNext={autoNext}
                         episodeId={episodeId}
                         episodes={episodes}
-                        playNext={(id) => setEpisodeId(id)}
+                        playNext={(id) => setEpisodeId(id) & setServerLoading(true)}
                         animeInfo={animeInfo}
                         episodeNum={activeEpisodeNum}
                         streamInfo={streamInfo}
