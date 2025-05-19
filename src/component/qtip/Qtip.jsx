@@ -33,14 +33,27 @@ function Qtip({ id, refer }) {
     fetchQtipInfo();
   }, [id]);
 
-  let lastWatchedEpId = "";
-  if (typeof window !== "undefined") {
-    lastWatchedEpId = localStorage.getItem(
-      qtip?.watchLink?.split("/watch/")[1] + "-last"
-    )
-      ? localStorage.getItem(qtip?.watchLink?.split("/watch/")[1] + "-last")
-      : "";
-  }
+  const getWatchHref = (watchLink, refer) => {
+    let lastWatchedEpId = "";
+
+    if (typeof window !== "undefined") {
+      const id = watchLink?.split("/watch/")[1];
+      if (id) {
+        lastWatchedEpId = localStorage.getItem(`${id}-last`) || "";
+      }
+    }
+
+    let href = watchLink;
+
+    if (lastEpId) {
+      href += `?ep=${lastEpId}`;
+      if (refer) href += `&refer=${refer}`;
+    } else if (refer) {
+      href += `?refer=${refer}`;
+    }
+
+    return href;
+  };
 
   return (
     <div className="w-[320px] h-fit rounded-xl p-4 flex justify-center items-center bg-[#3e3c50] bg-opacity-70 backdrop-blur-[10px] z-50">
@@ -141,7 +154,7 @@ function Qtip({ id, refer }) {
                 </span>
                 {qtip.genres.map((genre, index) => (
                   <Link
-                    href={`/genre/${genre + refer ? `?refer=${refer}` : ""}`}
+                    href={`/genre/${genre}${refer ? `?refer=${refer}` : ""}`}
                     key={index}
                     className="text-[13px] hover:text-[#00f2fe]"
                   >
@@ -155,15 +168,7 @@ function Qtip({ id, refer }) {
             )}
           </div>
           <Link
-            href={
-              lastWatchedEpId
-                ? qtip.watchLink + "?ep=" + lastWatchedEpId + refer
-                  ? `&refer=${refer}`
-                  : ""
-                : qtip.watchLink + refer
-                ? `?refer=${refer}`
-                : ""
-            }
+            href={getWatchHref(qtip?.watchLink, refer)}
             className="w-[80%] flex mt-4 justify-center items-center gap-x-2 bg-[#00f2fe] py-[9px] rounded-3xl"
           >
             <FontAwesomeIcon icon={faPlay} className="text-[14px] text-black" />
