@@ -22,17 +22,17 @@ const Page = () => {
 
   return (
     <div
-      style={{
+      style={{ 
         backgroundColor: "#1a1a1a", // dark background
       }}
     >
       <Script
-        src="//abackdamstubborn.com/0859fb809e643c637c15e0aeb8d5b17a/invoke.js"
+        src="//abackdamstubborn.com/d7d539df388aa9aa3a474ee476863a09/invoke.js"
         strategy="afterInteractive"
         data-cfasync="false"
         async
       />
-      <div id="container-0859fb809e643c637c15e0aeb8d5b17a" />
+      <div id="container-d7d539df388aa9aa3a474ee476863a09" />
       {!adVisible && (
         <div
           style={{
