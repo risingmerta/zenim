@@ -9,12 +9,14 @@ import {
 import useToolTipPosition from "@/hooks/useToolTipPosition";
 import Qtip from "../qtip/Qtip";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
-function Topten({ data, className, selectL , refer }) {
+function Topten({ data, className, selectL, refer }) {
   const language = selectL;
   const [activePeriod, setActivePeriod] = useState("today");
   const [hoveredItem, setHoveredItem] = useState(null);
   const [hoverTimeout, setHoverTimeout] = useState(null);
+  const router = useRouter();
 
   const handlePeriodChange = (period) => {
     setActivePeriod(period);
@@ -46,6 +48,20 @@ function Topten({ data, className, selectL , refer }) {
       setTimeout(() => {
         setHoveredItem(null);
       }, 300) // Small delay to prevent flickering
+    );
+  };
+
+  const handleNavigation = (id) => {
+    let lastWatchedEpId = "";
+    if (typeof window !== "undefined") {
+      lastWatchedEpId = localStorage.getItem(id + "-last")
+        ? localStorage.getItem(id + "-last")
+        : "";
+    }
+    router.push(
+      lastWatchedEpId
+        ? `/watch/${id + "?ep=" + lastWatchedEpId}`
+        : `/watch/${id}`
     );
   };
 
@@ -103,7 +119,7 @@ function Topten({ data, className, selectL , refer }) {
                   src={item.poster}
                   alt={item.title}
                   className="w-[60px] h-[75px] rounded-md object-cover flex-shrink-0 cursor-pointer"
-                  onClick={() => navigate(`/watch/${item.id}`)}
+                  onClick={() => handleNavigation(item.id)}
                   onMouseEnter={() => handleMouseEnter(item, index)}
                   onMouseLeave={handleMouseLeave}
                 />
@@ -130,7 +146,7 @@ function Topten({ data, className, selectL , refer }) {
                       }}
                       onMouseLeave={handleMouseLeave}
                     >
-                      <Qtip id={item.id} refer={refer}/>
+                      <Qtip id={item.id} refer={refer} />
                     </div>
                   )}
 

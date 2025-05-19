@@ -36,6 +36,20 @@ function Sidecard({ data, label, className, limit, selectL }) {
   const [hoveredItem, setHoveredItem] = useState(null);
   const { tooltipPosition, tooltipHorizontalPosition, cardRefs } =
     useToolTipPosition(hoveredItem, data);
+
+  const handleNavigation = (id) => {
+    let lastWatchedEpId = "";
+    if (typeof window !== "undefined") {
+      lastWatchedEpId = localStorage.getItem(id + "-last")
+        ? localStorage.getItem(id + "-last")
+        : "";
+    }
+    router.push(
+      lastWatchedEpId
+        ? `/watch/${id + "?ep=" + lastWatchedEpId}`
+        : `/watch/${id}`
+    );
+  };
   return (
     <div className={`flex flex-col space-y-6 ${className}`}>
       <h1 className="font-bold text-2xl text-[#00f2fe]">{label}</h1>
@@ -77,7 +91,7 @@ function Sidecard({ data, label, className, limit, selectL }) {
                   src={item.poster}
                   alt={item.title}
                   className="flex-shrink-0 w-[60px] h-[75px] rounded-md object-cover cursor-pointer"
-                  onClick={() => router.push(`/watch/${item.id}`)}
+                  onClick={() => handleNavigation(item.id)}
                   onMouseEnter={() => handleMouseEnter(item, index)}
                   onMouseLeave={handleMouseLeave}
                 />

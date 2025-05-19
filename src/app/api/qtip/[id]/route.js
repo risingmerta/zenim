@@ -7,10 +7,8 @@ export async function GET(req, { params }) {
     const workerUrls = process.env.WORKER_URL?.split(",") || [];
     const apis = [
       "https://api.animoon.me/api",
-      // "https://api1.animoon.me/api",
       "https://api2.animoon.me/api",
       "https://api3.animoon.me/api",
-      // "https://vimal.animoon.me/api",
     ];
 
     const baseUrl = apis[Math.floor(Math.random() * apis.length)];

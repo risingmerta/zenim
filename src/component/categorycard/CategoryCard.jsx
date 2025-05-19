@@ -97,6 +97,26 @@ const CategoryCard = React.memo(
       setHoveredItem(null);
       setShowPlay(false);
     };
+    const getLink = (itemId, path, refer) => {
+      let lastWatchedEpId = "";
+      if (typeof window !== "undefined") {
+        lastWatchedEpId = localStorage.getItem(itemId + "-last")
+          ? localStorage.getItem(itemId + "-last")
+          : "";
+      }
+      const basePath =
+        path === "top-upcoming"
+          ? `/${itemId}`
+          : lastWatchedEpId
+          ? `/watch/${itemId + "?ep=" + lastWatchedEpId}`
+          : `/watch/${itemId}`;
+      return refer
+        ? lastWatchedEpId
+          ? `${basePath}&refer=${refer}`
+          : `${basePath}?refer=${refer}`
+        : basePath;
+    };
+
     return (
       <div className={`w-full ${className}`}>
         <div className="flex items-center justify-between">
@@ -136,11 +156,7 @@ const CategoryCard = React.memo(
                   ref={(el) => (cardRefs.current[index] = el)}
                 >
                   <Link
-                    href={
-                      path === "top-upcoming"
-                        ? `/${item.id}${refer ? `?refer=${refer}` : ""}`
-                        : `/watch/${item.id}${refer ? `?refer=${refer}` : ""}`
-                    }
+                    href={getLink(item.id, path, refer)}
                     className="w-full relative group hover:cursor-pointer"
                     onClick={() =>
                       typeof window !== "undefined" &&
@@ -257,11 +273,7 @@ const CategoryCard = React.memo(
                 ref={(el) => (cardRefs.current[index] = el)}
               >
                 <Link
-                  href={
-                    path === "top-upcoming"
-                      ? `/${item.id}${refer ? `?refer=${refer}` : ""}`
-                      : `/watch/${item.id}${refer ? `?refer=${refer}` : ""}`
-                  }
+                  href={getLink(item.id, path, refer)}
                   className="w-full relative group hover:cursor-pointer"
                   onClick={() =>
                     typeof window !== "undefined" &&

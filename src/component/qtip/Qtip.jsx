@@ -33,6 +33,13 @@ function Qtip({ id, refer }) {
     fetchQtipInfo();
   }, [id]);
 
+  let lastWatchedEpId = "";
+  if (typeof window !== "undefined") {
+    lastWatchedEpId = localStorage.getItem(itemId + "-last")
+      ? localStorage.getItem(itemId + "-last")
+      : "";
+  }
+
   return (
     <div className="w-[320px] h-fit rounded-xl p-4 flex justify-center items-center bg-[#3e3c50] bg-opacity-70 backdrop-blur-[10px] z-50">
       {loading || error || !qtip ? (
@@ -132,7 +139,7 @@ function Qtip({ id, refer }) {
                 </span>
                 {qtip.genres.map((genre, index) => (
                   <Link
-                    href={`/genre/${genre}`}
+                    href={`/genre/${genre + refer ? `?refer=${refer}` : ""}`}
                     key={index}
                     className="text-[13px] hover:text-[#00f2fe]"
                   >
@@ -146,7 +153,15 @@ function Qtip({ id, refer }) {
             )}
           </div>
           <Link
-            href={qtip.watchLink + refer ? `?refer=${refer}` : ""}
+            href={
+              lastWatchedEpId
+                ? qtip.watchLink + "?ep=" + lastWatchedEpId + refer
+                  ? `&refer=${refer}`
+                  : ""
+                : qtip.watchLink + refer
+                ? `?refer=${refer}`
+                : ""
+            }
             className="w-[80%] flex mt-4 justify-center items-center gap-x-2 bg-[#00f2fe] py-[9px] rounded-3xl"
           >
             <FontAwesomeIcon icon={faPlay} className="text-[14px] text-black" />

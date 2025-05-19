@@ -12,7 +12,7 @@ import Qtip from "../qtip/Qtip";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 
-function Cart({ label, data, path, selectL ,refer }) {
+function Cart({ label, data, path, selectL, refer }) {
   const language = selectL;
   const router = useRouter();
   const [hoveredItem, setHoveredItem] = useState(null);
@@ -30,6 +30,20 @@ function Cart({ label, data, path, selectL ,refer }) {
       setTimeout(() => {
         setHoveredItem(null);
       }, 300)
+    );
+  };
+
+  const handleNavigation = (id) => {
+    let lastWatchedEpId = "";
+    if (typeof window !== "undefined") {
+      lastWatchedEpId = localStorage.getItem(id + "-last")
+        ? localStorage.getItem(id + "-last")
+        : "";
+    }
+    router.push(
+      lastWatchedEpId
+        ? `/watch/${id + "?ep=" + lastWatchedEpId}`
+        : `/watch/${id}`
     );
   };
 
@@ -51,7 +65,7 @@ function Cart({ label, data, path, selectL ,refer }) {
                 src={item.poster}
                 alt={item.title}
                 className="flex-shrink-0 w-[60px] h-[75px] rounded-md object-cover cursor-pointer"
-                onClick={() => router.push(`/watch/${item.id}`)}
+                onClick={() => handleNavigation(item.id)}
                 onMouseEnter={() => handleImageEnter(item, index)}
                 onMouseLeave={handleImageLeave}
               />
@@ -75,7 +89,7 @@ function Cart({ label, data, path, selectL ,refer }) {
                   }}
                   onMouseLeave={handleImageLeave}
                 >
-                  <Qtip id={item.id} refer={refer}/>
+                  <Qtip id={item.id} refer={refer} />
                 </div>
               )}
 

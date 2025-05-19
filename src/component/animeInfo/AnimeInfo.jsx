@@ -157,6 +157,13 @@ export default function AnimeInfo({
     },
   ];
 
+  let lastWatchedEpId = "";
+  if (typeof window !== "undefined") {
+    lastWatchedEpId = localStorage.getItem(id + "-last")
+      ? localStorage.getItem(id + "-last")
+      : "";
+  }
+
   return (
     <>
       <SessionProvider>
@@ -236,9 +243,15 @@ export default function AnimeInfo({
               {animeInfo?.animeInfo?.Status?.toLowerCase() !==
               "not-yet-aired" ? (
                 <Link
-                  href={`/watch/${animeInfo.id}${
-                    refer ? `?refer=${refer}` : ""
-                  }`}
+                  href={
+                    lastWatchedEpId
+                      ? `/watch/${animeInfo.id + "?ep=" + lastWatchedEpId}${
+                          refer ? `?refer=${refer}` : ""
+                        }`
+                      : `/watch/${animeInfo.id}${
+                          refer ? `?refer=${refer}` : ""
+                        }`
+                  }
                   className="flex gap-x-2 px-6 py-2 bg-[#00f2fe] w-fit text-black items-center rounded-3xl mt-5"
                 >
                   <FontAwesomeIcon
