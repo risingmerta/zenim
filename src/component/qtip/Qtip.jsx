@@ -35,8 +35,10 @@ function Qtip({ id, refer }) {
 
   let lastWatchedEpId = "";
   if (typeof window !== "undefined") {
-    lastWatchedEpId = localStorage.getItem(itemId + "-last")
-      ? localStorage.getItem(itemId + "-last")
+    lastWatchedEpId = localStorage.getItem(
+      qtip.watchLink.split("/watch/")[1] + "-last"
+    )
+      ? localStorage.getItem(qtip.watchLink.split("/watch/")[1] + "-last")
       : "";
   }
 
