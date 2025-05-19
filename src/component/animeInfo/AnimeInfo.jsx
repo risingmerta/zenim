@@ -457,13 +457,6 @@ export default function AnimeInfo({
             {animeInfo?.charactersVoiceActors.length > 0 && (
               <>
                 <Voiceactor animeInfo={animeInfo} />
-                <Script
-                  src="//abackdamstubborn.com/072578f5a4df72a3692182642476bbea/invoke.js"
-                  strategy="afterInteractive"
-                  data-cfasync="false"
-                  async
-                />
-                <div id="container-072578f5a4df72a3692182642476bbea" />
               </>
             )}
 
@@ -478,13 +471,6 @@ export default function AnimeInfo({
                   selectL={selectL}
                   refer={refer}
                 />
-                <Script
-                  src="//abackdamstubborn.com/cd746754796510a55d9ef4d9a4260a75/invoke.js"
-                  strategy="afterInteractive"
-                  data-cfasync="false"
-                  async
-                />
-                <div id="container-cd746754796510a55d9ef4d9a4260a75" />
               </>
             )}
           </div>
@@ -498,13 +484,6 @@ export default function AnimeInfo({
                 refer={refer}
               />
             )}
-            <Script
-              src="//abackdamstubborn.com/dbafd6a4e452fd720e2121278664c057/invoke.js"
-              strategy="afterInteractive"
-              data-cfasync="false"
-              async
-            />
-            <div id="container-dbafd6a4e452fd720e2121278664c057" />
             {homeInfo && homeInfo.most_popular && (
               <Sidecard
                 label="Most Popular"
@@ -515,13 +494,6 @@ export default function AnimeInfo({
                 refer={refer}
               />
             )}
-            <Script
-              src="//abackdamstubborn.com/747f4fcb7dc611b1e8d9ed8822f2c89c/invoke.js"
-              strategy="afterInteractive"
-              data-cfasync="false"
-              async
-            />
-            <div id="container-747f4fcb7dc611b1e8d9ed8822f2c89c" />
           </div>
         </div>
         <Footer refer={refer} />
