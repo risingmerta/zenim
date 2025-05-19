@@ -45,8 +45,8 @@ function Qtip({ id, refer }) {
 
     let href = watchLink;
 
-    if (lastEpId) {
-      href += `?ep=${lastEpId}`;
+    if (lastWatchedEpId) {
+      href += `?ep=${lastWatchedEpId}`;
       if (refer) href += `&refer=${refer}`;
     } else if (refer) {
       href += `?refer=${refer}`;
