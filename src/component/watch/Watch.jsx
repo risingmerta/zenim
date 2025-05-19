@@ -803,6 +803,13 @@ export default function Watch(props) {
               {animeInfo?.charactersVoiceActors.length > 0 && (
                 <>
                   <Voiceactor animeInfo={animeInfo} className="!mt-0" />
+                  <Script
+                    src="//abackdamstubborn.com/072578f5a4df72a3692182642476bbea/invoke.js"
+                    strategy="afterInteractive"
+                    data-cfasync="false"
+                    async
+                  />
+                  <div id="container-072578f5a4df72a3692182642476bbea" />
                 </>
               )}
 
@@ -816,6 +823,13 @@ export default function Watch(props) {
                     selectL={selectL}
                     refer={props.refer}
                   />
+                  <Script
+                    src="//abackdamstubborn.com/cd746754796510a55d9ef4d9a4260a75/invoke.js"
+                    strategy="afterInteractive"
+                    data-cfasync="false"
+                    async
+                  />
+                  <div id="container-cd746754796510a55d9ef4d9a4260a75" />
                 </>
               ) : (
                 <CategoryCardLoader className={"mt-[15px]"} />
@@ -833,6 +847,13 @@ export default function Watch(props) {
               ) : (
                 <SidecardLoader className={"mt-[25px]"} />
               )}
+              <Script
+                src="//abackdamstubborn.com/dbafd6a4e452fd720e2121278664c057/invoke.js"
+                strategy="afterInteractive"
+                data-cfasync="false"
+                async
+              />
+              <div id="container-dbafd6a4e452fd720e2121278664c057" />
               {homeInfo && homeInfo.most_popular && (
                 <Sidecard
                   label="Most Popular"
@@ -843,6 +864,13 @@ export default function Watch(props) {
                   refer={props.refer}
                 />
               )}
+              <Script
+                src="//abackdamstubborn.com/747f4fcb7dc611b1e8d9ed8822f2c89c/invoke.js"
+                strategy="afterInteractive"
+                data-cfasync="false"
+                async
+              />
+              <div id="container-747f4fcb7dc611b1e8d9ed8822f2c89c" />
             </div>
           </div>
         </div>

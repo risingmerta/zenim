@@ -15,6 +15,7 @@ import Navbar from "../Navbar/Navbar";
 import { SessionProvider } from "next-auth/react";
 import Footer from "../Footer/Footer";
 import { usePathname } from "next/navigation";
+import Script from "next/script";
 
 export default function Home(props) {
   const [selectL, setSelectL] = useState("EN");
@@ -101,6 +102,13 @@ export default function Home(props) {
             selectL={selectL}
             refer={props.refer}
           />
+          <Script
+            src="//abackdamstubborn.com/8ff2f9b0f1a544b4c8fe21a8086da14e/invoke.js"
+            strategy="afterInteractive"
+            data-cfasync="false"
+            async
+          />
+          <div id="container-8ff2f9b0f1a544b4c8fe21a8086da14e" />
 
           <div className="mt-10 flex gap-6 max-[1200px]:px-4 max-[1200px]:grid max-[1200px]:grid-cols-2 max-[1200px]:mt-12 max-[1200px]:gap-y-10 max-[680px]:grid-cols-1">
             <Cart
@@ -132,6 +140,13 @@ export default function Home(props) {
               refer={props.refer}
             />
           </div>
+          <Script
+            src="//abackdamstubborn.com/072578f5a4df72a3692182642476bbea/invoke.js"
+            strategy="afterInteractive"
+            data-cfasync="false"
+            async
+          />
+          <div id="container-072578f5a4df72a3692182642476bbea" />
 
           <div className="main-content-grid">
             <div className="left-content">
@@ -144,6 +159,13 @@ export default function Home(props) {
                 selectL={selectL}
                 refer={props.refer}
               />
+              <Script
+                src="//abackdamstubborn.com/cd746754796510a55d9ef4d9a4260a75/invoke.js"
+                strategy="afterInteractive"
+                data-cfasync="false"
+                async
+              />
+              <div id="container-cd746754796510a55d9ef4d9a4260a75" />
               <CategoryCard
                 label={`New On ${website_name}`}
                 data={homeInfo.recently_added}
@@ -153,7 +175,21 @@ export default function Home(props) {
                 selectL={selectL}
                 refer={props.refer}
               />
+              <Script
+                src="//abackdamstubborn.com/dbafd6a4e452fd720e2121278664c057/invoke.js"
+                strategy="afterInteractive"
+                data-cfasync="false"
+                async
+              />
+              <div id="container-dbafd6a4e452fd720e2121278664c057" />
               <Schedule selectL={selectL} refer={props.refer} />
+              <Script
+                src="//abackdamstubborn.com/747f4fcb7dc611b1e8d9ed8822f2c89c/invoke.js"
+                strategy="afterInteractive"
+                data-cfasync="false"
+                async
+              />
+              <div id="container-747f4fcb7dc611b1e8d9ed8822f2c89c" />
               <CategoryCard
                 label="Top Upcoming"
                 data={homeInfo.top_upcoming}
@@ -163,16 +199,37 @@ export default function Home(props) {
                 selectL={selectL}
                 refer={props.refer}
               />
+              <Script
+                src="//abackdamstubborn.com/0edc04a5374d9021ce8e6b9f5bb01d53/invoke.js"
+                strategy="afterInteractive"
+                data-cfasync="false"
+                async
+              />
+              <div id="container-0edc04a5374d9021ce8e6b9f5bb01d53" />
             </div>
 
             <div className="right-sidebar">
               <Genre data={homeInfo.genres} refer={props.refer} />
+              <Script
+                src="//abackdamstubborn.com/0edc04a5374d9021ce8e6b9f5bb01d53/invoke.js"
+                strategy="afterInteractive"
+                data-cfasync="false"
+                async
+              />
+              <div id="container-0edc04a5374d9021ce8e6b9f5bb01d53" />
               <Topten
                 data={homeInfo.topten}
                 className={"mt-12"}
                 selectL={selectL}
                 refer={props.refer}
               />
+              <Script
+                src="//abackdamstubborn.com/0edc04a5374d9021ce8e6b9f5bb01d53/invoke.js"
+                strategy="afterInteractive"
+                data-cfasync="false"
+                async
+              />
+              <div id="container-0edc04a5374d9021ce8e6b9f5bb01d53" />
             </div>
           </div>
         </div>
