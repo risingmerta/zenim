@@ -13,6 +13,12 @@ import "./Banner.css";
 
 function Banner({ item, index, selectL, refer }) {
   const language = selectL;
+  let lastWatchedEpId = "";
+  if (typeof window !== "undefined") {
+    lastWatchedEpId = localStorage.getItem(item.id + "-last")
+      ? localStorage.getItem(item.id + "-last")
+      : "";
+  }
 
   return (
     <section className="spotlight w-full h-full">
@@ -107,7 +113,13 @@ function Banner({ item, index, selectL, refer }) {
 
         <div className="flex gap-x-5 mt-10 max-md:mt-6 max-sm:w-full max-[320px]:flex-col max-[320px]:space-y-3">
           <Link
-            href={`/watch/${item.id}${refer ? `?refer=${refer}` : ""}`}
+            href={
+              lastWatchedEpId
+                ? `/watch/${item.id + "?ep=" + lastWatchedEpId}${
+                    refer ? `&refer=${refer}` : ""
+                  }`
+                : `/watch/${item.id}${refer ? `?refer=${refer}` : ""}`
+            }
             className="flex justify-center items-center bg-[#00f2fe] px-4 py-2 rounded-3xl gap-x-2 max-[320px]:w-fit"
           >
             <FontAwesomeIcon

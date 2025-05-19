@@ -49,6 +49,7 @@ export default function Player({
   subtitles,
   thumbnail,
   intro,
+  animeId,
   outro,
   autoSkipIntro,
   autoPlay,
@@ -216,6 +217,7 @@ export default function Player({
     if (localStorage.getItem(episodeId + "-time")) {
       timeStamp = parseInt(localStorage.getItem(episodeId + "-time"));
     }
+    localStorage.setItem(animeId + "-last", episodeId.toString());
   }
 
   useEffect(() => {

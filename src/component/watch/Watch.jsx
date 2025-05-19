@@ -510,6 +510,7 @@ export default function Watch(props) {
                         streamUrl={streamUrl}
                         subtitles={subtitles}
                         intro={intro}
+                        animeId={animeId}
                         outro={outro}
                         thumbnail={thumbnail}
                         autoSkipIntro={autoSkipIntro}
