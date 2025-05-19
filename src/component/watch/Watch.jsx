@@ -494,6 +494,7 @@ export default function Watch(props) {
                     <Episodelist
                       episodes={episodes}
                       currentEpisode={episodeId}
+                      animeId={animeId}
                       WatchedEpisodes={WatchedEpisodes}
                       onEpisodeClick={(id) => setEpisodeId(id)}
                       totalEpisodes={totalEpisodes}

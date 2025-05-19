@@ -9,14 +9,16 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { useState, useEffect, useRef } from "react";
 import "./Episodelist.css";
+import Link from "next/link";
 
 function Episodelist({
   episodes,
   onEpisodeClick,
+  animeId,
   WatchedEpisodes,
   currentEpisode,
   totalEpisodes,
-  selectL
+  selectL,
 }) {
   const [activeEpisodeId, setActiveEpisodeId] = useState(currentEpisode);
   const language = selectL;
@@ -235,7 +237,8 @@ function Episodelist({
                     isWatched || isActive ? "text-black" : "text-gray-400";
 
                   return (
-                    <div
+                    <Link
+                      href={`/watch/${animeId + "?ep=" + episodeNumber}`}
                       key={item?.id}
                       ref={isActive ? activeEpisodeRef : null}
                       className={`flex items-center justify-center rounded-[3px] h-[30px] text-[13.5px] font-medium cursor-pointer group md:hover:bg-[#67686F] md:hover:text-white ${bgClass} ${textClass} ${
@@ -258,7 +261,7 @@ function Episodelist({
                       >
                         {index + selectedRange[0]}
                       </span>
-                    </div>
+                    </Link>
                   );
                 })
             : episodes?.map((item, index) => {
@@ -270,7 +273,8 @@ function Episodelist({
                 const isSearched = searchedEpisode === item?.id;
 
                 return (
-                  <div
+                  <Link
+                    href={`/watch/${animeId + "?ep=" + episodeNumber}`}
                     key={item?.id}
                     ref={isActive ? activeEpisodeRef : null}
                     className={`w-full pl-5 pr-2 py-3 flex items-center justify-start gap-x-8 cursor-pointer ${
@@ -287,7 +291,7 @@ function Episodelist({
                       if (episodeNumber) {
                         onEpisodeClick(episodeNumber);
                         setActiveEpisodeId(episodeNumber);
-                        setSearchedEpisode(null); 
+                        setSearchedEpisode(null);
                       }
                     }}
                   >
@@ -309,7 +313,7 @@ function Episodelist({
                         />
                       )}
                     </div>
-                  </div>
+                  </Link>
                 );
               })}
         </div>
