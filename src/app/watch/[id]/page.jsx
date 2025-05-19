@@ -61,7 +61,7 @@ export default async function Page({ params, searchParams }) {
 
   if (id) {
     const doc = await animeInfoCol.findOne({ _id: id });
-
+    
     if (doc) {
       infoData = doc.info?.results ?? null;
       episodeData = doc.episode?.results ?? null;
@@ -81,7 +81,7 @@ export default async function Page({ params, searchParams }) {
       }
 
       // Fetch missing episodes
-      if (!episodeData?.episodes?.[0]?.title || !episodeData.episodes?.length) {
+      if (!episodeData?.episodes?.length || !episodeData.episodes?.[0]?.title) {
         try {
           const { data } = await axios.get(`${api_url}/episodes/${id}`);
           episodeData = data.results;
@@ -94,25 +94,28 @@ export default async function Page({ params, searchParams }) {
         }
       }
     } else {
+      // Document doesn't exist — fetch and insert everything
       try {
-        const { data } = await axios.get(`${api_url}/info?id=${id}`);
-        infoData = data.results;
+        const [infoRes, episodeRes] = await Promise.all([
+          axios.get(`${api_url}/info?id=${id}`),
+          axios.get(`${api_url}/episodes/${id}`),
+        ]);
+
+        infoData = infoRes.data.results;
+        episodeData = episodeRes.data.results;
+
         await animeInfoCol.updateOne(
           { _id: id },
-          { $set: { "info.results": infoData } }
+          {
+            $set: {
+              "info.results": infoData,
+              "episode.results": episodeData,
+            },
+          },
+          { upsert: true }
         );
       } catch (err) {
-        console.error("Error fetching fallback info:", err.message);
-      }
-      try {
-        const { data } = await axios.get(`${api_url}/episodes/${id}`);
-        episodeData = data.results;
-        await animeInfoCol.updateOne(
-          { _id: id },
-          { $set: { "episode.results": episodeData } }
-        );
-      } catch (err) {
-        console.error("Error fetching fallback episodes:", err.message);
+        console.error("Error fetching data for new document:", err.message);
       }
     }
   }
