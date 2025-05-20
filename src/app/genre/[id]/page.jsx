@@ -31,6 +31,7 @@ export default async function page({ params, searchParams }) {
         path={"genre/" + id}
         label={id.split("-")?.join(" ")}
         pagel={page}
+        refer={refer}
       />
       <Advertize refer={refer} />
       {/* <Script

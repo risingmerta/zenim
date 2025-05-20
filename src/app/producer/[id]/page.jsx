@@ -27,7 +27,7 @@ export default async function page({ params, searchParams }) {
   const page = search.page || 1;
   return (
     <div>
-      <Producer id={id} page={page} />
+      <Producer id={id} page={page} refer={refer}/>
       <Advertize refer={refer} />
       {/* <Script
         src="//abackdamstubborn.com/b7/2f/b2/b72fb2e5a32c00a413ee2bb7ea85b317.js"

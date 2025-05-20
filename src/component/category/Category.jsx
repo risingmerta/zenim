@@ -16,7 +16,7 @@ import { SessionProvider } from "next-auth/react";
 import Script from "next/script";
 import Share from "../Share/Share";
 
-export default function Category({ path, label, pagel }) {
+export default function Category({ path, label, pagel , refer }) {
   const [selectL, setSelectL] = useState("EN");
   const lang = (lang) => {
     setSelectL(lang);
@@ -137,7 +137,7 @@ export default function Category({ path, label, pagel }) {
             <Share
               ShareUrl={`https://animoon.me/watch/${
                 animeId + "?ep=" + episodeId
-              }${props.refer ? `?refer=${props.refer}` : ""}`}
+              }${refer ? `?refer=${refer}` : ""}`}
               arise={label?.split?.("/")?.pop() || ""}
             />
           </div>
