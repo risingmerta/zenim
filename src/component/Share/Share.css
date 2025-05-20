@@ -16,7 +16,6 @@
   margin-bottom: 20px;
   display: flex;
   align-items: center;
-  justify-content: center !important;
 }
 
 /* Buttons */
@@ -62,11 +61,13 @@
   padding: 2rem;
   width: 90%;
   max-width: 600px;
-  position: relative;
+  position: fixed; /* Use fixed for centering in viewport */
   top: 50%;
+  left: 50%;
   border: 2px solid var(--theme-color);
   box-shadow: 0 0 15px var(--theme-color);
-  transform: translateY(-50%);
+  transform: translate(-50%, -50%);
+  /* optional: to ensure it appears above other elements */
 }
 
 /* Modal Header */
