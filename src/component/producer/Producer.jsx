@@ -78,10 +78,10 @@ export default function Producer(props) {
     setSearchParams({ page: newPage });
   };
 
-  return ( 
+  return (
     <>
       <SessionProvider>
-        <Navbar lang={lang} selectL={selectL} />
+        <Navbar lang={lang} selectL={selectL} refer={props.refer} />
         {/* <div
           style={{
             width: "100%",
@@ -103,7 +103,9 @@ export default function Producer(props) {
         </div> */}
         <div className="w-full mt-[70px]">
           <Share
-            ShareUrl={`https://animoon.me/${id}${props.refer ? `?refer=${props.refer}` : ""}`}
+            ShareUrl={`https://animoon.me/producer/${id}${
+              props.refer ? `?refer=${props.refer}` : ""
+            }`}
             arise={
               (id.charAt(0).toUpperCase() + id.slice(1)).split("-").join(" ") +
               " Anime"
@@ -133,6 +135,7 @@ export default function Producer(props) {
                       className={"mt-0"}
                       categoryPage={true}
                       selectL={selectL}
+                      refer={props.refer}
                     />
                   )}
                   {/* <div
@@ -166,6 +169,7 @@ export default function Producer(props) {
                     page={page}
                     totalPages={totalPages}
                     handlePageChange={handlePageChange}
+                    refer={props.refer}
                   />
                   {/* <div
                     style={{
@@ -206,6 +210,7 @@ export default function Producer(props) {
                         data={homeInfo.topten}
                         className="mt-0"
                         selectL={selectL}
+                        refer={props.refer}
                       />
                     )}
                     {/* <div
@@ -234,7 +239,9 @@ export default function Producer(props) {
                       async
                     />
                     <div id="container-cd746754796510a55d9ef4d9a4260a75" />
-                    {homeInfo?.genres && <Genre data={homeInfo.genres} />}
+                    {homeInfo?.genres && (
+                      <Genre data={homeInfo.genres} refer={props.refer} />
+                    )}
                     {/* <div
                       style={{
                         width: "100%",
@@ -288,7 +295,7 @@ export default function Producer(props) {
             scrolling="no"
           ></iframe>
         </div> */}
-        <Footer />
+        <Footer refer={props.refer} />
       </SessionProvider>
     </>
   );

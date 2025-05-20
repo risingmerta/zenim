@@ -87,7 +87,7 @@ export default function Category({ path, label, pagel, refer }) {
   return (
     <>
       <SessionProvider>
-        <Navbar lang={lang} selectL={selectL} />
+        <Navbar lang={lang} selectL={selectL} refer={refer}/>
         {/* <div
           style={{
             width: "100%",
@@ -214,6 +214,7 @@ export default function Category({ path, label, pagel, refer }) {
                       categoryPage={true}
                       path={path}
                       selectL={selectL}
+                      refer={refer}
                     />
                   )}
                   {/* <div
@@ -271,6 +272,7 @@ export default function Category({ path, label, pagel, refer }) {
                     page={page}
                     totalPages={totalPages}
                     handlePageChange={handlePageChange}
+                    refer={refer}
                   />
                   {/* <div
                     style={{
@@ -336,6 +338,7 @@ export default function Category({ path, label, pagel, refer }) {
                       data={homeInfo.topten}
                       className="mt-0"
                       selectL={selectL}
+                      refer={refer}
                     />
                   )}
                   {/* <div
@@ -364,7 +367,7 @@ export default function Category({ path, label, pagel, refer }) {
                     async
                   />
                   <div id="container-cd746754796510a55d9ef4d9a4260a75" />
-                  {homeInfo?.genres && <Genre data={homeInfo.genres} />}
+                  {homeInfo?.genres && <Genre data={homeInfo.genres} refer={refer}/>}
                   {/* <div
                     style={{
                       width: "100%",
@@ -396,7 +399,7 @@ export default function Category({ path, label, pagel, refer }) {
             </div>
           </div>
         </div>
-        <Footer />
+        <Footer refer={refer}/>
       </SessionProvider>
     </>
   );
