@@ -12,6 +12,7 @@ import {
   FaLinkedinIn,
   FaPinterest,
   FaRedditAlien,
+  FaShareAlt,
   FaTelegram,
   FaTumblr,
   FaViber,
