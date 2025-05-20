@@ -1,3 +1,8 @@
+:root {
+  --theme-color: #00f2fe;
+}
+
+/* Container */
 .share-app {
   gap: 1rem;
   padding: 1rem;
@@ -5,11 +10,15 @@
   color: white;
   border-radius: 12px;
   flex-wrap: wrap;
+  border: 1px solid var(--theme-color);
+  box-shadow: 0 0 10px var(--theme-color);
 }
 
-.copy-btn, .share-btn {
+/* Buttons */
+.copy-btn,
+.share-btn {
   background-color: #2e2e2e;
-  border: none;
+  border: 1px solid transparent;
   padding: 8px 12px;
   border-radius: 8px;
   color: white;
@@ -20,34 +29,48 @@
   gap: 6px;
 }
 
-.copy-btn:hover, .share-btn:hover {
-  background-color: #444;
+.copy-btn:hover,
+.share-btn:hover {
+  background-color: var(--theme-color);
+  color: #000;
 }
 
+/* Modal Overlay */
 .share-modal-overlay {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0,0,0,0.7);
+  background-color: rgba(0, 0, 0, 0.7);
   z-index: 1000;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
+/* Modal Box */
 .share-modal {
-  background: #fff;
-  color: #000;
+  background: #111;
+  color: white;
   border-radius: 16px;
   padding: 2rem;
   width: 90%;
   max-width: 600px;
   position: relative;
   top: 50%;
+  border: 2px solid var(--theme-color);
+  box-shadow: 0 0 15px var(--theme-color);
 }
 
+/* Modal Header */
+.share-modal h2 {
+  margin-bottom: 1rem;
+  color: var(--theme-color);
+  text-align: center;
+}
+
+/* Grid Layout */
 .share-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
@@ -56,23 +79,38 @@
   text-align: center;
 }
 
+/* Grid Items */
 .share-grid > * {
-  background: #f0f0f0;
+  background: #1e1e1e;
+  border: 1px solid #333;
   border-radius: 10px;
   padding: 12px;
-  transition: transform 0.2s;
+  color: var(--theme-color);
+  transition: transform 0.2s, background 0.2s;
 }
 
 .share-grid > *:hover {
   transform: scale(1.1);
+  background: var(--theme-color);
+  color: #000;
 }
 
+/* Close Button */
 .close-modal {
-  margin-top: 1rem;
-  background-color: #222;
-  color: white;
-  border: none;
+  margin-top: 1.5rem;
+  background-color: transparent;
+  color: var(--theme-color);
+  border: 1px solid var(--theme-color);
   padding: 10px 20px;
   border-radius: 10px;
   cursor: pointer;
+  transition: 0.3s;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.close-modal:hover {
+  background-color: var(--theme-color);
+  color: #000;
 }
