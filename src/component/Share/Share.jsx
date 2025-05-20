@@ -55,7 +55,7 @@ import {
   WorkplaceShareButton,
 } from "react-share";
 
-export default function Share({ ShareUrl, style, arise }) {
+export default function Share({ ShareUrl, arise }) {
   const [copied, setCopied] = useState(false);
   const [open, setOpen] = useState(false);
 
@@ -80,7 +80,7 @@ export default function Share({ ShareUrl, style, arise }) {
 
   return (
     <>
-      <div className="share-app d-flex a-center f-poppins" style={style}>
+      <div className="share-app">
         <Image width={50} height={50} src={share} alt="share" />
         <div>
           <p className="primary">
