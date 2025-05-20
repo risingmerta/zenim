@@ -14,6 +14,8 @@
   box-shadow: 0 0 10px var(--theme-color);
   margin-top: 20px;
   margin-bottom: 20px;
+  margin-right: 10px;
+  margin-left: 10px;
   display: flex;
   align-items: center;
 }
