@@ -1,75 +1,27 @@
 .share-app {
-  display: flex;
-  align-items: center;
   gap: 1rem;
   padding: 1rem;
   background-color: #1e1e1e;
   color: white;
   border-radius: 12px;
   flex-wrap: wrap;
-  font-family: 'Poppins', sans-serif;
 }
 
-.primary {
-  font-weight: 600;
-  font-size: 1rem;
-  color: white;
-}
-
-.secoi {
-  font-size: 0.85rem;
-  color: #ccc;
-}
-
-.share-buttons {
-  display: flex;
-  gap: 0.5rem;
-}
-
-.share-icon-button {
-  background: #1e1e1e;
-  color: white;
-  border: 1px solid transparent;
+.copy-btn, .share-btn {
+  background-color: #2e2e2e;
+  border: none;
   padding: 8px 12px;
-  border-radius: 6px;
+  border-radius: 8px;
+  color: white;
+  cursor: pointer;
+  transition: 0.2s;
   display: flex;
   align-items: center;
   gap: 6px;
-  cursor: pointer;
-  transition: all 0.2s ease;
 }
 
-.share-icon-button:hover {
-  border-color: #00f2fe;
-  box-shadow: 0 0 6px #00f2fe55;
-}
-
-.button-text {
-  font-size: 0.9rem;
-}
-
-.large-screen-only {
-  display: inline;
-}
-
-@media (max-width: 600px) {
-  .large-screen-only {
-    display: none !important;
-  }
-}
-
-/* Modal Overlay */
-.share-modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0,0,0,0.7);
-  z-index: 1000;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.copy-btn:hover, .share-btn:hover {
+  background-color: #444;
 }
 
 .share-modal-overlay {
@@ -85,59 +37,42 @@
   align-items: center;
 }
 
-/* Modal Content */
-.modal-content {
-  background: #111;
-  color: white;
+.share-modal {
+  background: #fff;
+  color: #000;
+  border-radius: 16px;
   padding: 2rem;
-  border-radius: 10px;
   width: 90%;
   max-width: 600px;
   position: relative;
-  border: 1px solid #00f2fe33;
-  box-shadow: 0 0 10px #00f2fe33;
+  top: 50%;
 }
 
-/* Close Button */
-.close-button {
-  position: absolute;
-  top: 0.7rem;
-  right: 1rem;
-  background: transparent;
-  border: none;
-  font-size: 1.5rem;
-  color: white;
-  cursor: pointer;
-  transition: color 0.2s ease;
-}
-
-.close-button:hover {
-  color: #00f2fe;
-}
-
-/* Share Icons Grid */
 .share-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
   gap: 1rem;
   margin-top: 1rem;
+  text-align: center;
 }
 
-.share-grid button {
-  background: #1e1e1e;
-  color: white;
-  border: 1px solid transparent;
+.share-grid > * {
+  background: #f0f0f0;
   border-radius: 10px;
   padding: 12px;
-  font-size: 20px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  transition: all 0.3s ease;
+  transition: transform 0.2s;
 }
 
-.share-grid button:hover {
-  color: #00f2fe;
-  border-color: #00f2fe;
-  box-shadow: 0 0 10px #00f2fe44;
+.share-grid > *:hover {
+  transform: scale(1.1);
+}
+
+.close-modal {
+  margin-top: 1rem;
+  background-color: #222;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 10px;
+  cursor: pointer;
 }
