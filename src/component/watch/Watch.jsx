@@ -767,19 +767,11 @@ export default function Watch(props) {
               scrolling="no"
             ></iframe>
           </div>
-          <div className="w-full flex gap-x-4 items-center bg-[#191826] p-5 max-[575px]:px-3 max-[320px]:hidden">
-            <img
-              src="https://i.postimg.cc/d34WWyNQ/share-icon.gif"
-              alt="Share Anime"
-              className="w-[60px] h-auto rounded-full max-[1024px]:w-[40px] max-[575px]:hidden"
-            />
-            <div className="flex flex-col w-fit">
-              <p className="text-[15px] font-bold text-[#FFBADE]">
-                Share Anime
-              </p>
-              <p className="text-[16px] text-white">to your friends</p>
-            </div>
-          </div>
+          <Share
+            ShareUrl={`https://animoon.me/${animeId + "?ep=" + episodeId}${
+              props.refer ? `?refer=${props.refer}` : ""
+            }`}
+          />
           <div
             style={{
               width: "100%",

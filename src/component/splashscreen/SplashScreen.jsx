@@ -13,6 +13,7 @@ import { useRouter } from "next/navigation";
 import Image from "next/image";
 import splash from "../../../public/splash.webp";
 import Script from "next/script";
+import Share from "../Share/Share";
 
 // Static data moved outside the component
 const NAV_LINKS = [
@@ -203,6 +204,12 @@ export default function SplashScreen({ results }) {
             />
           </div>
         </div>
+
+        <Share
+          ShareUrl={`https://animoon.me/${
+            props.refer ? `?refer=${props.refer}` : ""
+          }`}
+        />
 
         <div
           style={{

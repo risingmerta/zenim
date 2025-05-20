@@ -21,6 +21,7 @@ import Navbar from "../Navbar/Navbar";
 import Footer from "../Footer/Footer";
 import { SessionProvider } from "next-auth/react";
 import Script from "next/script";
+import Share from "../Share/Share";
 
 const website_name = "Animoon";
 
@@ -294,19 +295,11 @@ export default function AnimeInfo({
                 <span className="font-bold">{title}</span>
                 {` DUB in HD quality.`}
               </p>
-              <div className="flex gap-x-4 items-center mt-4 max-[575px]:w-full max-[575px]:justify-center max-[320px]:hidden">
-                <img
-                  src="https://i.postimg.cc/d34WWyNQ/share-icon.gif"
-                  alt="Share Anime"
-                  className="w-[60px] h-auto rounded-full max-[1024px]:w-[40px]"
-                />
-                <div className="flex flex-col w-fit">
-                  <p className="text-[15px] font-bold text-[#00f2fe]">
-                    Share Anime
-                  </p>
-                  <p className="text-[16px] text-white">to your friends</p>
-                </div>
-              </div>
+              <Share
+                ShareUrl={`https://animoon.me/${animeInfo.id}${
+                  props.refer ? `?refer=${props.refer}` : ""
+                }`}
+              />
             </div>
           </div>
           <div className="bg-[#4c4b57c3] flex items-center px-8 max-[1200px]:py-10 max-[1200px]:bg-[#363544e0] max-[575px]:p-4">
