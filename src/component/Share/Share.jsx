@@ -65,6 +65,16 @@ export default function Share({ ShareUrl, style, arise }) {
     setTimeout(() => setCopied(false), 2000);
   };
 
+  // Helper to render each share button with icon and label
+  const ShareButton = ({ Component, icon: Icon, label }) => (
+    <Component url={ShareUrl} className={`${label.replace(/\s+/g, "")}ShareButton`}>
+      <div style={{ textAlign: "center", userSelect: "none" }}>
+        <Icon size={24} />
+        <div style={{ fontSize: 11, marginTop: 4 }}>{label}</div>
+      </div>
+    </Component>
+  );
+
   return (
     <>
       <div className="share-app d-flex a-center f-poppins" style={style}>
@@ -76,7 +86,7 @@ export default function Share({ ShareUrl, style, arise }) {
           <p className="secoi">to your friends</p>
         </div>
         <button onClick={handleCopy} className="copy-btn">
-          {copied ? ( 
+          {copied ? (
             <>
               <MdCheckCircle size={22} />
               <span className="button-text large-screen-only">Copied</span>
@@ -113,63 +123,25 @@ export default function Share({ ShareUrl, style, arise }) {
             >
               <h2>Share via</h2>
               <div className="share-grid">
-                <WhatsappShareButton url={ShareUrl}>
-                  <FaWhatsapp />
-                </WhatsappShareButton>
-                <FacebookShareButton url={ShareUrl}>
-                  <FaFacebookF />
-                </FacebookShareButton>
-                <TelegramShareButton url={ShareUrl}>
-                  <FaTelegram />
-                </TelegramShareButton>
-                <RedditShareButton url={ShareUrl}>
-                  <FaRedditAlien />
-                </RedditShareButton>
-                <TwitterShareButton url={ShareUrl}>
-                  <FaXTwitter />
-                </TwitterShareButton>
-                <EmailShareButton url={ShareUrl}>
-                  <MdEmail />
-                </EmailShareButton>
-                <HatenaShareButton url={ShareUrl}>
-                  <SiHatenabookmark />
-                </HatenaShareButton>
-                <InstapaperShareButton url={ShareUrl}>
-                  <SiInstapaper />
-                </InstapaperShareButton>
-                <LineShareButton url={ShareUrl}>
-                  <FaLine />
-                </LineShareButton>
-                <LinkedinShareButton url={ShareUrl}>
-                  <FaLinkedinIn />
-                </LinkedinShareButton>
-                <LivejournalShareButton url={ShareUrl}>
-                  <SiLivejournal />
-                </LivejournalShareButton>
-                <MailruShareButton url={ShareUrl}>
-                  <MdAlternateEmail />
-                </MailruShareButton>
-                <OKShareButton url={ShareUrl}>
-                  <SiOdnoklassniki />
-                </OKShareButton>
-                <PinterestShareButton url={ShareUrl}>
-                  <FaPinterest />
-                </PinterestShareButton>
-                <PocketShareButton url={ShareUrl}>
-                  <FaGetPocket />
-                </PocketShareButton>
-                <TumblrShareButton url={ShareUrl}>
-                  <FaTumblr />
-                </TumblrShareButton>
-                <ViberShareButton url={ShareUrl}>
-                  <FaViber />
-                </ViberShareButton>
-                <VKShareButton url={ShareUrl}>
-                  <SlSocialVkontakte />
-                </VKShareButton>
-                <WorkplaceShareButton url={ShareUrl}>
-                  <SiWorkplace />
-                </WorkplaceShareButton>
+                <ShareButton Component={WhatsappShareButton} icon={FaWhatsapp} label="WhatsApp" />
+                <ShareButton Component={FacebookShareButton} icon={FaFacebookF} label="Facebook" />
+                <ShareButton Component={TelegramShareButton} icon={FaTelegram} label="Telegram" />
+                <ShareButton Component={RedditShareButton} icon={FaRedditAlien} label="Reddit" />
+                <ShareButton Component={TwitterShareButton} icon={FaXTwitter} label="Twitter" />
+                <ShareButton Component={EmailShareButton} icon={MdEmail} label="Email" />
+                <ShareButton Component={HatenaShareButton} icon={SiHatenabookmark} label="Hatena" />
+                <ShareButton Component={InstapaperShareButton} icon={SiInstapaper} label="Instapaper" />
+                <ShareButton Component={LineShareButton} icon={FaLine} label="Line" />
+                <ShareButton Component={LinkedinShareButton} icon={FaLinkedinIn} label="LinkedIn" />
+                <ShareButton Component={LivejournalShareButton} icon={SiLivejournal} label="LiveJournal" />
+                <ShareButton Component={MailruShareButton} icon={MdAlternateEmail} label="Mail.ru" />
+                <ShareButton Component={OKShareButton} icon={SiOdnoklassniki} label="Odnoklassniki" />
+                <ShareButton Component={PinterestShareButton} icon={FaPinterest} label="Pinterest" />
+                <ShareButton Component={PocketShareButton} icon={FaGetPocket} label="Pocket" />
+                <ShareButton Component={TumblrShareButton} icon={FaTumblr} label="Tumblr" />
+                <ShareButton Component={ViberShareButton} icon={FaViber} label="Viber" />
+                <ShareButton Component={VKShareButton} icon={SlSocialVkontakte} label="VK" />
+                <ShareButton Component={WorkplaceShareButton} icon={SiWorkplace} label="Workplace" />
               </div>
               <button className="close-modal" onClick={() => setOpen(false)}>
                 Close
