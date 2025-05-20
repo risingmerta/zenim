@@ -16,6 +16,7 @@ import { SessionProvider } from "next-auth/react";
 import Navbar from "../Navbar/Navbar";
 import Footer from "../Footer/Footer";
 import Script from "next/script";
+import Share from "../Share/Share";
 
 export default function Producer(props) {
   const [selectL, setSelectL] = useState("EN");
@@ -102,9 +103,7 @@ export default function Producer(props) {
         </div> */}
         <div className="w-full mt-[70px]">
           <Share
-            ShareUrl={`https://animoon.me/watch/${
-              animeId + "?ep=" + episodeId
-            }${props.refer ? `?refer=${props.refer}` : ""}`}
+            ShareUrl={`https://animoon.me/${id}${props.refer ? `?refer=${props.refer}` : ""}`}
             arise={
               (id.charAt(0).toUpperCase() + id.slice(1)).split("-").join(" ") +
               " Anime"
