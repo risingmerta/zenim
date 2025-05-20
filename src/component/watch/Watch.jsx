@@ -768,7 +768,7 @@ export default function Watch(props) {
               scrolling="no"
             ></iframe>
           </div>
-          <div className="w-full flex gap-x-4 items-center p-5 max-[575px]:px-3 max-[320px]:hidden">
+          <div className="w-full">
             <Share
               ShareUrl={`https://animoon.me/watch/${
                 animeId + "?ep=" + episodeId
