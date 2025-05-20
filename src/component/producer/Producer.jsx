@@ -78,7 +78,7 @@ export default function Producer(props) {
     setSearchParams({ page: newPage });
   };
 
-  return (
+  return ( 
     <>
       <SessionProvider>
         <Navbar lang={lang} selectL={selectL} />
