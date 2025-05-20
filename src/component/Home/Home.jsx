@@ -16,6 +16,7 @@ import { SessionProvider } from "next-auth/react";
 import Footer from "../Footer/Footer";
 import { usePathname } from "next/navigation";
 import Script from "next/script";
+import Share from "../Share/Share";
 
 export default function Home(props) {
   const [selectL, setSelectL] = useState("EN");
@@ -101,6 +102,12 @@ export default function Home(props) {
             trending={homeInfo.trending}
             selectL={selectL}
             refer={props.refer}
+          />
+
+          <Share
+            ShareUrl={`https://animoon.me/${
+              props.refer ? `?refer=${props.refer}` : ""
+            }`}
           />
 
           <div className="mt-10 flex gap-6 max-[1200px]:px-4 max-[1200px]:grid max-[1200px]:grid-cols-2 max-[1200px]:mt-12 max-[1200px]:gap-y-10 max-[680px]:grid-cols-1">

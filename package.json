@@ -26,6 +26,7 @@
     "cors-anywhere": "^0.4.4",
     "date-fns": "^4.1.0",
     "firebase": "^11.6.1",
+    "framer-motion": "^12.12.1",
     "hls.js": "^1.5.17",
     "jsonwebtoken": "^9.0.2",
     "lucide-react": "^0.447.0",
