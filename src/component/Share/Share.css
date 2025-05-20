@@ -18,6 +18,15 @@
   align-items: center;
 }
 
+.primary {
+  color: var(--theme-color);
+  font-weight: 600;
+}
+.secoi {
+  color: #fff;
+  font-weight: 400;
+}
+
 /* Buttons */
 .copy-btn,
 .share-btn {
