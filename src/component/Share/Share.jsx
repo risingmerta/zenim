@@ -81,7 +81,11 @@ export default function Share({ ShareUrl, arise }) {
   return (
     <>
       <div className="share-app">
-        <Image width={50} height={50} src={share} alt="share" />
+        <img
+          src="https://i.postimg.cc/d34WWyNQ/share-icon.gif"
+          alt="Share Anime"
+          className="w-[60px] h-auto rounded-full max-[1024px]:w-[40px]"
+        />
         <div>
           <p className="primary">
             Share {arise || process.env.NEXT_PUBLIC_SITE_NAME || "Animoon"}
