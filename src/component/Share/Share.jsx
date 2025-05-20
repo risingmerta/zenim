@@ -66,8 +66,8 @@ export default function Share({ ShareUrl, style, arise }) {
   };
 
   // Helper to render each share button with icon and label
-  const ShareButton = ({ Component, icon: Icon, label }) => (
-    <Component url={ShareUrl} className={`${Component}`}>
+  const ShareButton = ({ Component, icon: Icon, label, componentName }) => (
+    <Component url={ShareUrl} className={componentName}>
       <div style={{ textAlign: "center", userSelect: "none" }}>
         <Icon size={24} />
         <div style={{ fontSize: 11, marginTop: 4 }}>{label}</div>
@@ -123,25 +123,120 @@ export default function Share({ ShareUrl, style, arise }) {
             >
               <h2>Share via</h2>
               <div className="share-grid">
-                <ShareButton Component={WhatsappShareButton} icon={FaWhatsapp} label="WhatsApp" />
-                <ShareButton Component={FacebookShareButton} icon={FaFacebookF} label="Facebook" />
-                <ShareButton Component={TelegramShareButton} icon={FaTelegram} label="Telegram" />
-                <ShareButton Component={RedditShareButton} icon={FaRedditAlien} label="Reddit" />
-                <ShareButton Component={TwitterShareButton} icon={FaXTwitter} label="Twitter" />
-                <ShareButton Component={EmailShareButton} icon={MdEmail} label="Email" />
-                <ShareButton Component={HatenaShareButton} icon={SiHatenabookmark} label="Hatena" />
-                <ShareButton Component={InstapaperShareButton} icon={SiInstapaper} label="Instapaper" />
-                <ShareButton Component={LineShareButton} icon={FaLine} label="Line" />
-                <ShareButton Component={LinkedinShareButton} icon={FaLinkedinIn} label="LinkedIn" />
-                <ShareButton Component={LivejournalShareButton} icon={SiLivejournal} label="LiveJournal" />
-                <ShareButton Component={MailruShareButton} icon={MdAlternateEmail} label="Mail.ru" />
-                <ShareButton Component={OKShareButton} icon={SiOdnoklassniki} label="Odnoklassniki" />
-                <ShareButton Component={PinterestShareButton} icon={FaPinterest} label="Pinterest" />
-                <ShareButton Component={PocketShareButton} icon={FaGetPocket} label="Pocket" />
-                <ShareButton Component={TumblrShareButton} icon={FaTumblr} label="Tumblr" />
-                <ShareButton Component={ViberShareButton} icon={FaViber} label="Viber" />
-                <ShareButton Component={VKShareButton} icon={SlSocialVkontakte} label="VK" />
-                <ShareButton Component={WorkplaceShareButton} icon={SiWorkplace} label="Workplace" />
+                <ShareButton
+                  Component={WhatsappShareButton}
+                  icon={FaWhatsapp}
+                  label="WhatsApp"
+                  componentName="WhatsappShareButton"
+                />
+                <ShareButton
+                  Component={FacebookShareButton}
+                  icon={FaFacebookF}
+                  label="Facebook"
+                  componentName="FacebookShareButton"
+                />
+                <ShareButton
+                  Component={TelegramShareButton}
+                  icon={FaTelegram}
+                  label="Telegram"
+                  componentName="TelegramShareButton"
+                />
+                <ShareButton
+                  Component={RedditShareButton}
+                  icon={FaRedditAlien}
+                  label="Reddit"
+                  componentName="RedditShareButton"
+                />
+                <ShareButton
+                  Component={TwitterShareButton}
+                  icon={FaXTwitter}
+                  label="Twitter"
+                  componentName="TwitterShareButton"
+                />
+                <ShareButton
+                  Component={EmailShareButton}
+                  icon={MdEmail}
+                  label="Email"
+                  componentName="EmailShareButton"
+                />
+                <ShareButton
+                  Component={HatenaShareButton}
+                  icon={SiHatenabookmark}
+                  label="Hatena"
+                  componentName="HatenaShareButton"
+                />
+                <ShareButton
+                  Component={InstapaperShareButton}
+                  icon={SiInstapaper}
+                  label="Instapaper"
+                  componentName="InstapaperShareButton"
+                />
+                <ShareButton
+                  Component={LineShareButton}
+                  icon={FaLine}
+                  label="Line"
+                  componentName="LineShareButton"
+                />
+                <ShareButton
+                  Component={LinkedinShareButton}
+                  icon={FaLinkedinIn}
+                  label="LinkedIn"
+                  componentName="LinkedinShareButton"
+                />
+                <ShareButton
+                  Component={LivejournalShareButton}
+                  icon={SiLivejournal}
+                  label="LiveJournal"
+                  componentName="LivejournalShareButton"
+                />
+                <ShareButton
+                  Component={MailruShareButton}
+                  icon={MdAlternateEmail}
+                  label="Mail.ru"
+                  componentName="MailruShareButton"
+                />
+                <ShareButton
+                  Component={OKShareButton}
+                  icon={SiOdnoklassniki}
+                  label="Odnoklassniki"
+                  componentName="OKShareButton"
+                />
+                <ShareButton
+                  Component={PinterestShareButton}
+                  icon={FaPinterest}
+                  label="Pinterest"
+                  componentName="PinterestShareButton"
+                />
+                <ShareButton
+                  Component={PocketShareButton}
+                  icon={FaGetPocket}
+                  label="Pocket"
+                  componentName="PocketShareButton"
+                />
+                <ShareButton
+                  Component={TumblrShareButton}
+                  icon={FaTumblr}
+                  label="Tumblr"
+                  componentName="TumblrShareButton"
+                />
+                <ShareButton
+                  Component={ViberShareButton}
+                  icon={FaViber}
+                  label="Viber"
+                  componentName="ViberShareButton"
+                />
+                <ShareButton
+                  Component={VKShareButton}
+                  icon={SlSocialVkontakte}
+                  label="VK"
+                  componentName="VKShareButton"
+                />
+                <ShareButton
+                  Component={WorkplaceShareButton}
+                  icon={SiWorkplace}
+                  label="Workplace"
+                  componentName="WorkplaceShareButton"
+                />
               </div>
               <button className="close-modal" onClick={() => setOpen(false)}>
                 Close
