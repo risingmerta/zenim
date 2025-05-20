@@ -773,6 +773,7 @@ export default function Watch(props) {
               ShareUrl={`https://animoon.me/watch/${
                 animeId + "?ep=" + episodeId
               }${props.refer ? `?refer=${props.refer}` : ""}`}
+              arise="this Anime"
             />
           </div>
           <div

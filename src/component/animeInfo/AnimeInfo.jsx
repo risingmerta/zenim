@@ -299,6 +299,7 @@ export default function AnimeInfo({
                 ShareUrl={`https://animoon.me/${animeInfo.id}${
                   refer ? `?refer=${refer}` : ""
                 }`}
+                arise="this Anime"
               />
             </div>
           </div>

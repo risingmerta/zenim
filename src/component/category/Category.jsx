@@ -14,6 +14,7 @@ import Navbar from "../Navbar/Navbar";
 import Footer from "../Footer/Footer";
 import { SessionProvider } from "next-auth/react";
 import Script from "next/script";
+import Share from "../Share/Share";
 
 export default function Category({ path, label, pagel }) {
   const [selectL, setSelectL] = useState("EN");
@@ -132,18 +133,13 @@ export default function Category({ path, label, pagel }) {
         </div> */}
         <div className="w-full flex flex-col gap-y-4 mt-[70px] max-md:mt-[70px]">
           {/* Share Anime Banner */}
-          <div className="w-full flex gap-x-4 items-center bg-[#191826] p-5 max-[575px]:px-3 max-[320px]:hidden">
-            <img
-              src="https://i.postimg.cc/d34WWyNQ/share-icon.gif"
-              alt="Share Anime"
-              className="w-[60px] h-auto rounded-full max-[1024px]:w-[40px] max-[575px]:hidden"
+          <div className="w-full">
+            <Share
+              ShareUrl={`https://animoon.me/watch/${
+                animeId + "?ep=" + episodeId
+              }${props.refer ? `?refer=${props.refer}` : ""}`}
+              arise={label?.split?.("/")?.pop() || ""}
             />
-            <div className="flex flex-col w-fit">
-              <p className="text-[15px] font-bold text-[#00f2fe]">
-                Share Anime
-              </p>
-              <p className="text-[16px] text-white">to your friends</p>
-            </div>
           </div>
 
           {/* <div

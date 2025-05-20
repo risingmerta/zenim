@@ -100,6 +100,17 @@ export default function Producer(props) {
             scrolling="no"
           ></iframe>
         </div> */}
+        <div className="w-full mt-[70px]">
+          <Share
+            ShareUrl={`https://animoon.me/watch/${
+              animeId + "?ep=" + episodeId
+            }${props.refer ? `?refer=${props.refer}` : ""}`}
+            arise={
+              (id.charAt(0).toUpperCase() + id.slice(1)).split("-").join(" ") +
+              " Anime"
+            }
+          />
+        </div>
         <div className="w-full flex flex-col gap-y-4 mt-[70px] max-md:mt-[70px]">
           {producerInfo ? (
             <div className="category-layout">
