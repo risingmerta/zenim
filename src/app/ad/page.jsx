@@ -8,7 +8,7 @@ const Page = () => {
   useEffect(() => {
     const timeout = setTimeout(() => {
       const adContainer = document.getElementById(
-        "container-0859fb809e643c637c15e0aeb8d5b17a"
+        "container-0edc04a5374d9021ce8e6b9f5bb01d53"
       );
       if (adContainer && adContainer.childNodes.length > 0) {
         setAdVisible(true);
@@ -27,12 +27,12 @@ const Page = () => {
       }}
     >
       <Script
-        src="//abackdamstubborn.com/d7d539df388aa9aa3a474ee476863a09/invoke.js"
+        src="//abackdamstubborn.com/0edc04a5374d9021ce8e6b9f5bb01d53/invoke.js"
         strategy="afterInteractive"
         data-cfasync="false"
         async
       />
-      <div id="container-d7d539df388aa9aa3a474ee476863a09" />
+      <div id="container-0edc04a5374d9021ce8e6b9f5bb01d53" />
       {!adVisible && (
         <div
           style={{
