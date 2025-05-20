@@ -86,46 +86,214 @@
 
 /* Brand-specific share button styles */
 .share-grid .WhatsappShareButton {
-  background-color: #25d366;
+  background-color: #25d366 !important;
   color: white;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .share-grid .FacebookShareButton {
-  background-color: #1877f2;
+  background-color: #1877f2 !important;
   color: white;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .share-grid .TelegramShareButton {
-  background-color: #0088cc;
+  background-color: #0088cc !important;
   color: white;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .share-grid .RedditShareButton {
-  background-color: #ff4500;
+  background-color: #ff4500 !important;
   color: white;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .share-grid .TwitterShareButton {
-  background-color: #1da1f2;
+  background-color: #1da1f2 !important;
   color: white;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .share-grid .EmailShareButton {
-  background-color: #7f7f7f;
+  background-color: #7f7f7f !important;
   color: white;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .share-grid .HatenaShareButton {
-  background-color: #00a4de;
+  background-color: #00a4de !important;
   color: white;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .share-grid .InstapaperShareButton {
-  background-color: #00aaff; /* example color */
-  border-radius: 12px;
-  max-width: 480px;
-  margin: auto;
+  background-color: #000000 !important;
+  color: white;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
+
+.share-grid .LineShareButton {
+  background-color: #00c300 !important;
+  color: white;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.share-grid .LinkedinShareButton {
+  background-color: #0a66c2 !important;
+  color: white;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.share-grid .LivejournalShareButton {
+  background-color: #2fac66 !important;
+  color: white;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.share-grid .MailruShareButton {
+  background-color: #168de2 !important;
+  color: white;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.share-grid .OKShareButton {
+  background-color: #ed812b !important;
+  color: white;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.share-grid .PinterestShareButton {
+  background-color: #bd081c !important;
+  color: white;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.share-grid .PocketShareButton {
+  background-color: #ef4056 !important;
+  color: white;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.share-grid .TumblrShareButton {
+  background-color: #36465d !important;
+  color: white;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.share-grid .ViberShareButton {
+  background-color: #665cac !important;
+  color: white;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.share-grid .VKShareButton {
+  background-color: #4c75a3 !important;
+  color: white;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.share-grid .WorkplaceShareButton {
+  background-color: #0078d7 !important;
+  color: white;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 
 .copy-btn,
 .share-btn {
