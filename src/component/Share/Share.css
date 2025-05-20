@@ -12,6 +12,8 @@
   flex-wrap: wrap;
   border: 1px solid var(--theme-color);
   box-shadow: 0 0 10px var(--theme-color);
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 /* Buttons */
@@ -113,4 +115,14 @@
 .close-modal:hover {
   background-color: var(--theme-color);
   color: #000;
+}
+
+.large-screen-only {
+  display: flex;
+}
+
+@media screen and (max-width: 599px) {
+  .large-screen-only {
+    display: none;
+  }
 }

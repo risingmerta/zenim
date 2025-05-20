@@ -76,7 +76,7 @@ export default function Share({ ShareUrl, style, arise }) {
           <p className="secoi">to your friends</p>
         </div>
         <button onClick={handleCopy} className="copy-btn">
-          {copied ? (
+          {copied ? ( 
             <>
               <MdCheckCircle size={22} />
               <span className="button-text large-screen-only">Copied</span>
