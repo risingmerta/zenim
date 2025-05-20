@@ -29,6 +29,7 @@ import { SessionProvider } from "next-auth/react";
 import Script from "next/script";
 import getStreamInfo from "@/utils/getStreamInfo.utils";
 import getServers from "@/utils/getServers.utils";
+import Share from "../Share/Share";
 
 const website_name = "Animoon";
 
