@@ -68,7 +68,7 @@ export default function Share({ ShareUrl, style, arise }) {
   // Helper to render each share button with icon and label
   const ShareButton = ({ Component, icon: Icon, label, componentName }) => (
     <Component url={ShareUrl}>
-      <div style={{ textAlign: "center", userSelect: "none" }}>
+      <div className="shareDic">
         <div className={componentName}>
           <Icon size={24} />
         </div>

@@ -294,7 +294,6 @@
   justify-content: center;
 }
 
-
 .copy-btn,
 .share-btn {
   cursor: pointer;
@@ -379,6 +378,13 @@
 .share-grid > *:hover {
   transform: scale(1.1);
   filter: brightness(1.1);
+}
+
+.shareDic {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }
 
 /* Brand colors */
