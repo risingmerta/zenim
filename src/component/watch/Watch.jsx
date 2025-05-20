@@ -768,11 +768,13 @@ export default function Watch(props) {
               scrolling="no"
             ></iframe>
           </div>
-          <Share
-            ShareUrl={`https://animoon.me/${animeId + "?ep=" + episodeId}${
-              props.refer ? `?refer=${props.refer}` : ""
-            }`}
-          />
+          <div className="w-full flex gap-x-4 items-center p-5 max-[575px]:px-3 max-[320px]:hidden">
+            <Share
+              ShareUrl={`https://animoon.me/watch/${
+                animeId + "?ep=" + episodeId
+              }${props.refer ? `?refer=${props.refer}` : ""}`}
+            />
+          </div>
           <div
             style={{
               width: "100%",
