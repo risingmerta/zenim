@@ -297,7 +297,7 @@ export default function AnimeInfo({
               </p>
               <Share
                 ShareUrl={`https://animoon.me/${animeInfo.id}${
-                  props.refer ? `?refer=${props.refer}` : ""
+                  refer ? `?refer=${refer}` : ""
                 }`}
               />
             </div>

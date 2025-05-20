@@ -206,9 +206,7 @@ export default function SplashScreen({ results }) {
         </div>
 
         <Share
-          ShareUrl={`https://animoon.me/${
-            props.refer ? `?refer=${props.refer}` : ""
-          }`}
+          ShareUrl={`https://animoon.me/`}
         />
 
         <div
