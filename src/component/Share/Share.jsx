@@ -59,10 +59,9 @@ export default function Share({ ShareUrl, arise }) {
   const [showModal, setShowModal] = useState(false);
 
   const handleCopy = () => {
-    navigator.clipboard.writeText(ShareUrl).then(() => {
-      setCopied(true);
-      setTimeout(() => setCopied(false), 1500);
-    });
+    navigator.clipboard.writeText(ShareUrl);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
   };
 
   return (
@@ -102,7 +101,8 @@ export default function Share({ ShareUrl, arise }) {
 
       {/* Modal */}
       {showModal && (
-        <div className="share-modal">
+        <div className="modal-overlay" onClick={() => setShowModal(false)}>
+        <div className="share-modal" onClick={(e) => e.stopPropagation()}>
           <div className="modal-content">
             <button
               className="close-button"
@@ -110,67 +110,43 @@ export default function Share({ ShareUrl, arise }) {
             >
               ×
             </button>
+            <h3>Share via</h3>
 
             <div className="share-grid">
-              <WhatsappShareButton url={ShareUrl}>
-                <FaWhatsapp />
-              </WhatsappShareButton>
               <FacebookShareButton url={ShareUrl}>
-                <FaFacebookF />
+                <FaFacebookF size={20} />
+                <span>Facebook</span>
               </FacebookShareButton>
+              <TwitterShareButton url={ShareUrl}>
+                <FaXTwitter size={20} />
+                <span>Twitter</span>
+              </TwitterShareButton>
+              <WhatsappShareButton url={ShareUrl}>
+                <FaWhatsapp size={20} />
+                <span>WhatsApp</span>
+              </WhatsappShareButton>
               <TelegramShareButton url={ShareUrl}>
-                <FaTelegram />
+                <FaTelegram size={20} />
+                <span>Telegram</span>
               </TelegramShareButton>
               <RedditShareButton url={ShareUrl}>
-                <FaRedditAlien />
+                <FaRedditAlien size={20} />
+                <span>Reddit</span>
               </RedditShareButton>
-              <TwitterShareButton url={ShareUrl}>
-                <FaXTwitter />
-              </TwitterShareButton>
-              <EmailShareButton url={ShareUrl}>
-                <MdEmail />
-              </EmailShareButton>
-              <HatenaShareButton url={ShareUrl}>
-                <SiHatenabookmark />
-              </HatenaShareButton>
-              <InstapaperShareButton url={ShareUrl}>
-                <SiInstapaper />
-              </InstapaperShareButton>
-              <LineShareButton url={ShareUrl}>
-                <FaLine />
-              </LineShareButton>
               <LinkedinShareButton url={ShareUrl}>
-                <FaLinkedinIn />
+                <FaLinkedinIn size={20} />
+                <span>LinkedIn</span>
               </LinkedinShareButton>
-              <LivejournalShareButton url={ShareUrl}>
-                <SiLivejournal />
-              </LivejournalShareButton>
-              <MailruShareButton url={ShareUrl}>
-                <MdAlternateEmail />
-              </MailruShareButton>
-              <OKShareButton url={ShareUrl}>
-                <SiOdnoklassniki />
-              </OKShareButton>
-              <PinterestShareButton url={ShareUrl}>
-                <FaPinterest />
-              </PinterestShareButton>
-              <PocketShareButton url={ShareUrl}>
-                <FaGetPocket />
-              </PocketShareButton>
-              <TumblrShareButton url={ShareUrl}>
-                <FaTumblr />
-              </TumblrShareButton>
-              <ViberShareButton url={ShareUrl}>
-                <FaViber />
-              </ViberShareButton>
-              <VKShareButton url={ShareUrl}>
-                <SlSocialVkontakte />
-              </VKShareButton>
-              <WorkplaceShareButton url={ShareUrl}>
-                <SiWorkplace />
-              </WorkplaceShareButton>
+              <EmailShareButton url={ShareUrl}>
+                <FaEnvelope size={20} />
+                <span>Email</span>
+              </EmailShareButton>
             </div>
+            <button className="close-modal" onClick={() => setShowModal(false)}>
+              ✕
+            </button>
           </div>
+        </div>
         </div>
       )}
     </div>
