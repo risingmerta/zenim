@@ -21,7 +21,7 @@
 /* Buttons */
 .copy-btn,
 .share-btn {
-  background-color: #444444;
+  background-color: #2e2e2e !important;
   border: 1px solid transparent;
   padding: 8px 12px;
   border-radius: 8px;
@@ -36,7 +36,7 @@
 .copy-btn:hover,
 .share-btn:hover {
   background-color: var(--theme-color);
-  color: #000;
+  color: #000 !important;
 }
 
 /* Modal Overlay */
@@ -483,4 +483,3 @@
   background-color: var(--theme-color);
   color: #000;
 }
-
