@@ -55,7 +55,7 @@ export default async function page({ searchParams }) {
         strategy="afterInteractive"
         // "afterInteractive" means load script after page hydration
       /> */}
-      <BottomLeftAd />
+      {/* <BottomLeftAd /> */}
     </div>
   );
 }

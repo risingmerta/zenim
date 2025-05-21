@@ -27,7 +27,7 @@ export default async function Page() {
     <div>
       <SplashScreen results={results} />
       <Advertize />
-      <BottomLeftAd />
+      {/* <BottomLeftAd /> */}
       {/* <Script
         src="//abackdamstubborn.com/b7/2f/b2/b72fb2e5a32c00a413ee2bb7ea85b317.js"
         strategy="afterInteractive"

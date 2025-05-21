@@ -154,7 +154,7 @@ export default async function Page({ params, searchParams }) {
         randomData={randomData}
       />
       <Advertize refer={refer} />
-      <BottomLeftAd />
+      {/* <BottomLeftAd /> */}
     </div>
   );
 }
