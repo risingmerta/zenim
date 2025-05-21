@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { useState, useEffect } from "react";
 
 export default function BottomLeftAd() {
@@ -29,7 +29,7 @@ export default function BottomLeftAd() {
       style={{
         position: "fixed",
         bottom: "20px",
-        left: "20px",
+        right: "20px",
         zIndex: 1000,
         background: "#fff",
         boxShadow: "0 0 10px rgba(0,0,0,0.3)",
