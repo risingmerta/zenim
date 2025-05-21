@@ -15,15 +15,22 @@ const Page = () => {
       } else {
         setAdVisible(false);
       }
-    }, 1000); // Give the script some time to inject content
+    }, 1000); // Wait for script to load
 
     return () => clearTimeout(timeout);
   }, []);
 
   return (
     <div
-      style={{ 
-        backgroundColor: "#1a1a1a", // dark background
+      style={{
+        backgroundColor: "#1a1a1a", // Match your dark theme
+        minHeight: "100px",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        padding: "1rem",
+        borderRadius: "8px",
+        overflow: "hidden",
       }}
     >
       <Script
@@ -32,24 +39,34 @@ const Page = () => {
         data-cfasync="false"
         async
       />
-      <div id="container-0edc04a5374d9021ce8e6b9f5bb01d53" />
+      <div
+        id="container-0edc04a5374d9021ce8e6b9f5bb01d53"
+        style={{
+          width: "100%",
+          maxWidth: "360px",
+          height: "100px",
+          display: adVisible ? "block" : "none",
+        }}
+      />
       {!adVisible && (
         <div
           style={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            textAlign: "center",
+            width: "100%",
+            maxWidth: "360px",
             height: "100px",
             color: "#00f2fe",
             fontSize: "14px",
-            backgroundColor: "#1a1a1a", // dark background
-            border: "1px solid #00f2fe", // theme border
+            backgroundColor: "#1a1a1a",
+            border: "1px solid #00f2fe",
             padding: "8px",
             borderRadius: "6px",
+            textAlign: "center",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
           }}
         >
-          <div>Click to supports Animoon 💖</div>
+          <div>Click to support Animoon 💖</div>
         </div>
       )}
     </div>
