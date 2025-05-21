@@ -754,7 +754,7 @@ export default function Watch(props) {
               width: "100%",
               display: "flex",
               justifyContent: "center",
-              marginTop: "70px",
+              marginTop: "10px 0",
             }}
           >
             <iframe
@@ -781,7 +781,7 @@ export default function Watch(props) {
               width: "100%",
               display: "flex",
               justifyContent: "center",
-              marginTop: "70px",
+              marginTop: "10px 0",
             }}
           >
             <iframe
