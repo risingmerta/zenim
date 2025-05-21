@@ -1,4 +1,5 @@
 import Advertize from "@/component/Advertize/Advertize";
+import BottomLeftAd from "@/component/BottomLeftAd/BottomLeftAd";
 import Watch from "@/component/watch/Watch";
 import { connectDB } from "@/lib/mongoClient";
 import axios from "axios";
@@ -61,7 +62,7 @@ export default async function Page({ params, searchParams }) {
 
   if (id) {
     const doc = await animeInfoCol.findOne({ _id: id });
-    
+
     if (doc) {
       infoData = doc.info?.results ?? null;
       episodeData = doc.episode?.results ?? null;
@@ -153,6 +154,7 @@ export default async function Page({ params, searchParams }) {
         randomData={randomData}
       />
       <Advertize refer={refer} />
+      <BottomLeftAd />
     </div>
   );
 }

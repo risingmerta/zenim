@@ -1,5 +1,6 @@
 import AdComponent from "@/component/adComponent/adComponent";
 import Advertize from "@/component/Advertize/Advertize";
+import BottomLeftAd from "@/component/BottomLeftAd/BottomLeftAd";
 import SplashScreen from "@/component/splashscreen/SplashScreen";
 import Script from "next/script";
 import React from "react";
@@ -25,7 +26,8 @@ export default async function Page() {
   return (
     <div>
       <SplashScreen results={results} />
-      <Advertize/>
+      <Advertize />
+      <BottomLeftAd />
       {/* <Script
         src="//abackdamstubborn.com/b7/2f/b2/b72fb2e5a32c00a413ee2bb7ea85b317.js"
         strategy="afterInteractive"

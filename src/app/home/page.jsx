@@ -1,4 +1,5 @@
 import Advertize from "@/component/Advertize/Advertize";
+import BottomLeftAd from "@/component/BottomLeftAd/BottomLeftAd";
 import Home from "@/component/Home/Home";
 import Script from "next/script";
 import React from "react";
@@ -54,6 +55,7 @@ export default async function page({ searchParams }) {
         strategy="afterInteractive"
         // "afterInteractive" means load script after page hydration
       /> */}
+      <BottomLeftAd />
     </div>
   );
 }
