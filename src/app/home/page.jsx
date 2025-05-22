@@ -14,7 +14,7 @@ export default async function page({ searchParams }) {
       "https://api3.shoko.fun/api",
     ];
     const api_url = apis[Math.floor(Math.random() * apis.length)];
-      const db = await connectDB();
+    const db = await connectDB();
     let datapp = null;
     try {
       const doc = await db.collection("animoon-home").findOne({});
