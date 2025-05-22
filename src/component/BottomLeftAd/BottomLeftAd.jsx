@@ -62,7 +62,7 @@ export default function BottomLeftAd() {
 
         {/* Ad Iframe */}
         <iframe
-          src="/ad"
+          src="/ad2"
           style={{
             width: "300px",
             height: "100px",

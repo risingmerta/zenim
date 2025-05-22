@@ -7,10 +7,19 @@ import React from "react";
 export default async function page({ searchParams }) {
   let dataToCache = {};
   try {
-    const res = await fetch("https://kaori.animoon.me/api/home", {
-      next: { revalidate: 3600 },
-    });
-    const data = await res.json();
+    const apis = [
+      "https://api.shoko.fun/api",
+      "https://api2.shoko.fun/api",
+      "https://api3.shoko.fun/api",
+    ];
+    const api_url = apis[Math.floor(Math.random() * apis.length)];
+    let datapp = null;
+    try {
+      const doc = await db.collection("animoon-home").findOne({});
+      datapp = doc || (await fetch(`${api_url}`).then((res) => res.json()));
+    } catch (error) {
+      console.error("Error fetching homepage data:", error.message);
+    }
     const {
       spotlights,
       trending,
@@ -24,7 +33,7 @@ export default async function page({ searchParams }) {
       topUpcoming: top_upcoming,
       recentlyAdded: recently_added,
       genres,
-    } = data?.data;
+    } = datapp;
 
     dataToCache = {
       spotlights,
