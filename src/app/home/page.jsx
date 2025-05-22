@@ -1,6 +1,7 @@
 import Advertize from "@/component/Advertize/Advertize";
 import BottomLeftAd from "@/component/BottomLeftAd/BottomLeftAd";
 import Home from "@/component/Home/Home";
+import { connectDB } from "@/lib/mongoClient";
 import Script from "next/script";
 import React from "react";
 
@@ -13,6 +14,7 @@ export default async function page({ searchParams }) {
       "https://api3.shoko.fun/api",
     ];
     const api_url = apis[Math.floor(Math.random() * apis.length)];
+      const db = await connectDB();
     let datapp = null;
     try {
       const doc = await db.collection("animoon-home").findOne({});
