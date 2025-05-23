@@ -9,7 +9,7 @@ import Qtip from "../qtip/Qtip";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
-function Sidecard({ data, label, className, limit, selectL }) {
+function Sidecard({ data, label, className, limit, selectL, refer }) {
   const language = selectL;
   const router = useRouter();
   const [showAll, setShowAll] = useState(false);
@@ -46,8 +46,10 @@ function Sidecard({ data, label, className, limit, selectL }) {
     }
     router.push(
       lastWatchedEpId
-        ? `/watch/${id + "?ep=" + lastWatchedEpId}`
-        : `/watch/${id}`
+        ? `/watch/${id + "?ep=" + lastWatchedEpId}${
+            refer ? `&refer=${refer}` : ""
+          }`
+        : `/watch/${id}${refer ? `?refer=${refer}` : ""}`
     );
   };
   return (
@@ -84,7 +86,7 @@ function Sidecard({ data, label, className, limit, selectL }) {
                           : "opacity-0 translate-y-2"
                       }`}
                     >
-                      <Qtip id={item.id} />
+                      <Qtip id={item.id} refer={refer} />
                     </div>
                   )}
                 <img
@@ -97,7 +99,7 @@ function Sidecard({ data, label, className, limit, selectL }) {
                 />
                 <div className="flex flex-col ml-4 space-y-2">
                   <Link
-                    href={`/${item.id}`}
+                    href={`/${item.id}${refer ? `?refer=${refer}` : ""}`}
                     className="text-[1em] font-[500] hover:cursor-pointer hover:text-[#00f2fe] transform transition-all ease-out line-clamp-1 max-[478px]:line-clamp-2 max-[478px]:text-[14px]"
                     onClick={() =>
                       typeof window !== "undefined" &&

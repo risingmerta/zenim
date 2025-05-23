@@ -399,17 +399,19 @@ export default function AnimeInfo({
                   <div className="flex flex-wrap gap-4 max-[575px]:grid max-[575px]:grid-cols-3 max-[575px]:gap-3 max-[480px]:grid-cols-2">
                     {seasons.map((season, index) => (
                       <Link
-                        href={`/${season.id}${refer ? `?refer=${refer}` : ""}`}
+                        href={`/${season.id.replace("/", "")}${
+                          refer ? `?refer=${refer}` : ""
+                        }`}
                         key={index}
                         className={`relative w-[20%] h-[60px] rounded-lg overflow-hidden cursor-pointer group ${
-                          id === String(season.id)
+                          id === season.id.replace("/", "")
                             ? "border border-[#00f2fe]"
                             : ""
                         } max-[1200px]:w-[140px] max-[575px]:w-full`}
                       >
                         <p
                           className={`text-[13px] text-center font-bold absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full px-2 z-30 line-clamp-2 group-hover:text-[#00f2fe] ${
-                            id === String(season.id)
+                            id === season.id.replace("/", "")
                               ? "text-[#00f2fe]"
                               : "text-white"
                           }`}

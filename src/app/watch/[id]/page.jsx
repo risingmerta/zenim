@@ -29,6 +29,8 @@ export default async function Page({ params, searchParams }) {
   const { id } = param;
   const { ep, refer } = searchParam;
 
+  let home = null;
+
   const apis = [
     "https://api.animoon.me/api",
     "https://api2.animoon.me/api",
@@ -38,14 +40,44 @@ export default async function Page({ params, searchParams }) {
 
   const db = await connectDB();
 
-  // Fetch homepage data
-  let datapp = null;
+  // --- Fetch homepage data
   try {
     const doc = await db.collection("animoon-home").findOne({});
-    datapp = doc || (await fetch(`${api_url}`).then((res) => res.json()));
+    home = doc || (await fetch(api_url).then((res) => res.json()));
   } catch (error) {
     console.error("Error fetching homepage data:", error.message);
   }
+
+  // --- Normalize homepage fields
+  const {
+    spotlights,
+    trending,
+    topTen: topten,
+    today: todaySchedule,
+    topAiring: top_airing,
+    mostPopular: most_popular,
+    mostFavorite: most_favorite,
+    latestCompleted: latest_completed,
+    latestEpisode: latest_episode,
+    topUpcoming: top_upcoming,
+    recentlyAdded: recently_added,
+    genres,
+  } = home ?? {};
+
+  home = {
+    spotlights,
+    trending,
+    topten,
+    todaySchedule,
+    top_airing,
+    most_popular,
+    most_favorite,
+    latest_completed,
+    latest_episode,
+    top_upcoming,
+    recently_added,
+    genres,
+  };
 
   const animeInfoCol = db.collection("animeInfo");
 
@@ -149,7 +181,7 @@ export default async function Page({ params, searchParams }) {
           id={id}
           epId={ep}
           refer={refer}
-          homeData={datapp}
+          homeData={home}
           infoData={infoData}
           episodeData={episodeData}
           scheduleData={dati?.schedule}

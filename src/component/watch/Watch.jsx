@@ -585,19 +585,19 @@ export default function Watch(props) {
                       <div className="flex flex-wrap gap-4 max-[575px]:grid max-[575px]:grid-cols-3 max-[575px]:gap-3 max-[480px]:grid-cols-2">
                         {seasons.map((season, index) => (
                           <Link
-                            href={`/${season.id}${
+                            href={`/${season.id.replace("/", "")}${
                               props.refer ? `?refer=${props.refer}` : ""
                             }`}
                             key={index}
                             className={`relative w-[20%] h-[60px] rounded-lg overflow-hidden cursor-pointer group ${
-                              animeId === String(season.id)
+                              animeId === season.id.replace("/", "")
                                 ? "border border-[#ffbade]"
                                 : ""
                             } max-[1200px]:w-[140px] max-[575px]:w-full`}
                           >
                             <p
                               className={`text-[13px] text-center font-bold absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full px-2 z-30 line-clamp-2 group-hover:text-[#ffbade] ${
-                                animeId === String(season.id)
+                                animeId === season.id.replace("/", "")
                                   ? "text-[#ffbade]"
                                   : "text-white"
                               }`}

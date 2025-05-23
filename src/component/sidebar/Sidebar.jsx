@@ -124,7 +124,7 @@ const Sidebar = ({ isOpen, onClose }) => {
                 style={{ borderBottom: "1px solid rgba(255, 255, 255, .08)" }}
               >
                 <Link
-                  to={item.path}
+                  href={item.path}
                   className="px-4 hover:text-[#00f2fe] hover:cursor-pointer w-fit line-clamp-1"
                 >
                   {item.name}
