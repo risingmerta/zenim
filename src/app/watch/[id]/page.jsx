@@ -1,5 +1,6 @@
 import Advertize from "@/component/Advertize/Advertize";
 import BottomLeftAd from "@/component/BottomLeftAd/BottomLeftAd";
+import Error from "@/component/error/Error";
 import Watch from "@/component/watch/Watch";
 import { connectDB } from "@/lib/mongoClient";
 import axios from "axios";
