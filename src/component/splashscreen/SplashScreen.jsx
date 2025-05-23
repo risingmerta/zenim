@@ -38,7 +38,7 @@ const logoTitle = "Animoon";
 //   return topSearch;
 // };
 
-export default function SplashScreen({ results }) {
+export default function SplashScreen({ results, refer }) {
   const router = useRouter();
   const [search, setSearch] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -68,7 +68,7 @@ export default function SplashScreen({ results }) {
             {NAV_LINKS.map((link) => (
               <Link
                 key={link.to}
-                href={link.to}
+                href={`link.to${refer ? `?refer=${refer}` : ""}`}
                 className="hover:text-[#00f2fe]"
               >
                 {link.label}
@@ -112,7 +112,7 @@ export default function SplashScreen({ results }) {
                 {NAV_LINKS.map((link) => (
                   <Link
                     key={link.to}
-                    href={link.to}
+                    href={`link.to${refer ? `?refer=${refer}` : ''}`}
                     onClick={() => setIsModalOpen(false)}
                     className="hover:text-[#00f2fe] text-white text-lg"
                   >
@@ -147,7 +147,7 @@ export default function SplashScreen({ results }) {
         <div className="splashscreen min-h-[480px] min-[1200px]:min-h-[520px] bg-[#2B2A3C] rounded-[40px] flex relative mt-7 max-[780px]:w-full items-stretch max-[780px]:rounded-[30px] max-[520px]:rounded-none max-[520px]:min-h-fit max-[520px]:pb-4 max-[520px]:mt-4">
           <div className="h-auto flex flex-col w-[700px] relative z-40 px-20 py-20 left-0 max-[1200px]:py-12 max-[780px]:px-12 max-[520px]:py-4 max-[520px]:px-8">
             <Link
-              href="/home"
+              href={`/home${refer ? `?refer=${refer}` : ''}`}
               className="text-[45px] font-extrabold tracking-wide max-[520px]:text-[38px] max-[520px]:text-center"
             >
               <div className="logo-container">
@@ -184,7 +184,7 @@ export default function SplashScreen({ results }) {
               ))}
             </div>
             <div className="mt-8 flex max-[780px]:left-10">
-              <Link href="/home" className="max-[520px]:w-full">
+              <Link href={`/home${refer ? `?refer=${refer}` : ''}`} className="max-[520px]:w-full">
                 <div className="bg-[#00f2fe] text-black py-4 px-10 rounded-xl font-bold text-[20px] max-[520px]:text-center max-[520px]:font-medium max-[520px]:text-[17px]">
                   Watch anime
                   <FontAwesomeIcon
@@ -205,9 +205,7 @@ export default function SplashScreen({ results }) {
           </div>
         </div>
 
-        <Share
-          ShareUrl={`https://animoon.me/`}
-        />
+        <Share ShareUrl={`https://animoon.me/${refer ? `?refer=${refer}` : ''}`} />
 
         <div
           style={{

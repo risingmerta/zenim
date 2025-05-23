@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import AdComponent from "@/component/adComponent/adComponent";
 import Advertize from "@/component/Advertize/Advertize";
 import BottomLeftAd from "@/component/BottomLeftAd/BottomLeftAd";
@@ -5,7 +7,8 @@ import SplashScreen from "@/component/splashscreen/SplashScreen";
 import Script from "next/script";
 import React from "react";
 
-export default async function Page() {
+export default async function Page({ searchParams }) {
+  const searchParam = await searchParams;
   let results = [];
   try {
     const apis = [
@@ -25,7 +28,7 @@ export default async function Page() {
   }
   return (
     <div>
-      <SplashScreen results={results} />
+      <SplashScreen results={results} refer={searchParam.refer} />
       <Advertize />
       {/* <BottomLeftAd /> */}
       {/* <Script
