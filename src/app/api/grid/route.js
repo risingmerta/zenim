@@ -9,10 +9,10 @@ export async function GET(req) {
 
     // Fetch category-specific anime list and homepage data
     const [animeResp, homeResp] = await Promise.all([
-      fetch(`https://vimal.shoko.fun/api/${cate}?page=${pageParam}`, {
+      fetch(`https://vimal.animoon.me/api/${cate}?page=${pageParam}`, {
         next: { revalidate: 3600 },
       }),
-      fetch("https://vimal.shoko.fun/api", {
+      fetch("https://vimal.animoon.me/api", {
         next: { revalidate: 3600 },
       }),
     ]);
@@ -25,7 +25,7 @@ export async function GET(req) {
     const homeData = await homeResp.json();
 
     // Constructing the shareable URL
-    const ShareUrl = `https://shoko.fun/grid?name=${cate}&heading=${fiki}`;
+    const ShareUrl = `https://animoon.me/grid?name=${cate}&heading=${fiki}`;
     const arise = `${fiki} Anime`;
 
     return NextResponse.json({

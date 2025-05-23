@@ -20,9 +20,9 @@ const getSearch = async (
   onSear
 ) => {
   const apis = [
-    "https://api.shoko.fun/api",
-    "https://api2.shoko.fun/api",
-    "https://api3.shoko.fun/api",
+    "https://api.animoon.me/api",
+    "https://api2.animoon.me/api",
+    "https://api3.animoon.me/api",
   ];
 
   const api_url = apis[Math.floor(Math.random() * apis.length)];

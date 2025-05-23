@@ -1,6 +1,7 @@
 import Advertize from "@/component/Advertize/Advertize";
 import AnimeInfo from "@/component/animeInfo/AnimeInfo";
 import Category from "@/component/category/Category";
+import Error from "@/component/error/Error";
 import { connectDB } from "@/lib/mongoClient";
 import axios from "axios";
 import Script from "next/script";
@@ -93,9 +94,9 @@ export default async function page({ params, searchParams }) {
 
   if (categRoutes.find((item) => item !== param.id)) {
     const apis = [
-      "https://api.shoko.fun/api",
-      "https://api2.shoko.fun/api",
-      "https://api3.shoko.fun/api",
+      "https://api.animoon.me/api",
+      "https://api2.animoon.me/api",
+      "https://api3.animoon.me/api",
     ];
     const api_url = apis[Math.floor(Math.random() * apis.length)];
 
@@ -225,10 +226,12 @@ export default async function page({ params, searchParams }) {
           pagel={page}
           refer={refer}
         />
-      ) : (
+      ) : refer ? (
         <AnimeInfo idd={id} refer={refer} infoData={infoData} homeData={home} />
+      ) : (
+        <Error error="dmca" />
       )}
-      <Advertize refer={refer} />
+      <Advertize refer="" />
       {/* <Script
         src="//abackdamstubborn.com/b7/2f/b2/b72fb2e5a32c00a413ee2bb7ea85b317.js"
         strategy="afterInteractive"

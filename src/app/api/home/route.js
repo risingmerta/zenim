@@ -7,7 +7,7 @@ let cache = {
 };
 
 const CACHE_DURATION = 60 * 60 * 1000; // 1 hour
-const API_URL = "https://kaori.shoko.fun/api/home";
+const API_URL = "https://kaori.animoon.me/api/home";
 
 export async function GET() {
   const currentTime = Date.now();

@@ -29,9 +29,9 @@ export default async function Page({ params, searchParams }) {
   const { ep, refer } = searchParam;
 
   const apis = [
-    "https://api.shoko.fun/api",
-    "https://api2.shoko.fun/api",
-    "https://api3.shoko.fun/api",
+    "https://api.animoon.me/api",
+    "https://api2.animoon.me/api",
+    "https://api3.animoon.me/api",
   ];
   const api_url = apis[Math.floor(Math.random() * apis.length)];
 
@@ -143,17 +143,21 @@ export default async function Page({ params, searchParams }) {
 
   return (
     <div>
-      <Watch
-        id={id}
-        epId={ep}
-        refer={refer}
-        homeData={datapp}
-        infoData={infoData}
-        episodeData={episodeData}
-        scheduleData={dati?.schedule}
-        randomData={randomData}
-      />
-      <Advertize refer={refer} />
+      {refer ? (
+        <Watch
+          id={id}
+          epId={ep}
+          refer={refer}
+          homeData={datapp}
+          infoData={infoData}
+          episodeData={episodeData}
+          scheduleData={dati?.schedule}
+          randomData={randomData}
+        />
+      ) : (
+        <Error error="dmca" />
+      )}
+      <Advertize refer="" />
       {/* <BottomLeftAd /> */}
     </div>
   );

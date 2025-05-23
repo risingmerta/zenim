@@ -39,7 +39,7 @@ export async function POST(req) {
 
     try {
       const res = await fetch(
-        `https://vimal.shoko.fun/api/stream?id=${epId}&server=hd-2&type=dub`
+        `https://vimal.animoon.me/api/stream?id=${epId}&server=hd-2&type=dub`
       );
       datajDub = await res.json();
     } catch (error) {
@@ -49,7 +49,7 @@ export async function POST(req) {
 
     try {
       const res = await fetch(
-        `https://vimal.shoko.fun/api/stream?id=${epId}&server=hd-2&type=sub`
+        `https://vimal.animoon.me/api/stream?id=${epId}&server=hd-2&type=sub`
       );
       datajSub = await res.json();
     } catch (error) {
@@ -60,7 +60,7 @@ export async function POST(req) {
     if (!datajSub?.results?.streamingLink?.link?.file) {
       try {
         const res = await fetch(
-          `https://vimal.shoko.fun/api/stream?id=${epId}&server=hd-2&type=raw`
+          `https://vimal.animoon.me/api/stream?id=${epId}&server=hd-2&type=raw`
         );
         datajSub = await res.json();
         raw = "yes";

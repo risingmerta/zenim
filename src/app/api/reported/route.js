@@ -12,7 +12,7 @@ export async function GET(req) {
       });
     }
 
-    const externalApiUrl = `https://vimal.shoko.fun/api/stream?id=${id}&server=hd-2&type=${cate}`;
+    const externalApiUrl = `https://vimal.animoon.me/api/stream?id=${id}&server=hd-2&type=${cate}`;
     console.log(`Fetching data from: ${externalApiUrl}`);
 
     // Fetch data from the external API

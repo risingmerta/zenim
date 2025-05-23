@@ -13,10 +13,10 @@ export async function GET(req) {
 
     // Fetch anime genre data
     const [animeResp, homeResp] = await Promise.all([
-      fetch(`https://vimal.shoko.fun/api/genre/${date}?page=${page}`, {
+      fetch(`https://vimal.animoon.me/api/genre/${date}?page=${page}`, {
         next: { revalidate: 3600 },
       }),
-      fetch("https://vimal.shoko.fun/api", {
+      fetch("https://vimal.animoon.me/api", {
         next: { revalidate: 3600 },
       }),
     ]);
@@ -31,7 +31,7 @@ export async function GET(req) {
     return NextResponse.json({
       animeData,
       homeData,
-      ShareUrl: `https://shoko.fun/genre?id=${name}&name=${name}`,
+      ShareUrl: `https://animoon.me/genre?id=${name}&name=${name}`,
       arise: `${name} Anime`,
     });
   } catch (error) {
