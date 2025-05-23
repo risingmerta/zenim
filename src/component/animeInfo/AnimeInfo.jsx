@@ -90,7 +90,7 @@ export default function AnimeInfo({
   random = false,
   idd,
   refer,
-  infoData,
+  infoData, 
   homeData,
 }) {
   const [selectL, setSelectL] = useState("EN");
@@ -98,7 +98,7 @@ export default function AnimeInfo({
   const id = random ? null : idd;
   const [isFull, setIsFull] = useState(false);
   const animeInfo = infoData?.data;
-  const seasons = infoData?.season;
+  const seasons = infoData?.seasons;
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const homeInfo = homeData;

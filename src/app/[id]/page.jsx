@@ -160,7 +160,7 @@ export default async function page({ params, searchParams }) {
 
       // Fetch missing info
       if (!infoData?.data?.title) {
-        try {
+        try { 
           const { data } = await axios.get(`${api_url}/info?id=${id}`);
           infoData = data.results ?? null;
           await animeInfoCol.updateOne(
