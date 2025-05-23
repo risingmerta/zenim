@@ -68,7 +68,7 @@ export default function SplashScreen({ results, refer }) {
             {NAV_LINKS.map((link) => (
               <Link
                 key={link.to}
-                href={`link.to${refer ? `?refer=${refer}` : ""}`}
+                href={`${link.to}${refer ? `?refer=${refer}` : ""}`}
                 className="hover:text-[#00f2fe]"
               >
                 {link.label}
@@ -112,7 +112,7 @@ export default function SplashScreen({ results, refer }) {
                 {NAV_LINKS.map((link) => (
                   <Link
                     key={link.to}
-                    href={`link.to${refer ? `?refer=${refer}` : ""}`}
+                    href={`${link.to}${refer ? `?refer=${refer}` : ""}`}
                     onClick={() => setIsModalOpen(false)}
                     className="hover:text-[#00f2fe] text-white text-lg"
                   >
