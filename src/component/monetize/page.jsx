@@ -98,9 +98,10 @@ export default function AffiliatePage(props) {
         sign={sign}
         setProfiIsOpen={setProfiIsOpen}
         profiIsOpen={profiIsOpen}
+        refer={props.refer}
       />
       {profiIsOpen && (
-        <Profilo setProfiIsOpen={setProfiIsOpen} profiIsOpen={profiIsOpen} />
+        <Profilo setProfiIsOpen={setProfiIsOpen} profiIsOpen={profiIsOpen} refer={props.refer}/>
       )}
       {logIsOpen && (
         <SignInSignUpModal

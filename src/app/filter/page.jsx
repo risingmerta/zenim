@@ -27,9 +27,9 @@ export default async function page({ searchParams }) {
         onSear=""
         keyword={searchParam.keyword || ""}
         collectionName={`Search results for`}
-        refer={searchParam.refer}
+        refer={refer}
       />
-      <Advertize refer={refer} />
+      <Advertize refer={""} />
       {/* <Script
         src="//abackdamstubborn.com/b7/2f/b2/b72fb2e5a32c00a413ee2bb7ea85b317.js"
         strategy="afterInteractive"

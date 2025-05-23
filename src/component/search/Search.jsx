@@ -256,6 +256,8 @@ export default function Search(props) {
     // keyword
     if (props.keyword) queryParams.append("keyword", props.keyword);
 
+    if (props.refer) queryParams.append("refer", props.refer);
+
     // Navigate to /filter with query parameters
     router.push(
       props.onSear === "yes"
@@ -386,7 +388,7 @@ export default function Search(props) {
   return (
     <>
       <SessionProvider>
-        <Navbar lang={lang} selectL={selectL} />
+        <Navbar lang={lang} selectL={selectL} refer={props.refer}/>
         {/* <div
           style={{
             width: "100%",
@@ -604,6 +606,7 @@ export default function Search(props) {
                   showViewMore={false}
                   className={"mt-0"}
                   selectL={selectL}
+                  refer={props.refer}
                 />
                 {/* <div
                   style={{
@@ -636,6 +639,7 @@ export default function Search(props) {
                   page={parseInt(searchParams || "1", 10)}
                   totalPages={totalPages}
                   handlePageChange={handlePageChange}
+                  refer={props.refer}
                 />
                 {/* <div
                   style={{
@@ -683,6 +687,7 @@ export default function Search(props) {
                     className="mt-0"
                     label="Most Popular"
                     selectL={selectL}
+                    refer={props.refer}
                   />
                 )}
                 {/* <div
@@ -711,7 +716,7 @@ export default function Search(props) {
                   async
                 />
                 <div id="container-cd746754796510a55d9ef4d9a4260a75" />
-                {homeInfo?.genres && <Genre data={homeInfo.genres} />}
+                {homeInfo?.genres && <Genre data={homeInfo.genres} refer={props.refer}/>}
                 {/* <div
                   style={{
                     width: "100%",
@@ -742,7 +747,7 @@ export default function Search(props) {
             )}
           </div>
         </div>
-        <Footer />
+        <Footer refer={props.refer}/>
       </SessionProvider>
     </>
   );

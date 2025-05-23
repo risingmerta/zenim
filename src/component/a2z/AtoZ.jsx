@@ -12,7 +12,7 @@ import Navbar from "../Navbar/Navbar";
 import { SessionProvider } from "next-auth/react";
 import Script from "next/script";
 
-export default function AtoZ({ path, pagel }) {
+export default function AtoZ({ path, pagel ,refer }) {
   const [selectL, setSelectL] = useState("EN");
   const lang = (lang) => {
     setSelectL(lang);
@@ -57,12 +57,12 @@ export default function AtoZ({ path, pagel }) {
   return (
     <>
       <SessionProvider>
-        <Navbar lang={lang} selectL={selectL} />
+        <Navbar lang={lang} selectL={selectL} refer={refer}/>
         <div className="max-w-[1260px] mx-auto px-[15px] flex flex-col mt-[70px] max-md:mt-[70px]">
           <ul className="flex gap-x-2 mt-[50px] items-center w-fit max-[1200px]:hidden">
             <li className="flex gap-x-3 items-center">
               <Link
-                href="/home"
+                href={`/home${refer ? `?refer=${refer}` : ""}`}
                 className="text-white hover:text-[#00f2fe] text-[17px]"
               >
                 Home
@@ -148,7 +148,9 @@ export default function AtoZ({ path, pagel }) {
 
                 return (
                   <Link
-                    href={`/az-list/${linkPath}`}
+                    href={`/az-list/${linkPath}${
+                      refer ? `?refer=${refer}` : ""
+                    }`}
                     key={index}
                     className={`custom-button ${isActive ? "active" : ""}`}
                   >
@@ -168,6 +170,7 @@ export default function AtoZ({ path, pagel }) {
                   className="mt-0"
                   cardStyle="max-[1400px]:h-[35vw]"
                   selectL={selectL}
+                  refer={refer}
                 />
               )}
               {/* <div
@@ -225,6 +228,7 @@ export default function AtoZ({ path, pagel }) {
                 page={page}
                 totalPages={totalPages}
                 handlePageChange={handlePageChange}
+                refer={refer}
               />
               {/* <div
                 style={{
@@ -288,7 +292,7 @@ export default function AtoZ({ path, pagel }) {
             </div>
           </div>
         </div>
-        <Footer />
+        <Footer refer={refer}/>
       </SessionProvider>
     </>
   );
