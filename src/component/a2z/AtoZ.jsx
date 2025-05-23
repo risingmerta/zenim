@@ -51,7 +51,7 @@ export default function AtoZ({ path, pagel }) {
     return null;
   }
   const handlePageChange = (newPage) => {
-    setSearchParams({ page: newPage });
+    setSearchParams(newPage);
   };
 
   return (
