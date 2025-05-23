@@ -1,3 +1,4 @@
+"use client"
 import Link from "next/link";
 import { FaChevronLeft } from "react-icons/fa";
 import Advertize from "../Advertize/Advertize";
