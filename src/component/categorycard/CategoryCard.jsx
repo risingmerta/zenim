@@ -111,10 +111,10 @@ const CategoryCard = React.memo(
           ? `/watch/${itemId + "?ep=" + lastWatchedEpId}`
           : `/watch/${itemId}`;
       return refer
-        ? lastWatchedEpId
+        ? lastWatchedEpId || basePath.includes("?")
           ? `${basePath}&refer=weebhideout`
           : `${basePath}?refer=weebhideout`
-        : lastWatchedEpId
+        : lastWatchedEpId || basePath.includes("?")
         ? `${basePath}&refer=weebhideout`
         : `${basePath}?refer=weebhideout`;
     };

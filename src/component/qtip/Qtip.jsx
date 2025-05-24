@@ -47,7 +47,7 @@ function Qtip({ id, refer }) {
 
     if (lastWatchedEpId) {
       href += `?ep=${lastWatchedEpId}${`&refer=weebhideout`}`;
-      if (refer) href += `&refer=${refer}`;
+      // if (refer) href += `&refer=${refer}`;
     } else if (refer) {
       href += `?refer=${refer}`;
     } else if (!refer) {
