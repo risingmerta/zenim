@@ -29,7 +29,13 @@ export default function NavSidebar(props) {
             Close Menu
           </div>
           <div className="action-grop">
-            <Actions isInSidebar={true} data={props.data} lang={props.lang} refer={props.refer} selectL={props.selectL}/>
+            <Actions
+              isInSidebar={true}
+              data={props.data}
+              lang={props.lang}
+              refer={props.refer}
+              selectL={props.selectL}
+            />
           </div>
 
           <a href="/" className="d-flex a-center j-center">
@@ -41,34 +47,86 @@ export default function NavSidebar(props) {
         <div className="navigation-link-list">
           <ul>
             <li>
-              <Link href={`/home${props.refer ? `?refer=${props.refer}` : ''}`}>Home</Link>
+              <Link
+                href={`/home${
+                  props.refer ? `?refer=${props.refer}` : `?refer=weebhideout`
+                }`}
+              >
+                Home
+              </Link>
             </li>
             <li>
-              <Link href={`/most-popular${props.refer ? `?refer=${props.refer}` : ''}`}>
+              <Link
+                href={`/most-popular${
+                  props.refer ? `?refer=${props.refer}` : `?refer=weebhideout`
+                }`}
+              >
                 Most Popular
               </Link>
             </li>
             <li>
-              <Link href={`/movie${props.refer ? `?refer=${props.refer}` : ''}`}>Movies</Link>
+              <Link
+                href={`/movie${
+                  props.refer ? `?refer=${props.refer}` : `?refer=weebhideout`
+                }`}
+              >
+                Movies
+              </Link>
             </li>
             <li>
-              <Link href={`/tv${props.refer ? `?refer=${props.refer}` : ''}`}>TV Series</Link>
+              <Link
+                href={`/tv${
+                  props.refer ? `?refer=${props.refer}` : `?refer=weebhideout`
+                }`}
+              >
+                TV Series
+              </Link>
             </li>
             <li>
-              <Link href={`/ova${props.refer ? `?refer=${props.refer}` : ''}`}>OVAs</Link>
+              <Link
+                href={`/ova${
+                  props.refer ? `?refer=${props.refer}` : `?refer=weebhideout`
+                }`}
+              >
+                OVAs
+              </Link>
             </li>
             <li>
-              <Link href={`/ona${props.refer ? `?refer=${props.refer}` : ''}`}>ONAs</Link>
+              <Link
+                href={`/ona${
+                  props.refer ? `?refer=${props.refer}` : `?refer=weebhideout`
+                }`}
+              >
+                ONAs
+              </Link>
             </li>
             <li>
-              <Link href={`/special${props.refer ? `?refer=${props.refer}` : ''}`}>Specials</Link>
-              <Link href={`/completed${props.refer ? `?refer=${props.refer}` : ''}`}>
+              <Link
+                href={`/special${
+                  props.refer ? `?refer=${props.refer}` : `?refer=weebhideout`
+                }`}
+              >
+                Specials
+              </Link>
+              <Link
+                href={`/completed${
+                  props.refer ? `?refer=${props.refer}` : `?refer=weebhideout`
+                }`}
+              >
                 Completed
               </Link>
-              <Link href={`/dubbed-anime${props.refer ? `?refer=${props.refer}` : ''}`}>
+              <Link
+                href={`/dubbed-anime${
+                  props.refer ? `?refer=${props.refer}` : `?refer=weebhideout`
+                }`}
+              >
                 Dubbed Anime
               </Link>
-              <Link href={`/subbed-anime${props.refer ? `?refer=${props.refer}` : ''}`}>
+              <Link
+                href={`/subbed-anime${
+                  props.refer ? `?refer=${props.refer}` : `?refer=weebhideout`
+                }`}
+              >
                 Subbed Anime
               </Link>
             </li>

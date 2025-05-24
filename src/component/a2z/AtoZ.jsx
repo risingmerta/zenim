@@ -62,7 +62,7 @@ export default function AtoZ({ path, pagel ,refer }) {
           <ul className="flex gap-x-2 mt-[50px] items-center w-fit max-[1200px]:hidden">
             <li className="flex gap-x-3 items-center">
               <Link
-                href={`/home${refer ? `?refer=${refer}` : ""}`}
+                href={`/home${refer ? `?refer=${refer}` : `?refer=weebhideout`}`}
                 className="text-white hover:text-[#00f2fe] text-[17px]"
               >
                 Home
@@ -149,7 +149,7 @@ export default function AtoZ({ path, pagel ,refer }) {
                 return (
                   <Link
                     href={`/az-list/${linkPath}${
-                      refer ? `?refer=${refer}` : ""
+                      refer ? `?refer=${refer}` : `?refer=weebhideout`
                     }`}
                     key={index}
                     className={`custom-button ${isActive ? "active" : ""}`}

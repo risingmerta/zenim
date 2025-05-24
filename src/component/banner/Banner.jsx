@@ -116,9 +116,9 @@ function Banner({ item, index, selectL, refer }) {
             href={
               lastWatchedEpId
                 ? `/watch/${item.id + "?ep=" + lastWatchedEpId}${
-                    refer ? `&refer=${refer}` : ""
+                    refer ? `&refer=${refer}` : `&refer=weebhideout`
                   }`
-                : `/watch/${item.id}${refer ? `?refer=${refer}` : ""}`
+                : `/watch/${item.id}${refer ? `?refer=${refer}` : `?refer=weebhideout`}`
             }
             className="flex justify-center items-center bg-[#00f2fe] px-4 py-2 rounded-3xl gap-x-2 max-[320px]:w-fit"
           >
@@ -132,7 +132,7 @@ function Banner({ item, index, selectL, refer }) {
           </Link>
 
           <Link
-            href={`/${item.id}${refer ? `?refer=${refer}` : ""}`}
+            href={`/${item.id}${refer ? `?refer=${refer}` : `?refer=weebhideout`}`}
             className="flex bg-[#3B3A52] justify-center items-center px-4 py-2 rounded-3xl gap-x-2 max-[320px]:w-fit max-[320px]:px-3"
           >
             <p className="text-white max-[1000px]:text-[15px] font-semibold max-[320px]:text-[12px]">

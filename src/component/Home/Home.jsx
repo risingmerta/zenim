@@ -106,7 +106,7 @@ export default function Home(props) {
 
           <Share
             ShareUrl={`https://animoon.me/home${
-              props.refer ? `?refer=${props.refer}` : ""
+              props.refer ? `?refer=${props.refer}` : `?refer=weebhideout`
             }`}
           />
 

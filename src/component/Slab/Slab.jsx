@@ -18,7 +18,9 @@ export default function Slab(props) {
       <div className="hiik">Hi, {session?.user?.username}</div>
       <div className="linkok">
         <Link
-          href={`/user/profile${props.refer ? `?refer=${props.refer}` : ''}`}
+          href={`/user/profile${
+            props.refer ? `?refer=${props.refer}` : `?refer=weebhideout`
+          }`}
           className={`newPo ${props.slabId === "profile" ? "impot" : ""}`}
         >
           <div className="iconix">
@@ -27,7 +29,9 @@ export default function Slab(props) {
           <div className="namino">Profile</div>
         </Link>
         <Link
-          href={`/user/continue-watching${props.refer ? `?refer=${props.refer}` : ''}`}
+          href={`/user/continue-watching${
+            props.refer ? `?refer=${props.refer}` : `?refer=weebhideout`
+          }`}
           className={`newPo ${
             props.slabId === "continue watching" ? "impot" : ""
           }`}
@@ -38,7 +42,9 @@ export default function Slab(props) {
           <div className="namino">Continue Watching</div>
         </Link>
         <Link
-          href={`/user/watch-list${props.refer ? `?refer=${props.refer}` : ''}`}
+          href={`/user/watch-list${
+            props.refer ? `?refer=${props.refer}` : `?refer=weebhideout`
+          }`}
           className={`newPo ${props.slabId === "watch list" ? "impot" : ""}`}
         >
           <div className="iconix">
@@ -47,7 +53,9 @@ export default function Slab(props) {
           <div className="namino">Watch List</div>
         </Link>
         <Link
-          href={`/user/notification${props.refer ? `?refer=${props.refer}` : ''}`}
+          href={`/user/notification${
+            props.refer ? `?refer=${props.refer}` : `?refer=weebhideout`
+          }`}
           className={`newPo ${props.slabId === "notification" ? "impot" : ""}`}
         >
           <div className="iconix">
@@ -56,7 +64,9 @@ export default function Slab(props) {
           <div className="namino">Notification</div>
         </Link>
         <Link
-          href={`/user/settings${props.refer ? `?refer=${props.refer}` : ''}`}
+          href={`/user/settings${
+            props.refer ? `?refer=${props.refer}` : `?refer=weebhideout`
+          }`}
           className={`newPo ${props.slabId === "settings" ? "impot" : ""}`}
         >
           <div className="iconix">

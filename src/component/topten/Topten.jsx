@@ -60,8 +60,8 @@ function Topten({ data, className, selectL, refer }) {
     }
     router.push(
       lastWatchedEpId
-        ? `/watch/${id + "?ep=" + lastWatchedEpId}`
-        : `/watch/${id}`
+        ? `/watch/${id + "?ep=" + lastWatchedEpId}${`&refer=weebhideout`}`
+        : `/watch/${id}${`?refer=weebhideout`}`
     );
   };
 
@@ -152,7 +152,7 @@ function Topten({ data, className, selectL, refer }) {
 
                 <div className="flex flex-col ml-4 space-y-2">
                   <Link
-                    href={`/${item.id}${refer ? `?refer=${refer}` : ""}`}
+                    href={`/${item.id}${refer ? `?refer=${refer}` : `?refer=weebhideout`}`}
                     className="text-[1em] font-[500] hover:cursor-pointer hover:text-[#00f2fe] transform transition-all ease-out line-clamp-1 max-[478px]:line-clamp-2 max-[478px]:text-[14px]"
                     onClick={() => handleNavigate(item.id)}
                   >

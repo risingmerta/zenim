@@ -327,7 +327,7 @@ export default function Watch(props) {
   useEffect(() => {
     if (episodeId) {
       const newUrl = `/watch/${animeId}?ep=${episodeId}${
-        props.refer ? `&refer=${props.refer}` : ""
+        props.refer ? `&refer=${props.refer}` : `?refer=weebhideout`
       }`;
       if (isFirstSet.current) {
         // Initial load: replace history entry
@@ -345,7 +345,11 @@ export default function Watch(props) {
   // Redirect if no episodes
   useEffect(() => {
     if (totalEpisodes !== null && totalEpisodes === 0) {
-      router.push(`/${animeId}${props.refer ? `?refer=${props.refer}` : ""}`);
+      router.push(
+        `/${animeId}${
+          props.refer ? `?refer=${props.refer}` : `?refer=weebhideout`
+        }`
+      );
     }
   }, [streamInfo, episodeId, animeId, totalEpisodes, router.push]);
 
@@ -471,7 +475,9 @@ export default function Watch(props) {
                     <li key={index} className="flex gap-x-3 items-center">
                       <Link
                         href={`/${link}${
-                          props.refer ? `?refer=${props.refer}` : ""
+                          props.refer
+                            ? `?refer=${props.refer}`
+                            : `?refer=weebhideout`
                         }`}
                         className="text-white hover:text-[#FFBADE] text-[15px] font-semibold"
                       >
@@ -586,7 +592,9 @@ export default function Watch(props) {
                         {seasons.map((season, index) => (
                           <Link
                             href={`/${season.id.replace("/", "")}${
-                              props.refer ? `?refer=${props.refer}` : ""
+                              props.refer
+                                ? `?refer=${props.refer}`
+                                : `?refer=weebhideout`
                             }`}
                             key={index}
                             className={`relative w-[20%] h-[60px] rounded-lg overflow-hidden cursor-pointer group ${
@@ -739,7 +747,9 @@ export default function Watch(props) {
                   </p>
                   <Link
                     href={`/${animeId}${
-                      props.refer ? `?refer=${props.refer}` : ""
+                      props.refer
+                        ? `?refer=${props.refer}`
+                        : `?refer=weebhideout`
                     }`}
                     className="w-fit text-[13px] bg-white rounded-[12px] px-[10px] py-1 text-black"
                   >
@@ -772,7 +782,7 @@ export default function Watch(props) {
             <Share
               ShareUrl={`https://animoon.me/watch/${
                 animeId + "?ep=" + episodeId
-              }${props.refer ? `?refer=${props.refer}` : ""}`}
+              }${props.refer ? `?refer=${props.refer}` : `?refer=weebhideout`}`}
               arise="this Anime"
             />
           </div>

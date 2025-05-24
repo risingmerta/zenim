@@ -23,7 +23,9 @@ const Trending = ({ trending, selectL, refer }) => {
       ? lastWatchedEpId
         ? `${basePath}&refer=${refer}`
         : `${basePath}?refer=${refer}`
-      : basePath;
+      : lastWatchedEpId
+      ? `${basePath}&refer=weebhideout`
+      : `${basePath}?refer=weebhideout`;
   };
   return (
     <div className="mt-6 max-[1200px]:px-4 max-md:px-0">

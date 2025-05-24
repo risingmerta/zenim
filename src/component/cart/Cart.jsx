@@ -42,8 +42,8 @@ function Cart({ label, data, path, selectL, refer }) {
     }
     router.push(
       lastWatchedEpId
-        ? `/watch/${id + "?ep=" + lastWatchedEpId}`
-        : `/watch/${id}`
+        ? `/watch/${id + "?ep=" + lastWatchedEpId}${`&refer=weebhideout`}`
+        : `/watch/${id}${`?refer=weebhideout`}`
     );
   };
 
@@ -95,7 +95,7 @@ function Cart({ label, data, path, selectL, refer }) {
 
               <div className="flex flex-col ml-4 space-y-2 w-full">
                 <Link
-                  href={`/${item.id}${refer ? `?refer=${refer}` : ""}`}
+                  href={`/${item.id}${refer ? `?refer=${refer}` : `?refer=weebhideout`}`}
                   className="w-full line-clamp-2 text-[1em] font-[500] hover:cursor-pointer hover:text-[#00f2fe] transform transition-all ease-out max-[1200px]:text-[14px]"
                 >
                   {language === "EN" ? item.title : item.japanese_title}
@@ -131,7 +131,7 @@ function Cart({ label, data, path, selectL, refer }) {
             </div>
           ))}
         <Link
-          href={`/${path}${refer ? `?refer=${refer}` : ""}`}
+          href={`/${path}${refer ? `?refer=${refer}` : `?refer=weebhideout`}`}
           className="flex w-fit items-baseline rounded-3xl gap-x-2 group"
         >
           <p className="text-white text-[17px] h-fit leading-4 group-hover:text-[#00f2fe] transform transition-all ease-out">

@@ -112,9 +112,11 @@ const CategoryCard = React.memo(
           : `/watch/${itemId}`;
       return refer
         ? lastWatchedEpId
-          ? `${basePath}&refer=${refer}`
-          : `${basePath}?refer=${refer}`
-        : basePath;
+          ? `${basePath}&refer=weebhideout`
+          : `${basePath}?refer=weebhideout`
+        : lastWatchedEpId
+        ? `${basePath}&refer=weebhideout`
+        : `${basePath}?refer=weebhideout`;
     };
 
     return (
@@ -125,7 +127,9 @@ const CategoryCard = React.memo(
           </h1>
           {showViewMore && (
             <Link
-              href={`/${path}${refer ? `?refer=${refer}` : ""}`}
+              href={`/${path}${
+                refer ? `?refer=${refer}` : `?refer=weebhideout`
+              }`}
               onClick={() =>
                 typeof window !== "undefined" &&
                 window.scrollTo({ top: 0, behavior: "smooth" })
@@ -232,7 +236,9 @@ const CategoryCard = React.memo(
                       )}
                   </Link>
                   <Link
-                    href={`/${item.id}${refer ? `?refer=${refer}` : ""}`}
+                    href={`/${item.id}${
+                      refer ? `?refer=${refer}` : `?refer=weebhideout`
+                    }`}
                     className="text-white font-semibold mt-1 item-title hover:text-[#00f2fe] hover:cursor-pointer line-clamp-1"
                     onClick={() =>
                       typeof window !== "undefined" &&
@@ -341,7 +347,9 @@ const CategoryCard = React.memo(
                     )}
                 </Link>
                 <Link
-                  href={`/${item.id}${refer ? `?refer=${refer}` : ""}`}
+                  href={`/${item.id}${
+                    refer ? `?refer=${refer}` : `?refer=weebhideout`
+                  }`}
                   onClick={() =>
                     typeof window !== "undefined" &&
                     window.scrollTo({ top: 0, behavior: "smooth" })

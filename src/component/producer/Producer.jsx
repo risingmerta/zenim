@@ -104,7 +104,7 @@ export default function Producer(props) {
         <div className="w-full mt-[70px]">
           <Share
             ShareUrl={`https://animoon.me/producer/${id}${
-              props.refer ? `?refer=${props.refer}` : ""
+              props.refer ? `?refer=${props.refer}` : `?refer=weebhideout`
             }`}
             arise={
               (id.charAt(0).toUpperCase() + id.slice(1)).split("-").join(" ") +

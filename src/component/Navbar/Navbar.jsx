@@ -102,7 +102,7 @@ export default function Navbar({ lang, refer, selectL }) {
             <FaBars size={25} />
           </div>
           <div>
-            <Link href={`/${refer ? `?refer=${refer}` : ''}`}>
+            <Link href={`/${refer ? `?refer=${refer}` : `?refer=weebhideout`}`}>
               <div className="logo-container">
                 <div className="logo-icon"></div>
                 <div className="logo-text">{siteName}</div>
@@ -116,7 +116,7 @@ export default function Navbar({ lang, refer, selectL }) {
             <Social refer={refer} />
           </div>
           <div className="nav-action">
-            <Action lang={lang} refer={refer} selectL={selectL}/>
+            <Action lang={lang} refer={refer} selectL={selectL} />
           </div>
         </div>
         <div className="nav-end">
