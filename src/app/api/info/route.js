@@ -41,7 +41,7 @@ export async function GET(req) {
     }
 
     let infoData = doc.info?.results;
-    let episodeData = doc.episode?.results;
+    let episodeData = doc.episodes?.results;
 
     // Fetch and store missing info
     if (!infoData?.data?.title) {
@@ -61,7 +61,7 @@ export async function GET(req) {
     // Fetch and store missing episodes
     if (
       epi &&
-      (!episodeData?.episodes?.[0]?.title || !episodeData.episodes?.length)
+      (!episodeData?.episodes?.[0]?.title || !episodeData.episodes?.length > 0)
     ) {
       try {
         const fallbackEpisodes = await axios.get(`${api_url}/episodes/${id}`);
@@ -69,7 +69,7 @@ export async function GET(req) {
 
         await animeInfoCol.updateOne(
           { _id: id },
-          { $set: { "episode.results": episodeData } }
+          { $set: { "episodes.results": episodeData } }
         );
       } catch (err) {
         console.error("Error fetching fallback episodes:", err.message);

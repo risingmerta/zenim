@@ -6,6 +6,8 @@ import { connectDB } from "@/lib/mongoClient";
 import axios from "axios";
 import React from "react";
 
+// export const dynamic = "force-dynamic"; // Prevent static rendering/caching
+
 export async function generateMetadata({ params, searchParams }) {
   const param = await params;
   const siteName = process.env.NEXT_PUBLIC_SITE_NAME || "Animoon";
@@ -43,7 +45,12 @@ export default async function Page({ params, searchParams }) {
   // --- Fetch homepage data
   try {
     const doc = await db.collection("animoon-home").findOne({});
-    home = doc || (await fetch(api_url).then((res) => res.json()));
+    if (doc) {
+      home = doc;
+    } else {
+      const res = await fetch(api_url, { cache: "no-store" });
+      home = await res.json();
+    }
   } catch (error) {
     console.error("Error fetching homepage data:", error.message);
   }
@@ -98,12 +105,14 @@ export default async function Page({ params, searchParams }) {
 
     if (doc) {
       infoData = doc.info?.results ?? null;
-      episodeData = doc.episode?.results ?? null;
+      episodeData = doc.episodes?.results ?? null;
 
       // Fetch missing info
       if (!infoData?.data?.title) {
         try {
-          const { data } = await axios.get(`${api_url}/info?id=${id}`);
+          const { data } = await axios.get(`${api_url}/info?id=${id}`, {
+            headers: { "Cache-Control": "no-store" },
+          });
           infoData = data.results;
           await animeInfoCol.updateOne(
             { _id: id },
@@ -115,13 +124,15 @@ export default async function Page({ params, searchParams }) {
       }
 
       // Fetch missing episodes
-      if (!episodeData?.episodes?.length || !episodeData.episodes?.[0]?.title) {
+      if (!episodeData?.episodes?.length > 0 || !episodeData.episodes?.[0]?.title) {
         try {
-          const { data } = await axios.get(`${api_url}/episodes/${id}`);
+          const { data } = await axios.get(`${api_url}/episodes/${id}`, {
+            headers: { "Cache-Control": "no-store" },
+          });
           episodeData = data.results;
           await animeInfoCol.updateOne(
             { _id: id },
-            { $set: { "episode.results": episodeData } }
+            { $set: { "episodes.results": episodeData } }
           );
         } catch (err) {
           console.error("Error fetching fallback episodes:", err.message);
@@ -131,8 +142,12 @@ export default async function Page({ params, searchParams }) {
       // Document doesn't exist — fetch and insert everything
       try {
         const [infoRes, episodeRes] = await Promise.all([
-          axios.get(`${api_url}/info?id=${id}`),
-          axios.get(`${api_url}/episodes/${id}`),
+          axios.get(`${api_url}/info?id=${id}`, {
+            headers: { "Cache-Control": "no-store" },
+          }),
+          axios.get(`${api_url}/episodes/${id}`, {
+            headers: { "Cache-Control": "no-store" },
+          }),
         ]);
 
         infoData = infoRes.data.results;
@@ -143,7 +158,7 @@ export default async function Page({ params, searchParams }) {
           {
             $set: {
               "info.results": infoData,
-              "episode.results": episodeData,
+              "episodes.results": episodeData,
             },
           },
           { upsert: true }
@@ -157,7 +172,7 @@ export default async function Page({ params, searchParams }) {
   // Fetch schedule
   let dati = null;
   try {
-    const res = await fetch(`${api_url}/schedule/${id}`);
+    const res = await fetch(`${api_url}/schedule/${id}`, { cache: "no-store" });
     if (res.ok) {
       const json = await res.json();
       const dateOnly = json?.results?.nextEpisodeSchedule?.split(" ")[0];
