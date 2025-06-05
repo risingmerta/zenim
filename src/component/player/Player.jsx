@@ -63,7 +63,7 @@ export default function Player({
 }) {
   const artRef = useRef(null);
   const proxy = "https://proxy.stabled30.workers.dev/?url=";
-  const m3u8proxy = "https://khiv.animoon.me/m3u8-proxy?url="?.split(",") || [];
+  const m3u8proxy = "https://proxy.shoko.fun/m3u8-proxy?url="?.split(",") || [];
   const [currentEpisodeIndex, setCurrentEpisodeIndex] = useState(
     episodes?.findIndex(
       (episode) => episode.id.match(/ep=(\d+)/)?.[1] === episodeId
