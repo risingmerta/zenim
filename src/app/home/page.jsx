@@ -7,7 +7,7 @@ import React from "react";
 export default async function page({ searchParams }) {
   let dataToCache = {};
   try {
-    const res = await fetch("https://kaori.animoon.me/api/home", {
+    const res = await fetch("https://kaori.shoko.fun/api/home", {
       next: { revalidate: 3600 },
     });
     const data = await res.json();
