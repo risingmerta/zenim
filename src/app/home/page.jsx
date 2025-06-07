@@ -7,9 +7,7 @@ import React from "react";
 export default async function page({ searchParams }) {
   let dataToCache = {};
   try {
-    const res = await fetch("https://kaori.shoko.fun/api/home", {
-      next: { revalidate: 3600 },
-    });
+    const res = await fetch("https://kaori.shoko.fun/api/home");
     const data = await res.json();
     const {
       spotlights,
@@ -49,7 +47,7 @@ export default async function page({ searchParams }) {
   return (
     <div>
       <Home refer={refer} data={dataToCache} />
-      <Advertize refer={refer} />
+      <Advertize refer={""} />
       {/* <Script
         src="//abackdamstubborn.com/b7/2f/b2/b72fb2e5a32c00a413ee2bb7ea85b317.js"
         strategy="afterInteractive"

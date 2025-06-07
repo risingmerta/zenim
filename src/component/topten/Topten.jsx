@@ -30,10 +30,10 @@ function Topten({ data, className, selectL, refer }) {
 
   const currentData =
     activePeriod === "today"
-      ? data.today
+      ? data?.today
       : activePeriod === "week"
-      ? data.week
-      : data.month;
+      ? data?.week
+      : data?.month;
 
   const { tooltipPosition, tooltipHorizontalPosition, cardRefs } =
     useToolTipPosition(hoveredItem, currentData);
