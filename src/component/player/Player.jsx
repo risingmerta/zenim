@@ -399,6 +399,27 @@ export default function Player({
       },
     });
 
+    // Add a small iframe ad in top-right corner
+    const iframe = document.createElement("iframe");
+    iframe.src = "/ad";
+    iframe.width = "80";
+    iframe.height = "40";
+    iframe.style.position = "absolute";
+    iframe.style.top = "10px";
+    iframe.style.right = "10px";
+    iframe.style.zIndex = "9999";
+    iframe.style.border = "none";
+    iframe.style.overflow = "hidden";
+    iframe.style.borderRadius = "6px";
+
+    // Append iframe to player container
+    artRef.current.appendChild(iframe);
+
+    // Reload iframe every 30 seconds
+    const interval = setInterval(() => {
+      iframe.src = "/ad?t=" + Date.now(); // Avoid cache
+    }, 30000);
+
     art.on("resize", () => {
       art.subtitle.style({
         fontSize:
@@ -408,6 +429,15 @@ export default function Player({
     art.on("video:timeupdate", () => {
       if (art.currentTime > 0) {
         localStorage.setItem(episodeId + "-time", art.currentTime.toString());
+      }
+    });
+    art.on("fullscreen", () => {
+      if (art.fullscreen) {
+        const fsContainer = document.fullscreenElement;
+        if (fsContainer) fsContainer.appendChild(iframe);
+      } else {
+        // When exiting fullscreen, reattach to artRef
+        artRef.current?.appendChild(iframe);
       }
     });
     art.on("ready", () => {
@@ -512,6 +542,8 @@ export default function Player({
     return () => {
       if (art && art.destroy) {
         art.destroy(false);
+        clearInterval(interval);
+        iframe.remove();
       }
       const continueWatching =
         JSON.parse(localStorage.getItem("continueWatching")) || [];

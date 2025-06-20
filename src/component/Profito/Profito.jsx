@@ -1,9 +1,8 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import { FaKey, FaPen, FaUser } from "react-icons/fa";
-import { useSession } from "next-auth/react";
+import { useSession, signIn, update } from "next-auth/react"; // ✅ Import update
 import { imageData } from "@/data/imageData";
-import { signIn } from "next-auth/react";
 import "./profito.css";
 
 export default function Profito() {
@@ -54,8 +53,7 @@ export default function Profito() {
     setError(""); // Clear old error
 
     if (newEmail !== session?.user?.email) updatedFields.email = newEmail;
-    if (newUsername !== session?.user?.username)
-      updatedFields.username = newUsername;
+    if (newUsername !== session?.user?.username) updatedFields.username = newUsername;
     if (newAvatar !== session?.user?.avatar) updatedFields.avatar = newAvatar;
     if (newPassword.trim() !== "") updatedFields.password = newPassword;
 
@@ -77,11 +75,20 @@ export default function Profito() {
     const data = await response.json();
 
     if (response.ok) {
+      // Re-authenticate if email or password changed
       if (updatedFields.email || updatedFields.password) {
         await signIn("credentials", {
           email: newEmail,
           password: newPassword || "",
           redirect: false,
+        });
+      }
+
+      // Update session with new avatar and/or username
+      if (updatedFields.username || updatedFields.avatar) {
+        await update({
+          username: updatedFields.username || session.user.username,
+          avatar: updatedFields.avatar || session.user.avatar,
         });
       }
 
