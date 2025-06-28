@@ -1,12 +1,12 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import { FaKey, FaPen, FaUser } from "react-icons/fa";
-import { useSession, signIn, update } from "next-auth/react"; // ✅ Import update
+import { useSession, signIn } from "next-auth/react";
 import { imageData } from "@/data/imageData";
 import "./profito.css";
 
 export default function Profito() {
-  const { data: session } = useSession();
+  const { data: session, update } = useSession();
   const [newEmail, setNewEmail] = useState("");
   const [newUsername, setNewUsername] = useState("");
   const [newPassword, setNewPassword] = useState("");
@@ -29,6 +29,11 @@ export default function Profito() {
     month: "long",
   })}-${date.getFullYear()}`;
 
+  const validateEmail = (email) => {
+    const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+    return emailRegex.test(email);
+  };
+
   const handleSave = async () => {
     const userId = session?.user?.id;
     const updatedFields = {};
@@ -43,17 +48,18 @@ export default function Profito() {
         setError("Passwords do not match.");
         return;
       }
-    } else {
-      if (!newPassword) {
-        setError("Please fill password field.");
-        return;
-      }
     }
 
     setError(""); // Clear old error
 
+    if (!validateEmail(newEmail)) {
+      setError("Please enter a valid email address.");
+      return;
+    }
+
     if (newEmail !== session?.user?.email) updatedFields.email = newEmail;
-    if (newUsername !== session?.user?.username) updatedFields.username = newUsername;
+    if (newUsername !== session?.user?.username)
+      updatedFields.username = newUsername;
     if (newAvatar !== session?.user?.avatar) updatedFields.avatar = newAvatar;
     if (newPassword.trim() !== "") updatedFields.password = newPassword;
 
@@ -75,8 +81,8 @@ export default function Profito() {
     const data = await response.json();
 
     if (response.ok) {
-      // Re-authenticate if email or password changed
       if (updatedFields.email || updatedFields.password) {
+        // Trigger session update by signing in again with the new details
         await signIn("credentials", {
           email: newEmail,
           password: newPassword || "",
@@ -84,13 +90,13 @@ export default function Profito() {
         });
       }
 
-      // Update session with new avatar and/or username
-      if (updatedFields.username || updatedFields.avatar) {
-        await update({
-          username: updatedFields.username || session.user.username,
-          avatar: updatedFields.avatar || session.user.avatar,
-        });
-      }
+      // Update session directly without needing a page refresh
+      await update({
+        trigger: "update",
+        email: newEmail,
+        username: newUsername,
+        avatar: newAvatar,
+      });
 
       alert("Profile updated successfully");
       setShowModal(false);
@@ -172,16 +178,7 @@ export default function Profito() {
               </div>
             </>
           ) : (
-            <div className="profile-field">
-              <div className="field-label">PASSWORD</div>
-              <input
-                className="field-input"
-                type="password"
-                value={newPassword}
-                onChange={(e) => setNewPassword(e.target.value)}
-                required
-              />
-            </div>
+            ""
           )}
 
           {error && (
