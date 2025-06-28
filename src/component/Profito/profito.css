@@ -33,8 +33,9 @@
   border-radius: 8px;
 }
 
-/* Profile image */
-.profile-image {
+/* Profile image container */
+.profile-image,
+.rofile-image {
   position: relative;
   width: 100px;
   height: 100px;
@@ -43,14 +44,16 @@
   margin-bottom: 20px;
 }
 
+/* Profile image */
 .profile-img {
   width: 100px;
   height: 100px;
   border-radius: 50%;
   border: 3px solid var(--theme);
+  object-fit: cover;
 }
 
-/* Pencil icon styling */
+/* Pencil icon */
 .cof-pen {
   position: absolute;
   bottom: 0;
@@ -62,6 +65,9 @@
   font-size: 12px;
   cursor: pointer;
   border: 2px solid #202020;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* Profile details */
@@ -251,7 +257,7 @@
   }
 
   .profile-details {
-    width: calc(100% - 140px);
+    width: calc(100% - 140px); /* Adjust to account for image width + margin */
   }
 }
 
@@ -266,10 +272,12 @@
   .profile-header {
     font-size: 20px;
   }
+
   .profile-content {
     background: none;
     padding: 0;
   }
+
   .modal-content {
     padding: 1rem;
   }
