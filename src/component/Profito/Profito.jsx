@@ -4,6 +4,7 @@ import { FaKey, FaPen, FaUser } from "react-icons/fa";
 import { useSession, signIn } from "next-auth/react";
 import { imageData } from "@/data/imageData";
 import "./profito.css";
+import { AiOutlineClose } from "react-icons/ai";
 
 export default function Profito() {
   const { data: session, update } = useSession();
@@ -208,7 +209,7 @@ export default function Profito() {
             <div className="modal-content" onClick={(e) => e.stopPropagation()}>
               {/* Close Button */}
               <button
-                onClick={() => props.setLogIsOpen(false)}
+                onClick={() => props.setShowModal(false)}
                 className="close-button"
                 aria-label="Close"
               >
