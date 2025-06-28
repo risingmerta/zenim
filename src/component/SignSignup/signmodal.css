@@ -1,3 +1,8 @@
+:root {
+  --theme: #00f2fe;
+}
+
+/* Modal Background */
 .modal {
   display: flex;
   justify-content: center;
@@ -8,13 +13,11 @@
   min-height: 100vh;
   background: rgba(0, 0, 0, 0.6);
   width: 100%;
-  top: 0;
-  left: 0;
-  bottom: 0;
   z-index: -1;
   transition: all 0.1s ease-in-out;
 }
 
+/* Modal Content Box */
 .modal-content {
   position: fixed;
   display: flex;
@@ -27,78 +30,122 @@
   min-width: 450px;
   transition: all 0.2s ease-in-out;
   z-index: 100;
-  backdrop-filter: blur(10px); /* Add blur effect */
+  backdrop-filter: blur(10px);
 }
 
+/* Heading */
 .heddio {
   font-size: 25px;
   font-weight: 600;
   margin-top: 10px;
   margin-bottom: 10px;
 }
+
 .heddp {
   display: flex;
   align-items: center;
   justify-content: center;
 }
+
+/* Input Field Wrapper */
 .midO {
   display: flex;
   flex-direction: column;
   gap: 10px;
   margin-bottom: 20px;
 }
-.midI {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 20px;
-}
-.checki {
-  width: 20px; /* Adjust the size */
-  height: 20px; /* Adjust the size */
-  /* accent-color: #4CAF50; Optional: Change the checkbox color */
-}
-.kinto {
-  font-size: 17px;
-  display: flex;
-  align-items: center;
-  font-weight: 300;
-  font-style: normal;
-  line-height: 24px;
-  gap: 5px;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
-}
+
+/* Input Labels */
 .midOT {
   font-size: 13px;
   color: #aca7a7;
 }
+
+/* Input Styles */
 .midOI {
   padding: 10px 15px;
   font-size: 14px;
   border-radius: 10px;
   color: black;
   outline: none;
-  background: #fff !important;
+  background: #fff;
+  border: none;
+  width: 100%;
+  box-sizing: border-box;
+  transition: background-color 0.3s ease;
 }
+
+/* Fix autofill background and text color */
+.midOI:-webkit-autofill,
+.midOI:-webkit-autofill:focus,
+.midOI:-webkit-autofill:hover {
+  box-shadow: 0 0 0 1000px #fff inset !important;
+  -webkit-box-shadow: 0 0 0 1000px #fff inset !important;
+  -webkit-text-fill-color: #000 !important;
+}
+
+/* Relative wrapper for eye toggle */
 .relati {
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding-right: 15px;
   gap: 10px;
-  /* padding: 10px 15px;
-  font-size: 14px; */
   border-radius: 10px;
-  color: black;
-  outline: none;
-  background: #fff !important;
-  color: black;
+  background: #fff;
+  width: 100%;
 }
+
+/* Password input style inside wrapper */
 .midN {
   width: 90%;
-  color: black;
   background: white;
+  color: black;
+  border: none;
+  padding: 10px 15px;
+  font-size: 14px;
+  border-radius: 10px;
+  outline: none;
 }
+
+/* Eye icon */
+.icon-position {
+  color: #6b7280;
+  font-size: 1.25rem;
+  padding: 0.5rem;
+  cursor: pointer;
+}
+
+/* Checkbox and forgot password */
+.midI {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.kinto {
+  font-size: 17px;
+  display: flex;
+  align-items: center;
+  font-weight: 300;
+  line-height: 24px;
+  gap: 5px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.checki {
+  width: 20px;
+  height: 20px;
+}
+
+/* Forgot Password link */
+.forget-pass {
+  color: var(--theme);
+  cursor: pointer;
+}
+
+/* Submit button */
 .btio {
   font-size: 15px;
   font-weight: 600;
@@ -106,6 +153,7 @@
   padding: 10px;
   cursor: pointer;
 }
+
 .btiom {
   display: flex;
   align-items: center;
@@ -115,65 +163,81 @@
   margin-bottom: 20px;
   cursor: pointer;
 }
-.forget-pass {
-  color: var(--theme);
-  cursor: pointer;
-}
+
+/* Register/Login toggle line */
 .line-up {
   font-size: 17px;
   display: flex;
   align-items: center;
   justify-content: center;
   font-weight: 400;
-  font-style: normal;
   gap: 5px;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
-.icon-position {
-   /* position: absolute;
-  right: 0.5rem;        
-  top: 50%;             
-  transform: translateY(-50%);  */
-  color: #6B7280;       /* text-gray-500 */
-  font-size: 1.25rem;  
-  padding: 0.5rem;
+
+.close-button {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(6px);
+  border: none;
+  border-radius: 50%;
+  font-size: 20px;
+  width: 36px;
+  height: 36px;
+  cursor: pointer;
+  color: #ffffffcc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  transition: all 0.25s ease;
+  z-index: 9999;
 }
 
+.close-button:hover {
+  background: rgba(0, 242, 254, 0.15);
+  color: #00f2fe;
+  transform: scale(1.1) rotate(90deg);
+}
+
+/* Responsive adjustments */
 @media (max-width: 400px) {
   .modal-content {
-    min-width: 100%; /* Make the modal content take full width */
-    padding: 15px; /* Adjust padding */
-    border-radius: 5px; /* Adjust border-radius for smaller screens */
+    min-width: 100%;
+    padding: 15px;
+    border-radius: 5px;
   }
 
   .heddio {
-    font-size: 20px; /* Reduce heading font size */
+    font-size: 20px;
   }
 
   .kinto {
-    font-size: 15px; /* Reduce text size */
-    line-height: 20px; /* Adjust line height */
+    font-size: 15px;
+    line-height: 20px;
   }
 
   .btio {
-    font-size: 14px; /* Reduce button text size */
+    font-size: 14px;
   }
 
   .btiom {
-    padding: 10px; /* Adjust button padding */
+    padding: 10px;
   }
 
   .checki {
-    width: 15px; /* Adjust checkbox size */
+    width: 15px;
     height: 15px;
   }
 
   .midOI {
-    padding: 8px 10px; /* Adjust input padding */
-    font-size: 12px; /* Adjust input font size */
+    padding: 8px 10px;
+    font-size: 12px;
   }
 
   .midOT {
-    font-size: 12px; /* Reduce subtitle font size */
+    font-size: 12px;
   }
 }

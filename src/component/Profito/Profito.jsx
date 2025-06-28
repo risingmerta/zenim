@@ -209,7 +209,7 @@ export default function Profito() {
             <div className="modal-content" onClick={(e) => e.stopPropagation()}>
               {/* Close Button */}
               <button
-                onClick={() => props.setShowModal(false)}
+                onClick={() => setShowModal(false)}
                 className="close-button"
                 aria-label="Close"
               >

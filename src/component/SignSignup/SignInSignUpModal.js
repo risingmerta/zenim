@@ -1,12 +1,16 @@
 "use client";
 import { useState, useEffect } from "react";
 import { signIn, signOut, useSession } from "next-auth/react";
-import { imageData } from "@/data/imageData"; // Import images
+import { imageData } from "@/data/imageData";
 import "./signmodal.css";
 import { useRouter } from "next/navigation";
-import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
+import {
+  AiOutlineEye,
+  AiOutlineEyeInvisible,
+  AiOutlineClose,
+} from "react-icons/ai";
+import Link from "next/link";
 
-// Function to get a random avatar
 const getRandomImage = () => {
   const categories = Object.keys(imageData.hashtags);
   const randomCategory =
@@ -16,7 +20,7 @@ const getRandomImage = () => {
 };
 
 const SignInSignUpModal = (props) => {
-  const [isSignUp, setIsSignUp] = useState(false);
+  const [isSignUp, setIsSignUp] = useState(props.landing ? true : false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [username, setUsername] = useState("");
@@ -40,21 +44,42 @@ const SignInSignUpModal = (props) => {
     router.refresh();
   };
 
-  const handleSignUp = async () => {
-    setError("");
-    setLoading(true);
-    const res = await fetch("/api/auth/signup", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email, password, username, avatar }),
-    });
+const handleSignUp = async () => {
+  setError("");
+  setLoading(true);
 
-    const data = await res.json();
+  // ✅ Validate username format
+  if (!/^[a-zA-Z0-9_]{3,30}$/.test(username)) {
+    setError(
+      "Username must be 3–30 characters and contain only letters, numbers, or underscores."
+    );
     setLoading(false);
-    if (!res.ok) return setError(data.message);
+    return;
+  }
 
-    await signIn("credentials", { email, password, redirect: false });
+  // ✅ Validate refer (if passed)
+  const payload = {
+    email,
+    password,
+    username,
+    avatar,
+    ...(props.refer &&
+      /^[a-zA-Z0-9_]{3,30}$/.test(props.refer) && { refer: props.refer }),
   };
+
+  const res = await fetch("/api/auth/signup", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(payload),
+  });
+
+  const data = await res.json();
+  setLoading(false);
+  if (!res.ok) return setError(data.message);
+
+  await signIn("credentials", { email, password, redirect: false });
+};
+
 
   const handleSignIn = async () => {
     setError("");
@@ -76,7 +101,6 @@ const SignInSignUpModal = (props) => {
 
   const handleForgotPassword = async () => {
     if (!email) return setError("Enter your email to reset password");
-
     setLoading(true);
     const res = await fetch("/api/auth/reset-password", {
       method: "POST",
@@ -87,8 +111,7 @@ const SignInSignUpModal = (props) => {
     const data = await res.json();
     setLoading(false);
     if (!res.ok) return setError(data.message);
-
-    setMessage("Password reset email sent! Check your inbox.");
+    alert("Password reset email sent! Check your inbox.");
   };
 
   return (
@@ -103,10 +126,20 @@ const SignInSignUpModal = (props) => {
       <div
         className="modal-content"
         style={{
+          position: "relative",
           transform: props.logIsOpen ? "translateX(0px)" : "translateX(1000px)",
         }}
         onClick={(e) => e.stopPropagation()}
       >
+        {/* Cross Button */}
+        <button
+          onClick={() => props.setLogIsOpen(false)}
+          className="close-button"
+          aria-label="Close"
+        >
+          <AiOutlineClose />
+        </button>
+
         {session ? (
           <>
             <p className="heddio">Welcome, {session.user.username}!</p>
@@ -118,12 +151,64 @@ const SignInSignUpModal = (props) => {
               alt="Profile"
               className="profile-avatar"
             />
-            <button onClick={handleSignOut} disabled={loading}>
-              {loading ? "Signing Out..." : "Sign Out"}
-            </button>
+            {props.landing ? (
+              <Link
+                href="/home"
+                style={{
+                  backgroundColor: "#00f2fe",
+                  color: "#0f172a",
+                  padding: "10px 20px",
+                  borderRadius: "8px",
+                  fontWeight: 600,
+                  textDecoration: "none",
+                  transition: "all 0.2s ease-in-out",
+                  display: "inline-block",
+                }}
+                onMouseEnter={(e) =>
+                  (e.currentTarget.style.backgroundColor = "#00e0e0")
+                }
+                onMouseLeave={(e) =>
+                  (e.currentTarget.style.backgroundColor = "#00f2fe")
+                }
+              >
+                Start Earning
+              </Link>
+            ) : (
+              <button
+                onClick={handleSignOut}
+                disabled={loading}
+                style={{
+                  backgroundColor: "#00f2fe",
+                  color: "#0f172a",
+                  padding: "10px 20px",
+                  borderRadius: "8px",
+                  fontWeight: 600,
+                  border: "none",
+                  cursor: loading ? "not-allowed" : "pointer",
+                  opacity: loading ? 0.7 : 1,
+                  transition: "all 0.2s ease-in-out",
+                }}
+                onMouseEnter={(e) => {
+                  if (!loading)
+                    e.currentTarget.style.backgroundColor = "#00e0e0";
+                }}
+                onMouseLeave={(e) => {
+                  if (!loading)
+                    e.currentTarget.style.backgroundColor = "#00f2fe";
+                }}
+              >
+                {loading ? "Signing Out..." : "Sign Out"}
+              </button>
+            )}
           </>
         ) : (
-          <>
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
+              isSignUp ? handleSignUp() : handleSignIn();
+            }}
+            autoComplete="on"
+          >
             <div className="heddp">
               <h2 className="heddio">
                 {isSignUp ? "Create an Account" : "Welcome back!"}
@@ -135,6 +220,8 @@ const SignInSignUpModal = (props) => {
                 <div className="midOT">USERNAME</div>
                 <input
                   type="text"
+                  name="username"
+                  autoComplete="username"
                   className="midOI"
                   placeholder="Username"
                   value={username}
@@ -142,21 +229,27 @@ const SignInSignUpModal = (props) => {
                 />
               </div>
             )}
+
             <div className="midO">
               <div className="midOT">EMAIL ADDRESS</div>
               <input
                 type="email"
+                name="email"
+                autoComplete="email"
                 className="midOI"
                 placeholder="Email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
               />
             </div>
+
             <div className="midO">
               <div className="midOT">PASSWORD</div>
               <div className="relati">
                 <input
                   type={showPassword ? "text" : "password"}
+                  name="password"
+                  autoComplete={isSignUp ? "new-password" : "current-password"}
                   className="midOI midN"
                   placeholder="Password"
                   value={password}
@@ -187,6 +280,7 @@ const SignInSignUpModal = (props) => {
                 Remember Me
               </label>
               <button
+                type="button"
                 onClick={handleForgotPassword}
                 className="kinto forget-pass"
               >
@@ -196,11 +290,8 @@ const SignInSignUpModal = (props) => {
 
             {error && <p style={{ color: "#ff9999" }}>{error}</p>}
 
-            <div
-              className="btiom"
-              onClick={isSignUp ? handleSignUp : handleSignIn}
-            >
-              <button className="btio" disabled={loading}>
+            <div className="btiom">
+              <button type="submit" className="btio" disabled={loading}>
                 {loading ? "Hang in there..." : isSignUp ? "Register" : "Login"}
               </button>
             </div>
@@ -217,7 +308,7 @@ const SignInSignUpModal = (props) => {
                 </div>
               </div>
             </div>
-          </>
+          </form>
         )}
       </div>
     </div>
