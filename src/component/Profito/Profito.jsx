@@ -30,8 +30,7 @@ export default function Profito() {
   })}-${date.getFullYear()}`;
 
   const validateEmail = (email) => {
-    const emailRegex =
-      /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+    const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
     return emailRegex.test(email);
   };
 
@@ -44,13 +43,14 @@ export default function Profito() {
         setError("Please fill both password fields.");
         return;
       }
+
       if (newPassword !== confirmPassword) {
         setError("Passwords do not match.");
         return;
       }
     }
 
-    setError("");
+    setError(""); // Clear old error
 
     if (!validateEmail(newEmail)) {
       setError("Please enter a valid email address.");
@@ -72,7 +72,9 @@ export default function Profito() {
 
     const response = await fetch("/api/updateProfile", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+      },
       body: JSON.stringify(updatedFields),
     });
 
@@ -80,6 +82,7 @@ export default function Profito() {
 
     if (response.ok) {
       if (updatedFields.email || updatedFields.password) {
+        // Trigger session update by signing in again with the new details
         await signIn("credentials", {
           email: newEmail,
           password: newPassword || "",
@@ -87,6 +90,7 @@ export default function Profito() {
         });
       }
 
+      // Update session directly without needing a page refresh
       await update({
         trigger: "update",
         email: newEmail,
@@ -108,16 +112,13 @@ export default function Profito() {
       </div>
       <div className="profile-content">
         <div className="cofs">
-          <div
-            className="profile-image"
-            onClick={() => setShowModal(true)}
-          >
+          <div className="rofile-image" onClick={() => setShowModal(true)}>
             <img
               src={newAvatar || session?.user?.avatar}
               className="profile-img"
               alt="Profile"
             />
-            <div className="cof-pen">
+            <div className="cof-pen" onClick={() => setShowModal(true)}>
               <FaPen />
             </div>
           </div>
@@ -153,7 +154,7 @@ export default function Profito() {
             <FaKey /> Change Password
           </div>
 
-          {changep && (
+          {changep ? (
             <>
               <div className="profile-field">
                 <div className="field-label">NEW PASSWORD</div>
@@ -176,6 +177,8 @@ export default function Profito() {
                 />
               </div>
             </>
+          ) : (
+            ""
           )}
 
           {error && (
@@ -186,58 +189,57 @@ export default function Profito() {
             Save
           </div>
         </div>
-      </div>
 
-      {showModal && (
-        <div
-          className="avatar-modal"
-          onClick={(e) => {
-            if (e.target.classList.contains("avatar-modal")) {
-              setShowModal(false);
-            }
-          }}
-        >
-          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-            <button
-              className="modal-close-top"
-              onClick={() => setShowModal(false)}
-              aria-label="Close"
-            >
-              ×
-            </button>
-            <h3>Select an Avatar</h3>
-            <div className="avatar-selection">
-              {Object.keys(imageData.hashtags).map((category) => (
-                <div key={category} className="avatar-category">
-                  <h4>{category}</h4>
-                  <div className="avatar-images">
-                    {imageData.hashtags[category].images.map((img, idx) => (
-                      <img
-                        key={idx}
-                        src={img}
-                        alt={category}
-                        onClick={() => setNewAvatar(img)}
-                        className="avatar-image"
-                      />
-                    ))}
-                  </div>
-                </div>
-              ))}
-            </div>
-            <div className="modal-footer">
-              <button onClick={() => setShowModal(false)}>Close</button>
-              <button
-                onClick={() => {
-                  handleSave();
-                  setShowModal(false);
-                }}
-              >
-                Save
-              </button>
+        <div className="cofs">
+          <div className="profile-image" onClick={() => setShowModal(true)}>
+            <img
+              src={newAvatar || session?.user?.avatar}
+              className="profile-img"
+              alt="Profile"
+            />
+            <div className="cof-pen" onClick={() => setShowModal(true)}>
+              <FaPen />
             </div>
           </div>
         </div>
-      )}
+
+        {showModal && (
+          <div className="avatar-modal">
+            <div className="modal-content">
+              <h3>Select an Avatar</h3>
+              <div className="avatar-selection">
+                {Object.keys(imageData.hashtags).map((category) => (
+                  <div key={category} className="avatar-category">
+                    <h4>{category}</h4>
+                    <div className="avatar-images">
+                      {imageData.hashtags[category].images.map((img, idx) => (
+                        <img
+                          key={idx}
+                          src={img}
+                          alt={category}
+                          onClick={() => setNewAvatar(img)}
+                          className="avatar-image"
+                        />
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <div className="modal-footer">
+                <button onClick={() => setShowModal(false)}>Close</button>
+                <button
+                  onClick={() => {
+                    handleSave();
+                    setShowModal(false);
+                  }}
+                >
+                  Save
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
     </div>
   );
 }
