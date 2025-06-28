@@ -30,6 +30,7 @@ export async function generateMetadata({ params }) {
   ];
 
   const isCategory = categRoutes.some((route) => route === idToCheck);
+
   const toCapitalize = (str) => {
     return str.replace(/\b\w/g, (char) => char.toUpperCase());
   };
@@ -39,26 +40,27 @@ export async function generateMetadata({ params }) {
     return {
       title: `${label} Anime - ${siteName}`,
       // description: `Watch ${label} Anime online free on ${siteName}.`,
+      robots: {
+        index: true,
+        follow: true,
+      },
     };
   }
 
+  // For dynamic watch pages (non-category), add noindex, nofollow
+  const formattedTitle = idToCheck
+    .split("-")
+    .slice(0, -1)
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(" ");
+
   return {
-    title: `Watch ${idToCheck
-      .split("-") // Split by hyphen
-      .slice(0, -1) // Remove the last part
-      .map((word) => word.charAt(0).toUpperCase() + word.slice(1)) // Capitalize each word
-      .join(" ")} English Sub/Dub online free on ${siteName}`,
-    description: `${siteName} is the best site to watch ${idToCheck
-      .split("-") // Split by hyphen
-      .slice(0, -1) // Remove the last part
-      .map((word) => word.charAt(0).toUpperCase() + word.slice(1)) // Capitalize each word
-      .join(" ")} SUB online, or you can even watch ${idToCheck
-      .split("-") // Split by hyphen
-      .slice(0, -1) // Remove the last part
-      .map((word) => word.charAt(0).toUpperCase() + word.slice(1)) // Capitalize each word
-      .join(
-        " "
-      )} DUB in HD quality. You can also watch underrated anime on ${siteName}.`,
+    title: `Watch ${formattedTitle} English Sub/Dub online free on ${siteName}`,
+    description: `${siteName} is the best site to watch ${formattedTitle} SUB online, or you can even watch ${formattedTitle} DUB in HD quality. You can also watch underrated anime on ${siteName}.`,
+    robots: {
+      index: false,
+      follow: false,
+    },
   };
 }
 
@@ -160,7 +162,7 @@ export default async function page({ params, searchParams }) {
 
       // Fetch missing info
       if (!infoData?.data?.title) {
-        try { 
+        try {
           const { data } = await axios.get(`${api_url}/info?id=${id}`);
           infoData = data.results ?? null;
           await animeInfoCol.updateOne(
@@ -226,7 +228,7 @@ export default async function page({ params, searchParams }) {
           pagel={page}
           refer={refer}
         />
-      ) : refer === 'weebhideout' ? (
+      ) : refer === "weebhideout" ? (
         <AnimeInfo idd={id} refer={refer} infoData={infoData} homeData={home} />
       ) : (
         <Error error="dmca" />

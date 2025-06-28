@@ -7,7 +7,7 @@ export async function GET() {
 
   const robotsTxt = `
 User-agent: *
-Disallow: /
+Disallow:
 
 Sitemap: ${baseUrl}/api/anime/sitemap
 ${sitemaps}

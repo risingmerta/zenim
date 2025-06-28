@@ -8,10 +8,9 @@ import React from "react";
 
 // export const dynamic = "force-dynamic"; // Prevent static rendering/caching
 
-export async function generateMetadata({ params, searchParams }) {
-  const param = await params;
+export async function generateMetadata({ params }) {
+  const id = params.id;
   const siteName = process.env.NEXT_PUBLIC_SITE_NAME || "Animoon";
-  const id = param.id;
 
   const formattedTitle = id
     .split("-")
@@ -22,6 +21,12 @@ export async function generateMetadata({ params, searchParams }) {
   return {
     title: `Watch ${formattedTitle} English Sub/Dub online free on ${siteName}`,
     description: `${siteName} is the best site to watch ${formattedTitle} SUB online, or you can even watch ${formattedTitle} DUB in HD quality. You can also watch underrated anime on ${siteName}.`,
+
+    // Add robots meta tag here
+    robots: {
+      index: false, // noindex
+      follow: false, // nofollow
+    },
   };
 }
 
@@ -124,7 +129,10 @@ export default async function Page({ params, searchParams }) {
       }
 
       // Fetch missing episodes
-      if (!episodeData?.episodes?.length > 0 || !episodeData.episodes?.[0]?.title) {
+      if (
+        !episodeData?.episodes?.length > 0 ||
+        !episodeData.episodes?.[0]?.title
+      ) {
         try {
           const { data } = await axios.get(`${api_url}/episodes/${id}`, {
             headers: { "Cache-Control": "no-store" },
