@@ -33,6 +33,12 @@
   border-radius: 8px;
 }
 
+.cofs {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
 /* Profile image container */
 .profile-image,
 .rofile-image {
