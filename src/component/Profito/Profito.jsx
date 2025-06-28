@@ -204,9 +204,19 @@ export default function Profito() {
         </div>
 
         {showModal && (
-          <div className="avatar-modal">
-            <div className="modal-content">
+          <div className="avatar-modal" onClick={() => setShowModal(false)}>
+            <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+              {/* Close Button */}
+              <button
+                onClick={() => props.setLogIsOpen(false)}
+                className="close-button"
+                aria-label="Close"
+              >
+                <AiOutlineClose />
+              </button>
+
               <h3>Select an Avatar</h3>
+
               <div className="avatar-selection">
                 {Object.keys(imageData.hashtags).map((category) => (
                   <div key={category} className="avatar-category">
@@ -225,6 +235,7 @@ export default function Profito() {
                   </div>
                 ))}
               </div>
+
               <div className="modal-footer">
                 <button onClick={() => setShowModal(false)}>Close</button>
                 <button
