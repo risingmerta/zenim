@@ -1,4 +1,3 @@
-/* Main container */
 .comAll {
   display: flex;
   flex-direction: column;
@@ -9,7 +8,6 @@
   font-family: Arial, sans-serif;
 }
 
-/* Profile header */
 .profile-header {
   display: flex;
   align-items: center;
@@ -22,7 +20,6 @@
   border-radius: 8px;
 }
 
-/* Profile content */
 .profile-content {
   display: flex;
   flex-direction: column;
@@ -33,18 +30,20 @@
   border-radius: 8px;
 }
 
-/* Profile image container */
-.profile-image,
-.rofile-image {
-  position: relative;
-  width: 100px;
-  height: 100px;
+.cofs {
   display: flex;
   justify-content: center;
   margin-bottom: 20px;
 }
 
-/* Profile image */
+.profile-image {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+}
+
 .profile-img {
   width: 100px;
   height: 100px;
@@ -53,7 +52,6 @@
   object-fit: cover;
 }
 
-/* Pencil icon */
 .cof-pen {
   position: absolute;
   bottom: 0;
@@ -70,14 +68,12 @@
   justify-content: center;
 }
 
-/* Profile details */
 .profile-details {
   display: flex;
   flex-direction: column;
   gap: 15px;
 }
 
-/* Profile field */
 .profile-field {
   display: flex;
   flex-direction: column;
@@ -115,7 +111,6 @@
   font-size: 14px;
 }
 
-/* Save button */
 .save-button {
   display: flex;
   align-items: center;
@@ -133,14 +128,13 @@
   align-items: center;
   gap: 5px;
   color: #c2b9b9;
+  cursor: pointer;
 }
 
 .paske:hover {
   color: #fff;
-  cursor: pointer;
 }
 
-/* Avatar modal */
 .avatar-modal {
   position: fixed;
   top: 0;
@@ -157,6 +151,7 @@
 }
 
 .modal-content {
+  position: relative;
   background-color: #1e1e1e;
   padding: 1.5rem;
   border-radius: 16px;
@@ -166,6 +161,18 @@
   display: flex;
   flex-direction: column;
   max-height: 80vh;
+}
+
+.modal-close-top {
+  position: absolute;
+  top: 8px;
+  left: 12px;
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 24px;
+  cursor: pointer;
+  z-index: 10;
 }
 
 .modal-content h3 {
@@ -236,7 +243,6 @@
   background-color: #00c4d6;
 }
 
-/* Media queries for responsiveness */
 @media (min-width: 600px) {
   .profile-content {
     flex-direction: row;
@@ -245,30 +251,12 @@
     gap: 20px;
   }
 
-  .profile-image {
-    margin-top: 0;
-    margin-left: 20px;
-  }
-
-  .rofile-image {
-    margin-top: 0;
-    margin-left: 20px;
-    display: none;
-  }
-
   .profile-details {
-    width: calc(100% - 140px); /* Adjust to account for image width + margin */
+    width: calc(100% - 140px);
   }
 }
 
 @media screen and (max-width: 600px) {
-  .profile-image {
-    display: none;
-  }
-}
-
-/* Mobile adjustments */
-@media (max-width: 480px) {
   .profile-header {
     font-size: 20px;
   }
@@ -285,10 +273,6 @@
   .avatar-image {
     width: 60px;
     height: 60px;
-  }
-
-  .avatar-category h4 {
-    margin-left: 10px;
   }
 
   .modal-footer {
