@@ -11,49 +11,26 @@ import {
 } from "react-icons/fa";
 import Link from "next/link";
 
-const MyComponent = (props) => {
-  const [data, setData] = useState([]);
-  const [arr, setArr] = useState([]);
+const ContinueWatching = (props) => {
+  const [watchList, setWatchList] = useState([]);
   const [totalPages, setTotalPages] = useState(0);
+
+  const pageSize = 24;
+  const currentPage = parseInt(props.page) || 1;
 
   useEffect(() => {
     if (typeof window !== "undefined") {
-      const storedAnimes = localStorage.getItem("Recent-animes");
-      const animeArray = storedAnimes ? storedAnimes.split(",") : [];
-
-      setArr(animeArray);
-      setTotalPages(Math.ceil(animeArray.length / 24));
+      const data = JSON.parse(localStorage.getItem("continueWatching") || "[]");
+      setWatchList(data);
+      setTotalPages(Math.ceil(data.length / pageSize));
     }
   }, []);
 
-  const currentPage = parseInt(props.page) || 1;
-  const pageSize = 24;
-
   const getPage = (pageNumber) => {
-    return arr.slice((pageNumber - 1) * pageSize, pageNumber * pageSize);
+    return watchList.slice((pageNumber - 1) * pageSize, pageNumber * pageSize);
   };
 
-  useEffect(() => {
-    const datal = [];
-    getPage(currentPage)?.forEach((id) => {
-      const obj = {
-        id,
-        poster: localStorage.getItem(`imgUra-${id}`) || "",
-        duration: localStorage.getItem(`duran-${id}`) || "",
-        rating: localStorage.getItem(`ratUra-${id}`) || "",
-        episodes: {
-          sub: localStorage.getItem(`subEp-${id}`) || "",
-          dub: localStorage.getItem(`dubEp-${id}`) || "",
-        },
-        name: localStorage.getItem(`nameUra-${id}`) || "",
-        episodeId: localStorage.getItem(`Rewo-${id}`) || "",
-        epNo: localStorage.getItem(`epNumo-${id}`) || "",
-      };
-      datal.push(obj);
-    });
-
-    setData(datal);
-  }, [arr, currentPage]);
+  const data = getPage(currentPage);
 
   let useArr = [];
   if (totalPages <= 3) {
@@ -65,6 +42,8 @@ const MyComponent = (props) => {
   } else {
     useArr = [currentPage - 1, currentPage, currentPage + 1];
   }
+
+  if (watchList.length === 0) return null;
 
   return (
     <div className="contiAll">
@@ -92,7 +71,10 @@ const MyComponent = (props) => {
               <Link href={`/user/continue-watching?refer=${props.refer}`} className="pagin-tile">
                 <FaAngleDoubleLeft />
               </Link>
-              <Link href={`/user/continue-watching?page=${currentPage - 1}&refer=${props.refer}`} className="pagin-tile">
+              <Link
+                href={`/user/continue-watching?page=${currentPage - 1}&refer=${props.refer}`}
+                className="pagin-tile"
+              >
                 <FaAngleLeft />
               </Link>
             </>
@@ -110,10 +92,16 @@ const MyComponent = (props) => {
 
           {currentPage < totalPages && (
             <>
-              <Link href={`/user/continue-watching?page=${currentPage + 1}&refer=${props.refer}`} className="pagin-tile">
+              <Link
+                href={`/user/continue-watching?page=${currentPage + 1}&refer=${props.refer}`}
+                className="pagin-tile"
+              >
                 <FaAngleRight />
               </Link>
-              <Link href={`/user/continue-watching?page=${totalPages}&refer=${props.refer}`} className="pagin-tile">
+              <Link
+                href={`/user/continue-watching?page=${totalPages}&refer=${props.refer}`}
+                className="pagin-tile"
+              >
                 <FaAngleDoubleRight />
               </Link>
             </>
@@ -124,4 +112,4 @@ const MyComponent = (props) => {
   );
 };
 
-export default MyComponent;
+export default ContinueWatching;
