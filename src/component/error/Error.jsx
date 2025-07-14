@@ -52,7 +52,7 @@ export default function Error({ error }) {
             <p className="mt-5 text-white max-w-[400px]">{message}</p>
 
             <Link
-              href="/?refer=weebhideout"
+              href="/?refer=weebsSecret"
               className="mt-7 inline-flex items-center gap-2 bg-[#00f2fe] text-black text-[18px] py-2 px-5 rounded-3xl font-medium transition hover:scale-105"
             >
               <FaChevronLeft className="text-[#00f2fe] w-[20px] h-[20px] rounded-full p-1 bg-black" />

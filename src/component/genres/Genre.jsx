@@ -27,7 +27,7 @@ function Genre({ data, refer }) {
               const textColor = colors[index % colors.length];
               return (
                 <Link
-                  href={`/genre/${item}${refer ? `?refer=${refer}` : `?refer=weebhideout`}`}
+                  href={`/genre/${item}${refer ? `?refer=${refer}` : `?refer=weebsSecret`}`}
                   key={index}
                   className="rounded-[4px] py-2 px-3 hover:bg-[#555462] hover:cursor-pointer max-[478px]:bg-[#373646] max-[478px]:py-[6px]"
                   style={{ color: textColor }}

@@ -115,7 +115,14 @@ export default function Profito() {
         <div className="cofs">
           <div className="rofile-image" onClick={() => setShowModal(true)}>
             <img
-              src={newAvatar || session?.user?.avatar}
+              src={
+                newAvatar ||
+                session?.user.avatar?.replace(
+                  "https://img.flawlessfiles.com/_r/100x100/100/avatar/",
+                  "https://cdn.noitatnemucod.net/avatar/100x100/"
+                ) ||
+                "userData?.randomImage"
+              }
               className="profile-img"
               alt="Profile"
             />

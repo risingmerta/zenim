@@ -40,7 +40,7 @@ function InfoItem({ label, value, isProducer = true, refer }) {
                     .split(" ")
                     .join("-")
                     .replace(/-+/g, "-")}${
-                    refer ? `?refer=${refer}` : `?refer=weebhideout`
+                    refer ? `?refer=${refer}` : `?refer=weebsSecret`
                   }`}
                   key={index}
                   className="cursor-pointer hover:text-[#00f2fe]"
@@ -61,7 +61,7 @@ function InfoItem({ label, value, isProducer = true, refer }) {
                 .split(" ")
                 .join("-")
                 .replace(/-+/g, "-")}${
-                refer ? `?refer=${refer}` : `?refer=weebhideout`
+                refer ? `?refer=${refer}` : `?refer=weebsSecret`
               }`}
               className="cursor-pointer hover:text-[#00f2fe]"
             >
@@ -134,7 +134,7 @@ export default function AnimeInfo({
   }
   if (!animeInfo) {
     router.push(
-      `/404-not-found-page${refer ? `?refer=${refer}` : `?refer=weebhideout`}`
+      `/404-not-found-page${refer ? `?refer=${refer}` : `?refer=weebsSecret`}`
     );
     return undefined;
   }
@@ -205,7 +205,7 @@ export default function AnimeInfo({
                   <li key={index} className="flex gap-x-3 items-center">
                     <Link
                       href={`/${link}${
-                        refer ? `?refer=${refer}` : `?refer=weebhideout`
+                        refer ? `?refer=${refer}` : `?refer=weebsSecret`
                       }`}
                       className="text-white hover:text-[#00f2fe] text-[15px] font-semibold"
                     >
@@ -255,10 +255,10 @@ export default function AnimeInfo({
                   href={
                     lastWatchedEpId
                       ? `/watch/${animeInfo.id + "?ep=" + lastWatchedEpId}${
-                          refer ? `&refer=${refer}` : `&refer=weebhideout`
+                          refer ? `&refer=${refer}` : `&refer=weebsSecret`
                         }`
                       : `/watch/${animeInfo.id}${
-                          refer ? `?refer=${refer}` : `?refer=weebhideout`
+                          refer ? `?refer=${refer}` : `?refer=weebsSecret`
                         }`
                   }
                   className="flex gap-x-2 px-6 py-2 bg-[#00f2fe] w-fit text-black items-center rounded-3xl mt-5"
@@ -272,7 +272,7 @@ export default function AnimeInfo({
               ) : (
                 <Link
                   href={`/${animeInfo.id}${
-                    refer ? `?refer=${refer}` : `?refer=weebhideout`
+                    refer ? `?refer=${refer}` : `?refer=weebsSecret`
                   }`}
                   className="flex gap-x-2 px-6 py-2 bg-[#00f2fe] w-fit text-black items-center rounded-3xl mt-5"
                 >
@@ -307,7 +307,7 @@ export default function AnimeInfo({
               </p>
               <Share
                 ShareUrl={`https://animoon.me/${animeInfo.id}${
-                  refer ? `?refer=${refer}` : `?refer=weebhideout`
+                  refer ? `?refer=${refer}` : `?refer=weebsSecret`
                 }`}
                 arise="this Anime"
               />
@@ -347,7 +347,7 @@ export default function AnimeInfo({
                     {info.Genres.map((genre, index) => (
                       <Link
                         href={`/genre/${genre.split(" ").join("-")}${
-                          refer ? `?refer=${refer}` : `?refer=weebhideout`
+                          refer ? `?refer=${refer}` : `?refer=weebsSecret`
                         }`}
                         key={index}
                         className="text-[14px] font-semibold px-2 py-[1px] border border-gray-400 rounded-2xl hover:text-[#00f2fe]"
@@ -410,7 +410,7 @@ export default function AnimeInfo({
                     {seasons.map((season, index) => (
                       <Link
                         href={`/${season.id.replace("/", "")}${
-                          refer ? `?refer=${refer}` : `?refer=weebhideout`
+                          refer ? `?refer=${refer}` : `?refer=weebsSecret`
                         }`}
                         key={index}
                         className={`relative w-[20%] h-[60px] rounded-lg overflow-hidden cursor-pointer group ${

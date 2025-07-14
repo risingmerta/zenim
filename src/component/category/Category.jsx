@@ -136,7 +136,7 @@ export default function Category({ path, label, pagel, refer }) {
           <div className="w-full">
             <Share
               ShareUrl={`https://animoon.me/${path}${
-                refer ? `?refer=${refer}` : `?refer=weebhideout`
+                refer ? `?refer=${refer}` : `?refer=weebsSecret`
               }`}
               arise={label?.split?.("/")?.pop() || ""}
             />

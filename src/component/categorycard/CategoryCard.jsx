@@ -112,11 +112,11 @@ const CategoryCard = React.memo(
           : `/watch/${itemId}`;
       return refer
         ? lastWatchedEpId || basePath.includes("?")
-          ? `${basePath}&refer=weebhideout`
-          : `${basePath}?refer=weebhideout`
+          ? `${basePath}&refer=weebsSecret`
+          : `${basePath}?refer=weebsSecret`
         : lastWatchedEpId || basePath.includes("?")
-        ? `${basePath}&refer=weebhideout`
-        : `${basePath}?refer=weebhideout`;
+        ? `${basePath}&refer=weebsSecret`
+        : `${basePath}?refer=weebsSecret`;
     };
 
     return (
@@ -128,7 +128,7 @@ const CategoryCard = React.memo(
           {showViewMore && (
             <Link
               href={`/${path}${
-                refer ? `?refer=${refer}` : `?refer=weebhideout`
+                refer ? `?refer=${refer}` : `?refer=weebsSecret`
               }`}
               onClick={() =>
                 typeof window !== "undefined" &&
@@ -221,6 +221,7 @@ const CategoryCard = React.memo(
                         </div>
                       )}
                     </div>
+
                     {hoveredItem === item.id + index &&
                       typeof window !== "undefined" &&
                       window.innerWidth > 1024 && (
@@ -237,7 +238,7 @@ const CategoryCard = React.memo(
                   </Link>
                   <Link
                     href={`/${item.id}${
-                      refer ? `?refer=${refer}` : `?refer=weebhideout`
+                      refer ? `?refer=${refer}` : `?refer=weebsSecret`
                     }`}
                     className="text-white font-semibold mt-1 item-title hover:text-[#00f2fe] hover:cursor-pointer line-clamp-1"
                     onClick={() =>
@@ -348,7 +349,7 @@ const CategoryCard = React.memo(
                 </Link>
                 <Link
                   href={`/${item.id}${
-                    refer ? `?refer=${refer}` : `?refer=weebhideout`
+                    refer ? `?refer=${refer}` : `?refer=weebsSecret`
                   }`}
                   onClick={() =>
                     typeof window !== "undefined" &&

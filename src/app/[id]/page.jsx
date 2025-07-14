@@ -228,7 +228,7 @@ export default async function page({ params, searchParams }) {
           pagel={page}
           refer={refer}
         />
-      ) : refer === "weebhideout" ? (
+      ) : refer === "weebsSecret" ? (
         <AnimeInfo idd={id} refer={refer} infoData={infoData} homeData={home} />
       ) : (
         <Error error="dmca" />

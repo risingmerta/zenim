@@ -68,7 +68,7 @@ export default function SplashScreen({ results, refer }) {
             {NAV_LINKS.map((link) => (
               <Link
                 key={link.to}
-                href={`${link.to}${refer ? `?refer=${refer}` : `?refer=weebhideout`}`}
+                href={`${link.to}${refer ? `?refer=${refer}` : `?refer=weebsSecret`}`}
                 className="hover:text-[#00f2fe]"
               >
                 {link.label}
@@ -112,7 +112,7 @@ export default function SplashScreen({ results, refer }) {
                 {NAV_LINKS.map((link) => (
                   <Link
                     key={link.to}
-                    href={`${link.to}${refer ? `?refer=${refer}` : `?refer=weebhideout`}`}
+                    href={`${link.to}${refer ? `?refer=${refer}` : `?refer=weebsSecret`}`}
                     onClick={() => setIsModalOpen(false)}
                     className="hover:text-[#00f2fe] text-white text-lg"
                   >
@@ -147,7 +147,7 @@ export default function SplashScreen({ results, refer }) {
         <div className="splashscreen min-h-[480px] min-[1200px]:min-h-[520px] bg-[#2B2A3C] rounded-[40px] flex relative mt-7 max-[780px]:w-full items-stretch max-[780px]:rounded-[30px] max-[520px]:rounded-none max-[520px]:min-h-fit max-[520px]:pb-4 max-[520px]:mt-4">
           <div className="h-auto flex flex-col w-[700px] relative z-40 px-20 py-20 left-0 max-[1200px]:py-12 max-[780px]:px-12 max-[520px]:py-4 max-[520px]:px-8">
             <Link
-              href={`/home${refer ? `?refer=${refer}` : `?refer=weebhideout`}`}
+              href={`/home${refer ? `?refer=${refer}` : `?refer=weebsSecret`}`}
               className="text-[45px] font-extrabold tracking-wide max-[520px]:text-[38px] max-[520px]:text-center"
             >
               <div className="logo-container">
@@ -178,7 +178,7 @@ export default function SplashScreen({ results, refer }) {
               <span className="splashitem font-[600]">Top search: </span>
               {topSearch.map((item, index) => (
                 <span key={index} className="splashitem font-[400]">
-                  <Link href={`${item.link}${refer ? `?refer=${refer}` : `?refer=weebhideout`}`}>
+                  <Link href={`${item.link}${refer ? `?refer=${refer}` : `?refer=weebsSecret`}`}>
                     {item.title}
                   </Link>
                   {index < topSearch.length - 1 && <span>, </span>}
@@ -187,7 +187,7 @@ export default function SplashScreen({ results, refer }) {
             </div>
             <div className="mt-8 flex max-[780px]:left-10">
               <Link
-                href={`/home${refer ? `?refer=${refer}` : `?refer=weebhideout`}`}
+                href={`/home${refer ? `?refer=${refer}` : `?refer=weebsSecret`}`}
                 className="max-[520px]:w-full"
               >
                 <div className="bg-[#00f2fe] text-black py-4 px-10 rounded-xl font-bold text-[20px] max-[520px]:text-center max-[520px]:font-medium max-[520px]:text-[17px]">
@@ -211,7 +211,7 @@ export default function SplashScreen({ results, refer }) {
         </div>
 
         <Share
-          ShareUrl={`https://animoon.me/${refer ? `?refer=${refer}` : `?refer=weebhideout`}`}
+          ShareUrl={`https://animoon.me/${refer ? `?refer=${refer}` : `?refer=weebsSecret`}`}
         />
 
         <div

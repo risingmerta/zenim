@@ -46,12 +46,12 @@ function Qtip({ id, refer }) {
     let href = watchLink;
 
     if (lastWatchedEpId) {
-      href += `?ep=${lastWatchedEpId}${`&refer=weebhideout`}`;
+      href += `?ep=${lastWatchedEpId}${`&refer=weebsSecret`}`;
       // if (refer) href += `&refer=${refer}`;
     } else if (refer) {
       href += `?refer=${refer}`;
     } else if (!refer) {
-      href += `?refer=weebhideout`;
+      href += `?refer=weebsSecret`;
     }
 
     return href;
@@ -156,7 +156,7 @@ function Qtip({ id, refer }) {
                 </span>
                 {qtip.genres.map((genre, index) => (
                   <Link
-                    href={`/genre/${genre}${refer ? `?refer=${refer}` : `?refer=weebhideout`}`}
+                    href={`/genre/${genre}${refer ? `?refer=${refer}` : `?refer=weebsSecret`}`}
                     key={index}
                     className="text-[13px] hover:text-[#00f2fe]"
                   >

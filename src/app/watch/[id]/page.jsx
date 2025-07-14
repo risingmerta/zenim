@@ -199,7 +199,7 @@ export default async function Page({ params, searchParams }) {
 
   return (
     <div>
-      {refer === "weebhideout" ? (
+      {refer === "weebsSecret" ? (
         <Watch
           id={id}
           epId={ep}

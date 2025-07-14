@@ -44,42 +44,41 @@ const SignInSignUpModal = (props) => {
     router.refresh();
   };
 
-const handleSignUp = async () => {
-  setError("");
-  setLoading(true);
+  const handleSignUp = async () => {
+    setError("");
+    setLoading(true);
 
-  // ✅ Validate username format
-  if (!/^[a-zA-Z0-9_]{3,30}$/.test(username)) {
-    setError(
-      "Username must be 3–30 characters and contain only letters, numbers, or underscores."
-    );
+    // ✅ Validate username format
+    if (!/^[a-zA-Z0-9_]{3,30}$/.test(username)) {
+      setError(
+        "Username must be 3–30 characters and contain only letters, numbers, or underscores."
+      );
+      setLoading(false);
+      return;
+    }
+
+    // ✅ Validate refer (if passed)
+    const payload = {
+      email,
+      password,
+      username,
+      avatar,
+      ...(props.refer &&
+        /^[a-zA-Z0-9_]{3,30}$/.test(props.refer) && { refer: props.refer }),
+    };
+
+    const res = await fetch("/api/auth/signup", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+    });
+
+    const data = await res.json();
     setLoading(false);
-    return;
-  }
+    if (!res.ok) return setError(data.message);
 
-  // ✅ Validate refer (if passed)
-  const payload = {
-    email,
-    password,
-    username,
-    avatar,
-    ...(props.refer &&
-      /^[a-zA-Z0-9_]{3,30}$/.test(props.refer) && { refer: props.refer }),
+    await signIn("credentials", { email, password, redirect: false });
   };
-
-  const res = await fetch("/api/auth/signup", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(payload),
-  });
-
-  const data = await res.json();
-  setLoading(false);
-  if (!res.ok) return setError(data.message);
-
-  await signIn("credentials", { email, password, redirect: false });
-};
-
 
   const handleSignIn = async () => {
     setError("");
@@ -144,9 +143,9 @@ const handleSignUp = async () => {
           <>
             <p className="heddio">Welcome, {session.user.username}!</p>
             <img
-              src={session.user.avatar.replace(
-                "https://cdn.noitatnemucod.net/avatar/100x100/",
-                "https://img.flawlessfiles.com/_r/100x100/100/avatar/"
+              src={session?.user.avatar?.replace(
+                "https://img.flawlessfiles.com/_r/100x100/100/avatar/",
+                "https://cdn.noitatnemucod.net/avatar/100x100/"
               )}
               alt="Profile"
               className="profile-avatar"

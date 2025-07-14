@@ -1,7 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import "./continueWatching.css";
-import Card from "../Card/Card";
 import {
   FaAngleDoubleLeft,
   FaAngleDoubleRight,
@@ -10,6 +9,7 @@ import {
   FaHistory,
 } from "react-icons/fa";
 import Link from "next/link";
+import CategoryCard from "./CategoryCard";
 
 const ContinueWatching = (props) => {
   const [watchList, setWatchList] = useState([]);
@@ -20,9 +20,31 @@ const ContinueWatching = (props) => {
 
   useEffect(() => {
     if (typeof window !== "undefined") {
-      const data = JSON.parse(localStorage.getItem("continueWatching") || "[]");
-      setWatchList(data);
-      setTotalPages(Math.ceil(data.length / pageSize));
+      const raw = JSON.parse(localStorage.getItem("continueWatching") || "[]");
+
+      const formatted = raw.map((item) => {
+        const episodeId = item.episodeId;
+        const watchedSec = parseFloat(localStorage.getItem(`${episodeId}-time`) || "0");
+        const totalSec = parseFloat(localStorage.getItem(`${episodeId}-duration`) || "0");
+
+        const percentage =
+          totalSec > 0
+            ? Math.min(100, Math.floor((watchedSec / totalSec) * 100))
+            : watchedSec > 0
+            ? 1
+            : 0;
+
+        return {
+          ...item,
+          epNo: item.episodeNum || "?",
+          totalSecondsTimo: watchedSec || 0,
+          totalSeconds: totalSec || 0,
+          percentage,
+        };
+      });
+
+      setWatchList(formatted);
+      setTotalPages(Math.ceil(formatted.length / pageSize));
     }
   }, []);
 
@@ -55,20 +77,24 @@ const ContinueWatching = (props) => {
       </div>
 
       <div className="midd">
-        <div className="crd-col">
-          <div className="carg d-flex a-center j-center">
-            {data.map((anime, idx) => (
-              <Card key={anime.id} data={anime} delay={idx * 0.05} keepIt="true" />
-            ))}
-          </div>
-        </div>
+        <CategoryCard
+          label=""
+          data={data}
+          showViewMore={false}
+          keepIt="true"
+          refer={props.refer}
+          cardStyle="rounded"
+        />
       </div>
 
       {totalPages > 1 && (
         <div className="paginA">
           {currentPage > 1 && (
             <>
-              <Link href={`/user/continue-watching?refer=${props.refer}`} className="pagin-tile">
+              <Link
+                href={`/user/continue-watching?refer=${props.refer}`}
+                className="pagin-tile"
+              >
                 <FaAngleDoubleLeft />
               </Link>
               <Link

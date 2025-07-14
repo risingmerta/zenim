@@ -238,7 +238,7 @@ function Episodelist({
 
                   return (
                     <Link
-                      href={`/watch/${animeId + "?ep=" + episodeNumber}${`?refer=weebhideout`}`}
+                      href={`/watch/${animeId + "?ep=" + episodeNumber}${`?refer=weebsSecret`}`}
                       key={item?.id}
                       ref={isActive ? activeEpisodeRef : null}
                       className={`flex items-center justify-center rounded-[3px] h-[30px] text-[13.5px] font-medium cursor-pointer group md:hover:bg-[#67686F] md:hover:text-white ${bgClass} ${textClass} ${
@@ -274,7 +274,7 @@ function Episodelist({
 
                 return (
                   <Link
-                    href={`/watch/${animeId + "?ep=" + episodeNumber}${`?refer=weebhideout`}`}
+                    href={`/watch/${animeId + "?ep=" + episodeNumber}${`?refer=weebsSecret`}`}
                     key={item?.id}
                     ref={isActive ? activeEpisodeRef : null}
                     className={`w-full pl-5 pr-2 py-3 flex items-center justify-start gap-x-8 cursor-pointer ${

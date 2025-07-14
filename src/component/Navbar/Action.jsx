@@ -26,7 +26,7 @@ const Action = (props) => {
   return (
     <div className={`action-comb ${props.isInSidebar ? "action-new-c" : ""}`}>
       <Link
-        href={`/watch2gether${props.refer ? `?refer=${props.refer}` : `?refer=weebhideout`}`}
+        href={`/watch2gether${props.refer ? `?refer=${props.refer}` : `?refer=weebsSecret`}`}
         className={`action-bloc ${props.isInSidebar ? "action-bS" : ""}`}
       >
         <div className={`action-ico ${props.isInSidebar ? "action-iS" : ""}`}>

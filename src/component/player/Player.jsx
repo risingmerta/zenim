@@ -406,14 +406,55 @@ export default function Player({
       });
     });
     art.on("video:timeupdate", () => {
-      if (art.currentTime > 0) {
-        localStorage.setItem(episodeId + "-time", art.currentTime.toString());
+      // Store current time
+      localStorage.setItem(episodeId + "-time", art.currentTime.toString());
+
+      // Store duration if it's valid
+      if (art.duration && art.duration !== Infinity) {
+        localStorage.setItem(episodeId + "-duration", art.duration.toString());
+      } else if (!localStorage.getItem(episodeId + "-duration")) {
+        localStorage.setItem(episodeId + "-duration", "0");
       }
     });
+
     art.on("ready", () => {
       if (art.duration > 0) {
         localStorage.setItem(episodeId + "-duration", art.duration.toString());
       }
+      // Store continueWatching immediately
+      const continueWatching =
+        JSON.parse(localStorage.getItem("continueWatching")) || [];
+
+      const newEntry = {
+        id: animeInfo?.id,
+        data_id: animeInfo?.data_id,
+        episodeId,
+        episodeNum,
+        adultContent: animeInfo?.adultContent,
+        poster: animeInfo?.poster,
+        title: animeInfo?.title,
+        japanese_title: animeInfo?.japanese_title,
+        sub: animeInfo?.animeInfo?.tvInfo?.sub || 0,
+        dub: animeInfo?.animeInfo?.tvInfo?.dub || 0,
+        eps: animeInfo?.animeInfo?.tvInfo?.eps || 0,
+      };
+
+      if (!newEntry.data_id) return;
+
+      const existingIndex = continueWatching.findIndex(
+        (item) => item.data_id === newEntry.data_id
+      );
+
+      if (existingIndex !== -1) {
+        continueWatching[existingIndex] = newEntry;
+      } else {
+        continueWatching.push(newEntry);
+      }
+
+      localStorage.setItem(
+        "continueWatching",
+        JSON.stringify(continueWatching)
+      );
       if (timeStamp > 0) {
         art.currentTime = timeStamp;
       }
@@ -513,33 +554,6 @@ export default function Player({
       if (art && art.destroy) {
         art.destroy(false);
       }
-      const continueWatching =
-        JSON.parse(localStorage.getItem("continueWatching")) || [];
-
-      const newEntry = {
-        id: animeInfo?.id,
-        data_id: animeInfo?.data_id,
-        episodeId,
-        episodeNum,
-        adultContent: animeInfo?.adultContent,
-        poster: animeInfo?.poster,
-        title: animeInfo?.title,
-        japanese_title: animeInfo?.japanese_title,
-      };
-      if (!newEntry.data_id) return;
-      const existingIndex = continueWatching.findIndex(
-        (item) => item.data_id === newEntry.data_id
-      );
-
-      if (existingIndex !== -1) {
-        continueWatching[existingIndex] = newEntry;
-      } else {
-        continueWatching.push(newEntry);
-      }
-      localStorage.setItem(
-        "continueWatching",
-        JSON.stringify(continueWatching)
-      );
     };
   }, [streamUrl, subtitles, intro, outro]);
 

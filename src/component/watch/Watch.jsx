@@ -327,7 +327,7 @@ export default function Watch(props) {
   useEffect(() => {
     if (episodeId) {
       const newUrl = `/watch/${animeId}?ep=${episodeId}${
-        props.refer ? `&refer=${props.refer}` : `?refer=weebhideout`
+        props.refer ? `&refer=${props.refer}` : `?refer=weebsSecret`
       }`;
       if (isFirstSet.current) {
         // Initial load: replace history entry
@@ -347,7 +347,7 @@ export default function Watch(props) {
     if (totalEpisodes !== null && totalEpisodes === 0) {
       router.push(
         `/${animeId}${
-          props.refer ? `?refer=${props.refer}` : `?refer=weebhideout`
+          props.refer ? `?refer=${props.refer}` : `?refer=weebsSecret`
         }`
       );
     }
@@ -477,7 +477,7 @@ export default function Watch(props) {
                         href={`/${link}${
                           props.refer
                             ? `?refer=${props.refer}`
-                            : `?refer=weebhideout`
+                            : `?refer=weebsSecret`
                         }`}
                         className="text-white hover:text-[#FFBADE] text-[15px] font-semibold"
                       >
@@ -594,7 +594,7 @@ export default function Watch(props) {
                             href={`/${season.id.replace("/", "")}${
                               props.refer
                                 ? `?refer=${props.refer}`
-                                : `?refer=weebhideout`
+                                : `?refer=weebsSecret`
                             }`}
                             key={index}
                             className={`relative w-[20%] h-[60px] rounded-lg overflow-hidden cursor-pointer group ${
@@ -749,7 +749,7 @@ export default function Watch(props) {
                     href={`/${animeId}${
                       props.refer
                         ? `?refer=${props.refer}`
-                        : `?refer=weebhideout`
+                        : `?refer=weebsSecret`
                     }`}
                     className="w-fit text-[13px] bg-white rounded-[12px] px-[10px] py-1 text-black"
                   >
@@ -782,7 +782,7 @@ export default function Watch(props) {
             <Share
               ShareUrl={`https://animoon.me/watch/${
                 animeId + "?ep=" + episodeId
-              }${props.refer ? `?refer=${props.refer}` : `?refer=weebhideout`}`}
+              }${props.refer ? `?refer=${props.refer}` : `?refer=weebsSecret`}`}
               arise="this Anime"
             />
           </div>

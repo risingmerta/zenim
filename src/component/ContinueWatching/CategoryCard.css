@@ -30,7 +30,7 @@
   justify-content: center;
   align-items: center;
   gap: 4px; /* space-x-1 = 0.25rem = 4px */
-  background-color: #B0E3AF;
+  background-color: #b0e3af;
   border-radius: 2px;
   padding: 2px 4px; /* py-[2px] = 2px top/bottom, px-[4px] = 4px left/right */
   color: black;
@@ -40,7 +40,7 @@
   justify-content: center;
   align-items: center;
   gap: 4px; /* space-x-1 = 0.25rem = 4px */
-  background-color: #B9E7FF;
+  background-color: #b9e7ff;
   border-radius: 2px;
   padding: 2px 8px; /* py-[2px] = 2px top/bottom, px-[8px] = 8px left/right */
   color: black;
@@ -60,37 +60,43 @@
 .card-statK {
   display: flex;
   flex-direction: column;
+  margin-top: 4px;
 }
 
 .timoInfo {
   display: flex;
   align-items: center;
-  justify-content: space-between !important;
+  justify-content: space-between;
+  width: 100%;
+  gap: 8px;
 }
 
 .epnt {
   display: flex;
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 500;
   color: #b9b6b2;
   gap: 3px;
+  white-space: nowrap;
 }
 
 .durnt {
   display: flex;
-  gap: 2px;
+  align-items: center;
+  gap: 3px;
+  white-space: nowrap;
 }
 
 .durntS {
   color: var(--theme);
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 600;
 }
 
 .durntM,
 .durntL {
   color: #b9b6b2;
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 600;
 }
 
@@ -98,24 +104,35 @@
   height: 3px;
   width: 100%;
   background: #696967;
-  margin-top: 10px;
+  margin-top: 4px;
+  border-radius: 3px;
+  overflow: hidden;
 }
 
 .inlino {
   background: var(--theme);
-  height: 3px;
-  width: 0; /* this gets dynamically set by inline style */
+  height: 100%;
+  width: 0;
+  transition: width 0.3s ease-in-out;
+}
+
+/* Tooltip arrow fix if needed */
+.rotate-45 {
+  transform: rotate(45deg);
 }
 
 @media screen and (max-width: 400px) {
-  .durnt {
-    padding-right: 10px;
+  .epnt,
+  .durntS,
+  .durntM,
+  .durntL {
+    font-size: 11px;
   }
+
   .timoInfo {
-    width: 80%;
+    gap: 5px;
   }
 }
-
 
 @media (max-width: 270px) {
   .custom-floating-box {

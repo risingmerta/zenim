@@ -19,7 +19,7 @@ export default function Slab(props) {
       <div className="linkok">
         <Link
           href={`/user/profile${
-            props.refer ? `?refer=${props.refer}` : `?refer=weebhideout`
+            props.refer ? `?refer=${props.refer}` : `?refer=weebsSecret`
           }`}
           className={`newPo ${props.slabId === "profile" ? "impot" : ""}`}
         >
@@ -30,7 +30,7 @@ export default function Slab(props) {
         </Link>
         <Link
           href={`/user/continue-watching${
-            props.refer ? `?refer=${props.refer}` : `?refer=weebhideout`
+            props.refer ? `?refer=${props.refer}` : `?refer=weebsSecret`
           }`}
           className={`newPo ${
             props.slabId === "continue watching" ? "impot" : ""
@@ -43,7 +43,7 @@ export default function Slab(props) {
         </Link>
         <Link
           href={`/user/watch-list${
-            props.refer ? `?refer=${props.refer}` : `?refer=weebhideout`
+            props.refer ? `?refer=${props.refer}` : `?refer=weebsSecret`
           }`}
           className={`newPo ${props.slabId === "watch list" ? "impot" : ""}`}
         >
@@ -54,7 +54,7 @@ export default function Slab(props) {
         </Link>
         <Link
           href={`/user/notification${
-            props.refer ? `?refer=${props.refer}` : `?refer=weebhideout`
+            props.refer ? `?refer=${props.refer}` : `?refer=weebsSecret`
           }`}
           className={`newPo ${props.slabId === "notification" ? "impot" : ""}`}
         >
@@ -65,7 +65,7 @@ export default function Slab(props) {
         </Link>
         <Link
           href={`/user/settings${
-            props.refer ? `?refer=${props.refer}` : `?refer=weebhideout`
+            props.refer ? `?refer=${props.refer}` : `?refer=weebsSecret`
           }`}
           className={`newPo ${props.slabId === "settings" ? "impot" : ""}`}
         >

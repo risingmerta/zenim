@@ -49,7 +49,7 @@ export default function NavSidebar(props) {
             <li>
               <Link
                 href={`/home${
-                  props.refer ? `?refer=${props.refer}` : `?refer=weebhideout`
+                  props.refer ? `?refer=${props.refer}` : `?refer=weebsSecret`
                 }`}
               >
                 Home
@@ -58,7 +58,7 @@ export default function NavSidebar(props) {
             <li>
               <Link
                 href={`/most-popular${
-                  props.refer ? `?refer=${props.refer}` : `?refer=weebhideout`
+                  props.refer ? `?refer=${props.refer}` : `?refer=weebsSecret`
                 }`}
               >
                 Most Popular
@@ -67,7 +67,7 @@ export default function NavSidebar(props) {
             <li>
               <Link
                 href={`/movie${
-                  props.refer ? `?refer=${props.refer}` : `?refer=weebhideout`
+                  props.refer ? `?refer=${props.refer}` : `?refer=weebsSecret`
                 }`}
               >
                 Movies
@@ -76,7 +76,7 @@ export default function NavSidebar(props) {
             <li>
               <Link
                 href={`/tv${
-                  props.refer ? `?refer=${props.refer}` : `?refer=weebhideout`
+                  props.refer ? `?refer=${props.refer}` : `?refer=weebsSecret`
                 }`}
               >
                 TV Series
@@ -85,7 +85,7 @@ export default function NavSidebar(props) {
             <li>
               <Link
                 href={`/ova${
-                  props.refer ? `?refer=${props.refer}` : `?refer=weebhideout`
+                  props.refer ? `?refer=${props.refer}` : `?refer=weebsSecret`
                 }`}
               >
                 OVAs
@@ -94,7 +94,7 @@ export default function NavSidebar(props) {
             <li>
               <Link
                 href={`/ona${
-                  props.refer ? `?refer=${props.refer}` : `?refer=weebhideout`
+                  props.refer ? `?refer=${props.refer}` : `?refer=weebsSecret`
                 }`}
               >
                 ONAs
@@ -103,28 +103,28 @@ export default function NavSidebar(props) {
             <li>
               <Link
                 href={`/special${
-                  props.refer ? `?refer=${props.refer}` : `?refer=weebhideout`
+                  props.refer ? `?refer=${props.refer}` : `?refer=weebsSecret`
                 }`}
               >
                 Specials
               </Link>
               <Link
                 href={`/completed${
-                  props.refer ? `?refer=${props.refer}` : `?refer=weebhideout`
+                  props.refer ? `?refer=${props.refer}` : `?refer=weebsSecret`
                 }`}
               >
                 Completed
               </Link>
               <Link
                 href={`/dubbed-anime${
-                  props.refer ? `?refer=${props.refer}` : `?refer=weebhideout`
+                  props.refer ? `?refer=${props.refer}` : `?refer=weebsSecret`
                 }`}
               >
                 Dubbed Anime
               </Link>
               <Link
                 href={`/subbed-anime${
-                  props.refer ? `?refer=${props.refer}` : `?refer=weebhideout`
+                  props.refer ? `?refer=${props.refer}` : `?refer=weebsSecret`
                 }`}
               >
                 Subbed Anime

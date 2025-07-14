@@ -90,7 +90,7 @@ const ContinueWatching = (props) => {
 
                 <Link
                   href={`/watch/${item?.id}?ep=${item.episodeId}${
-                    props.refer ? `&refer=${props.refer}` : `?refer=weebhideout`
+                    props.refer ? `&refer=${props.refer}` : `?refer=weebsSecret`
                   }`}
                   className="inline-block bg-[#2a2c31] absolute left-0 top-0 w-full h-full group"
                 >
