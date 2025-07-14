@@ -3,17 +3,18 @@ import React, { useState, useEffect } from "react";
 import { FaKey, FaPen, FaUser } from "react-icons/fa";
 import { useSession, signIn } from "next-auth/react";
 import { imageData } from "@/data/imageData";
-import "./profito.css";
 import { AiOutlineClose } from "react-icons/ai";
+import { toast } from "react-toastify";
+import "./profito.css";
 
 export default function Profito() {
   const { data: session, update } = useSession();
   const [newEmail, setNewEmail] = useState("");
   const [newUsername, setNewUsername] = useState("");
   const [newPassword, setNewPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [newAvatar, setNewAvatar] = useState("");
   const [showModal, setShowModal] = useState(false);
-  const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
   const [changep, setChangep] = useState(false);
 
@@ -41,20 +42,18 @@ export default function Profito() {
 
     if (changep) {
       if (newPassword.trim() === "" || confirmPassword.trim() === "") {
-        setError("Please fill both password fields.");
+        toast.error("Please fill both password fields.");
         return;
       }
 
       if (newPassword !== confirmPassword) {
-        setError("Passwords do not match.");
+        toast.error("Passwords do not match.");
         return;
       }
     }
 
-    setError(""); // Clear old error
-
     if (!validateEmail(newEmail)) {
-      setError("Please enter a valid email address.");
+      toast.error("Please enter a valid email address.");
       return;
     }
 
@@ -65,7 +64,7 @@ export default function Profito() {
     if (newPassword.trim() !== "") updatedFields.password = newPassword;
 
     if (Object.keys(updatedFields).length === 0) {
-      alert("No changes detected");
+      toast.info("No changes detected.");
       return;
     }
 
@@ -73,9 +72,7 @@ export default function Profito() {
 
     const response = await fetch("/api/updateProfile", {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify(updatedFields),
     });
 
@@ -83,7 +80,6 @@ export default function Profito() {
 
     if (response.ok) {
       if (updatedFields.email || updatedFields.password) {
-        // Trigger session update by signing in again with the new details
         await signIn("credentials", {
           email: newEmail,
           password: newPassword || "",
@@ -91,7 +87,6 @@ export default function Profito() {
         });
       }
 
-      // Update session directly without needing a page refresh
       await update({
         trigger: "update",
         email: newEmail,
@@ -99,10 +94,10 @@ export default function Profito() {
         avatar: newAvatar,
       });
 
-      alert("Profile updated successfully");
+      toast.success("Profile updated successfully!");
       setShowModal(false);
     } else {
-      alert(data.message || "Something went wrong");
+      toast.error(data.message || "Something went wrong.");
     }
   };
 
@@ -117,7 +112,7 @@ export default function Profito() {
             <img
               src={
                 newAvatar ||
-                session?.user.avatar?.replace(
+                session?.user?.avatar?.replace(
                   "https://img.flawlessfiles.com/_r/100x100/100/avatar/",
                   "https://cdn.noitatnemucod.net/avatar/100x100/"
                 ) ||
@@ -162,7 +157,7 @@ export default function Profito() {
             <FaKey /> Change Password
           </div>
 
-          {changep ? (
+          {changep && (
             <>
               <div className="profile-field">
                 <div className="field-label">NEW PASSWORD</div>
@@ -171,7 +166,6 @@ export default function Profito() {
                   type="password"
                   value={newPassword}
                   onChange={(e) => setNewPassword(e.target.value)}
-                  required
                 />
               </div>
               <div className="profile-field">
@@ -181,12 +175,9 @@ export default function Profito() {
                   type="password"
                   value={confirmPassword}
                   onChange={(e) => setConfirmPassword(e.target.value)}
-                  required
                 />
               </div>
             </>
-          ) : (
-            ""
           )}
 
           {error && (
@@ -214,7 +205,6 @@ export default function Profito() {
         {showModal && (
           <div className="avatar-modal" onClick={() => setShowModal(false)}>
             <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-              {/* Close Button */}
               <button
                 onClick={() => setShowModal(false)}
                 className="close-button"

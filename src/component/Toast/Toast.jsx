@@ -1,5 +1,7 @@
-import React, { useEffect } from 'react';
-import './Toast.css';
+// components/Toast.js
+"use client"
+import React, { useEffect } from "react";
+import "./Toast.css";
 
 export default function Toast({ message, onClose, duration = 3000 }) {
   useEffect(() => {
@@ -7,9 +9,5 @@ export default function Toast({ message, onClose, duration = 3000 }) {
     return () => clearTimeout(timer);
   }, [onClose, duration]);
 
-  return (
-    <div className="toast">
-      {message}
-    </div>
-  );
+  return <div className="toast">{message}</div>;
 }
