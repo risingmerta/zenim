@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useEffect, useRef } from "react";
 import getAnimeInfo from "@/utils/getAnimeInfo.utils";
 import getStreamInfo from "@/utils/getStreamInfo.utils";
@@ -25,6 +26,7 @@ export const useWatch = (animeId, initialEpisodeId) => {
   const [activeEpisodeNum, setActiveEpisodeNum] = useState(null);
   const [activeServerId, setActiveServerId] = useState(null);
   const [activeServerType, setActiveServerType] = useState(null);
+  const [activeServerName, setActiveServerName] = useState(null);
   const [serverLoading, setServerLoading] = useState(true);
   const [nextEpisodeSchedule, setNextEpisodeSchedule] = useState(null);
   const isServerFetchInProgress = useRef(false);
@@ -37,6 +39,7 @@ export const useWatch = (animeId, initialEpisodeId) => {
     setServers(null);
     setActiveServerId(null);
     setActiveServerType(null);
+    setActiveServerName(null);
     setStreamInfo(null);
     setStreamUrl(null);
     setSubtitles([]);
@@ -124,46 +127,51 @@ export const useWatch = (animeId, initialEpisodeId) => {
         const data = await getServers(animeId, episodeId);
         const filteredServers = data?.filter(
           (server) =>
-            server.serverName === "HD-3" ||
             server.serverName === "HD-1" ||
-            server.serverName === "HD-2"
+            server.serverName === "HD-2" ||
+            server.serverName === "HD-3"
         );
-        const savedServerName =
-          typeof window !== "undefined" && localStorage.getItem("server_name");
-        const savedServerType =
-          typeof window !== "undefined" && localStorage.getItem("server_type");
-        let initialServer;
-        initialServer = data.find(
-          (server) =>
-            server.serverName === savedServerName &&
-            server.type === savedServerType
-        );
-        if (!initialServer) {
-          initialServer = data.find(
-            (server) =>
-              server.serverName === savedServerName &&
-              server.type !== savedServerType
-          );
+        if (filteredServers.some((s) => s.type === "sub")) {
+          filteredServers.push({
+            type: "sub",
+            data_id: "69696969",
+            server_id: "41",
+            serverName: "HD-4",
+          });
         }
-        if (!initialServer) {
-          initialServer =
-            data.find(
-              (server) =>
-                server.type === savedServerType && server.serverName === "HD-3"
-            ) ||
-            data.find(
-              (server) =>
-                server.type === savedServerType && server.serverName === "HD-1"
-            ) ||
-            data.find(
-              (server) =>
-                server.type === savedServerType && server.serverName === "HD-2"
-            );
+        if (filteredServers.some((s) => s.type === "dub")) {
+          filteredServers.push({
+            type: "dub",
+            data_id: "96969696",
+            server_id: "42",
+            serverName: "HD-4",
+          });
         }
-        if (!initialServer) {
-          initialServer = filteredServers[0];
-        }
+        const savedServerName = localStorage.getItem("server_name");
+        const savedServerType = localStorage.getItem("server_type");
+        let initialServer =
+          data.find(
+            (s) =>
+              s.serverName === savedServerName && s.type === savedServerType
+          ) ||
+          data.find((s) => s.serverName === savedServerName) ||
+          data.find((s) => s.type === savedServerType) ||
+          data.find(
+            (s) => s.serverName === "HD-1" && s.type === savedServerType
+          ) ||
+          data.find(
+            (s) => s.serverName === "HD-2" && s.type === savedServerType
+          ) ||
+          data.find(
+            (s) => s.serverName === "HD-3" && s.type === savedServerType
+          ) ||
+          data.find(
+            (s) => s.serverName === "HD-4" && s.type === savedServerType
+          ) ||
+          filteredServers[0];
         setServers(filteredServers);
+        setActiveServerType(initialServer?.type);
+        setActiveServerName(initialServer?.serverName);
         setActiveServerId(initialServer?.data_id);
       } catch (error) {
         console.error("Error fetching servers:", error);
@@ -175,7 +183,6 @@ export const useWatch = (animeId, initialEpisodeId) => {
     };
     fetchServers();
   }, [episodeId, episodes]);
-
   // Fetch stream info only when episodeId, activeServerId, and servers are ready
   useEffect(() => {
     if (
@@ -186,7 +193,15 @@ export const useWatch = (animeId, initialEpisodeId) => {
       isStreamFetchInProgress.current
     )
       return;
-
+    if (
+      (activeServerName?.toLowerCase() === "hd-1" 
+        || activeServerName?.toLowerCase() === "hd-4") 
+        &&
+      !serverLoading
+    ) {
+      setBuffering(false);
+      return;
+    }
     const fetchStreamInfo = async () => {
       isStreamFetchInProgress.current = true;
       setBuffering(true);
@@ -200,7 +215,6 @@ export const useWatch = (animeId, initialEpisodeId) => {
             server.type.toLowerCase()
           );
           setStreamInfo(data);
-          console.log(data);
           setStreamUrl(data?.streamingLink?.link?.file || null);
           setIntro(data?.streamingLink?.intro || null);
           setOutro(data?.streamingLink?.outro || null);
@@ -252,5 +266,9 @@ export const useWatch = (animeId, initialEpisodeId) => {
     setActiveEpisodeNum,
     activeServerId,
     setActiveServerId,
+    activeServerType,
+    setActiveServerType,
+    activeServerName,
+    setActiveServerName,
   };
 };

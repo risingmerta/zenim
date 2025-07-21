@@ -12,10 +12,14 @@ function Servers({
   servers,
   activeEpisodeNum,
   activeServerId,
+  activeServerType,
+  activeServerName,
   animeId,
   episodeId,
   WatchedEpisodes,
   setActiveServerId,
+  setActiveServerType,
+  setActiveServerName,
   serverLoading,
 }) {
   const subServers = servers?.filter((server) => server.type === "sub") || [];
@@ -38,16 +42,24 @@ function Servers({
 
       if (matchingServer) {
         setActiveServerId(matchingServer.data_id);
+        setActiveServerName(matchingServer.serverName);
+        setActiveServerType(matchingServer.type);
       } else if (servers && servers.length > 0) {
         setActiveServerId(servers[0].data_id);
+        setActiveServerName(servers[0].serverName);
+        setActiveServerType(servers[0].type);
       }
     } else if (servers && servers.length > 0) {
       setActiveServerId(servers[0].data_id);
+      setActiveServerName(servers[0].serverName);
+      setActiveServerType(servers[0].type);
     }
   }, [servers]);
 
   const handleServerSelect = (server) => {
     setActiveServerId(server.data_id);
+    setActiveServerName(server.serverName);
+    setActiveServerType(server.type);
     typeof window !== "undefined" &&
       localStorage.setItem("server_name", server.serverName);
     typeof window !== "undefined" &&
@@ -112,7 +124,7 @@ function Servers({
                       <p className="text-[13px] font-semibold">
                         {item.serverName}
                       </p>
-                    </div> 
+                    </div>
                   ))}
                 </div>
               </div>

@@ -103,7 +103,7 @@ export default function Producer(props) {
         </div> */}
         <div className="w-full mt-[70px]">
           <Share
-            ShareUrl={`https://animoon.me/producer/${id}${
+            ShareUrl={`https://shoko.fun/producer/${id}${
               props.refer ? `?refer=${props.refer}` : `?refer=weebhideout`
             }`}
             arise={

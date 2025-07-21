@@ -3,8 +3,9 @@ import { useEffect, useRef, useState } from "react";
 import "./watch.css";
 // import { useLanguage } from "@/context/LanguageContext";
 // import { useHomeInfo } from "@/context/HomeInfoContext";
-import { useWatch } from "@/hooks/useWatch";
+// import { useWatch } from "@/hooks/useWatch";
 import BouncingLoader from "@/component/ui/bouncingloader/Bouncingloader";
+import IframePlayer from "@/component/player/IframePlayer";
 import Player from "@/component/player/Player";
 import Episodelist from "@/component/episodelist/Episodelist";
 import Sidecard from "@/component/sidecard/Sidecard";
@@ -68,6 +69,7 @@ export default function Watch(props) {
   const [activeEpisodeNum, setActiveEpisodeNum] = useState(null);
   const [activeServerId, setActiveServerId] = useState(null);
   const [activeServerType, setActiveServerType] = useState(null);
+  const [activeServerName, setActiveServerName] = useState(null);
   const [serverLoading, setServerLoading] = useState(true);
   const nextEpisodeSchedule = props.scheduleData;
   const isServerFetchInProgress = useRef(false);
@@ -107,6 +109,7 @@ export default function Watch(props) {
     setServers(null);
     setActiveServerId(null);
     setActiveServerType(null);
+    setActiveServerName(null);
     setStreamInfo(null);
     setStreamUrl(null);
     setSubtitles([]);
@@ -221,6 +224,8 @@ export default function Watch(props) {
         }
         setServers(filteredServers);
         setActiveServerId(initialServer?.data_id);
+        setActiveServerType(initialServer?.type);
+        setActiveServerName(initialServer?.serverName);
       } catch (error) {
         console.error("Error fetching servers:", error);
         setError(error.message || "An error occurred.");
@@ -513,26 +518,42 @@ export default function Watch(props) {
                 <div className="player w-full h-fit bg-black flex flex-col">
                   <div className="w-full relative h-[480px] max-[1400px]:h-[40vw] max-[1200px]:h-[48vw] max-[1024px]:h-[58vw] max-[600px]:h-[65vw]">
                     {!buffering ? (
-                      <Player
-                        streamUrl={streamUrl}
-                        subtitles={subtitles}
-                        intro={intro}
-                        animeId={animeId}
-                        outro={outro}
-                        thumbnail={thumbnail}
-                        autoSkipIntro={autoSkipIntro}
-                        autoPlay={autoPlay}
-                        autoNext={autoNext}
-                        episodeId={episodeId}
-                        episodes={episodes}
-                        playNext={(id) =>
-                          setEpisodeId(id) & setServerLoading(true)
-                        }
-                        animeInfo={animeInfo}
-                        episodeNum={activeEpisodeNum}
-                        streamInfo={streamInfo}
-                        selectL={selectL}
-                      />
+                      activeServerName.toLowerCase() === "hd-1" ||
+                      activeServerName.toLowerCase() === "hd-4" ? (
+                        <IframePlayer
+                          animeId={animeId}
+                          episodeId={episodeId}
+                          servertype={activeServerType}
+                          serverName={activeServerName}
+                          animeInfo={animeInfo}
+                          episodeNum={activeEpisodeNum}
+                          episodes={episodes}
+                          playNext={(id) => setEpisodeId(id)}
+                          autoNext={autoNext}
+                        />
+                      ) : (
+                        <Player
+                          streamUrl={streamUrl}
+                          subtitles={subtitles}
+                          intro={intro}
+                          animeId={animeId}
+                          outro={outro}
+                          serverName={activeServerName.toLowerCase()}
+                          thumbnail={thumbnail}
+                          autoSkipIntro={autoSkipIntro}
+                          autoPlay={autoPlay}
+                          autoNext={autoNext}
+                          episodeId={episodeId}
+                          episodes={episodes}
+                          playNext={(id) =>
+                            setEpisodeId(id) & setServerLoading(true)
+                          }
+                          animeInfo={animeInfo}
+                          episodeNum={activeEpisodeNum}
+                          streamInfo={streamInfo}
+                          selectL={selectL}
+                        />
+                      )
                     ) : (
                       <div className="absolute inset-0 flex justify-center items-center bg-black bg-opacity-50">
                         <BouncingLoader />
@@ -580,6 +601,9 @@ export default function Watch(props) {
                     episodeId={episodeId}
                     WatchedEpisodes={WatchedEpisodes}
                     setActiveServerId={setActiveServerId}
+                    setActiveServerType={setActiveServerType}
+                    activeServerName={activeServerName}
+                    setActiveServerName={setActiveServerName}
                     serverLoading={serverLoading}
                     selectL={selectL}
                   />
@@ -780,7 +804,7 @@ export default function Watch(props) {
           </div>
           <div className="w-full">
             <Share
-              ShareUrl={`https://animoon.me/watch/${
+              ShareUrl={`https://shoko.fun/watch/${
                 animeId + "?ep=" + episodeId
               }${props.refer ? `?refer=${props.refer}` : `?refer=weebsSecret`}`}
               arise="this Anime"

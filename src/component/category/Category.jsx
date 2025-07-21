@@ -135,7 +135,7 @@ export default function Category({ path, label, pagel, refer }) {
           {/* Share Anime Banner */}
           <div className="w-full">
             <Share
-              ShareUrl={`https://animoon.me/${path}${
+              ShareUrl={`https://shoko.fun/${path}${
                 refer ? `?refer=${refer}` : `?refer=weebsSecret`
               }`}
               arise={label?.split?.("/")?.pop() || ""}

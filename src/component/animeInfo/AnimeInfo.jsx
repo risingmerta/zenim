@@ -306,7 +306,7 @@ export default function AnimeInfo({
                 {` DUB in HD quality.`}
               </p>
               <Share
-                ShareUrl={`https://animoon.me/${animeInfo.id}${
+                ShareUrl={`https://shoko.fun/${animeInfo.id}${
                   refer ? `?refer=${refer}` : `?refer=weebsSecret`
                 }`}
                 arise="this Anime"

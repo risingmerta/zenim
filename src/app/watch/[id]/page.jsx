@@ -49,7 +49,7 @@ export default async function Page({ params, searchParams }) {
 
   // --- Fetch homepage data
   try {
-    const doc = await db.collection("animoon-home").findOne({});
+    const doc = await db.collection("homeData").findOne({});
     if (doc) {
       home = doc;
     } else {
@@ -186,7 +186,7 @@ export default async function Page({ params, searchParams }) {
       const dateOnly = json?.results?.nextEpisodeSchedule?.split(" ")[0];
       if (dateOnly) {
         const schDoc = await db
-          .collection("animoon-schedule")
+          .collection("animeSchedule")
           .findOne({ _id: dateOnly });
         dati = schDoc?.schedule?.find((s) => s.id === id)
           ? { schedule: schDoc.schedule.find((s) => s.id === id) }

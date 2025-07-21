@@ -24,7 +24,7 @@ const NAV_LINKS = [
   { to: "/top-airing", label: "Top Airing" },
 ];
 
-const logoTitle = "Animoon";
+const logoTitle = "Shoko";
 
 // const useTopSearch = () => {
 //   const [topSearch, setTopSearch] = useState([]);
@@ -211,7 +211,7 @@ export default function SplashScreen({ results, refer }) {
         </div>
 
         <Share
-          ShareUrl={`https://animoon.me/${refer ? `?refer=${refer}` : `?refer=weebsSecret`}`}
+          ShareUrl={`https://shoko.fun/${refer ? `?refer=${refer}` : `?refer=weebsSecret`}`}
         />
 
         <div

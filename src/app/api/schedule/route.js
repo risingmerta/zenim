@@ -1,5 +1,4 @@
 import { NextResponse } from "next/server";
-import axios from "axios";
 import { connectDB } from "@/lib/mongoClient";
 
 export async function GET(req) {
@@ -13,19 +12,18 @@ export async function GET(req) {
     );
   }
 
-  // const api_url = "https://vimal.animoon.me/api";
-
   try {
-    // const response = await axios.get(`${api_url}/schedule?date=${date}`);
     const db = await connectDB();
-    const animeCollection = db.collection("animoon-schedule");
-    const docs = await animeCollection.find({}).toArray();
-    const animeDocs = JSON.parse(JSON.stringify(docs));
+    const animeCollection = db.collection("animeSchedule");
 
-    const daySchedule = animeDocs.find((entry) => entry._id === date);
-    return NextResponse.json(daySchedule?.schedule);
+    const daySchedule = await animeCollection.findOne(
+      { _id: date },
+      { projection: { _id: 0 } }
+    );
+
+    return NextResponse.json(daySchedule?.data || []);
   } catch (error) {
-    console.error(error);
+    console.error("Schedule fetch error:", error);
     return NextResponse.json(
       { error: "Failed to fetch schedule" },
       { status: 500 }

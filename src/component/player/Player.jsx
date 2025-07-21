@@ -222,13 +222,14 @@ export default function Player({
 
   useEffect(() => {
     if (!streamUrl || !artRef.current) return;
-    const iframeUrl = streamInfo?.streamingLink?.iframe;
+    const iframeUrl = streamInfo?.streamingLink?.iframe; 
+    const server = streamInfo?.streamingLink?.server
     const headers = {};
     if (iframeUrl) {
       const url = new URL(iframeUrl);
       headers.Referer = url.origin + "/";
     } else {
-      headers.Referer = "https://megacloud.club/";
+      headers.Referer = server === "hd-1" ? "https://megaplay.buzz/" : "https://vidwish.live/";
     }
     const art = new Artplayer({
       url:

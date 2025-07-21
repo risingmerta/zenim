@@ -24,7 +24,7 @@ export default function Home(props) {
     setSelectL(lang);
   };
   const website_name = "Animoon";
-  const [homeInfo, setHomeInfo] = useState(props.data);
+  const [homeInfo, setHomeInfo] = useState(null);
   const [homeInfoLoading, setHomeInfoLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -105,7 +105,7 @@ export default function Home(props) {
           />
 
           <Share
-            ShareUrl={`https://animoon.me/home${
+            ShareUrl={`https://shoko.fun/home${
               props.refer ? `?refer=${props.refer}` : `?refer=weebsSecret`
             }`}
           />

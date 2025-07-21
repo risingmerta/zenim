@@ -1,4 +1,5 @@
-import axios from "axios";
+// /app/api/home/route.js
+import { connectDB } from "@/lib/mongoClient";
 import { NextResponse } from "next/server";
 
 let cache = {
@@ -7,65 +8,62 @@ let cache = {
 };
 
 const CACHE_DURATION = 60 * 60 * 1000; // 1 hour
-const API_URL = "https://kaori.shoko.fun/api/home";
 
 export async function GET() {
-  const currentTime = Date.now();
+  const now = Date.now();
 
-  // Return cached data if still valid
-  if (cache.data && currentTime - cache.timestamp < CACHE_DURATION) {
+  if (cache.data && now - cache.timestamp < CACHE_DURATION) {
     return NextResponse.json(cache.data);
   }
 
   try {
-    const response = await axios.get(API_URL);
-    const results = response.data.data;
+    const db = await connectDB();
+    const homeData = await db
+      .collection("homeData")
+      .findOne({}, { projection: { _id: 0 } });
 
-    if (!results || Object.keys(results).length === 0) {
-      return NextResponse.json({ error: "No results found" }, { status: 500 });
+    if (!homeData) {
+      return NextResponse.json({ error: "No data found" }, { status: 404 });
     }
 
     const {
       spotlights,
       trending,
-      topTen: topten,
-      today: todaySchedule,
-      topAiring: top_airing,
-      mostPopular: most_popular,
-      mostFavorite: most_favorite,
-      latestCompleted: latest_completed,
-      latestEpisode: latest_episode,
-      topUpcoming: top_upcoming,
-      recentlyAdded: recently_added,
+      topTen,
+      today,
+      topAiring,
+      mostPopular,
+      mostFavorite,
+      latestCompleted,
+      latestEpisode,
+      topUpcoming,
+      recentlyAdded,
       genres,
-    } = results;
+    } = homeData;
 
-    const dataToCache = {
+    const result = {
       spotlights,
       trending,
-      topten,
-      todaySchedule,
-      top_airing,
-      most_popular,
-      most_favorite,
-      latest_completed,
-      latest_episode,
-      top_upcoming,
-      recently_added,
+      topten: topTen,
+      todaySchedule: today,
+      top_airing: topAiring,
+      most_popular: mostPopular,
+      most_favorite: mostFavorite,
+      latest_completed: latestCompleted,
+      latest_episode: latestEpisode,
+      top_upcoming: topUpcoming,
+      recently_added: recentlyAdded,
       genres,
     };
 
-    // Store in in-memory cache
     cache = {
-      timestamp: currentTime,
-      data: dataToCache,
+      timestamp: now,
+      data: result,
     };
 
-    return NextResponse.json(dataToCache);
-  } catch (error) {
-    return NextResponse.json(
-      { error: "Failed to fetch data" },
-      { status: 500 }
-    );
+    return NextResponse.json(result);
+  } catch (err) {
+    console.error("❌ Error fetching home data:", err);
+    return NextResponse.json({ error: "Server error" }, { status: 500 });
   }
 }

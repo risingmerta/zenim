@@ -23,7 +23,7 @@ function Genre({ data, refer }) {
       <div className="bg-[#373646] py-6 px-4 mt-6 max-[478px]:bg-transparent max-[478px]:px-0">
         <div className="grid grid-cols-3 grid-rows-2 gap-x-4 gap-y-3 w-full max-[478px]:flex max-[478px]:flex-wrap max-[478px]:gap-2">
           {data &&
-            (showAll ? data : data.slice(0, 24)).map((item, index) => {
+            (showAll ? data : data?.slice(0, 24)).map((item, index) => {
               const textColor = colors[index % colors.length];
               return (
                 <Link
