@@ -104,6 +104,7 @@
 }
 body {
   overflow-y: scroll;
+  background: #201f31;
 }
 .scrollbar-visible {
   scrollbar-width: auto;

@@ -27,7 +27,7 @@ const Page = () => {
       }}
     >
       <Script
-        src="//abackdamstubborn.com/0edc04a5374d9021ce8e6b9f5bb01d53/invoke.js"
+        src="//embeddedoxide.com/0edc04a5374d9021ce8e6b9f5bb01d53/invoke.js"
         strategy="afterInteractive"
         data-cfasync="false"
         async

@@ -5,7 +5,7 @@ export default function Advertize(props) {
   const [time, setTime] = useState(new Date());
   const [showAd, setShowAd] = useState(false);
   const [directLink, setDirectLink] = useState(
-    "https://abackdamstubborn.com/zffe7w32?key=38fa10bd1d079d31f58778794a8026c0"
+    "https://embeddedoxide.com/zffe7w32?key=38fa10bd1d079d31f58778794a8026c0"
   );
 
   useEffect(() => {
