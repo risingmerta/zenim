@@ -23,7 +23,7 @@ const Page = () => {
   return (
     <div
       style={{
-        backgroundColor: "#1a1a1a", // dark background
+        backgroundColor: "#201f31", // dark background
       }}
     >
       <Script
@@ -43,7 +43,7 @@ const Page = () => {
             height: "100px",
             color: "#00f2fe",
             fontSize: "14px",
-            backgroundColor: "#1a1a1a", // dark background
+            backgroundColor: "#201f31", // dark background
             border: "1px solid #00f2fe", // theme border
             padding: "8px",
             borderRadius: "6px",
