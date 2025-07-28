@@ -476,6 +476,7 @@ export default function AnimeInfo({
                   className={"mt-8"}
                   selectL={selectL}
                   refer={refer}
+                  home={"1"}
                 />
               </>
             )}

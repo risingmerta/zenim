@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Link from "next/link";
+
 function Genre({ data, refer }) {
   const colors = [
     "#A4B389",

@@ -846,6 +846,7 @@ export default function Watch(props) {
                     showViewMore={false}
                     selectL={selectL}
                     refer={props.refer}
+                    home={"1"}
                   />
                 </>
               ) : (

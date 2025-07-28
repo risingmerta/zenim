@@ -6,7 +6,7 @@
 .share-app {
   gap: 1rem;
   padding: 1rem;
-  background-color: #201f31; 
+  background-color: #1e293b; 
   color: white;
   border-radius: 12px;
   flex-wrap: wrap;
@@ -32,7 +32,7 @@
 /* Buttons */
 .copy-btn, 
 .share-btn {
-  background-color: #1e293b !important;
+  background-color: #273549 !important;
   border: 1px solid transparent;
   padding: 8px 12px;
   border-radius: 8px;

@@ -215,6 +215,7 @@ export default function Category({ path, label, pagel, refer }) {
                       path={path}
                       selectL={selectL}
                       refer={refer}
+                      home={"2"}
                     />
                   )}
                   {/* <div

@@ -60,7 +60,7 @@ export default function RootLayout({ children }) {
         {children}
 
         {/* ✅ Ad wrapper component */}
-        <AdWrapper />
+        {/* <AdWrapper /> */}
 
         {/* ✅ Toast notifications */}
         <ToastContainer position="bottom-right" />

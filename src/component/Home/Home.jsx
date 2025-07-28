@@ -151,6 +151,7 @@ export default function Home(props) {
                 limit={12}
                 selectL={selectL}
                 refer={props.refer}
+                home={"01"}
               />
               <CategoryCard
                 label={`New On ${website_name}`}
@@ -160,6 +161,7 @@ export default function Home(props) {
                 limit={12}
                 selectL={selectL}
                 refer={props.refer}
+                home={"02"}
               />
               <Schedule selectL={selectL} refer={props.refer} />
               <CategoryCard
@@ -170,6 +172,7 @@ export default function Home(props) {
                 limit={12}
                 selectL={selectL}
                 refer={props.refer}
+                home={"03"}
               />
             </div>
 

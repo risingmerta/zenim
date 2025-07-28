@@ -1,20 +1,22 @@
+"use client";
+
 import { Pagination, Navigation } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
-// import { useLanguage } from "@/context/LanguageContext";
 import Link from "next/link";
+// import AdBetweenImages from "@/component/AdBetweenImages/AdBetweenImages"; // Adjust path as needed
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
+import AdBetweenImages2 from "../AdBetweenImages/AdBetweenImages2";
 
 const Trending = ({ trending, selectL, refer }) => {
   const language = selectL;
+
   const getLink = (itemId, refer) => {
     let lastWatchedEpId = "";
     if (typeof window !== "undefined") {
-      lastWatchedEpId = localStorage.getItem(itemId + "-last")
-        ? localStorage.getItem(itemId + "-last")
-        : "";
+      lastWatchedEpId = localStorage.getItem(itemId + "-last") || "";
     }
     const basePath = lastWatchedEpId
       ? `/watch/${itemId + "?ep=" + lastWatchedEpId}`
@@ -27,6 +29,7 @@ const Trending = ({ trending, selectL, refer }) => {
       ? `${basePath}&refer=weebsSecret`
       : `${basePath}?refer=weebsSecret`;
   };
+
   return (
     <div className="mt-6 max-[1200px]:px-4 max-md:px-0">
       <h1 className="text-[#00f2fe] text-2xl font-bold max-md:pl-4">
@@ -52,35 +55,44 @@ const Trending = ({ trending, selectL, refer }) => {
           }}
         >
           {trending?.map((item, idx) => (
-            <SwiperSlide
-              key={idx}
-              className="text-center flex text-[18px] justify-center items-center"
-            >
-              <Link
-                href={getLink(item.id, refer)}
-                className="w-full h-auto pb-[115%] relative inline-block overflow-hidden max-[575px]:pb-[150%]"
-              >
-                {/* Side number and title */}
-                <div className="absolute left-0 top-0 bottom-0 overflow-hidden w-[40px] text-center font-semibold bg-[#201F31] max-[575px]:top-0 max-[575px]:h-[30px] max-[575px]:z-[9] max-[575px]:bg-white">
-                  <span className="absolute left-0 right-0 bottom-0 text-[24px] leading-[1.1em] text-center z-[9] transform -rotate-90 max-[575px]:transform max-[575px]:rotate-0 max-[575px]:text-[#111] max-[575px]:text-[18px] max-[575px]:leading-[30px]">
-                    {item.number}
-                  </span>
-                  <div className="w-[150px] h-fit text-left transform -rotate-90 absolute bottom-[100px] left-[-55px] leading-[40px] text-ellipsis whitespace-nowrap overflow-hidden text-white text-[16px] font-medium">
-                    {language === "EN" ? item.title : item.japanese_title}
-                  </div>
-                </div>
+            <>
+              {/* Insert ad at 2nd position */}
+              {idx === 1 && (
+                <SwiperSlide className="text-center flex justify-center items-center">
+                  <AdBetweenImages2 />
+                </SwiperSlide>
+              )}
 
-                {/* Poster Image */}
-                <div className="inline-block bg-[#2a2c31] absolute w-auto left-[40px] right-0 top-0 bottom-0 max-[575px]:left-0 max-[575px]:top-0 max-[575px]:bottom-0">
-                  <img
-                    src={item.poster}
-                    alt={item.title}
-                    className="block w-full h-full object-cover hover:cursor-pointer"
-                    title={item.title}
-                  />
-                </div>
-              </Link>
-            </SwiperSlide>
+              <SwiperSlide
+                key={idx}
+                className="text-center flex text-[18px] justify-center items-center"
+              >
+                <Link
+                  href={getLink(item.id, refer)}
+                  className="w-full h-auto pb-[115%] relative inline-block overflow-hidden max-[575px]:pb-[150%]"
+                >
+                  {/* Side number and title */}
+                  <div className="absolute left-0 top-0 bottom-0 overflow-hidden w-[40px] text-center font-semibold bg-[#201F31] max-[575px]:top-0 max-[575px]:h-[30px] max-[575px]:z-[9] max-[575px]:bg-white">
+                    <span className="absolute left-0 right-0 bottom-0 text-[24px] leading-[1.1em] text-center z-[9] transform -rotate-90 max-[575px]:transform max-[575px]:rotate-0 max-[575px]:text-[#111] max-[575px]:text-[18px] max-[575px]:leading-[30px]">
+                      {item.number}
+                    </span>
+                    <div className="w-[150px] h-fit text-left transform -rotate-90 absolute bottom-[100px] left-[-55px] leading-[40px] text-ellipsis whitespace-nowrap overflow-hidden text-white text-[16px] font-medium">
+                      {language === "EN" ? item.title : item.japanese_title}
+                    </div>
+                  </div>
+
+                  {/* Poster Image */}
+                  <div className="inline-block bg-[#2a2c31] absolute w-auto left-[40px] right-0 top-0 bottom-0 max-[575px]:left-0 max-[575px]:top-0 max-[575px]:bottom-0">
+                    <img
+                      src={item.poster}
+                      alt={item.title}
+                      className="block w-full h-full object-cover hover:cursor-pointer"
+                      title={item.title}
+                    />
+                  </div>
+                </Link>
+              </SwiperSlide>
+            </>
           ))}
         </Swiper>
 
