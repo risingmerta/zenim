@@ -1,10 +1,10 @@
 "use client";
-import CategoryCard from "@/component/CategoryCard/CategoryCard";
+import CategoryCard from "@/component/categorycard/CategoryCard";
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { FaHeart } from "react-icons/fa";
 import "./watchList.css";
-import PageSlider from "@/component/PageSlider/PageSlider";
+import PageSlider from "@/component/pageslider/PageSlider";
 
 const getOptionName = (type) => {
   switch (type) {
