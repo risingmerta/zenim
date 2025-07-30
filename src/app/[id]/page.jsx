@@ -40,10 +40,10 @@ export async function generateMetadata({ params }) {
     return {
       title: `${label} Anime - ${siteName}`,
       // description: `Watch ${label} Anime online free on ${siteName}.`,
-      robots: {
-        index: true,
-        follow: true,
-      },
+      // robots: {
+      //   index: true,
+      //   follow: true,
+      // },
     };
   }
 
@@ -57,10 +57,10 @@ export async function generateMetadata({ params }) {
   return {
     title: `Watch ${formattedTitle} English Sub/Dub online free on ${siteName}`,
     description: `${siteName} is the best site to watch ${formattedTitle} SUB online, or you can even watch ${formattedTitle} DUB in HD quality. You can also watch underrated anime on ${siteName}.`,
-    robots: {
-      index: false,
-      follow: false,
-    },
+    // robots: {
+    //   index: false,
+    //   follow: false,
+    // },
   };
 }
 

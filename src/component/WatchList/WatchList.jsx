@@ -1,81 +1,66 @@
 "use client";
-import React from "react";
+import CategoryCard from "@/component/CategoryCard/CategoryCard";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
-import Card from "../Card/Card";
 import { FaHeart } from "react-icons/fa";
 import "./watchList.css";
+import PageSlider from "@/component/PageSlider/PageSlider";
 
-// Utility function to fetch and combine data from all options
-const localStorageWrapper = () => {
-  if (typeof window !== "undefined" && window.localStorage) {
-    return {
-      getItem: (key) => localStorage.getItem(key),
-      setItem: (key, value) => localStorage.setItem(key, value),
-      removeItem: (key) => localStorage.removeItem(key),
-      clear: () => localStorage.clear(),
-    };
-  } else {
-    // Handle the case when localStorage is not available
-    return {
-      getItem: () => null,
-      setItem: () => {},
-      removeItem: () => {},
-      clear: () => {},
-    };
+const getOptionName = (type) => {
+  switch (type) {
+    case "1": return "Watching";
+    case "2": return "On-Hold";
+    case "3": return "Plan to Watch";
+    case "4": return "Dropped";
+    case "5": return "Completed";
+    default: return "All";
   }
 };
 
-// Usage
-const ls = localStorageWrapper();
-
-const getCombinedData = (type) => {
-  const options = [
-    { key: "Watching", value: "1" },
-    { key: "On-Hold", value: "2" },
-    { key: "Plan to Watch", value: "3" },
-    { key: "Dropped", value: "4" },
-    { key: "Completed", value: "5" },
-  ];
-
-  let combinedData = [];
-
-  options.forEach((option) => {
-    if (!type || type === option.value) {
-      const key = `animeData_${option.key}`;
-      const data = ls.getItem(key)
-        ? JSON.parse(ls.getItem(key))
-        : [];
-      combinedData = [...combinedData, ...data];
-    }
-  });
-
-  // Sort combined data by timestamp in descending order (most recent first)
-  combinedData.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
-
-  return combinedData;
+const mapTypeToStatus = {
+  1: "Watching",
+  2: "On-Hold",
+  3: "Plan to Watch",
+  4: "Dropped",
+  5: "Completed",
 };
 
 const WatchList = (props) => {
-  const data = getCombinedData(props.type);
-  const cards = data?.map((data, idx) => {
-    return <Card key={data.id} data={data} delay={idx * 0.05} itsMe={"true"} />;
-  });
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [page, setPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
+  const [totalItems, setTotalItems] = useState(0);
 
-  const getOptionName = (type) => {
-    switch (type) {
-      case "1":
-        return "Watching";
-      case "2":
-        return "On-Hold";
-      case "3":
-        return "Plan to Watch";
-      case "4":
-        return "Dropped";
-      case "5":
-        return "Completed";
-      default:
-        return "All";
+  const status = mapTypeToStatus[props.type] || null;
+
+  const fetchData = async (currentPage) => {
+    try {
+      setLoading(true);
+      const url = `/api/user-anime-list${status ? `?type=${status}&page=${currentPage}` : `?page=${currentPage}`}`;
+      const res = await fetch(url);
+      const json = await res.json();
+
+      setData(json.anime || []);
+      setPage(json.page || 1);
+      setTotalPages(json.totalPages || 1);
+      setTotalItems(json.total || 0);
+    } catch (err) {
+      console.error("Error fetching watch list", err);
+      setData([]);
+    } finally {
+      setLoading(false);
     }
+  };
+
+  useEffect(() => {
+    setPage(1); // Reset to page 1 when type changes
+    fetchData(1);
+  }, [props.type]);
+
+  const handlePageChange = (newPage) => {
+    setPage(newPage);
+    fetchData(newPage);
   };
 
   return (
@@ -85,55 +70,66 @@ const WatchList = (props) => {
           <div className="watCFa">
             <div className="watC">
               <FaHeart />
-              Watch List
+              Watch List ({totalItems})
             </div>
-            <div></div>
           </div>
+
           <div className="butM">
             <div className="butInnM">
-              <Link href={`/user/watch-list${props.refer ? `?refer=${props.refer}` : `?refer=weebsSecret`}`} className={`namil ${!props.type ? "selectedNO" : ""}`}>
+              <Link
+                href={`/user/watch-list${props.refer ? `?refer=${props.refer}` : `?refer=weebsSecret`}`}
+                className={`namil ${!props.type ? "selectedNO" : ""}`}
+              >
                 All
               </Link>
-              <Link href={`/user/watch-list?type=1${props.refer ? `&refer=${props.refer}` : `&refer=weebsSecret`}`} className={`oamil ${props.type === "1" ? "selectedNO" : ""}`}>
-                Watching
-              </Link>
-              <Link href={`/user/watch-list?type=2${props.refer ? `&refer=${props.refer}` : `&refer=weebsSecret`}`} className={`oamil ${props.type === "2" ? "selectedNO" : ""}`}>
-                On-Hold
-              </Link>
-              <Link href={`/user/watch-list?type=3${props.refer ? `&refer=${props.refer}` : `&refer=weebsSecret`}`} className={`oamil ${props.type === "3" ? "selectedNO" : ""}`}>
-                Plan to Watch
-              </Link>
-              <Link href={`/user/watch-list?type=4${props.refer ? `&refer=${props.refer}` : `&refer=weebsSecret`}`} className={`oamil ${props.type === "4" ? "selectedNO" : ""}`}>
-                Dropped
-              </Link>
-              <Link href={`/user/watch-list?type=5${props.refer ? `&refer=${props.refer}` : `&refer=weebsSecret`}`} className={`oamil ${props.type === "5" ? "selectedNO" : ""}`}>
-                Completed
-              </Link>
+              {[1, 2, 3, 4, 5].map((type) => (
+                <Link
+                  key={type}
+                  href={`/user/watch-list?type=${type}${props.refer ? `&refer=${props.refer}` : `&refer=weebsSecret`}`}
+                  className={`oamil ${props.type === `${type}` ? "selectedNO" : ""}`}
+                >
+                  {getOptionName(`${type}`)}
+                </Link>
+              ))}
             </div>
-            <div></div>
           </div>
         </div>
       </div>
-      <div>
-        <div className="ddidd">
-          <div className="drd-col">
-            <div className="darg d-flex a-center j-center">
-              {cards.length > 0 ? (
-                cards
-              ) : (
-                <div className="EmLi">
-                  <div className="listEmp">
-                    {getOptionName(props.type)} list is empty
-                  </div>
-                  <div className="adviso">{'<^ Add some animes to the list ^>'}</div>
-                  <div className="flex adviso-1">
-                    <div>\__---</div>
-                    <div className="adviso">/\/\/\/\/\/\</div>
-                    <div>---__/</div>
-                  </div>
+
+      <div className="ddidd">
+        <div className="drd-col">
+          <div className="darg d-flex a-center j-center">
+            {loading ? (
+              <div className="listEmp">Loading...</div>
+            ) : data.length > 0 ? (
+              <div className="px-4">
+                <CategoryCard
+                  label=""
+                  data={data}
+                  showViewMore={false} 
+                  categoryPage={false}
+                  refer={props.refer}
+                  className="mt-0"
+                  home="2"
+                />
+                <PageSlider
+                  page={page}
+                  totalPages={totalPages}
+                  handlePageChange={handlePageChange}
+                  refer={props.refer}
+                />
+              </div>
+            ) : (
+              <div className="EmLi">
+                <div className="listEmp">{getOptionName(props.type)} list is empty</div>
+                <div className="adviso">{"<^ Add some animes to the list ^>"}</div>
+                <div className="flex adviso-1">
+                  <div>\__---</div>
+                  <div className="adviso">/\/\/\/\/\/\</div>
+                  <div>---__/</div>
                 </div>
-              )}
-            </div>
+              </div>
+            )}
           </div>
         </div>
       </div>

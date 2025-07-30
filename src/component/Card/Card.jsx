@@ -116,7 +116,7 @@ export default function Card({
               >
                 <FaClosedCaptioning size={14} />{" "}
                 {data?.tvInfo?.sub || data?.episodes?.sub}
-              </span>
+              </span> 
             )}
 
             {(itsMe === "true" && data?.episodes?.dub > 0) ||

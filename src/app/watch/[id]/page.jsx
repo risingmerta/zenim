@@ -23,10 +23,10 @@ export async function generateMetadata({ params }) {
     description: `${siteName} is the best site to watch ${formattedTitle} SUB online, or you can even watch ${formattedTitle} DUB in HD quality. You can also watch underrated anime on ${siteName}.`,
 
     // Add robots meta tag here
-    robots: {
-      index: false, // noindex
-      follow: false, // nofollow
-    },
+    // robots: {
+    //   index: false, // noindex
+    //   follow: false, // nofollow
+    // },
   };
 }
 

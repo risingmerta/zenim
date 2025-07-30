@@ -6,8 +6,10 @@ import {
   faPlay,
   faClosedCaptioning,
   faMicrophone,
+  faChevronDown,
+  faPlus,
 } from "@fortawesome/free-solid-svg-icons";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import CategoryCard from "@/component/categorycard/CategoryCard";
 import Sidecard from "@/component/sidecard/Sidecard";
 import Loader from "@/component/Loader/Loader";
@@ -171,6 +173,54 @@ export default function AnimeInfo({
       : "";
   }
 
+  const statusOptions = [
+    "Watching",
+    "On-Hold",
+    "Plan to Watch",
+    "Dropped",
+    "Completed",
+  ];
+
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const dropdownRef = useRef(null);
+
+  const handleSelect = async (status) => {
+    setDropdownOpen(false);
+
+    try {
+      const res = await fetch("/api/user-anime-list", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          animeId: animeInfo.id,
+          title: animeInfo.title || animeInfo.japanese_title,
+          poster: animeInfo.poster || "",
+          status,
+        }),
+      });
+
+      if (!res.ok) {
+        const msg = await res.json();
+        console.error("Error:", msg.message);
+      } else {
+        console.log("Saved to list");
+      }
+    } catch (error) {
+      console.error("Failed to save:", error);
+    }
+  };
+
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
+        setDropdownOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
   return (
     <>
       <SessionProvider>
@@ -249,36 +299,78 @@ export default function AnimeInfo({
                   )}
                 </div>
               </div>
-              {animeInfo?.animeInfo?.Status?.toLowerCase() !==
-              "not-yet-aired" ? (
-                <Link
-                  href={
-                    lastWatchedEpId
-                      ? `/watch/${animeInfo.id + "?ep=" + lastWatchedEpId}${
-                          refer ? `&refer=${refer}` : `&refer=weebsSecret`
-                        }`
-                      : `/watch/${animeInfo.id}${
-                          refer ? `?refer=${refer}` : `?refer=weebsSecret`
-                        }`
-                  }
-                  className="flex gap-x-2 px-6 py-2 bg-[#00f2fe] w-fit text-black items-center rounded-3xl mt-5"
-                >
-                  <FontAwesomeIcon
-                    icon={faPlay}
-                    className="text-[14px] mt-[1px]"
-                  />
-                  <p className="text-lg font-medium">Watch Now</p>
-                </Link>
-              ) : (
-                <Link
-                  href={`/${animeInfo.id}${
-                    refer ? `?refer=${refer}` : `?refer=weebsSecret`
-                  }`}
-                  className="flex gap-x-2 px-6 py-2 bg-[#00f2fe] w-fit text-black items-center rounded-3xl mt-5"
-                >
-                  <p className="text-lg font-medium">Not released</p>
-                </Link>
-              )}
+              <div className="flex gap-x-4 mt-5">
+                {animeInfo?.animeInfo?.Status?.toLowerCase() !==
+                "not-yet-aired" ? (
+                  <Link
+                    href={
+                      lastWatchedEpId
+                        ? `/watch/${animeInfo.id + "?ep=" + lastWatchedEpId}${
+                            refer ? `&refer=${refer}` : `&refer=weebsSecret`
+                          }`
+                        : `/watch/${animeInfo.id}${
+                            refer ? `?refer=${refer}` : `?refer=weebsSecret`
+                          }`
+                    }
+                    className="flex gap-x-2 px-6 py-2 bg-[#00f2fe] w-fit text-black items-center rounded-3xl"
+                  >
+                    <FontAwesomeIcon
+                      icon={faPlay}
+                      className="text-[14px] mt-[1px]"
+                    />
+                    <p className="text-lg font-medium">Watch Now</p>
+                  </Link>
+                ) : (
+                  <Link
+                    href={`/${animeInfo.id}${
+                      refer ? `?refer=${refer}` : `?refer=weebsSecret`
+                    }`}
+                    className="flex gap-x-2 px-6 py-2 bg-[#00f2fe] w-fit text-black items-center rounded-3xl"
+                  >
+                    <p className="text-lg font-medium">Not released</p>
+                  </Link>
+                )}
+
+                {animeInfo?.animeInfo?.Status?.toLowerCase() ===
+                "not-yet-aired" ? (
+                  <Link
+                    href={`/${animeInfo.id}${
+                      refer ? `?refer=${refer}` : `?refer=weebsSecret`
+                    }`}
+                    className="flex gap-x-2 px-6 py-2 bg-[#00f2fe] w-fit text-black items-center rounded-3xl"
+                  >
+                    <p className="text-lg font-medium">Notify Me</p>
+                  </Link>
+                ) : (
+                  <div className="relative w-fit" ref={dropdownRef}>
+                    <button
+                      onClick={() => setDropdownOpen((prev) => !prev)}
+                      className="flex gap-x-2 px-6 py-2 bg-[#fff] text-black items-center rounded-3xl"
+                    >
+                      <FontAwesomeIcon
+                        icon={faPlus}
+                        className="text-[14px] mt-[1px]"
+                      />
+                      <p className="text-lg font-medium">Add to List</p>
+                    </button>
+
+                    {dropdownOpen && (
+                      <div className="absolute top-full mt-2 w-full bg-white shadow-lg rounded-lg z-50 overflow-hidden border border-gray-200">
+                        {statusOptions.map((status) => (
+                          <button
+                            key={status}
+                            onClick={() => handleSelect(status)}
+                            className="block w-full px-4 py-2 text-left text-black hover:bg-[#00f2fe]/20 hover:text-black transition duration-150 ease-in-out"
+                          >
+                            {status}
+                          </button>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                )}
+              </div>
+
               {info?.Overview && (
                 <div className="text-[14px] mt-2 max-[575px]:hidden">
                   {info.Overview.length > 270 ? (
