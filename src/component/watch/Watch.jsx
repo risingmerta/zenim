@@ -458,8 +458,8 @@ export default function Watch(props) {
     <>
       <SessionProvider>
         <Navbar lang={lang} selectL={selectL} />
-        <div className="w-full h-fit flex flex-col justify-center items-center relative">
-          <div className="w-full relative max-[1400px]:px-[30px] max-[1200px]:px-[80px] max-[1024px]:px-0">
+        <div className="w-full h-fit flex flex-col justify-center items-center relative mt-[70px]">
+          <div className="w-full relative max-[1400px]:px-[30px] max-[1200px]:px-[80px] max-[1024px]:px-0 z-10">
             <img
               src={
                 !animeInfoLoading
@@ -467,9 +467,9 @@ export default function Watch(props) {
                   : "https://i.postimg.cc/rFZnx5tQ/2-Kn-Kzog-md.webp"
               }
               alt={`${animeInfo?.title} Poster`}
-              className="backgroundImage"
+              className="absolute inset-0 w-full h-full object-cover filter grayscale z-[-900]"
             />
-            <div className="backgroundOverlay"></div>
+            <div className="absolute inset-0 bg-[#3a3948]/80 backdrop-blur-md z-[-800]"></div>
             <div className="layoutWrapper">
               {animeInfo && (
                 <ul className="flex absolute left-4 top-[-40px] gap-x-2 items-center w-fit max-[1200px]:hidden">

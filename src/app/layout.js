@@ -26,7 +26,9 @@ export default function RootLayout({ children }) {
       <head>
         <meta
           name="google-site-verification"
-          content={googleVerification || "qwnQljuFScz5pMwy3mHv8BC3aZh5E9J8SYfpKwpgw1E"}
+          content={
+            googleVerification || "qwnQljuFScz5pMwy3mHv8BC3aZh5E9J8SYfpKwpgw1E"
+          }
         />
       </head>
       <body className={inter.className}>
@@ -54,6 +56,11 @@ export default function RootLayout({ children }) {
           strategy="afterInteractive"
           crossOrigin="anonymous"
           async
+        />
+
+        <Script
+          type="text/javascript"
+          src="//embeddedoxide.com/d6/f8/e1/d6f8e16851504f20f1ccaadcdd965ee3.js"
         />
 
         {/* ✅ Page content */}

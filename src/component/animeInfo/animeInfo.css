@@ -7,6 +7,7 @@
   overflow: hidden;
   color: white;
   margin-top: 70px;
+  z-index: 10; /* Ensures it's above the body background */
 }
 
 .backgroundPoster {
@@ -17,30 +18,40 @@
   left: 0;
   object-fit: cover;
   width: 100%;
-  height: 100%;
-  filter: grayscale(100%) blur(16px); /* blur-lg ≈ 16px */
-  z-index: -900;
+  height: 100%; 
+  filter: grayscale(100%) blur(16px);
+  z-index: -1; /* Keeps it behind the content */
 }
 
-/* styles.css */
-.animeInfoBox {
+.animeInfoBox { 
   display: flex;
   align-items: flex-start;
-  z-index: 10;
-  padding: 70px 56px; /* px-14 = 56px, py-[70px] */
-  background-color: rgba(37, 36, 52, 0.7); 
-  column-gap: 32px; /* gap-x-8 */
+  z-index: 20; /* Keeps it above the blurred background */
+  padding: 70px 56px;
+  background-color: rgba(37, 36, 52, 0.7);
+  column-gap: 32px;
+}
 
-  /* Responsive styles */
-  @media (max-width: 1024px) {
-    padding: 40px 24px; /* py-10 = 40px, px-6 = 24px */
+/* Responsive styles */
+@media (max-width: 1024px) {
+  .animeInfoBox {
+    padding: 40px 24px; /* py-10 px-6 */
     column-gap: 16px; /* gap-x-4 */
   }
+}
 
-  @media (max-width: 575px) {
+@media (max-width: 575px) {
+  .animeInfoBox {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+
+  }
+}
+
+@media (max-width: 429px) {
+  .animeInfoBox {
+    padding: 40px 10px;
   }
 }
 
@@ -64,7 +75,6 @@
   }
 }
 
-/* Responsive for <= 768px (max-md) */
 @media (max-width: 768px) {
   .infoContainer {
     margin-top: 70px;

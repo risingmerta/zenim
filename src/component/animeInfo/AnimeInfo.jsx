@@ -312,22 +312,22 @@ export default function AnimeInfo({
                             refer ? `?refer=${refer}` : `?refer=weebsSecret`
                           }`
                     }
-                    className="flex gap-x-2 px-6 py-2 bg-[#00f2fe] w-fit text-black items-center rounded-3xl"
+                    className="flex gap-x-2 px-6 max-[429px]:px-3 py-2 bg-[#00f2fe] w-fit text-black items-center rounded-3xl"
                   >
                     <FontAwesomeIcon
                       icon={faPlay}
                       className="text-[14px] mt-[1px]"
                     />
-                    <p className="text-lg font-medium">Watch Now</p>
+                    <p className="text-lg max-[429px]:text-[15px] font-medium">Watch Now</p>
                   </Link>
                 ) : (
                   <Link
                     href={`/${animeInfo.id}${
                       refer ? `?refer=${refer}` : `?refer=weebsSecret`
                     }`}
-                    className="flex gap-x-2 px-6 py-2 bg-[#00f2fe] w-fit text-black items-center rounded-3xl"
+                    className="flex gap-x-2 px-6 max-[429px]:px-3 py-2 bg-[#00f2fe] w-fit text-black items-center rounded-3xl"
                   >
-                    <p className="text-lg font-medium">Not released</p>
+                    <p className="text-lg max-[429px]:text-[15px] font-medium">Not released</p>
                   </Link>
                 )}
 
@@ -337,21 +337,21 @@ export default function AnimeInfo({
                     href={`/${animeInfo.id}${
                       refer ? `?refer=${refer}` : `?refer=weebsSecret`
                     }`}
-                    className="flex gap-x-2 px-6 py-2 bg-[#00f2fe] w-fit text-black items-center rounded-3xl"
+                    className="flex gap-x-2 px-6 max-[429px]:px-3 py-2 bg-[#00f2fe] w-fit text-black items-center rounded-3xl"
                   >
-                    <p className="text-lg font-medium">Notify Me</p>
+                    <p className="text-lg max-[429px]:text-[15px] font-medium">Notify Me</p>
                   </Link>
                 ) : (
                   <div className="relative w-fit" ref={dropdownRef}>
                     <button
                       onClick={() => setDropdownOpen((prev) => !prev)}
-                      className="flex gap-x-2 px-6 py-2 bg-[#fff] text-black items-center rounded-3xl"
+                      className="flex gap-x-2 px-6 max-[429px]:px-3 py-2 bg-[#fff] text-black items-center rounded-3xl"
                     >
                       <FontAwesomeIcon
                         icon={faPlus}
                         className="text-[14px] mt-[1px]"
                       />
-                      <p className="text-lg font-medium">Add to List</p>
+                      <p className="text-lg max-[429px]:text-[15px] font-medium">Add to List</p>
                     </button>
 
                     {dropdownOpen && (
