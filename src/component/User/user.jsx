@@ -11,7 +11,7 @@ import Navbar from "../Navbar/Navbar";
 import Profilo from "../Profilo/Profilo";
 import SignInSignUpModal from "../SignSignup/SignInSignUpModal";
 import Footer from "../Footer/Footer";
-import MonetizePage from "../monetize/page";
+// import MonetizePage from "../monetize/page";
 
 export default function User(props) {
   const slabId = props.id.replace("-", " ");

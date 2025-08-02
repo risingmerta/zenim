@@ -16,6 +16,7 @@ function Topten({ data, className, selectL, refer }) {
   const [activePeriod, setActivePeriod] = useState("today");
   const [hoveredItem, setHoveredItem] = useState(null);
   const [hoverTimeout, setHoverTimeout] = useState(null);
+  const [isTooltipHovered, setIsTooltipHovered] = useState(false); // ✅ Added
   const router = useRouter();
 
   const handlePeriodChange = (period) => {
@@ -46,7 +47,9 @@ function Topten({ data, className, selectL, refer }) {
   const handleMouseLeave = () => {
     setHoverTimeout(
       setTimeout(() => {
-        setHoveredItem(null);
+        if (!isTooltipHovered) { // ✅ Prevent hiding if tooltip is hovered
+          setHoveredItem(null);
+        }
       }, 300) // Small delay to prevent flickering
     );
   };
@@ -143,8 +146,12 @@ function Topten({ data, className, selectL, refer }) {
                       }`}
                       onMouseEnter={() => {
                         if (hoverTimeout) clearTimeout(hoverTimeout);
+                        setIsTooltipHovered(true); // ✅ Keep tooltip visible
                       }}
-                      onMouseLeave={handleMouseLeave}
+                      onMouseLeave={() => {
+                        setIsTooltipHovered(false); // ✅ Allow hiding when leaving tooltip
+                        handleMouseLeave();
+                      }}
                     >
                       <Qtip id={item.id} refer={refer} />
                     </div>
@@ -152,7 +159,9 @@ function Topten({ data, className, selectL, refer }) {
 
                 <div className="flex flex-col ml-4 space-y-2">
                   <Link
-                    href={`/${item.id}${refer ? `?refer=${refer}` : `?refer=weebsSecret`}`}
+                    href={`/${item.id}${
+                      refer ? `?refer=${refer}` : `?refer=weebsSecret`
+                    }`}
                     className="text-[1em] font-[500] hover:cursor-pointer hover:text-[#00f2fe] transform transition-all ease-out line-clamp-1 max-[478px]:line-clamp-2 max-[478px]:text-[14px]"
                     onClick={() => handleNavigate(item.id)}
                   >

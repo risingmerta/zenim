@@ -1,12 +1,13 @@
 import BouncingLoader from "../ui/bouncingloader/Bouncingloader";
 // import getQtip from "@/utils/getQtip.utils";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faPlay,
   faStar,
   faClosedCaptioning,
   faMicrophone,
+  faPlus,
 } from "@fortawesome/free-solid-svg-icons";
 import Link from "next/link";
 // import { Link } from "react-router-dom";
@@ -56,6 +57,56 @@ function Qtip({ id, refer }) {
 
     return href;
   };
+
+  const statusOptions = [
+    "Watching",
+    "On-Hold",
+    "Plan to Watch",
+    "Dropped",
+    "Completed",
+  ];
+
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const dropdownRef = useRef(null);
+
+  const handleSelect = async (status) => {
+    setDropdownOpen(false);
+
+    const animeId = qtip?.watchLink?.split("/watch/")[1];
+
+    try {
+      const res = await fetch("/api/user-anime-list", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          animeId, // extracted part from qtip.watchLink
+          title: qtip.title,
+          poster: "",
+          status,
+        }),
+      });
+
+      if (!res.ok) {
+        const msg = await res.json();
+        console.error("Error:", msg.message);
+      } else {
+        console.log("Saved to list");
+      }
+    } catch (error) {
+      console.error("Failed to save:", error);
+    }
+  };
+
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
+        setDropdownOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
   return (
     <div className="w-[320px] h-fit rounded-xl p-4 flex justify-center items-center bg-[#3e3c50] bg-opacity-70 backdrop-blur-[10px] z-50">
@@ -156,7 +207,9 @@ function Qtip({ id, refer }) {
                 </span>
                 {qtip.genres.map((genre, index) => (
                   <Link
-                    href={`/genre/${genre}${refer ? `?refer=${refer}` : `?refer=weebsSecret`}`}
+                    href={`/genre/${genre}${
+                      refer ? `?refer=${refer}` : `?refer=weebsSecret`
+                    }`}
                     key={index}
                     className="text-[13px] hover:text-[#00f2fe]"
                   >
@@ -169,13 +222,44 @@ function Qtip({ id, refer }) {
               </div>
             )}
           </div>
-          <Link
-            href={getWatchHref(qtip?.watchLink, refer)}
-            className="w-[80%] flex mt-4 justify-center items-center gap-x-2 bg-[#00f2fe] py-[9px] rounded-3xl"
-          >
-            <FontAwesomeIcon icon={faPlay} className="text-[14px] text-black" />
-            <p className="text-[14px] font-semibold text-black">Watch Now</p>
-          </Link>
+          <div className="flex items-center gap-[10px] mt-4">
+            <Link
+              href={getWatchHref(qtip?.watchLink, refer)}
+              className="w-[80%] flex justify-center items-center gap-x-2 bg-[#00f2fe] py-[9px] rounded-3xl"
+            >
+              <FontAwesomeIcon
+                icon={faPlay}
+                className="text-[14px] text-black"
+              />
+              <p className="text-[14px] font-semibold text-black">Watch Now</p>
+            </Link>
+
+            <div className="relative w-fit" ref={dropdownRef}>
+              <button
+                onClick={() => setDropdownOpen((prev) => !prev)}
+                className="flex items-center justify-center bg-white text-black rounded-full p-[9px]"
+              >
+                <FontAwesomeIcon
+                  icon={faPlus}
+                  className="text-[20px] max-[575px]:text-[16px]"
+                />
+              </button>
+
+              {dropdownOpen && (
+                <div className="absolute bottom-full right-0 mb-2 w-max max-w-[calc(100vw-16px)] bg-white shadow-lg rounded-lg z-50 border border-gray-200 overflow-x-auto">
+                  {statusOptions.map((status) => (
+                    <button
+                      key={status}
+                      onClick={() => handleSelect(status)}
+                      className="block w-full px-4 py-2 text-left text-black hover:bg-[#00f2fe]/20 hover:text-black transition duration-150 ease-in-out"
+                    >
+                      {status}
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
+          </div>
         </div>
       )}
     </div>

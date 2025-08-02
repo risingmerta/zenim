@@ -331,7 +331,7 @@ export default function AnimeInfo({
                   </Link>
                 )}
 
-                {animeInfo?.animeInfo?.Status?.toLowerCase() ===
+                {animeInfo?.animeInfo?.Status?.toLowerCase() === 
                 "not-yet-aired" ? (
                   <Link
                     href={`/${animeInfo.id}${

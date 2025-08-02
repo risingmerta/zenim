@@ -1,0 +1,134 @@
+.topten-container {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 1.5rem !important;
+}
+
+.topten-header {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  flex-wrap: wrap !important;
+}
+
+.topten-header h1 {
+  font-weight: bold !important;
+  font-size: 2rem !important;
+  color: #00f2fe !important;
+}
+
+.topten-tabs {
+  display: flex !important;
+  background: #373646 !important;
+  border-radius: 4px !important;
+  font-weight: bold !important;
+  font-size: 0.875rem !important;
+}
+
+.topten-tabs li {
+  cursor: pointer !important;
+  padding: 0.5rem 0.75rem !important;
+  color: white !important;
+  transition: color 0.2s ease !important;
+}
+
+.topten-tabs li.active {
+  background: #00f2fe !important;
+  color: #555462 !important;
+}
+
+.topten-list {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 1rem !important;
+  background: #2b2a3c !important;
+  padding: 1rem !important;
+  padding-top: 2rem !important;
+}
+
+.topten-item {
+  display: flex !important;
+  align-items: center !important;
+  gap: 1rem !important;
+}
+
+.topten-item-rank {
+  font-weight: bold !important;
+  font-size: 2rem !important;
+}
+
+.topten-item-rank.top3 {
+  color: #fff !important;
+  border-bottom: 3px solid #00f2fe !important;
+}
+
+.topten-item-rank.other {
+  color: #777682 !important;
+}
+
+.topten-item-content {
+  display: flex !important;
+  align-items: center !important;
+  gap: 1rem !important;
+  padding-bottom: 1rem !important;
+  position: relative !important;
+  width: 100% !important;
+}
+
+.topten-poster {
+  width: 60px !important;
+  height: 75px !important;
+  border-radius: 4px !important;
+  object-fit: cover !important;
+  cursor: pointer !important;
+}
+
+.topten-tooltip {
+  position: absolute !important;
+  z-index: 100000 !important;
+}
+
+.topten-info {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 0.5rem !important;
+  margin-left: 1rem !important;
+}
+
+.topten-title {
+  font-size: 1em !important;
+  font-weight: 500 !important;
+  cursor: pointer !important;
+  color: white !important;
+  text-decoration: none !important;
+}
+
+.topten-title:hover {
+  color: #00f2fe !important;
+}
+
+.topten-tags {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 0.25rem !important;
+}
+
+.topten-tag {
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.25rem !important;
+  border-radius: 4px !important;
+  padding: 0.125rem 0.25rem !important;
+  font-size: 12px !important;
+  font-weight: bold !important;
+}
+
+.topten-tag.sub {
+  background: #b0e3af !important;
+  color: black !important;
+}
+
+.topten-tag.dub {
+  background: #b9e7ff !important;
+  color: black !important;
+}

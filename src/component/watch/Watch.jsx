@@ -408,7 +408,7 @@ export default function Watch(props) {
       },
       {
         condition: animeInfo?.animeInfo?.tvInfo?.quality,
-        bgColor: "#FFBADE",
+        bgColor: "#00f2fe",
         text: animeInfo?.animeInfo?.tvInfo?.quality,
       },
       {
@@ -484,7 +484,7 @@ export default function Watch(props) {
                             ? `?refer=${props.refer}`
                             : `?refer=weebsSecret`
                         }`}
-                        className="text-white hover:text-[#FFBADE] text-[15px] font-semibold"
+                        className="text-white hover:text-[#00f2fe] text-[15px] font-semibold"
                       >
                         {text}
                       </Link>
@@ -590,6 +590,7 @@ export default function Watch(props) {
                       totalEpisodes={totalEpisodes}
                       episodeId={episodeId}
                       onButtonClick={(id) => setEpisodeId(id)}
+                      animeInfo={animeInfo}
                       selectL={selectL}
                     />
                   )}
@@ -623,14 +624,14 @@ export default function Watch(props) {
                             key={index}
                             className={`relative w-[20%] h-[60px] rounded-lg overflow-hidden cursor-pointer group ${
                               animeId === season.id.replace("/", "")
-                                ? "border border-[#ffbade]"
+                                ? "border border-[#00f2fe]"
                                 : ""
                             } max-[1200px]:w-[140px] max-[575px]:w-full`}
                           >
                             <p
-                              className={`text-[13px] text-center font-bold absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full px-2 z-30 line-clamp-2 group-hover:text-[#ffbade] ${
+                              className={`text-[13px] text-center font-bold absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full px-2 z-30 line-clamp-2 group-hover:text-[#00f2fe] ${
                                 animeId === season.id.replace("/", "")
-                                  ? "text-[#ffbade]"
+                                  ? "text-[#00f2fe]"
                                   : "text-white"
                               }`}
                             >
@@ -857,7 +858,7 @@ export default function Watch(props) {
               {animeInfo && animeInfo.related_data ? (
                 <Sidecard
                   label="Related Anime"
-                  data={animeInfo.related_data}
+                  data={animeInfo.related_data} 
                   className="mt-[15px]"
                   selectL={selectL}
                   refer={props.refer}

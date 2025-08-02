@@ -332,12 +332,12 @@ export default function Category({ path, label, pagel, refer }) {
             <div className="w-full flex flex-col gap-y-10">
               {homeInfoLoading ? (
                 <SidecardLoader />
-              ) : (
+              ) : ( 
                 <>
                   {homeInfo?.topten && (
                     <Topten
                       data={homeInfo.topten}
-                      className="mt-0"
+                      className="mt-0" 
                       selectL={selectL}
                       refer={refer}
                     />

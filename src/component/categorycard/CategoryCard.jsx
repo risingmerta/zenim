@@ -84,22 +84,32 @@ const CategoryCard = React.memo(
           window.removeEventListener("resize", handleResize);
       };
     }, [getItemsToRender]);
+    const [isTooltipHovered, setIsTooltipHovered] = useState(false);
+
     const [hoveredItem, setHoveredItem] = useState(null);
     const [hoverTimeout, setHoverTimeout] = useState(null);
     const { tooltipPosition, tooltipHorizontalPosition, cardRefs } =
       useToolTipPosition(hoveredItem, data);
     const handleMouseEnter = (item, index) => {
+      if (hoverTimeout) clearTimeout(hoverTimeout); // clear any previous timeout
       const timeout = setTimeout(() => {
         setHoveredItem(item.id + index);
         setShowPlay(true);
       }, 400);
       setHoverTimeout(timeout);
     };
+
     const handleMouseLeave = () => {
-      clearTimeout(hoverTimeout);
-      setHoveredItem(null);
-      setShowPlay(false);
+      if (hoverTimeout) clearTimeout(hoverTimeout); // clear hover enter timeout
+      const timeout = setTimeout(() => {
+        if (!isTooltipHovered) {
+          setHoveredItem(null);
+          setShowPlay(false);
+        }
+      }, 150); // allow slight delay so tooltip doesn't disappear instantly
+      setHoverTimeout(timeout);
     };
+
     const getLink = (itemId, path, refer) => {
       let lastWatchedEpId = "";
       if (typeof window !== "undefined") {
@@ -170,70 +180,71 @@ const CategoryCard = React.memo(
                   style={{ height: "fit-content" }}
                   ref={(el) => (cardRefs.current[index] = el)}
                 >
-                  <Link
-                    href={getLink(item.id, path, refer)}
-                    className="w-full relative group hover:cursor-pointer"
-                    onClick={() =>
-                      typeof window !== "undefined" &&
-                      window.scrollTo({ top: 0, behavior: "smooth" })
-                    }
-                    onMouseEnter={() => handleMouseEnter(item, index)}
-                    onMouseLeave={handleMouseLeave}
-                  >
-                    {hoveredItem === item.id + index && showPlay && (
-                      <FontAwesomeIcon
-                        icon={faPlay}
-                        className="text-[40px] text-white absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-[10000]"
-                      />
-                    )}
+                  <div className="relative">
+                    <Link
+                      href={getLink(item.id, path, refer)}
+                      className="w-full relative group hover:cursor-pointer"
+                      onClick={() =>
+                        typeof window !== "undefined" &&
+                        window.scrollTo({ top: 0, behavior: "smooth" })
+                      }
+                      onMouseEnter={() => handleMouseEnter(item, index)}
+                      onMouseLeave={handleMouseLeave}
+                    >
+                      {hoveredItem === item.id + index && showPlay && (
+                        <FontAwesomeIcon
+                          icon={faPlay}
+                          className="text-[40px] text-white absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-[10000]"
+                        />
+                      )}
 
-                    <div className="overlay"></div>
-                    <div className="overflow-hidden">
-                      <img
-                        src={item.poster}
-                        alt={item.title}
-                        className={`w-full h-[320px] object-cover max-[1200px]:h-[35vw] max-[758px]:h-[45vw] max-[478px]:h-[60vw] group-hover:blur-[7px] transform transition-all duration-300 ease-in-out ultra-wide:h-[400px] ${cardStyle}`}
-                      />
-                    </div>
-                    {(item.tvInfo?.rating === "18+" ||
-                      item?.adultContent === true) && (
-                      <div className="text-white px-2 rounded-md bg-[#FF5700] absolute top-2 left-2 flex items-center justify-center text-[14px] font-bold">
-                        18+
+                      <div className="overlay"></div>
+                      <div className="overflow-hidden">
+                        <img
+                          src={item.poster}
+                          alt={item.title}
+                          className={`w-full h-[320px] object-cover max-[1200px]:h-[35vw] max-[758px]:h-[45vw] max-[478px]:h-[60vw] group-hover:blur-[7px] transform transition-all duration-300 ease-in-out ultra-wide:h-[400px] ${cardStyle}`}
+                        />
                       </div>
-                    )}
-                    <div className="custom-floating-box">
-                      {item.tvInfo?.sub && (
-                        <div className="custom-badge">
-                          <FontAwesomeIcon
-                            icon={faClosedCaptioning}
-                            className="text-[12px]"
-                          />
-                          <p className="text-[12px] font-bold">
-                            {item.tvInfo.sub}
-                          </p>
+                      {(item.tvInfo?.rating === "18+" ||
+                        item?.adultContent === true) && (
+                        <div className="text-white px-2 rounded-md bg-[#FF5700] absolute top-2 left-2 flex items-center justify-center text-[14px] font-bold">
+                          18+
                         </div>
                       )}
-                      {item.tvInfo?.dub && (
-                        <div className="custom-badge-blue">
-                          <FontAwesomeIcon
-                            icon={faMicrophone}
-                            className="text-[12px]"
-                          />
-                          <p className="text-[12px] font-bold">
-                            {item.tvInfo.dub}
-                          </p>
-                        </div>
-                      )}
-                      {item.tvInfo?.eps && (
-                        <div className="flex space-x-1 justify-center items-center bg-[#a9a6b16f] rounded-[2px] px-[8px] text-white py-[2px]">
-                          <p className="text-[12px] font-extrabold">
-                            {item.tvInfo.eps}
-                          </p>
-                        </div>
-                      )}
-                    </div>
+                      <div className="custom-floating-box">
+                        {item.tvInfo?.sub && (
+                          <div className="custom-badge">
+                            <FontAwesomeIcon
+                              icon={faClosedCaptioning}
+                              className="text-[12px]"
+                            />
+                            <p className="text-[12px] font-bold">
+                              {item.tvInfo.sub}
+                            </p>
+                          </div>
+                        )}
+                        {item.tvInfo?.dub && (
+                          <div className="custom-badge-blue">
+                            <FontAwesomeIcon
+                              icon={faMicrophone}
+                              className="text-[12px]"
+                            />
+                            <p className="text-[12px] font-bold">
+                              {item.tvInfo.dub}
+                            </p>
+                          </div>
+                        )}
+                        {item.tvInfo?.eps && (
+                          <div className="flex space-x-1 justify-center items-center bg-[#a9a6b16f] rounded-[2px] px-[8px] text-white py-[2px]">
+                            <p className="text-[12px] font-extrabold">
+                              {item.tvInfo.eps}
+                            </p>
+                          </div>
+                        )}
+                      </div>
+                    </Link>
                     {hoveredItem === item.id + index &&
-                      typeof window !== "undefined" &&
                       window.innerWidth > 1024 && (
                         <div
                           className={`absolute ${tooltipPosition} ${tooltipHorizontalPosition} z-[100000] transform transition-all duration-300 ease-in-out ${
@@ -241,11 +252,16 @@ const CategoryCard = React.memo(
                               ? "opacity-100 translate-y-0"
                               : "opacity-0 translate-y-2"
                           }`}
+                          onMouseEnter={() => setIsTooltipHovered(true)}
+                          onMouseLeave={() => {
+                            setIsTooltipHovered(false);
+                            handleMouseLeave();
+                          }}
                         >
                           <Qtip id={item.id} refer={refer} />
                         </div>
                       )}
-                  </Link>
+                  </div>
                   <Link
                     href={`/${item.id}${
                       refer ? `?refer=${refer}` : `?refer=weebhideout`
@@ -297,59 +313,64 @@ const CategoryCard = React.memo(
                     style={{ height: "fit-content" }}
                     ref={(el) => (cardRefs.current[index] = el)}
                   >
-                    <Link
-                      href={getLink(item.id, path, refer)}
-                      className="w-full relative group hover:cursor-pointer"
-                      onClick={() =>
-                        window.scrollTo({ top: 0, behavior: "smooth" })
-                      }
-                      onMouseEnter={() => handleMouseEnter(item, index)}
-                      onMouseLeave={handleMouseLeave}
-                    >
-                      {hoveredItem === item.id + index && showPlay && (
-                        <FontAwesomeIcon
-                          icon={faPlay}
-                          className="text-[40px] text-white absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-[10000]"
-                        />
-                      )}
-                      <div className="overlay"></div>
-                      <div className="overflow-hidden">
-                        <img
-                          src={item.poster}
-                          alt={item.title}
-                          className={`w-full h-[250px] object-cover max-[1200px]:h-[35vw] max-[758px]:h-[45vw] max-[478px]:h-[60vw] ${cardStyle} group-hover:blur-[7px] transform transition-all duration-300 ease-in-out`}
-                        />
-                      </div>
-                      {(item.tvInfo?.rating === "18+" ||
-                        item?.adultContent === true) && (
-                        <div className="text-white px-2 rounded-md bg-[#FF5700] absolute top-2 left-2 flex items-center justify-center text-[14px] font-bold">
-                          18+
+                    <div className="relative">
+                      {" "}
+                      {/* Wrapper for Link + Tooltip */}
+                      <Link
+                        href={getLink(item.id, path, refer)}
+                        className="w-full relative group hover:cursor-pointer"
+                        onClick={() =>
+                          window.scrollTo({ top: 0, behavior: "smooth" })
+                        }
+                        onMouseEnter={() => handleMouseEnter(item, index)}
+                        onMouseLeave={handleMouseLeave}
+                      >
+                        {hoveredItem === item.id + index && showPlay && (
+                          <FontAwesomeIcon
+                            icon={faPlay}
+                            className="text-[40px] text-white absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-[10000]"
+                          />
+                        )}
+                        <div className="overlay"></div>
+                        <div className="overflow-hidden">
+                          <img
+                            src={item.poster}
+                            alt={item.title}
+                            className={`w-full h-[250px] object-cover max-[1200px]:h-[35vw] max-[758px]:h-[45vw] max-[478px]:h-[60vw] ${cardStyle} group-hover:blur-[7px] transform transition-all duration-300 ease-in-out`}
+                          />
                         </div>
-                      )}
-                      <div className="custom-floating-box">
-                        {item.tvInfo?.sub && (
-                          <div className="custom-badge">
-                            <FontAwesomeIcon
-                              icon={faClosedCaptioning}
-                              className="text-[12px]"
-                            />
-                            <p className="text-[12px] font-bold">
-                              {item.tvInfo.sub}
-                            </p>
+                        {(item.tvInfo?.rating === "18+" ||
+                          item?.adultContent === true) && (
+                          <div className="text-white px-2 rounded-md bg-[#FF5700] absolute top-2 left-2 flex items-center justify-center text-[14px] font-bold">
+                            18+
                           </div>
                         )}
-                        {item.tvInfo?.dub && (
-                          <div className="custom-badge-blue">
-                            <FontAwesomeIcon
-                              icon={faMicrophone}
-                              className="text-[12px]"
-                            />
-                            <p className="text-[12px] font-bold">
-                              {item.tvInfo.dub}
-                            </p>
-                          </div>
-                        )}
-                      </div>
+                        <div className="custom-floating-box">
+                          {item.tvInfo?.sub && (
+                            <div className="custom-badge">
+                              <FontAwesomeIcon
+                                icon={faClosedCaptioning}
+                                className="text-[12px]"
+                              />
+                              <p className="text-[12px] font-bold">
+                                {item.tvInfo.sub}
+                              </p>
+                            </div>
+                          )}
+                          {item.tvInfo?.dub && (
+                            <div className="custom-badge-blue">
+                              <FontAwesomeIcon
+                                icon={faMicrophone}
+                                className="text-[12px]"
+                              />
+                              <p className="text-[12px] font-bold">
+                                {item.tvInfo.dub}
+                              </p>
+                            </div>
+                          )}
+                        </div>
+                      </Link>
+                      {/* Tooltip positioned over the card */}
                       {hoveredItem === item.id + index &&
                         window.innerWidth > 1024 && (
                           <div
@@ -358,11 +379,17 @@ const CategoryCard = React.memo(
                                 ? "opacity-100 translate-y-0"
                                 : "opacity-0 translate-y-2"
                             }`}
+                            onMouseEnter={() => setIsTooltipHovered(true)}
+                            onMouseLeave={() => {
+                              setIsTooltipHovered(false);
+                              handleMouseLeave();
+                            }}
                           >
                             <Qtip id={item.id} refer={refer} />
                           </div>
                         )}
-                    </Link>
+                    </div>
+
                     <Link
                       href={`/${item.id}${
                         refer ? `?refer=${refer}` : `?refer=weebsSecret`

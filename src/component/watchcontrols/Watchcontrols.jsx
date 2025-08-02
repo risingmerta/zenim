@@ -1,7 +1,10 @@
-import { faBackward, faForward } from "@fortawesome/free-solid-svg-icons";
+import {
+  faBackward,
+  faForward,
+  faPlus,
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useEffect, useState } from "react";
-
+import { useEffect, useRef, useState } from "react";
 
 const ToggleButton = ({ label, isActive, onClick }) => (
   <button className="flex gap-x-2" onClick={onClick}>
@@ -14,7 +17,7 @@ const ToggleButton = ({ label, isActive, onClick }) => (
       {isActive ? "on" : "off"}
     </span>
   </button>
-); 
+);
 
 export default function WatchControls({
   autoPlay,
@@ -24,6 +27,7 @@ export default function WatchControls({
   autoNext,
   setAutoNext,
   episodeId,
+  animeInfo,
   episodes = [],
   onButtonClick,
 }) {
@@ -41,6 +45,54 @@ export default function WatchControls({
       setCurrentEpisodeIndex(newIndex);
     }
   }, [episodeId, episodes]);
+
+  const statusOptions = [
+    "Watching",
+    "On-Hold",
+    "Plan to Watch",
+    "Dropped",
+    "Completed",
+  ];
+
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const dropdownRef = useRef(null);
+
+  const handleSelect = async (status) => {
+    setDropdownOpen(false);
+ 
+    try {
+      const res = await fetch("/api/user-anime-list", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          animeId: animeInfo.id,
+          title: animeInfo.title || animeInfo.japanese_title,
+          poster: animeInfo.poster || "",
+          status,
+        }),
+      });
+
+      if (!res.ok) {
+        const msg = await res.json();
+        console.error("Error:", msg.message);
+      } else {
+        console.log("Saved to list");
+      }
+    } catch (error) {
+      console.error("Failed to save:", error);
+    }
+  };
+
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
+        setDropdownOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
   return (
     <div className="bg-[#11101A] w-full flex justify-between flex-wrap px-4 pt-4 max-[1200px]:bg-[#14151A] max-[375px]:flex-col max-[375px]:gap-y-2">
@@ -92,6 +144,31 @@ export default function WatchControls({
             className="text-[20px] max-[575px]:text-[16px] text-white"
           />
         </button>
+        <div className="relative w-fit" ref={dropdownRef}>
+          <button
+            onClick={() => setDropdownOpen((prev) => !prev)}
+            // className="flex gap-x-2 text-white items-center rounded-3xl"
+          >
+            <FontAwesomeIcon
+              icon={faPlus}
+              className="text-[20px] max-[575px]:text-[16px] text-white"
+            />
+          </button>
+
+          {dropdownOpen && (
+            <div className="absolute top-full right-0 mt-2 w-max max-w-[calc(100vw-16px)] bg-white shadow-lg rounded-lg z-50 border border-gray-200 overflow-x-auto">
+              {statusOptions.map((status) => (
+                <button
+                  key={status}
+                  onClick={() => handleSelect(status)}
+                  className="block w-full px-4 py-2 text-left text-black hover:bg-[#00f2fe]/20 hover:text-black transition duration-150 ease-in-out"
+                >
+                  {status}
+                </button>
+              ))}
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );
