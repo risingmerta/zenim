@@ -33,7 +33,7 @@ const CategoryCard = React.memo(
     const [showPlay, setShowPlay] = useState(false);
     if (limit) {
       // Adjust limit only if ome exists
-      const adjustedLimit = home.includes("0") ? limit - 2 : limit;
+      const adjustedLimit = limit;
       data = data?.slice(0, adjustedLimit);
     }
 
@@ -88,8 +88,10 @@ const CategoryCard = React.memo(
 
     const [hoveredItem, setHoveredItem] = useState(null);
     const [hoverTimeout, setHoverTimeout] = useState(null);
+
     const { tooltipPosition, tooltipHorizontalPosition, cardRefs } =
       useToolTipPosition(hoveredItem, data);
+
     const handleMouseEnter = (item, index) => {
       if (hoverTimeout) clearTimeout(hoverTimeout); // clear any previous timeout
       const timeout = setTimeout(() => {
@@ -100,14 +102,21 @@ const CategoryCard = React.memo(
     };
 
     const handleMouseLeave = () => {
-      if (hoverTimeout) clearTimeout(hoverTimeout); // clear hover enter timeout
+      clearTimeout(hoverTimeout);
       const timeout = setTimeout(() => {
         if (!isTooltipHovered) {
           setHoveredItem(null);
           setShowPlay(false);
         }
-      }, 150); // allow slight delay so tooltip doesn't disappear instantly
+      }, 150);
       setHoverTimeout(timeout);
+    };
+
+    const handleTooltipLeave = () => {
+      setIsTooltipHovered(false);
+      // Immediately hide tooltip and reset state
+      setHoveredItem(null);
+      setShowPlay(false);
     };
 
     const getLink = (itemId, path, refer) => {
@@ -206,12 +215,14 @@ const CategoryCard = React.memo(
                           className={`w-full h-[320px] object-cover max-[1200px]:h-[35vw] max-[758px]:h-[45vw] max-[478px]:h-[60vw] group-hover:blur-[7px] transform transition-all duration-300 ease-in-out ultra-wide:h-[400px] ${cardStyle}`}
                         />
                       </div>
+
                       {(item.tvInfo?.rating === "18+" ||
                         item?.adultContent === true) && (
                         <div className="text-white px-2 rounded-md bg-[#FF5700] absolute top-2 left-2 flex items-center justify-center text-[14px] font-bold">
                           18+
                         </div>
                       )}
+
                       <div className="custom-floating-box">
                         {item.tvInfo?.sub && (
                           <div className="custom-badge">
@@ -244,6 +255,8 @@ const CategoryCard = React.memo(
                         )}
                       </div>
                     </Link>
+
+                    {/* Tooltip */}
                     {hoveredItem === item.id + index &&
                       window.innerWidth > 1024 && (
                         <div
@@ -253,15 +266,13 @@ const CategoryCard = React.memo(
                               : "opacity-0 translate-y-2"
                           }`}
                           onMouseEnter={() => setIsTooltipHovered(true)}
-                          onMouseLeave={() => {
-                            setIsTooltipHovered(false);
-                            handleMouseLeave();
-                          }}
+                          onMouseLeave={handleTooltipLeave} // ✅ updated
                         >
                           <Qtip id={item.id} refer={refer} />
                         </div>
                       )}
                   </div>
+
                   <Link
                     href={`/${item.id}${
                       refer ? `?refer=${refer}` : `?refer=weebhideout`
@@ -274,11 +285,13 @@ const CategoryCard = React.memo(
                   >
                     {language === "EN" ? item.title : item.japanese_title}
                   </Link>
+
                   {item.description && (
                     <div className="line-clamp-3 text-[13px] font-extralight text-[#b1b0b0] max-[1200px]:hidden">
                       {item.description}
                     </div>
                   )}
+
                   <div className="flex items-center gap-x-2 w-full mt-2 overflow-hidden">
                     <div className="text-gray-400 text-[14px] text-nowrap overflow-hidden text-ellipsis">
                       {item.tvInfo.showType.split(" ").shift()}
@@ -299,7 +312,9 @@ const CategoryCard = React.memo(
           )}
           <div className="grid grid-cols-6 gap-x-3 gap-y-8 mt-6 transition-all duration-300 ease-in-out max-[1400px]:grid-cols-4 max-[758px]:grid-cols-3 max-[478px]:grid-cols-2">
             {itemsToRender.remainingItems.map((item, index) => {
-              const shouldInsertAd = (index - 1) % 5 === 0 || index === 1;
+              const shouldInsertAd =
+                ((index - 1) % 5 === 0 && home === "2") ||
+                (index === 1 && home === "2");
 
               return (
                 <React.Fragment key={index}>
@@ -380,10 +395,7 @@ const CategoryCard = React.memo(
                                 : "opacity-0 translate-y-2"
                             }`}
                             onMouseEnter={() => setIsTooltipHovered(true)}
-                            onMouseLeave={() => {
-                              setIsTooltipHovered(false);
-                              handleMouseLeave();
-                            }}
+                            onMouseLeave={handleTooltipLeave} // ✅ updated
                           >
                             <Qtip id={item.id} refer={refer} />
                           </div>

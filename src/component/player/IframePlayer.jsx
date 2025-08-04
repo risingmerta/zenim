@@ -2,8 +2,10 @@
 "use client";
 import { useEffect, useState } from "react";
 import BouncingLoader from "../ui/bouncingloader/Bouncingloader";
+import axios from "axios";
 
 export default function IframePlayer({
+  animeId,
   episodeId,
   serverName,
   servertype,
@@ -13,12 +15,22 @@ export default function IframePlayer({
   playNext,
   autoNext,
 }) {
+  const apis = [
+    "https://api.shoko.fun/api",
+    "https://api2.shoko.fun/api",
+    "https://api3.shoko.fun/api",
+  ];
+
+  const API_URL = apis[Math.floor(Math.random() * apis.length)];
   const baseURL =
     serverName.toLowerCase() === "hd-1"
       ? "https://megaplay.buzz/stream/s-2"
       : serverName.toLowerCase() === "hd-4"
       ? "https://vidwish.live/stream/s-2"
+      : serverName.toLowerCase() === "hd-5"
+      ? "https://vidnest.fun/animepahe"
       : undefined;
+
   const [loading, setLoading] = useState(true);
   const [iframeLoaded, setIframeLoaded] = useState(false);
   const [iframeSrc, setIframeSrc] = useState("");
@@ -33,8 +45,26 @@ export default function IframePlayer({
       setLoading(true);
       setIframeLoaded(false);
       setIframeSrc("");
-      setIframeSrc(`${baseURL}/${episodeId}/${servertype}`);
+      const lowerName = serverName.toLowerCase();
+
+      if (lowerName === "hd-1" || lowerName === "hd-4") {
+        setIframeSrc(`${baseURL}/${episodeId}/${servertype}`);
+      } else if (lowerName === "hd-5") {
+        setIframeSrc(
+          `${baseURL}/${animeInfo?.anilistId}/${episodeNum}/${servertype}`
+        );
+      } else if (
+        lowerName === "vidstreaming" ||
+        lowerName === "vidcloud" ||
+        lowerName === "douvideo"
+      ) {
+        const { data } = await axios.get(
+          `${API_URL}/stream?id=${animeId}?ep=${episodeId}&server=${lowerName}&type=${servertype}`
+        );
+        setIframeSrc(data?.results?.streamingLink?.iframe);
+      }
     };
+
     loadIframeUrl();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [episodeId, servertype, serverName, animeInfo]);
@@ -122,7 +152,7 @@ export default function IframePlayer({
         }`}
         onLoad={() => {
           setIframeLoaded(true);
-          setTimeout(() => setLoading(false), 200);
+          setTimeout(() => setLoading(false), 1000);
         }}
       ></iframe>
     </div>

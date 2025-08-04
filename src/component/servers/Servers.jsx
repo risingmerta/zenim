@@ -13,7 +13,7 @@ function Servers({
   activeEpisodeNum,
   activeServerId,
   activeServerType,
-  activeServerName,
+  activeServerName, 
   animeId,
   episodeId,
   WatchedEpisodes,

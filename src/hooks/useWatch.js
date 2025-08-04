@@ -114,7 +114,7 @@ export const useWatch = (animeId, initialEpisodeId) => {
     const newActiveEpisodeNum = activeEpisode ? activeEpisode.episode_no : null;
     if (activeEpisodeNum !== newActiveEpisodeNum) {
       setActiveEpisodeNum(newActiveEpisodeNum);
-    }
+    } 
   }, [episodeId, episodes]);
 
   useEffect(() => {
@@ -125,50 +125,92 @@ export const useWatch = (animeId, initialEpisodeId) => {
       setServerLoading(true);
       try {
         const data = await getServers(animeId, episodeId);
-        const filteredServers = data?.filter(
-          (server) =>
-            server.serverName === "HD-1" ||
-            server.serverName === "HD-2" ||
-            server.serverName === "HD-3"
-        );
-        if (filteredServers.some((s) => s.type === "sub")) {
+
+        // Filter allowed servers
+        const allowedServers = [
+          "HD-1",
+          "HD-2",
+          "HD-3",
+          "Vidstreaming",
+          "Vidcloud",
+          "DouVideo",
+        ];
+
+        const filteredServers =
+          data?.filter((server) =>
+            allowedServers.includes(server.serverName)
+          ) || [];
+
+        // Add extra servers (HD-4, HD-5) if SUB or DUB servers exist
+        const hasSub = filteredServers.some((s) => s.type === "sub");
+        const hasDub = filteredServers.some((s) => s.type === "dub");
+
+        if (hasSub) {
           filteredServers.push({
             type: "sub",
-            data_id: "69696969",
+            data_id: "69696968",
             server_id: "41",
             serverName: "HD-4",
           });
+          if (animeInfo?.anilistId !== null) {
+            filteredServers.push({
+              type: "sub",
+              data_id: "69696969",
+              server_id: "44",
+              serverName: "HD-5",
+            });
+          }
         }
-        if (filteredServers.some((s) => s.type === "dub")) {
+
+        if (hasDub) {
           filteredServers.push({
             type: "dub",
             data_id: "96969696",
             server_id: "42",
             serverName: "HD-4",
           });
+          if (animeInfo?.anilistId !== null) {
+            filteredServers.push({
+              type: "dub",
+              data_id: "96969697",
+              server_id: "43",
+              serverName: "HD-5",
+            });
+          }
         }
+
+        // Add placeholders for missing servers (buttons without data)
+        const requiredServers = ["Vidstreaming", "DouVideo", "Vidcloud"];
+        requiredServers.forEach((name) => {
+          ["sub", "dub"].forEach((type) => {
+            if (
+              !filteredServers.find(
+                (s) => s.serverName === name && s.type === type
+              )
+            ) {
+              filteredServers.push({
+                type,
+                data_id: null,
+                server_id: null,
+                serverName: name,
+                placeholder: true, // Helps disable button later
+              });
+            }
+          });
+        });
+
+        // Restore previously selected server or pick the first available
         const savedServerName = localStorage.getItem("server_name");
         const savedServerType = localStorage.getItem("server_type");
-        let initialServer =
-          data.find(
+        const initialServer =
+          filteredServers.find(
             (s) =>
               s.serverName === savedServerName && s.type === savedServerType
           ) ||
-          data.find((s) => s.serverName === savedServerName) ||
-          data.find((s) => s.type === savedServerType) ||
-          data.find(
-            (s) => s.serverName === "HD-1" && s.type === savedServerType
-          ) ||
-          data.find(
-            (s) => s.serverName === "HD-2" && s.type === savedServerType
-          ) ||
-          data.find(
-            (s) => s.serverName === "HD-3" && s.type === savedServerType
-          ) ||
-          data.find(
-            (s) => s.serverName === "HD-4" && s.type === savedServerType
-          ) ||
+          filteredServers.find((s) => s.serverName === savedServerName) ||
+          filteredServers.find((s) => s.type === savedServerType) ||
           filteredServers[0];
+
         setServers(filteredServers);
         setActiveServerType(initialServer?.type);
         setActiveServerName(initialServer?.serverName);
@@ -181,8 +223,10 @@ export const useWatch = (animeId, initialEpisodeId) => {
         isServerFetchInProgress.current = false;
       }
     };
+
     fetchServers();
   }, [episodeId, episodes]);
+
   // Fetch stream info only when episodeId, activeServerId, and servers are ready
   useEffect(() => {
     if (
@@ -194,9 +238,8 @@ export const useWatch = (animeId, initialEpisodeId) => {
     )
       return;
     if (
-      (activeServerName?.toLowerCase() === "hd-1" 
-        || activeServerName?.toLowerCase() === "hd-4") 
-        &&
+      (activeServerName?.toLowerCase() === "hd-1" ||
+        activeServerName?.toLowerCase() === "hd-4") &&
       !serverLoading
     ) {
       setBuffering(false);

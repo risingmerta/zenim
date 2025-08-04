@@ -37,7 +37,7 @@ const SearchInput = (props) => {
 
   const handleSearch = () => {
     if (value) {
-      router.push(`/search?keyword=${value}${props.refer ? `&refer=${props.refer}` : `?refer=weebsSecret`}`);
+      router.push(`/search?keyword=${value}${props.refer ? `&refer=${props.refer}` : `&refer=weebsSecret`}`);
       // setSearchForm({ name: "" });
     }
   };
@@ -70,7 +70,7 @@ const SearchInput = (props) => {
                 />
               </div>
               <div className="flit">
-                <Link href={`/search?keyword=${value}${props.refer ? `&refer=${props.refer}` : `?refer=weebsSecret`}`}>
+                <Link href={`/search?keyword=${value}${props.refer ? `&refer=${props.refer}` : `&refer=weebsSecret`}`}>
                   <FaSearch />
                 </Link>
                 {!props.float && (
@@ -115,7 +115,7 @@ const SearchInput = (props) => {
                   </div>
                 </Link>
               ))}
-              <Link href={`/search?keyword=${value}${props.refer ? `&refer=${props.refer}` : `?refer=weebsSecret`}`} className="allR">
+              <Link href={`/search?keyword=${value}${props.refer ? `&refer=${props.refer}` : `&refer=weebsSecret`}`} className="allR">
                 {" "}
                 <div>View all results</div>
                 <div>
@@ -140,7 +140,7 @@ const SearchInput = (props) => {
               />
             </div>
             <div className="flit">
-              <Link href={`/search?keyword=${value}${props.refer ? `&refer=${props.refer}` : `?refer=weebsSecret`}`}>
+              <Link href={`/search?keyword=${value}${props.refer ? `&refer=${props.refer}` : `&refer=weebsSecret`}`}>
                 <FaSearch />
               </Link>
               {!props.float && (
@@ -184,7 +184,7 @@ const SearchInput = (props) => {
                   </div>
                 </Link>
               ))}
-              <Link href={`/search?keyword=${value}${props.refer ? `&refer=${props.refer}` : `?refer=weebsSecret`}`} className="allR">
+              <Link href={`/search?keyword=${value}${props.refer ? `&refer=${props.refer}` : `&refer=weebsSecret`}`} className="allR">
                 {" "}
                 <div>View all results</div>
                 <div>

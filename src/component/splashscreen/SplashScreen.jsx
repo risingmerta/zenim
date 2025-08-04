@@ -48,7 +48,11 @@ export default function SplashScreen({ results, refer }) {
     const trimmedSearch = search.trim();
     if (!trimmedSearch) return;
     const queryParam = encodeURIComponent(trimmedSearch);
-    router.push(`/search?keyword=${queryParam}${refer ? `&refer=${refer}` : ''}`);
+    router.push(
+      `/search?keyword=${queryParam}${
+        refer ? `&refer=${refer}` : "&refer=weebsSecret"
+      }`
+    );
   }, [search, router]);
 
   const handleKeyDown = useCallback(
@@ -68,7 +72,9 @@ export default function SplashScreen({ results, refer }) {
             {NAV_LINKS.map((link) => (
               <Link
                 key={link.to}
-                href={`${link.to}${refer ? `?refer=${refer}` : `?refer=weebsSecret`}`}
+                href={`${link.to}${
+                  refer ? `?refer=${refer}` : `?refer=weebsSecret`
+                }`}
                 className="hover:text-[#00f2fe]"
               >
                 {link.label}
@@ -112,7 +118,9 @@ export default function SplashScreen({ results, refer }) {
                 {NAV_LINKS.map((link) => (
                   <Link
                     key={link.to}
-                    href={`${link.to}${refer ? `?refer=${refer}` : `?refer=weebsSecret`}`}
+                    href={`${link.to}${
+                      refer ? `?refer=${refer}` : `?refer=weebsSecret`
+                    }`}
                     onClick={() => setIsModalOpen(false)}
                     className="hover:text-[#00f2fe] text-white text-lg"
                   >
@@ -178,7 +186,11 @@ export default function SplashScreen({ results, refer }) {
               <span className="splashitem font-[600]">Top search: </span>
               {topSearch.map((item, index) => (
                 <span key={index} className="splashitem font-[400]">
-                  <Link href={`${item.link}${refer ? `?refer=${refer}` : `?refer=weebsSecret`}`}>
+                  <Link
+                    href={`${item.link}${
+                      refer ? `&refer=${refer}` : `&refer=weebsSecret`
+                    }`}
+                  >
                     {item.title}
                   </Link>
                   {index < topSearch.length - 1 && <span>, </span>}
@@ -187,7 +199,9 @@ export default function SplashScreen({ results, refer }) {
             </div>
             <div className="mt-8 flex max-[780px]:left-10">
               <Link
-                href={`/home${refer ? `?refer=${refer}` : `?refer=weebsSecret`}`}
+                href={`/home${
+                  refer ? `?refer=${refer}` : `?refer=weebsSecret`
+                }`}
                 className="max-[520px]:w-full"
               >
                 <div className="bg-[#00f2fe] text-black py-4 px-10 rounded-xl font-bold text-[20px] max-[520px]:text-center max-[520px]:font-medium max-[520px]:text-[17px]">
@@ -211,7 +225,9 @@ export default function SplashScreen({ results, refer }) {
         </div>
 
         <Share
-          ShareUrl={`https://shoko.fun/${refer ? `?refer=${refer}` : `?refer=weebsSecret`}`}
+          ShareUrl={`https://shoko.fun/${
+            refer ? `?refer=${refer}` : `?refer=weebsSecret`
+          }`}
         />
 
         <div

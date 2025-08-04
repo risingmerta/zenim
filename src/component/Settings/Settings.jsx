@@ -13,7 +13,6 @@ const Settings = () => {
         clear: () => localStorage.clear(),
       };
     } else {
-      // Handle the case when localStorage is not available
       return {
         getItem: () => null,
         setItem: () => {},
@@ -23,25 +22,33 @@ const Settings = () => {
     }
   };
 
-  // Usage
   const ls = localStorageWrapper();
-  const getInitialState = (key, defaultValue) =>
-    JSON.parse(ls.getItem(key)) ?? defaultValue;
 
+  // ✅ Safe JSON parse with fallback
+  const getInitialState = (key, defaultValue) => {
+    const value = ls.getItem(key);
+    if (value === null) return defaultValue;
+
+    try {
+      return JSON.parse(value);
+    } catch {
+      // If value is not JSON, fallback to raw value and re-save as JSON
+      ls.setItem(key, JSON.stringify(value));
+      return value;
+    }
+  };
+
+  // State
   const [autoNext, setAutoNext] = useState(getInitialState("autoNext", false));
   const [autoPlay, setAutoPlay] = useState(getInitialState("autoPlay", false));
   const [autoSkipIntro, setAutoSkipIntro] = useState(
     getInitialState("autoSkipIntro", false)
   );
-  const [enableDub, setEnableDub] = useState(
-    getInitialState("enableDub", false)
-  );
+  const [enableDub, setEnableDub] = useState(getInitialState("enableDub", false));
   const [playOriginalAudio, setPlayOriginalAudio] = useState(
     getInitialState("playOriginalAudio", false)
   );
-  const [language, setLanguage] = useState(
-    getInitialState("language", "english")
-  );
+  const [language, setLanguage] = useState(getInitialState("language", "english"));
   const [showComments, setShowComments] = useState(
     getInitialState("showComments", false)
   );
@@ -61,6 +68,7 @@ const Settings = () => {
     getInitialState("notificationLanguage", "none")
   );
 
+  // Effects to persist settings
   useEffect(() => {
     ls.setItem("autoNext", JSON.stringify(autoNext));
   }, [autoNext]);
@@ -78,10 +86,7 @@ const Settings = () => {
   }, [enableDub]);
 
   useEffect(() => {
-    ls.setItem(
-      "playOriginalAudio",
-      JSON.stringify(playOriginalAudio)
-    );
+    ls.setItem("playOriginalAudio", JSON.stringify(playOriginalAudio));
   }, [playOriginalAudio]);
 
   useEffect(() => {
@@ -97,27 +102,19 @@ const Settings = () => {
   }, [publicWatchList]);
 
   useEffect(() => {
-    ls.setItem(
-      "notificationFolders",
-      JSON.stringify(notificationFolders)
-    );
+    ls.setItem("notificationFolders", JSON.stringify(notificationFolders));
   }, [notificationFolders]);
 
   useEffect(() => {
-    ls.setItem(
-      "notificationLanguage",
-      JSON.stringify(notificationLanguage)
-    );
+    ls.setItem("notificationLanguage", JSON.stringify(notificationLanguage));
   }, [notificationLanguage]);
 
   const handleCheckboxChange = (folder) => {
-    setNotificationFolders((prevState) => ({
-      ...prevState,
-      [folder]: !prevState[folder],
+    setNotificationFolders((prev) => ({
+      ...prev,
+      [folder]: !prev[folder],
     }));
   };
-
-  
 
   return (
     <div>
@@ -131,6 +128,7 @@ const Settings = () => {
       </div>
       <div className="settings-container">
         <div className="settings">
+          {/* Auto Next */}
           <div className="setting-item">
             <div className="setting-label">Auto Next</div>
             <div>
@@ -138,12 +136,14 @@ const Settings = () => {
                 <input
                   type="checkbox"
                   checked={autoNext}
-                  onChange={() => setAutoNext(!autoNext) & ls.setItem("Onn2","Off")}
+                  onChange={() => setAutoNext(!autoNext)}
                 />
                 <span className="slider round"></span>
               </label>
             </div>
           </div>
+
+          {/* Auto Play */}
           <div className="setting-item">
             <div className="setting-label">Auto Play</div>
             <div>
@@ -151,12 +151,14 @@ const Settings = () => {
                 <input
                   type="checkbox"
                   checked={autoPlay}
-                  onChange={() => setAutoPlay(!autoPlay) & ls.setItem("Onn1","Off")}
+                  onChange={() => setAutoPlay(!autoPlay)}
                 />
                 <span className="slider round"></span>
               </label>
             </div>
           </div>
+
+          {/* Auto Skip Intro */}
           <div className="setting-item">
             <div className="setting-label">Auto Skip Intro</div>
             <div>
@@ -164,12 +166,14 @@ const Settings = () => {
                 <input
                   type="checkbox"
                   checked={autoSkipIntro}
-                  onChange={() => setAutoSkipIntro(!autoSkipIntro) & ls.setItem("Onn3","Off")}
+                  onChange={() => setAutoSkipIntro(!autoSkipIntro)}
                 />
                 <span className="slider round"></span>
               </label>
             </div>
           </div>
+
+          {/* Enable DUB */}
           <div className="setting-item">
             <div className="setting-label">Enable DUB</div>
             <div>
@@ -183,6 +187,8 @@ const Settings = () => {
               </label>
             </div>
           </div>
+
+          {/* Play Original Audio */}
           <div className="setting-item">
             <div className="setting-label">Play Original Audio</div>
             <div>
@@ -199,6 +205,8 @@ const Settings = () => {
           <div className="setting-description">
             If enabled, the player will play original audio by default.
           </div>
+
+          {/* Language */}
           <div className="setting-item">
             <div className="setting-label">Language for anime name</div>
             <div>
@@ -212,6 +220,8 @@ const Settings = () => {
               </select>
             </div>
           </div>
+
+          {/* Show Comments */}
           <div className="setting-item">
             <div className="setting-label">Show comments at home</div>
             <div>
@@ -225,6 +235,8 @@ const Settings = () => {
               </label>
             </div>
           </div>
+
+          {/* Public Watch List */}
           <div className="setting-item">
             <div className="setting-label">Public Watch List</div>
             <div>
@@ -238,92 +250,44 @@ const Settings = () => {
               </label>
             </div>
           </div>
+
+          {/* Notification Folders */}
           <div className="setting-item">
             <div className="setting-label">Notification ignore folders</div>
             <div>
-              <label className="checkbox-container">
-                Watching
-                <input
-                  type="checkbox"
-                  checked={notificationFolders.watching}
-                  onChange={() => handleCheckboxChange("watching")}
-                />
-                <span className="checkmark"></span>
-              </label>
-              <label className="checkbox-container">
-                On-Hold
-                <input
-                  type="checkbox"
-                  checked={notificationFolders.onHold}
-                  onChange={() => handleCheckboxChange("onHold")}
-                />
-                <span className="checkmark"></span>
-              </label>
-              <label className="checkbox-container">
-                Plan to watch
-                <input
-                  type="checkbox"
-                  checked={notificationFolders.planToWatch}
-                  onChange={() => handleCheckboxChange("planToWatch")}
-                />
-                <span className="checkmark"></span>
-              </label>
-              <label className="checkbox-container">
-                Dropped
-                <input
-                  type="checkbox"
-                  checked={notificationFolders.dropped}
-                  onChange={() => handleCheckboxChange("dropped")}
-                />
-                <span className="checkmark"></span>
-              </label>
-              <label className="checkbox-container">
-                Completed
-                <input
-                  type="checkbox"
-                  checked={notificationFolders.completed}
-                  onChange={() => handleCheckboxChange("completed")}
-                />
-                <span className="checkmark"></span>
-              </label>
+              {["watching", "onHold", "planToWatch", "dropped", "completed"].map(
+                (folder) => (
+                  <label key={folder} className="checkbox-container">
+                    {folder.charAt(0).toUpperCase() + folder.slice(1)}
+                    <input
+                      type="checkbox"
+                      checked={notificationFolders[folder]}
+                      onChange={() => handleCheckboxChange(folder)}
+                    />
+                    <span className="checkmark"></span>
+                  </label>
+                )
+              )}
             </div>
           </div>
+
+          {/* Notification Language */}
           <div className="setting-item">
             <div className="setting-label">Notification ignore language</div>
             <div>
-              <label className="radio-container">
-                None
-                <input
-                  type="radio"
-                  name="notificationLanguage"
-                  value="none"
-                  checked={notificationLanguage === "none"}
-                  onChange={() => setNotificationLanguage("none")}
-                />
-                <span className="radio-checkmark"></span>
-              </label>
-              <label className="radio-container">
-                SUB
-                <input
-                  type="radio"
-                  name="notificationLanguage"
-                  value="sub"
-                  checked={notificationLanguage === "sub"}
-                  onChange={() => setNotificationLanguage("sub")}
-                />
-                <span className="radio-checkmark"></span>
-              </label>
-              <label className="radio-container">
-                DUB
-                <input
-                  type="radio"
-                  name="notificationLanguage"
-                  value="dub"
-                  checked={notificationLanguage === "dub"}
-                  onChange={() => setNotificationLanguage("dub")}
-                />
-                <span className="radio-checkmark"></span>
-              </label>
+              {["none", "sub", "dub"].map((lang) => (
+                <label key={lang} className="radio-container">
+                  {lang.toUpperCase()}
+                  <input
+                    type="radio"
+                    name="notificationLanguage"
+                    value={lang}
+                    checked={notificationLanguage === lang}
+                    onChange={() => setNotificationLanguage(lang)}
+                  />
+                  <span className="radio-checkmark"></span>
+                </label>
+              ))}
             </div>
           </div>
         </div>

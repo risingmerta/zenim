@@ -183,49 +183,72 @@ export default function Watch(props) {
         const data = await getServers(animeId, episodeId);
         const filteredServers = data?.filter(
           (server) =>
-            server.serverName === "HD-3" ||
             server.serverName === "HD-1" ||
-            server.serverName === "HD-2"
+            server.serverName === "HD-2" ||
+            server.serverName === "HD-3" ||
+            server.serverName === "Vidstreaming" ||
+            server.serverName === "Vidcloud" ||
+            server.serverName === "DouVideo"
         );
-        const savedServerName =
-          typeof window !== "undefined" && localStorage.getItem("server_name");
-        const savedServerType =
-          typeof window !== "undefined" && localStorage.getItem("server_type");
-        let initialServer;
-        initialServer = data.find(
-          (server) =>
-            server.serverName === savedServerName &&
-            server.type === savedServerType
-        );
-        if (!initialServer) {
-          initialServer = data.find(
-            (server) =>
-              server.serverName === savedServerName &&
-              server.type !== savedServerType
-          );
+        if (filteredServers.some((s) => s.type === "sub")) {
+          filteredServers.push({
+            type: "sub",
+            data_id: "69696968",
+            server_id: "41",
+            serverName: "HD-4",
+          });
+          if (animeInfo?.anilistId !== null) {
+            filteredServers.push({
+              type: "sub",
+              data_id: "69696969",
+              server_id: "44",
+              serverName: "HD-5",
+            });
+          }
         }
-        if (!initialServer) {
-          initialServer =
-            data.find(
-              (server) =>
-                server.type === savedServerType && server.serverName === "HD-3"
-            ) ||
-            data.find(
-              (server) =>
-                server.type === savedServerType && server.serverName === "HD-1"
-            ) ||
-            data.find(
-              (server) =>
-                server.type === savedServerType && server.serverName === "HD-2"
-            );
+        if (filteredServers.some((s) => s.type === "dub")) {
+          filteredServers.push({
+            type: "dub",
+            data_id: "96969696",
+            server_id: "42",
+            serverName: "HD-4",
+          });
+          if (animeInfo?.anilistId !== null) {
+            filteredServers.push({
+              type: "dub",
+              data_id: "96969697",
+              server_id: "43",
+              serverName: "HD-5",
+            });
+          }
         }
-        if (!initialServer) {
-          initialServer = filteredServers[0];
-        }
+        const savedServerName = localStorage.getItem("server_name");
+        const savedServerType = localStorage.getItem("server_type");
+        const initialServer =
+          filteredServers.find(
+            (s) =>
+              s.serverName === savedServerName && s.type === savedServerType
+          ) ||
+          filteredServers.find((s) => s.serverName === savedServerName) ||
+          filteredServers.find(
+            (s) =>
+              s.type === savedServerType &&
+              [
+                "HD-1",
+                "HD-2",
+                "HD-3",
+                "HD-4",
+                "HD-5",
+                "Vidstreaming",
+                "Vidcloud",
+                "DouVideo",
+              ].includes(s.serverName)
+          ) ||
+          filteredServers[0];
         setServers(filteredServers);
-        setActiveServerId(initialServer?.data_id);
         setActiveServerType(initialServer?.type);
         setActiveServerName(initialServer?.serverName);
+        setActiveServerId(initialServer?.data_id);
       } catch (error) {
         console.error("Error fetching servers:", error);
         setError(error.message || "An error occurred.");
@@ -518,8 +541,27 @@ export default function Watch(props) {
                 <div className="player w-full h-fit bg-black flex flex-col">
                   <div className="w-full relative h-[480px] max-[1400px]:h-[40vw] max-[1200px]:h-[48vw] max-[1024px]:h-[58vw] max-[600px]:h-[65vw]">
                     {!buffering ? (
-                      activeServerName.toLowerCase() === "hd-1" ||
-                      activeServerName.toLowerCase() === "hd-4" ? (
+                      ["hd-2", "hd-3"].includes(
+                        activeServerName.toLowerCase()
+                      ) ? (
+                        <Player
+                          streamUrl={streamUrl}
+                          subtitles={subtitles}
+                          intro={intro}
+                          outro={outro}
+                          serverName={activeServerName.toLowerCase()}
+                          thumbnail={thumbnail}
+                          autoSkipIntro={autoSkipIntro}
+                          autoPlay={autoPlay}
+                          autoNext={autoNext}
+                          episodeId={episodeId}
+                          episodes={episodes}
+                          playNext={(id) => setEpisodeId(id)}
+                          animeInfo={animeInfo}
+                          episodeNum={activeEpisodeNum}
+                          streamInfo={streamInfo}
+                        />
+                      ) : (
                         <IframePlayer
                           animeId={animeId}
                           episodeId={episodeId}
@@ -530,28 +572,6 @@ export default function Watch(props) {
                           episodes={episodes}
                           playNext={(id) => setEpisodeId(id)}
                           autoNext={autoNext}
-                        />
-                      ) : (
-                        <Player
-                          streamUrl={streamUrl}
-                          subtitles={subtitles}
-                          intro={intro}
-                          animeId={animeId}
-                          outro={outro}
-                          serverName={activeServerName.toLowerCase()}
-                          thumbnail={thumbnail}
-                          autoSkipIntro={autoSkipIntro}
-                          autoPlay={autoPlay}
-                          autoNext={autoNext}
-                          episodeId={episodeId}
-                          episodes={episodes}
-                          playNext={(id) =>
-                            setEpisodeId(id) & setServerLoading(true)
-                          }
-                          animeInfo={animeInfo}
-                          episodeNum={activeEpisodeNum}
-                          streamInfo={streamInfo}
-                          selectL={selectL}
                         />
                       )
                     ) : (
@@ -858,7 +878,7 @@ export default function Watch(props) {
               {animeInfo && animeInfo.related_data ? (
                 <Sidecard
                   label="Related Anime"
-                  data={animeInfo.related_data} 
+                  data={animeInfo.related_data}
                   className="mt-[15px]"
                   selectL={selectL}
                   refer={props.refer}
