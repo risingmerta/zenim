@@ -106,7 +106,7 @@ export default async function page({ params, searchParams }) {
 
     // --- Fetch homepage data
     try {
-      const doc = await db.collection("animoon-home").findOne({});
+      const doc = await db.collection("homeData").findOne({});
       home = doc || (await fetch(api_url).then((res) => res.json()));
     } catch (error) {
       console.error("Error fetching homepage data:", error.message);

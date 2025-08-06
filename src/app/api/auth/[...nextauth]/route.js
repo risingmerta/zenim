@@ -16,6 +16,21 @@ const getRandomImage = () => {
 export const authOptions = {
   adapter: MongoDBAdapter(clientPromise),
   session: { strategy: "jwt" },
+
+  // ✅ Shared cookie for domain + subdomains
+  // cookies: {
+  //   sessionToken: {
+  //     name: `__Secure-next-auth.session-token`,
+  //     options: {
+  //       domain: ".shoko.fun", // Shared across shoko.fun & biolynk.shoko.fun
+  //       path: "/",
+  //       httpOnly: true,
+  //       sameSite: "lax",
+  //       secure: true,
+  //     },
+  //   },
+  // },
+
   providers: [
     CredentialsProvider({
       name: "Credentials",
@@ -24,7 +39,7 @@ export const authOptions = {
         password: { label: "Password", type: "password" },
         username: { label: "Username", type: "text" },
         avatar: { label: "Avatar", type: "text" },
-        bio: { label: "Bio", type: "text" }, // 🔥 Add bio
+        bio: { label: "Bio", type: "text" },
         profileUpdate: { label: "Profile Update", type: "checkbox" },
       },
       async authorize(credentials) {
@@ -34,19 +49,20 @@ export const authOptions = {
         // Profile update flow
         if (credentials.profileUpdate === "true") {
           const user = await users.findOne({ email: credentials.email });
-          if (!user) throw new Error("User not found");
+          if (!user) {
+            const error = new Error("USER_NOT_FOUND");
+            error.code = "USER_NOT_FOUND";
+            throw error;
+          }
 
           const updatedUser = {
             email: credentials.email,
             username: credentials.username || user.username,
             avatar: credentials.avatar || user.avatar,
-            bio: credentials.bio || user.bio, // 🔥 Add bio
+            bio: credentials.bio || user.bio,
           };
 
-          await users.updateOne(
-            { email: credentials.email },
-            { $set: updatedUser }
-          );
+          await users.updateOne({ email: credentials.email }, { $set: updatedUser });
 
           const avatar = updatedUser.avatar || getRandomImage();
 
@@ -62,18 +78,22 @@ export const authOptions = {
 
         // Standard login
         const user = await users.findOne({ email: credentials.email });
-        if (!user) throw new Error("User not found");
+        if (!user) {
+          const error = new Error("USER_NOT_FOUND");
+          error.code = "USER_NOT_FOUND";
+          throw error;
+        }
 
         const isValid = await compare(credentials.password, user.password);
-        if (!isValid) throw new Error("Invalid credentials");
+        if (!isValid) {
+          const error = new Error("INVALID_CREDENTIALS");
+          error.code = "INVALID_CREDENTIALS";
+          throw error;
+        }
 
         const avatar = user.avatar || getRandomImage();
-
         if (!user.avatar) {
-          await users.updateOne(
-            { email: credentials.email },
-            { $set: { avatar } }
-          );
+          await users.updateOne({ email: credentials.email }, { $set: { avatar } });
         }
 
         return {
@@ -81,12 +101,13 @@ export const authOptions = {
           email: user.email,
           username: user.username,
           avatar,
-          bio: user.bio || "", // 🔥 Include bio
+          bio: user.bio || "",
           timeOfJoining: user.timeOfJoining,
         };
       },
     }),
   ],
+
   callbacks: {
     async jwt({ token, user, trigger, session }) {
       if (user) {
@@ -101,7 +122,7 @@ export const authOptions = {
       if (trigger === "update" && session) {
         if (session.username) token.username = session.username;
         if (session.avatar) token.avatar = session.avatar;
-        if (session.bio !== undefined) token.bio = session.bio; // 🔥 Allow bio update
+        if (session.bio !== undefined) token.bio = session.bio;
         if (session.email) token.email = session.email;
       }
 
@@ -112,7 +133,7 @@ export const authOptions = {
       session.user.id = token.id;
       session.user.username = token.username;
       session.user.avatar = token.avatar;
-      session.user.bio = token.bio || ""; // 🔥 Send bio to client
+      session.user.bio = token.bio || "";
       session.user.timeOfJoining = token.timeOfJoining;
       session.user.email = token.email;
       return session;

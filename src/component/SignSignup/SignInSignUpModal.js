@@ -4,6 +4,7 @@ import { signIn, signOut, useSession } from "next-auth/react";
 import { imageData } from "@/data/imageData";
 import "./signmodal.css";
 import { useRouter } from "next/navigation";
+import toast from "react-hot-toast";
 import {
   AiOutlineEye,
   AiOutlineEyeInvisible,
@@ -25,7 +26,6 @@ const SignInSignUpModal = (props) => {
   const [password, setPassword] = useState("");
   const [username, setUsername] = useState("");
   const [avatar, setAvatar] = useState("");
-  const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const [rememberMe, setRememberMe] = useState(false);
   const { data: session } = useSession();
@@ -33,31 +33,26 @@ const SignInSignUpModal = (props) => {
   const router = useRouter();
 
   useEffect(() => {
-    if (isSignUp) {
-      setAvatar(getRandomImage());
-    }
+    if (isSignUp) setAvatar(getRandomImage());
   }, [isSignUp]);
 
   const toggleMode = () => {
     setIsSignUp(!isSignUp);
-    setError("");
+    setEmail("");
+    setPassword("");
+    setUsername("");
     router.refresh();
   };
 
   const handleSignUp = async () => {
-    setError("");
     setLoading(true);
 
-    // ✅ Validate username format
     if (!/^[a-zA-Z0-9_]{3,30}$/.test(username)) {
-      setError(
-        "Username must be 3–30 characters and contain only letters, numbers, or underscores."
-      );
+      toast.error("Username must be 3–30 characters and contain only letters, numbers, or underscores.");
       setLoading(false);
       return;
     }
 
-    // ✅ Validate refer (if passed)
     const payload = {
       email,
       password,
@@ -75,31 +70,47 @@ const SignInSignUpModal = (props) => {
 
     const data = await res.json();
     setLoading(false);
-    if (!res.ok) return setError(data.message);
 
+    if (!res.ok) return toast.error(data.message || "Sign-up failed!");
+
+    toast.success("Account created successfully!");
     await signIn("credentials", { email, password, redirect: false });
   };
 
   const handleSignIn = async () => {
-    setError("");
     setLoading(true);
-    const result = await signIn("credentials", {
-      email,
-      password,
-      redirect: false,
-    });
+
+    const result = await signIn("credentials", { email, password, redirect: false });
+
     setLoading(false);
-    if (result?.error) setError(result.error);
+
+    if (result?.error) {
+      if (result.error.includes("USER_NOT_FOUND")) {
+        toast.error("No account found! Switching to sign-up.");
+        setIsSignUp(true);
+        return;
+      }
+
+      if (result.error.includes("INVALID_CREDENTIALS")) {
+        return toast.error("Incorrect password. Try again.");
+      }
+
+      return toast.error(result.error);
+    }
+
+    toast.success("Logged in successfully!");
   };
 
   const handleSignOut = async () => {
     setLoading(true);
     await signOut({ redirect: false });
     setLoading(false);
+    toast.success("Signed out successfully!");
   };
 
   const handleForgotPassword = async () => {
-    if (!email) return setError("Enter your email to reset password");
+    if (!email) return toast.error("Enter your email to reset password");
+
     setLoading(true);
     const res = await fetch("/api/auth/reset-password", {
       method: "POST",
@@ -109,8 +120,9 @@ const SignInSignUpModal = (props) => {
 
     const data = await res.json();
     setLoading(false);
-    if (!res.ok) return setError(data.message);
-    alert("Password reset email sent! Check your inbox.");
+
+    if (!res.ok) return toast.error(data.message || "Failed to send reset link");
+    toast.success("Password reset email sent! Check your inbox.");
   };
 
   return (
@@ -130,7 +142,7 @@ const SignInSignUpModal = (props) => {
         }}
         onClick={(e) => e.stopPropagation()}
       >
-        {/* Cross Button */}
+        {/* Close Button */}
         <button
           onClick={() => props.setLogIsOpen(false)}
           className="close-button"
@@ -163,12 +175,6 @@ const SignInSignUpModal = (props) => {
                   transition: "all 0.2s ease-in-out",
                   display: "inline-block",
                 }}
-                onMouseEnter={(e) =>
-                  (e.currentTarget.style.backgroundColor = "#00e0e0")
-                }
-                onMouseLeave={(e) =>
-                  (e.currentTarget.style.backgroundColor = "#00f2fe")
-                }
               >
                 Start Earning
               </Link>
@@ -187,27 +193,13 @@ const SignInSignUpModal = (props) => {
                   opacity: loading ? 0.7 : 1,
                   transition: "all 0.2s ease-in-out",
                 }}
-                onMouseEnter={(e) => {
-                  if (!loading)
-                    e.currentTarget.style.backgroundColor = "#00e0e0";
-                }}
-                onMouseLeave={(e) => {
-                  if (!loading)
-                    e.currentTarget.style.backgroundColor = "#00f2fe";
-                }}
               >
                 {loading ? "Signing Out..." : "Sign Out"}
               </button>
             )}
           </>
         ) : (
-          <form
-            onSubmit={(e) => {
-              e.preventDefault();
-              isSignUp ? handleSignUp() : handleSignIn();
-            }}
-            autoComplete="on"
-          >
+          <form onSubmit={(e) => e.preventDefault()} autoComplete="on">
             <div className="heddp">
               <h2 className="heddio">
                 {isSignUp ? "Create an Account" : "Welcome back!"}
@@ -287,12 +279,25 @@ const SignInSignUpModal = (props) => {
               </button>
             </div>
 
-            {error && <p style={{ color: "#ff9999" }}>{error}</p>}
-
-            <div className="btiom">
-              <button type="submit" className="btio" disabled={loading}>
-                {loading ? "Hang in there..." : isSignUp ? "Register" : "Login"}
-              </button>
+            {/* Single Div Button */}
+            <div
+              className="btiom"
+              role="button"
+              tabIndex={0}
+              onClick={() => {
+                if (!loading) (isSignUp ? handleSignUp() : handleSignIn());
+              }}
+              onKeyDown={(e) => {
+                if ((e.key === "Enter" || e.key === " ") && !loading) {
+                  isSignUp ? handleSignUp() : handleSignIn();
+                }
+              }}
+              style={{
+                opacity: loading ? 0.7 : 1,
+                pointerEvents: loading ? "none" : "auto",
+              }}
+            >
+              {loading ? "Hang in there..." : isSignUp ? "Register" : "Login"}
             </div>
 
             <div className="line-up">

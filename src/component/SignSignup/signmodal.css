@@ -158,10 +158,31 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--theme);
+  background: var(--theme); /* You can replace with a hex color if needed */
+  color: black;
+  font-size: 15px;
+  font-weight: 600;
+  padding: 10px;
   border-radius: 10px;
   margin-bottom: 20px;
   cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  user-select: none;
+}
+
+.btiom:hover {
+  background: var(--theme-hover, #00e0e0); /* Hover state */
+}
+
+.btiom:active {
+  transform: scale(0.98); /* Click feedback */
+}
+
+.btiom[disabled],
+.btiom.disabled {
+  opacity: 0.7;
+  pointer-events: none;
+  cursor: not-allowed;
 }
 
 /* Register/Login toggle line */

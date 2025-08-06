@@ -8,11 +8,10 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FaChevronRight } from "react-icons/fa";
 import "./CategoryCard.css";
-import { useLanguage } from "@/context/LanguageContext";
-import useToolTipPosition from "@/hooks/useToolTipPosition";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { toast } from "react-toastify";
+import { toast } from "react-hot-toast";
+import useToolTipPosition from "@/hooks/useToolTipPosition";
 
 const CategoryCard = ({
   label,
@@ -153,7 +152,7 @@ const CategoryCard = ({
               }
               className="flex w-fit items-baseline h-fit rounded-3xl gap-x-1 group"
             >
-              <p className="text-white text-[12px] font-semibold h-fit leading-0 group-hover:text-[#00f2fe] transition-all ease-out">
+              <p className="text-white text-[12px] font-semibold group-hover:text-[#00f2fe] transition-all ease-out">
                 View more
               </p>
               <FaChevronRight className="text-white text-[10px] group-hover:text-[#00f2fe] transition-all ease-out" />
@@ -161,6 +160,7 @@ const CategoryCard = ({
           )}
         </div>
       )}
+
       <div className="grid grid-cols-6 gap-x-3 gap-y-8 mt-6 transition-all duration-300 ease-in-out max-[1400px]:grid-cols-4 max-[758px]:grid-cols-3 max-[478px]:grid-cols-2">
         {itemsToRender.remainingItems.map((item, index) => (
           <div
@@ -169,32 +169,17 @@ const CategoryCard = ({
             style={{ height: "fit-content" }}
             ref={(el) => (cardRefs.current[index] = el)}
           >
-            {/* ✅ Cross button shown only when card hovered */}
+            {/* Remove button OUTSIDE link */}
             {keepIt && (
-              <div className="absolute top-2 right-2 z-20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
-                <div className="relative group/remove pointer-events-auto">
-                  {/* Tooltip on hover of cross */}
-                  <div className="absolute -top-8 left-1/2 -translate-x-1/2 opacity-0 group-hover/remove:opacity-100 transition-opacity duration-300 pointer-events-none z-10">
-                    <div className="bg-black text-white text-xs px-2 py-1 rounded shadow-md relative whitespace-nowrap">
-                      Remove
-                      <div className="absolute left-1/2 -bottom-[6px] -translate-x-1/2 w-3 h-3 bg-black rotate-45"></div>
-                    </div>
-                  </div>
-
-                  <button
-                    onClick={(e) => {
-                      e.preventDefault();
-                      e.stopPropagation();
-                      handleRemove(item.id);
-                    }}
-                    className="w-6 h-6 rounded-full bg-red-600 hover:bg-red-700 flex items-center justify-center text-white text-sm shadow-md"
-                  >
-                    ×
-                  </button>
-                </div>
-              </div>
+              <button
+                onClick={() => handleRemove(item.id)}
+                className="absolute top-2 right-2 w-6 h-6 rounded-full bg-red-600 hover:bg-red-700 flex items-center justify-center text-white text-sm shadow-md z-30"
+              >
+                ×
+              </button>
             )}
 
+            {/* Link wrapping only the image */}
             <Link
               href={getLink(item.id, path, refer)}
               className="w-full relative group hover:cursor-pointer"
@@ -219,21 +204,28 @@ const CategoryCard = ({
                   className={`w-full h-[250px] object-cover max-[1200px]:h-[35vw] max-[758px]:h-[45vw] max-[478px]:h-[60vw] ${cardStyle} group-hover:blur-[7px] transform transition-all duration-300 ease-in-out`}
                 />
               </div>
+
               {(item.tvInfo?.rating === "18+" || item?.adultContent) && (
-                <div className="text-white px-2 rounded-md bg-[#FF5700] absolute top-2 left-2 flex items-center justify-center text-[14px] font-bold">
+                <div className="text-white px-2 rounded-md bg-[#FF5700] absolute top-2 left-2 text-[14px] font-bold">
                   18+
                 </div>
               )}
               <div className="custom-floating-box">
                 {item?.sub > 0 && (
                   <div className="custom-badge">
-                    <FontAwesomeIcon icon={faClosedCaptioning} className="text-[12px]" />
+                    <FontAwesomeIcon
+                      icon={faClosedCaptioning}
+                      className="text-[12px]"
+                    />
                     <p className="text-[12px] font-bold">{item?.sub}</p>
                   </div>
                 )}
                 {item?.dub > 0 && (
                   <div className="custom-badge-blue">
-                    <FontAwesomeIcon icon={faMicrophone} className="text-[12px]" />
+                    <FontAwesomeIcon
+                      icon={faMicrophone}
+                      className="text-[12px]"
+                    />
                     <p className="text-[12px] font-bold">{item?.dub}</p>
                   </div>
                 )}
@@ -245,17 +237,17 @@ const CategoryCard = ({
               </div>
             </Link>
 
+            {/* Title link */}
             <Link
-              href={`/${item.id}${refer ? `?refer=${refer}` : `?refer=weebsSecret`}`}
-              onClick={() =>
-                typeof window !== "undefined" &&
-                window.scrollTo({ top: 0, behavior: "smooth" })
-              }
+              href={`/${item.id}${
+                refer ? `?refer=${refer}` : `?refer=weebsSecret`
+              }`}
               className="text-white font-medium text-[0.85rem] mt-1 item-title hover:text-[#00f2fe] hover:cursor-pointer line-clamp-1"
             >
               {language === "EN" ? item.title : item.japanese_title}
             </Link>
 
+            {/* Progress or stats */}
             {keepIt ? (
               <div className="card-statK">
                 <div className="timoInfo">
@@ -264,9 +256,7 @@ const CategoryCard = ({
                     <div>{item.epNo}</div>
                   </div>
                   <div className="durnt">
-                    <div className="durntS">
-                      {formatTime(item.totalSecondsTimo)}
-                    </div>
+                    <div className="durntS">{formatTime(item.totalSecondsTimo)}</div>
                     <div className="durntM">/</div>
                     <div className="durntL">{formatTime(item.totalSeconds)}</div>
                   </div>

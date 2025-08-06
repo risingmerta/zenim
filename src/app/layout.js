@@ -4,6 +4,7 @@ import Script from "next/script";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import AdWrapper from "@/component/AdWrapper/AdWrapper";
+import { Toaster } from "react-hot-toast"; // ✅ import toaster
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -49,7 +50,6 @@ export default function RootLayout({ children }) {
             `,
           }}
         />
-
         {/* ✅ AdSense */}
         <Script
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9295326902131480"
@@ -57,20 +57,17 @@ export default function RootLayout({ children }) {
           crossOrigin="anonymous"
           async
         />
-
         {/* <Script
           type="text/javascript"
           src="//embeddedoxide.com/d6/f8/e1/d6f8e16851504f20f1ccaadcdd965ee3.js"
         /> */}
-
         {/* ✅ Page content */}
         {children}
-
         {/* ✅ Ad wrapper component */}
         {/* <AdWrapper /> */}
-
         {/* ✅ Toast notifications */}
-        <ToastContainer position="bottom-right" />
+        <Toaster position="top-right" toastOptions={{ duration: 4000 }} />{" "}
+        {/* ✅ Add toaster */}
       </body>
     </html>
   );
