@@ -87,50 +87,7 @@ export default function Category({ path, label, pagel, refer }) {
   return (
     <>
       <SessionProvider>
-        <Navbar lang={lang} selectL={selectL} refer={refer}/>
-        {/* <div
-          style={{
-            width: "100%",
-            display: "flex",
-            justifyContent: "center",
-            marginTop: "70px",
-          }}
-        >
-          <iframe
-            src="/ad6"
-            style={{
-              width: "fit-content",
-              height: "100px",
-              border: "none",
-              overflow: "hidden",
-            }}
-            scrolling="no"
-          ></iframe>
-          <div className="adClusterMain">
-            <iframe
-              src="/ad"
-              style={{
-                width: "fit-content",
-                height: "100px",
-                border: "none",
-                overflow: "hidden",
-              }}
-              scrolling="no"
-            ></iframe>
-          </div>
-          <div className="adCluster">
-            <iframe
-              src="/ad2"
-              style={{
-                width: "fit-content",
-                height: "100px",
-                border: "none",
-                overflow: "hidden",
-              }}
-              scrolling="no"
-            ></iframe>
-          </div>
-        </div> */}
+        <Navbar lang={lang} selectL={selectL} refer={refer} />
         <div className="w-full flex flex-col gap-y-4 mt-[70px] max-md:mt-[70px]">
           {/* Share Anime Banner */}
           <div className="w-full">
@@ -141,57 +98,6 @@ export default function Category({ path, label, pagel, refer }) {
               arise={label?.split?.("/")?.pop() || ""}
             />
           </div>
-
-          {/* <div
-            style={{
-              width: "100%",
-              display: "flex",
-              justifyContent: "center",
-              marginTop: "70px",
-            }}
-          >
-            <iframe
-              src="/ad6"
-              style={{
-                width: "fit-content",
-                height: "100px",
-                border: "none",
-                overflow: "hidden",
-              }}
-              scrolling="no"
-            ></iframe>
-            <div className="adClusterMain">
-              <iframe
-                src="/ad"
-                style={{
-                  width: "fit-content",
-                  height: "100px",
-                  border: "none",
-                  overflow: "hidden",
-                }}
-                scrolling="no"
-              ></iframe>
-            </div>
-            <div className="adCluster">
-              <iframe
-                src="/ad2"
-                style={{
-                  width: "fit-content",
-                  height: "100px",
-                  border: "none",
-                  overflow: "hidden",
-                }}
-                scrolling="no"
-              ></iframe>
-            </div>
-          </div> */}
-          <Script
-            src="//abackdamstubborn.com/0edc04a5374d9021ce8e6b9f5bb01d53/invoke.js"
-            strategy="afterInteractive"
-            data-cfasync="false"
-            async
-          />
-          <div id="container-0edc04a5374d9021ce8e6b9f5bb01d53" />
 
           {/* Main Content */}
           <div className="category-layout">
@@ -218,113 +124,13 @@ export default function Category({ path, label, pagel, refer }) {
                       home={"2"}
                     />
                   )}
-                  {/* <div
-                    style={{
-                      width: "100%",
-                      display: "flex",
-                      justifyContent: "center",
-                      marginTop: "10px",
-                      marginBottom: "-40px",
-                    }}
-                  >
-                    <iframe
-                      src="/ad6"
-                      style={{
-                        width: "fit-content",
-                        height: "100px",
-                        border: "none",
-                        overflow: "hidden",
-                      }}
-                      scrolling="no"
-                    ></iframe>
-                    <div className="adClusterMain">
-                      <iframe
-                        src="/ad3"
-                        style={{
-                          width: "fit-content",
-                          height: "100px",
-                          border: "none",
-                          overflow: "hidden",
-                        }}
-                        scrolling="no"
-                      ></iframe>
-                    </div>
-                    <div className="adCluster">
-                      <iframe
-                        src="/ad2"
-                        style={{
-                          width: "fit-content",
-                          height: "100px",
-                          border: "none",
-                          overflow: "hidden",
-                        }}
-                        scrolling="no"
-                      ></iframe>
-                    </div>
-                  </div> */}
-                  <Script
-                    src="//abackdamstubborn.com/8ff2f9b0f1a544b4c8fe21a8086da14e/invoke.js"
-                    strategy="afterInteractive"
-                    data-cfasync="false"
-                    async
-                  />
-                  <div id="container-8ff2f9b0f1a544b4c8fe21a8086da14e" />
+
                   <PageSlider
                     page={page}
                     totalPages={totalPages}
                     handlePageChange={handlePageChange}
                     refer={refer}
                   />
-                  {/* <div
-                    style={{
-                      width: "100%",
-                      display: "flex",
-                      justifyContent: "center",
-                      margin: "10px 0",
-                    }}
-                  >
-                    <iframe
-                      src="/ad5"
-                      style={{
-                        width: "fit-content",
-                        height: "100px",
-                        border: "none",
-                        overflow: "hidden",
-                      }}
-                      scrolling="no"
-                    ></iframe>
-                    <div className="adClusterMain">
-                      <iframe
-                        src="/ad"
-                        style={{
-                          width: "fit-content",
-                          height: "100px",
-                          border: "none",
-                          overflow: "hidden",
-                        }}
-                        scrolling="no"
-                      ></iframe>
-                    </div>
-                    <div className="adCluster">
-                      <iframe
-                        src="/ad2"
-                        style={{
-                          width: "fit-content",
-                          height: "100px",
-                          border: "none",
-                          overflow: "hidden",
-                        }}
-                        scrolling="no"
-                      ></iframe>
-                    </div>
-                  </div> */}
-                  <Script
-                    src="//abackdamstubborn.com/072578f5a4df72a3692182642476bbea/invoke.js"
-                    strategy="afterInteractive"
-                    data-cfasync="false"
-                    async
-                  />
-                  <div id="container-072578f5a4df72a3692182642476bbea" />
                 </>
               )}
             </div>
@@ -332,75 +138,26 @@ export default function Category({ path, label, pagel, refer }) {
             <div className="w-full flex flex-col gap-y-10">
               {homeInfoLoading ? (
                 <SidecardLoader />
-              ) : ( 
+              ) : (
                 <>
                   {homeInfo?.topten && (
                     <Topten
                       data={homeInfo.topten}
-                      className="mt-0" 
+                      className="mt-0"
                       selectL={selectL}
                       refer={refer}
                     />
                   )}
-                  {/* <div
-                    style={{
-                      width: "100%",
-                      display: "flex",
-                      justifyContent: "center",
-                      margin: "10px 0",
-                    }}
-                  >
-                    <iframe
-                      src="/ad5"
-                      style={{
-                        width: "fit-content",
-                        height: "100px",
-                        border: "none",
-                        overflow: "hidden",
-                      }}
-                      scrolling="no"
-                    ></iframe>
-                  </div> */}
-                  <Script
-                    src="//abackdamstubborn.com/cd746754796510a55d9ef4d9a4260a75/invoke.js"
-                    strategy="afterInteractive"
-                    data-cfasync="false"
-                    async
-                  />
-                  <div id="container-cd746754796510a55d9ef4d9a4260a75" />
-                  {homeInfo?.genres && <Genre data={homeInfo.genres} refer={refer}/>}
-                  {/* <div
-                    style={{
-                      width: "100%",
-                      display: "flex",
-                      justifyContent: "center",
-                      margin: "10px 0",
-                    }}
-                  >
-                    <iframe
-                      src="/ad6"
-                      style={{
-                        width: "fit-content",
-                        height: "100px",
-                        border: "none",
-                        overflow: "hidden",
-                      }}
-                      scrolling="no"
-                    ></iframe>
-                  </div> */}
-                  <Script
-                    src="//abackdamstubborn.com/dbafd6a4e452fd720e2121278664c057/invoke.js"
-                    strategy="afterInteractive"
-                    data-cfasync="false"
-                    async
-                  />
-                  <div id="container-dbafd6a4e452fd720e2121278664c057" />
+
+                  {homeInfo?.genres && (
+                    <Genre data={homeInfo.genres} refer={refer} />
+                  )}
                 </>
               )}
             </div>
           </div>
         </div>
-        <Footer refer={refer}/>
+        <Footer refer={refer} />
       </SessionProvider>
     </>
   );

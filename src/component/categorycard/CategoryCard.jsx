@@ -319,9 +319,9 @@ const CategoryCard = React.memo(
               return (
                 <React.Fragment key={index}>
                   {/* ✅ AdCard inserted on specific indices with proper adIndex */}
-                  {shouldInsertAd && (
+                  {/* {shouldInsertAd && (
                     <AdCard home={home} index={adIndex++} totalAds={totalAds} />
-                  )}
+                  )} */}
 
                   <div
                     className="flex flex-col transition-transform duration-300 ease-in-out"

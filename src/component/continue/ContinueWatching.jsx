@@ -79,15 +79,16 @@ const ContinueWatching = (props) => {
             prevEl: ".btn-prev",
           }}
         >
-          {slidesWithAd.map((item, index) =>
-            item.isAd ? (
-              <SwiperSlide
-                key={`ad-${index}`}
-                className="text-center flex justify-center items-center"
-              >
-                <AdBetweenImages />
-              </SwiperSlide>
-            ) : (
+          {slidesWithAd.map(
+            (item, index) => (
+              // item.isAd ? (
+              //   <SwiperSlide
+              //     key={`ad-${index}`}
+              //     className="text-center flex justify-center items-center"
+              //   >
+              //     <AdBetweenImages />
+              //   </SwiperSlide>
+              // ) : (
               <SwiperSlide
                 key={index}
                 className="text-center flex justify-center items-center"
@@ -140,6 +141,7 @@ const ContinueWatching = (props) => {
                 </div>
               </SwiperSlide>
             )
+            // )
           )}
         </Swiper>
       </div>

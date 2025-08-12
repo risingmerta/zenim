@@ -1,8 +1,16 @@
-// /app/api/user-anime-list/route.js
-
 import { connectDB } from "@/lib/mongoClient";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import { v4 as uuidv4 } from "uuid";
+
+// Map status to type number and name
+const mapStatusToType = {
+  Watching: 1,
+  "On-Hold": 2,
+  "Plan to Watch": 3,
+  Dropped: 4,
+  Completed: 5,
+};
 
 export async function POST(req) {
   const session = await getServerSession(authOptions);
@@ -17,9 +25,11 @@ export async function POST(req) {
 
   try {
     const db = await connectDB();
-    const collection = db.collection("userAnimeLists");
+    const userListCol = db.collection("userAnimeLists");
+    const linksCol = db.collection("links");
 
-    await collection.updateOne(
+    // Update anime list
+    await userListCol.updateOne(
       { username },
       {
         $set: {
@@ -35,16 +45,51 @@ export async function POST(req) {
       { upsert: true }
     );
 
+    // Prepare link entry
+    const type = mapStatusToType[status];
+    if (type) {
+      const linkName = status;
+      const linkUrl = `http://localhost:3000/community/user/${username}/watch-list?type=${type}&refer=weebsSecret`;
+      const linkId = uuidv4();
+      const position = Date.now();
+
+      // Check if link already exists for this user
+      const existingUserLinks = await linksCol.findOne({ _id: username });
+      const alreadyExists = existingUserLinks?.links?.some(
+        (link) => link.url === linkUrl
+      );
+
+      if (!alreadyExists) {
+        await linksCol.updateOne(
+          { _id: username },
+          {
+            $push: {
+              links: {
+                id: linkId,
+                name: linkName,
+                url: linkUrl,
+                visible: true,
+                position,
+              },
+            },
+            $setOnInsert: { design: "/done.jpeg" },
+          },
+          { upsert: true }
+        );
+      }
+    }
+
     return new Response(JSON.stringify({ message: "Saved successfully" }), {
       status: 200,
     });
   } catch (error) {
-    console.error("Error saving anime:", error);
+    console.error("Error saving anime/link:", error);
     return new Response(JSON.stringify({ message: "Server error" }), {
       status: 500,
     });
   }
 }
+
 
 export async function GET(req) {
   const session = await getServerSession(authOptions);
@@ -57,6 +102,7 @@ export async function GET(req) {
   const { searchParams } = new URL(req.url);
   const type = searchParams.get("type");
   const page = parseInt(searchParams.get("page") || "1", 10);
+  const refer = searchParams.get("refer");
   const perPage = 24;
   const start = (page - 1) * perPage;
   const end = start + perPage;
@@ -66,7 +112,9 @@ export async function GET(req) {
     const userCol = db.collection("userAnimeLists");
     const animeCol = db.collection("animeInfo");
 
-    const userData = await userCol.findOne({ username: session.user.username });
+    const userData = await userCol.findOne({
+      username: refer ? refer : session.user.username,
+    });
 
     if (!userData?.animeList) {
       return new Response(

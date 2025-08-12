@@ -52,7 +52,7 @@ export default function Home(props) {
     <>
       <SessionProvider>
         <Navbar lang={lang} selectL={selectL} refer={props.refer} />
-        <div className="home-container">
+        <div className="home-container"> 
           <Spotlight
             spotlights={homeInfo.spotlights}
             selectL={selectL}

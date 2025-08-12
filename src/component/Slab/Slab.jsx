@@ -11,7 +11,7 @@ export default function Slab(props) {
   return (
     <div className="allpit">
       <img
-        className="allpit-background"
+        className="allpit-background" 
         src={session?.user?.avatar}
         alt="pop"
       />

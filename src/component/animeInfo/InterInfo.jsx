@@ -212,7 +212,7 @@ export default function InterInfo({
           poster: animeInfo.poster || "",
           status,
         }),
-      });
+      }); 
 
       const data = await res.json();
 

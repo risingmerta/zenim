@@ -12,7 +12,7 @@ import Navbar from "../Navbar/Navbar";
 import { SessionProvider } from "next-auth/react";
 import Script from "next/script";
 
-export default function AtoZ({ path, pagel ,refer }) {
+export default function AtoZ({ path, pagel, refer }) {
   const [selectL, setSelectL] = useState("EN");
   const lang = (lang) => {
     setSelectL(lang);
@@ -24,7 +24,7 @@ export default function AtoZ({ path, pagel ,refer }) {
   const [totalPages, setTotalPages] = useState(0);
   const page = searchParams || 1;
   const currentLetter = path.split("/").pop() || "";
-
+ 
   useEffect(() => {
     const fetchAtoZInfo = async () => {
       setLoading(true);
@@ -57,12 +57,14 @@ export default function AtoZ({ path, pagel ,refer }) {
   return (
     <>
       <SessionProvider>
-        <Navbar lang={lang} selectL={selectL} refer={refer}/>
+        <Navbar lang={lang} selectL={selectL} refer={refer} />
         <div className="max-w-[1260px] mx-auto px-[15px] flex flex-col mt-[70px] max-md:mt-[70px]">
           <ul className="flex gap-x-2 mt-[50px] items-center w-fit max-[1200px]:hidden">
             <li className="flex gap-x-3 items-center">
               <Link
-                href={`/home${refer ? `?refer=${refer}` : `?refer=weebsSecret`}`}
+                href={`/home${
+                  refer ? `?refer=${refer}` : `?refer=weebsSecret`
+                }`}
                 className="text-white hover:text-[#00f2fe] text-[17px]"
               >
                 Home
@@ -71,56 +73,6 @@ export default function AtoZ({ path, pagel ,refer }) {
             </li>
             <li className="font-light">A-Z List</li>
           </ul>
-          {/* <div
-            style={{
-              width: "100%",
-              display: "flex",
-              justifyContent: "center",
-              margin: "10px 0",
-            }}
-          >
-            <iframe
-              src="/ad6"
-              style={{
-                width: "fit-content",
-                height: "100px",
-                border: "none",
-                overflow: "hidden",
-              }}
-              scrolling="no"
-            ></iframe>
-            <div className="adClusterMain">
-              <iframe
-                src="/ad"
-                style={{
-                  width: "fit-content",
-                  height: "100px",
-                  border: "none",
-                  overflow: "hidden",
-                }}
-                scrolling="no"
-              ></iframe>
-            </div>
-            <div className="adCluster">
-              <iframe
-                src="/ad2"
-                style={{
-                  width: "fit-content",
-                  height: "100px",
-                  border: "none",
-                  overflow: "hidden",
-                }}
-                scrolling="no"
-              ></iframe>
-            </div>
-          </div> */}
-          <Script
-            src="//abackdamstubborn.com/0edc04a5374d9021ce8e6b9f5bb01d53/invoke.js"
-            strategy="afterInteractive"
-            data-cfasync="false"
-            async
-          />
-          <div id="container-0edc04a5374d9021ce8e6b9f5bb01d53" />
           <div className="flex flex-col gap-y-5 mt-6">
             <h1 className="font-bold text-2xl text-[#00f2fe] max-[478px]:text-[18px]">
               Sort By Letters
@@ -173,126 +125,16 @@ export default function AtoZ({ path, pagel ,refer }) {
                   refer={refer}
                 />
               )}
-              {/* <div
-                style={{
-                  width: "100%",
-                  display: "flex",
-                  justifyContent: "center",
-                  marginTop: "10px",
-                  marginBottom: "-40px",
-                }}
-              >
-                <iframe
-                  src="/ad6"
-                  style={{
-                    width: "fit-content",
-                    height: "100px",
-                    border: "none",
-                    overflow: "hidden",
-                  }}
-                  scrolling="no"
-                ></iframe>
-                <div className="adClusterMain">
-                  <iframe
-                    src="/ad"
-                    style={{
-                      width: "fit-content",
-                      height: "100px",
-                      border: "none",
-                      overflow: "hidden",
-                    }}
-                    scrolling="no"
-                  ></iframe>
-                </div>
-                <div className="adCluster">
-                  <iframe
-                    src="/ad2"
-                    style={{
-                      width: "fit-content",
-                      height: "100px",
-                      border: "none",
-                      overflow: "hidden",
-                    }}
-                    scrolling="no"
-                  ></iframe>
-                </div>
-              </div> */}
-              <Script
-                src="//abackdamstubborn.com/8ff2f9b0f1a544b4c8fe21a8086da14e/invoke.js"
-                strategy="afterInteractive"
-                data-cfasync="false"
-                async
-              />
-              <div id="container-8ff2f9b0f1a544b4c8fe21a8086da14e" />
               <PageSlider
                 page={page}
                 totalPages={totalPages}
                 handlePageChange={handlePageChange}
                 refer={refer}
               />
-              {/* <div
-                style={{
-                  width: "100%",
-                  display: "flex",
-                  justifyContent: "center",
-                  margin: "20px 0",
-                }}
-              >
-                <div
-                  style={{
-                    width: "100%",
-                    display: "flex",
-                    justifyContent: "center",
-                    margin: "10px 0",
-                  }}
-                >
-                  <iframe
-                    src="/ad6"
-                    style={{
-                      width: "fit-content",
-                      height: "100px",
-                      border: "none",
-                      overflow: "hidden",
-                    }}
-                    scrolling="no"
-                  ></iframe>
-                  <div className="adClusterMain">
-                    <iframe
-                      src="/ad"
-                      style={{
-                        width: "fit-content",
-                        height: "100px",
-                        border: "none",
-                        overflow: "hidden",
-                      }}
-                      scrolling="no"
-                    ></iframe>
-                  </div>
-                  <div className="adCluster">
-                    <iframe
-                      src="/ad2"
-                      style={{
-                        width: "fit-content",
-                        height: "100px",
-                        border: "none",
-                        overflow: "hidden",
-                      }}
-                      scrolling="no"
-                    ></iframe>
-                  </div>
-                </div>
-              </div> */}
-              <Script
-                src="//abackdamstubborn.com/072578f5a4df72a3692182642476bbea/invoke.js"
-                strategy="afterInteractive"
-                data-cfasync="false"
-                async
-              />
-              <div id="container-072578f5a4df72a3692182642476bbea" />
             </div>
           </div>
         </div>
-        <Footer refer={refer}/>
+        <Footer refer={refer} />
       </SessionProvider>
     </>
   );

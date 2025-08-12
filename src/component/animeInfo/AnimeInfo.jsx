@@ -14,7 +14,7 @@ const AnimeInfo = ({ random = false, idd, refer, infoData, homeData }) => {
           homeData={homeData}
         />
       </SessionProvider>
-    </div>
+    </div> 
   );
 };
 

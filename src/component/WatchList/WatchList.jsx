@@ -8,12 +8,18 @@ import PageSlider from "@/component/pageslider/PageSlider";
 
 const getOptionName = (type) => {
   switch (type) {
-    case "1": return "Watching";
-    case "2": return "On-Hold";
-    case "3": return "Plan to Watch";
-    case "4": return "Dropped";
-    case "5": return "Completed";
-    default: return "All";
+    case "1":
+      return "Watching";
+    case "2":
+      return "On-Hold";
+    case "3":
+      return "Plan to Watch";
+    case "4":
+      return "Dropped";
+    case "5":
+      return "Completed";
+    default:
+      return "All";
   }
 };
 
@@ -37,7 +43,14 @@ const WatchList = (props) => {
   const fetchData = async (currentPage) => {
     try {
       setLoading(true);
-      const url = `/api/user-anime-list${status ? `?type=${status}&page=${currentPage}` : `?page=${currentPage}`}`;
+      const queryParams = new URLSearchParams();
+
+      if (status) queryParams.set("type", status);
+      if (currentPage) queryParams.set("page", currentPage);
+      if (props.refer !== "weebsSecret") queryParams.set("refer", props.refer);
+
+      const url = `/api/user-anime-list?${queryParams.toString()}`;
+
       const res = await fetch(url);
       const json = await res.json();
 
@@ -77,7 +90,9 @@ const WatchList = (props) => {
           <div className="butM">
             <div className="butInnM">
               <Link
-                href={`/user/watch-list${props.refer ? `?refer=${props.refer}` : `?refer=weebsSecret`}`}
+                href={`/user/watch-list${
+                  props.refer ? `?refer=${props.refer}` : `?refer=weebsSecret`
+                }`}
                 className={`namil ${!props.type ? "selectedNO" : ""}`}
               >
                 All
@@ -85,8 +100,12 @@ const WatchList = (props) => {
               {[1, 2, 3, 4, 5].map((type) => (
                 <Link
                   key={type}
-                  href={`/user/watch-list?type=${type}${props.refer ? `&refer=${props.refer}` : `&refer=weebsSecret`}`}
-                  className={`oamil ${props.type === `${type}` ? "selectedNO" : ""}`}
+                  href={`/user/watch-list?type=${type}${
+                    props.refer ? `&refer=${props.refer}` : `&refer=weebsSecret`
+                  }`}
+                  className={`oamil ${
+                    props.type === `${type}` ? "selectedNO" : ""
+                  }`}
                 >
                   {getOptionName(`${type}`)}
                 </Link>
@@ -106,7 +125,7 @@ const WatchList = (props) => {
                 <CategoryCard
                   label=""
                   data={data}
-                  showViewMore={false} 
+                  showViewMore={false}
                   categoryPage={false}
                   refer={props.refer}
                   className="mt-0"
@@ -121,8 +140,12 @@ const WatchList = (props) => {
               </div>
             ) : (
               <div className="EmLi">
-                <div className="listEmp">{getOptionName(props.type)} list is empty</div>
-                <div className="adviso">{"<^ Add some animes to the list ^>"}</div>
+                <div className="listEmp">
+                  {getOptionName(props.type)} list is empty
+                </div>
+                <div className="adviso">
+                  {"<^ Add some animes to the list ^>"}
+                </div>
                 <div className="flex adviso-1">
                   <div>\__---</div>
                   <div className="adviso">/\/\/\/\/\/\</div>

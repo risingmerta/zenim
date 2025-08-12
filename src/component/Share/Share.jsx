@@ -82,7 +82,7 @@ export default function Share({ ShareUrl, arise }) {
     <>
       <div className="share-app">
         <img
-          src="https://i.postimg.cc/d34WWyNQ/share-icon.gif"
+          src="https://hianime.pe/images/share-icon.gif"
           alt="Share Anime"
           className="w-[60px] h-auto rounded-full max-[1024px]:w-[40px]"
         />

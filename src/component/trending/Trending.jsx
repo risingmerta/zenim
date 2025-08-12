@@ -57,11 +57,11 @@ const Trending = ({ trending, selectL, refer }) => {
           {trending?.map((item, idx) => (
             <>
               {/* Insert ad at 2nd position */}
-              {idx === 1 && (
+              {/* {idx === 1 && (
                 <SwiperSlide className="text-center flex justify-center items-center">
                   <AdBetweenImages2 />
                 </SwiperSlide>
-              )}
+              )} */}
 
               <SwiperSlide
                 key={idx}
