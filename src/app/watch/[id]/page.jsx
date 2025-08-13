@@ -199,20 +199,17 @@ export default async function Page({ params, searchParams }) {
 
   return (
     <div>
-      {refer === "weebsSecret" ? (
-        <Watch
-          id={id}
-          epId={ep}
-          refer={refer}
-          homeData={home}
-          infoData={infoData}
-          episodeData={episodeData}
-          scheduleData={dati?.schedule}
-          randomData={randomData}
-        />
-      ) : (
-        <Error error="dmca" />
-      )}
+      <Watch
+        id={id}
+        epId={ep}
+        refer={refer}
+        homeData={home}
+        infoData={infoData}
+        episodeData={episodeData}
+        scheduleData={dati?.schedule}
+        randomData={randomData}
+      />
+
       <Advertize refer="" />
       {/* <BottomLeftAd /> */}
     </div>
