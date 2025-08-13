@@ -355,7 +355,7 @@ export default function Watch(props) {
   useEffect(() => {
     if (episodeId) {
       const newUrl = `/watch/${animeId}?ep=${episodeId}${
-        props.refer ? `&refer=${props.refer}` : `?refer=weebsSecret`
+        props.refer ? `&refer=${props.refer}` : `&refer=weebsSecret`
       }`;
       if (isFirstSet.current) {
         // Initial load: replace history entry
