@@ -1,16 +1,11 @@
 export async function GET() {
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
 
-  const sitemaps = Array.from({ length: 10 }, (_, i) => 
-    `Sitemap: ${baseUrl}/api/anime/sitemap${i + 1}`
-  ).join("\n");
-
   const robotsTxt = `
 User-agent: *
 Disallow:
 
-Sitemap: ${baseUrl}/api/anime/sitemap
-${sitemaps}
+Sitemap: ${baseUrl}/sitemap.xml
   `.trim();
 
   return new Response(robotsTxt, {
@@ -19,4 +14,3 @@ ${sitemaps}
     },
   });
 }
- 
