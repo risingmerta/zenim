@@ -23,11 +23,11 @@ export default function IframePlayer({
 
   const API_URL = apis[Math.floor(Math.random() * apis.length)];
   const baseURL =
-    serverName.toLowerCase() === "hd-1"
+    serverName.toLowerCase() === "hd-5"
       ? "https://megaplay.buzz/stream/s-2"
       : serverName.toLowerCase() === "hd-4"
       ? "https://vidwish.live/stream/s-2"
-      : serverName.toLowerCase() === "hd-5"
+      : serverName.toLowerCase() === "hd-1"
       ? "https://vidnest.fun/animepahe"
       : undefined;
 
@@ -47,9 +47,9 @@ export default function IframePlayer({
       setIframeSrc("");
       const lowerName = serverName.toLowerCase();
 
-      if (lowerName === "hd-1" || lowerName === "hd-4") {
+      if (lowerName === "hd-5" || lowerName === "hd-4") {
         setIframeSrc(`${baseURL}/${episodeId}/${servertype}`);
-      } else if (lowerName === "hd-5") {
+      } else if (lowerName === "hd-1") {
         setIframeSrc(
           `${baseURL}/${animeInfo?.anilistId}/${episodeNum}/${servertype}`
         );
@@ -150,6 +150,7 @@ export default function IframePlayer({
         className={`w-full h-full transition-opacity duration-500 ${
           iframeLoaded ? "opacity-100" : "opacity-0"
         }`}
+        sandbox="allow-scripts allow-forms"
         onLoad={() => {
           setIframeLoaded(true);
           setTimeout(() => setLoading(false), 1000);
