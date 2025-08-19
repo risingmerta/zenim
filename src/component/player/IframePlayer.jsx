@@ -150,7 +150,6 @@ export default function IframePlayer({
         className={`w-full h-full transition-opacity duration-500 ${
           iframeLoaded ? "opacity-100" : "opacity-0"
         }`}
-        sandbox="allow-scripts allow-forms"
         onLoad={() => {
           setIframeLoaded(true);
           setTimeout(() => setLoading(false), 1000);
