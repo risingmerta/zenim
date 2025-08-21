@@ -1,32 +1,44 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FaComments, FaRandom } from "react-icons/fa";
 import { PiBroadcastFill } from "react-icons/pi";
-import { BsBroadcast } from "react-icons/bs";
-import "./NavCss/action.css";
 import Link from "next/link";
-// import { useLanguage } from "@/context/LanguageContext";
+import "./NavCss/action.css";
 
 const Action = (props) => {
-  // const { language, toggleLanguage } = useLanguage();
   const selectedLang = props.selectL || "EN";
+  const [randomId, setRandomId] = useState(null);
 
   const toggle = () => {
     if (selectedLang === "EN") {
-      // setSelectedLang("JP");
-      // toggleLanguage("JP");
       props.lang("JP");
-    }
-    if (selectedLang === "JP") {
-      // setSelectedLang("EN");
-      // toggleLanguage("EN");
+    } else if (selectedLang === "JP") {
       props.lang("EN");
     }
   };
+
+  // fetch random id on mount
+  useEffect(() => {
+    const fetchRandom = async () => {
+      try {
+        const res = await fetch("/api/random-anime");
+        const data = await res.json();
+        if (data?.id) {
+          setRandomId(data.id);
+        }
+      } catch (err) {
+        console.error("Error fetching random anime:", err);
+      }
+    };
+    fetchRandom();
+  }, []);
+
   return (
     <div className={`action-comb ${props.isInSidebar ? "action-new-c" : ""}`}>
       <Link
-        href={`/watch2gether${props.refer ? `?refer=${props.refer}` : `?refer=weebsSecret`}`}
+        href={`/watch2gether${
+          props.refer ? `?refer=${props.refer}` : `?refer=weebsSecret`
+        }`}
         className={`action-bloc ${props.isInSidebar ? "action-bS" : ""}`}
       >
         <div className={`action-ico ${props.isInSidebar ? "action-iS" : ""}`}>
@@ -35,12 +47,16 @@ const Action = (props) => {
         <div>Watch2gether</div>
       </Link>
 
-      <div className={`action-bloc ${props.isInSidebar ? "action-bS" : ""}`}>
+      {/* Random Link */}
+      <Link
+        href={randomId ? `/${randomId}` : "#"}
+        className={`action-bloc ${props.isInSidebar ? "action-bS" : ""}`}
+      >
         <div className={`action-ico ${props.isInSidebar ? "action-iS" : ""}`}>
           <FaRandom />
         </div>
         <div>Random</div>
-      </div>
+      </Link>
 
       <div
         className={`action-bloc ${

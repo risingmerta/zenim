@@ -7,7 +7,7 @@ let cache = {
   data: null,
 };
 
-const CACHE_DURATION = 60 * 60 * 1000; // 1 hour
+const CACHE_DURATION = 60 * 60 * 1000; // 1 hour 
 
 export async function GET() {
   const now = Date.now();
