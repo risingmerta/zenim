@@ -62,9 +62,9 @@ export default function Advertize(props) {
     const lastDisplayDate = new Date(lastDisplay);
     const secondsSinceLastDisplay = Math.floor((time - lastDisplayDate) / 1000);
 
-    // Show ad every 30 seconds instead of 1 minute
+    // Show ad every 5 minutes instead of 30 seconds
     const shouldShowAd =
-      secondsSinceLastDisplay >= 30 ||
+      secondsSinceLastDisplay >= 300 ||
       currentDate !== parseInt(lastDate) ||
       currentHour !== parseInt(lastHour);
 
