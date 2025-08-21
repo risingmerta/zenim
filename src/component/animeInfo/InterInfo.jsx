@@ -14,6 +14,7 @@ import CategoryCard from "@/component/categorycard/CategoryCard";
 import Sidecard from "@/component/sidecard/Sidecard";
 import Loader from "@/component/Loader/Loader";
 import Error from "@/component/error/Error";
+import { motion, AnimatePresence } from "framer-motion";
 import { useLanguage } from "@/context/LanguageContext";
 // import { useHomeInfo } from "@/context/HomeInfoContext";
 import Voiceactor from "@/component/voiceactor/Voiceactor";
@@ -26,6 +27,8 @@ import Share from "../Share/Share";
 import { useSession } from "next-auth/react";
 import SignInSignUpModal from "../SignSignup/SignInSignUpModal";
 import toast from "react-hot-toast";
+import { FaCheckCircle } from "react-icons/fa";
+import { IoIosAlert } from "react-icons/io";
 
 const website_name = "Animoon";
 
@@ -91,6 +94,38 @@ function Tag({ bgColor, index, icon, text }) {
       {icon && <FontAwesomeIcon icon={icon} className="text-[12px]" />}
       <p className="text-[12px]">{text}</p>
     </div>
+  );
+}
+
+// ✅ Custom Notification Component
+function Notification({ message, type, onClose }) {
+  const isSuccess = type === "success";
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      onClose();
+    }, 2500); // auto hide after 2.5s
+    return () => clearTimeout(timer);
+  }, [onClose]);
+
+  return (
+    <AnimatePresence>
+      <motion.div
+        initial={{ opacity: 0, x: 50 }}
+        animate={{ opacity: 1, x: 0 }}
+        exit={{ opacity: 0, x: 50 }}
+        transition={{ duration: 0.3 }}
+        className={`fixed bottom-4 right-4 z-[9999] px-4 py-3 rounded-lg shadow-lg text-sm font-medium flex items-center gap-2
+          ${isSuccess ? "bg-[#00f2fe]/80" : "bg-red-500/80"} text-white`}
+      >
+        {isSuccess ? (
+          <FaCheckCircle className="text-white text-lg" />
+        ) : (
+          <IoIosAlert className="text-white text-xl" />
+        )}
+        <span>{message}</span>
+      </motion.div>
+    </AnimatePresence>
   );
 }
 
@@ -187,6 +222,8 @@ export default function InterInfo({
   ];
 
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  // ✅ Notification state
+  const [notification, setNotification] = useState(null);
   const dropdownRef = useRef(null);
 
   const [logIsOpen, setLogIsOpen] = useState(false);
@@ -212,19 +249,20 @@ export default function InterInfo({
           poster: animeInfo.poster || "",
           status,
         }),
-      }); 
+      });
 
       const data = await res.json();
 
       if (!res.ok) {
-        console.error("Error:", data.message);
-        toast.error(data.message || "Failed to add anime to your list");
+        setNotification({
+          message: data.message || "Failed to save.",
+          type: "error",
+        });
       } else {
-        toast.success(`Added to "${status}"`);
+        setNotification({ message: `Added to "${status}"`, type: "success" });
       }
     } catch (error) {
-      console.error("Failed to save:", error);
-      toast.error("Something went wrong while saving.");
+      setNotification({ message: "Something went wrong.", type: "error" });
     }
   };
 
@@ -253,6 +291,15 @@ export default function InterInfo({
         </div>
       ) : (
         ""
+      )}
+
+      {/* ✅ Notification */}
+      {notification && (
+        <Notification
+          message={notification.message}
+          type={notification.type}
+          onClose={() => setNotification(null)}
+        />
       )}
 
       <div className="infoContainer">

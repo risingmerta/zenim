@@ -6,11 +6,12 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useRef, useState } from "react";
-import toast from "react-hot-toast";
 import SignInSignUpModal from "../SignSignup/SignInSignUpModal";
 import { useSession } from "next-auth/react";
+import { FaCheckCircle } from "react-icons/fa";
+import { IoIosAlert } from "react-icons/io";
+import { motion, AnimatePresence } from "framer-motion";
 import "./watchControl.css";
-import WatchlistLinkModal from "../WatchlistLinkModal/WatchlistLinkModal";
 
 const ToggleButton = ({ label, isActive, onClick }) => (
   <button className="flex gap-x-2" onClick={onClick}>
@@ -25,23 +26,35 @@ const ToggleButton = ({ label, isActive, onClick }) => (
   </button>
 );
 
-function IntroModal({ onClose }) {
+// ✅ Custom Notification Component
+function Notification({ message, type, onClose }) {
+  const isSuccess = type === "success";
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      onClose();
+    }, 2500); // auto hide after 2.5s
+    return () => clearTimeout(timer);
+  }, [onClose]);
+
   return (
-    <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/60 backdrop-blur-sm">
-      <div className="bg-white rounded-lg shadow-lg p-6 max-w-sm w-full relative">
-        <h2 className="text-lg font-bold mb-2">🎉 New Feature: Watchlist</h2>
-        <p className="text-sm text-gray-700 mb-4">
-          You can now <strong>save anime</strong> to your personalized watchlist!
-          Just click the <strong>'+'</strong> icon to add the current anime.
-        </p>
-        <button
-          onClick={onClose}
-          className="bg-[#00f2fe] hover:bg-[#00d8e6] text-black px-4 py-2 rounded font-semibold w-full cursor-pointer"
-        >
-          Got it!
-        </button>
-      </div>
-    </div>
+    <AnimatePresence>
+      <motion.div
+        initial={{ opacity: 0, x: 50 }}
+        animate={{ opacity: 1, x: 0 }}
+        exit={{ opacity: 0, x: 50 }}
+        transition={{ duration: 0.3 }}
+        className={`fixed bottom-4 right-4 z-[9999] px-4 py-3 rounded-lg shadow-lg text-sm font-medium flex items-center gap-2
+          ${isSuccess ? "bg-[#00f2fe]/80" : "bg-red-500/80"} text-white`}
+      >
+        {isSuccess ? (
+          <FaCheckCircle className="text-white text-lg" />
+        ) : (
+          <IoIosAlert className="text-white text-xl" />
+        )}
+        <span>{message}</span>
+      </motion.div>
+    </AnimatePresence>
   );
 }
 
@@ -75,8 +88,8 @@ function WatchControlsContent({
     "Completed",
   ];
 
-  const [showWatchlistModal, setShowWatchlistModal] = useState(false);
-  const [showIntroModal, setShowIntroModal] = useState(false);
+  // ✅ Notification state
+  const [notification, setNotification] = useState(null);
 
   useEffect(() => {
     if (episodes?.length > 0) {
@@ -86,17 +99,6 @@ function WatchControlsContent({
       setCurrentEpisodeIndex(newIndex);
     }
   }, [episodeId, episodes]);
-
-  useEffect(() => {
-    if (!localStorage.getItem("watchControlsIntroSeen")) {
-      setShowIntroModal(true);
-    }
-  }, []);
-
-  const handleIntroClose = () => {
-    localStorage.setItem("watchControlsIntroSeen", "true");
-    setShowIntroModal(false);
-  };
 
   const handleSelect = async (status) => {
     if (!session) {
@@ -121,13 +123,15 @@ function WatchControlsContent({
       const data = await res.json();
 
       if (!res.ok) {
-        toast.error(data.message || "Failed to add anime to your list");
+        setNotification({
+          message: data.message || "Failed to save.",
+          type: "error",
+        });
       } else {
-        toast.success(`Added to "${status}"`);
-        setShowWatchlistModal(true);
+        setNotification({ message: `Added to "${status}"`, type: "success" });
       }
     } catch (error) {
-      toast.error("Something went wrong while saving.");
+      setNotification({ message: "Something went wrong.", type: "error" });
     }
   };
 
@@ -151,13 +155,15 @@ function WatchControlsContent({
           sign={setLogIsOpen}
         />
       )}
-      {showWatchlistModal && (
-        <WatchlistLinkModal
-          isOpen={showWatchlistModal}
-          setIsOpen={setShowWatchlistModal}
+
+      {/* ✅ Notification */}
+      {notification && (
+        <Notification
+          message={notification.message}
+          type={notification.type}
+          onClose={() => setNotification(null)}
         />
       )}
-      {showIntroModal && <IntroModal onClose={handleIntroClose} />}
 
       <div className="bg-[#11101A] w-full flex justify-between flex-wrap px-4 pt-4 max-[1200px]:bg-[#14151A] max-[375px]:flex-col max-[375px]:gap-y-2">
         <div className="flex gap-x-4 flex-wrap">
