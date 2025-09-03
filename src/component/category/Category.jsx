@@ -89,6 +89,25 @@ export default function Category({ path, label, pagel, refer }) {
       <SessionProvider>
         <Navbar lang={lang} selectL={selectL} refer={refer} />
         <div className="w-full flex flex-col gap-y-4 mt-[70px] max-md:mt-[70px]">
+          <div
+            style={{
+              width: "100%",
+              display: "flex",
+              justifyContent: "center",
+              marginTop: "10px 0",
+            }}
+          >
+            <iframe
+              src="/ad3"
+              style={{
+                width: "fit-content",
+                height: "100px",
+                border: "none",
+                overflow: "hidden",
+              }}
+              scrolling="no"
+            ></iframe>
+          </div>
           {/* Share Anime Banner */}
           <div className="w-full">
             <Share
@@ -97,6 +116,25 @@ export default function Category({ path, label, pagel, refer }) {
               }`}
               arise={label?.split?.("/")?.pop() || ""}
             />
+          </div>
+          <div
+            style={{
+              width: "100%",
+              display: "flex",
+              justifyContent: "center",
+              marginTop: "10px 0",
+            }}
+          >
+            <iframe
+              src="/ad2"
+              style={{
+                width: "fit-content",
+                height: "100px",
+                border: "none",
+                overflow: "hidden",
+              }}
+              scrolling="no"
+            ></iframe>
           </div>
 
           {/* Main Content */}

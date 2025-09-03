@@ -24,7 +24,7 @@ export default function AtoZ({ path, pagel, refer }) {
   const [totalPages, setTotalPages] = useState(0);
   const page = searchParams || 1;
   const currentLetter = path.split("/").pop() || "";
- 
+
   useEffect(() => {
     const fetchAtoZInfo = async () => {
       setLoading(true);
@@ -59,6 +59,25 @@ export default function AtoZ({ path, pagel, refer }) {
       <SessionProvider>
         <Navbar lang={lang} selectL={selectL} refer={refer} />
         <div className="max-w-[1260px] mx-auto px-[15px] flex flex-col mt-[70px] max-md:mt-[70px]">
+          <div
+            style={{
+              width: "100%",
+              display: "flex",
+              justifyContent: "center",
+              marginTop: "10px 0",
+            }}
+          >
+            <iframe
+              src="/ad3"
+              style={{
+                width: "fit-content",
+                height: "100px",
+                border: "none",
+                overflow: "hidden",
+              }}
+              scrolling="no"
+            ></iframe>
+          </div>
           <ul className="flex gap-x-2 mt-[50px] items-center w-fit max-[1200px]:hidden">
             <li className="flex gap-x-3 items-center">
               <Link
@@ -111,6 +130,25 @@ export default function AtoZ({ path, pagel, refer }) {
                 );
               })}
             </div>
+          </div>
+          <div
+            style={{
+              width: "100%",
+              display: "flex",
+              justifyContent: "center",
+              marginTop: "10px 0",
+            }}
+          >
+            <iframe
+              src="/ad2"
+              style={{
+                width: "fit-content",
+                height: "100px",
+                border: "none",
+                overflow: "hidden",
+              }}
+              scrolling="no"
+            ></iframe>
           </div>
           <div className="w-full flex flex-col gap-y-8">
             <div>

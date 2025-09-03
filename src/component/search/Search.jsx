@@ -388,17 +388,18 @@ export default function Search(props) {
   return (
     <>
       <SessionProvider>
-        <Navbar lang={lang} selectL={selectL} refer={props.refer}/>
-        {/* <div
+        <Navbar lang={lang} selectL={selectL} refer={props.refer} />
+        <div
           style={{
             width: "100%",
             display: "flex",
             justifyContent: "center",
-            marginTop: "70px",
+            marginTop: "65px",
+            marginBottom: "-60px"
           }}
         >
           <iframe
-            src="/ad6"
+            src="/ad3"
             style={{
               width: "fit-content",
               height: "100px",
@@ -407,31 +408,7 @@ export default function Search(props) {
             }}
             scrolling="no"
           ></iframe>
-          <div className="adClusterMain">
-            <iframe
-              src="/ad"
-              style={{
-                width: "fit-content",
-                height: "100px",
-                border: "none",
-                overflow: "hidden",
-              }}
-              scrolling="no"
-            ></iframe>
-          </div>
-          <div className="adCluster">
-            <iframe
-              src="/ad2"
-              style={{
-                width: "fit-content",
-                height: "100px",
-                border: "none",
-                overflow: "hidden",
-              }}
-              scrolling="no"
-            ></iframe>
-          </div>
-        </div> */}
+        </div>
         <div className="main-layout">
           <div>
             <div className="filter-container">
@@ -558,12 +535,12 @@ export default function Search(props) {
                 Apply Filters
               </button>
             </div>
-            {/* <div
+            <div
               style={{
                 width: "100%",
                 display: "flex",
                 justifyContent: "center",
-                margin: "10px 0",
+                marginTop: "10px 0",
               }}
             >
               <iframe
@@ -576,14 +553,7 @@ export default function Search(props) {
                 }}
                 scrolling="no"
               ></iframe>
-            </div> */}
-            <Script
-              src="//abackdamstubborn.com/0edc04a5374d9021ce8e6b9f5bb01d53/invoke.js"
-              strategy="afterInteractive"
-              data-cfasync="false"
-              async
-            />
-            <div id="container-0edc04a5374d9021ce8e6b9f5bb01d53" />
+            </div>
             {loading ? (
               <CategoryCardLoader className={"max-[478px]:mt-2"} />
             ) : page > totalPages ? (
@@ -608,65 +578,12 @@ export default function Search(props) {
                   selectL={selectL}
                   refer={props.refer}
                 />
-                {/* <div
-                  style={{
-                    width: "100%",
-                    display: "flex",
-                    justifyContent: "center",
-                    marginTop: "10px",
-                    marginBottom: "-40px", // pull next section up
-                  }}
-                >
-                  <iframe
-                    src="/ad3"
-                    style={{
-                      width: "fit-content",
-                      height: "100px",
-                      border: "none",
-                      overflow: "hidden",
-                    }}
-                    scrolling="no"
-                  ></iframe>
-                </div> */}
-                <Script
-                  src="//abackdamstubborn.com/8ff2f9b0f1a544b4c8fe21a8086da14e/invoke.js"
-                  strategy="afterInteractive"
-                  data-cfasync="false"
-                  async
-                />
-                <div id="container-8ff2f9b0f1a544b4c8fe21a8086da14e" />
                 <PageSlider
                   page={parseInt(searchParams || "1", 10)}
                   totalPages={totalPages}
                   handlePageChange={handlePageChange}
                   refer={props.refer}
                 />
-                {/* <div
-                  style={{
-                    width: "100%",
-                    display: "flex",
-                    justifyContent: "center",
-                    margin: "20px 0",
-                  }}
-                >
-                  <iframe
-                    src="/ad4"
-                    style={{
-                      width: "fit-content",
-                      height: "100px",
-                      border: "none",
-                      overflow: "hidden",
-                    }}
-                    scrolling="no"
-                  ></iframe>
-                </div> */}
-                <Script
-                  src="//abackdamstubborn.com/072578f5a4df72a3692182642476bbea/invoke.js"
-                  strategy="afterInteractive"
-                  data-cfasync="false"
-                  async
-                />
-                <div id="container-072578f5a4df72a3692182642476bbea" />
               </div>
             ) : error ? (
               <p className="font-bold text-2xl text-[#00f2fe] max-[478px]:text-[18px]">
@@ -690,64 +607,14 @@ export default function Search(props) {
                     refer={props.refer}
                   />
                 )}
-                {/* <div
-                  style={{
-                    width: "100%",
-                    display: "flex",
-                    justifyContent: "center",
-                    margin: "10px 0",
-                  }}
-                >
-                  <iframe
-                    src="/ad5"
-                    style={{
-                      width: "fit-content",
-                      height: "100px",
-                      border: "none",
-                      overflow: "hidden",
-                    }}
-                    scrolling="no"
-                  ></iframe>
-                </div> */}
-                <Script
-                  src="//abackdamstubborn.com/cd746754796510a55d9ef4d9a4260a75/invoke.js"
-                  strategy="afterInteractive"
-                  data-cfasync="false"
-                  async
-                />
-                <div id="container-cd746754796510a55d9ef4d9a4260a75" />
-                {homeInfo?.genres && <Genre data={homeInfo.genres} refer={props.refer}/>}
-                {/* <div
-                  style={{
-                    width: "100%",
-                    display: "flex",
-                    justifyContent: "center",
-                    margin: "10px 0",
-                  }}
-                >
-                  <iframe
-                    src="/ad6"
-                    style={{
-                      width: "fit-content",
-                      height: "100px",
-                      border: "none",
-                      overflow: "hidden",
-                    }}
-                    scrolling="no"
-                  ></iframe>
-                </div> */}
-                <Script
-                  src="//abackdamstubborn.com/dbafd6a4e452fd720e2121278664c057/invoke.js"
-                  strategy="afterInteractive"
-                  data-cfasync="false"
-                  async
-                />
-                <div id="container-dbafd6a4e452fd720e2121278664c057" />
+                {homeInfo?.genres && (
+                  <Genre data={homeInfo.genres} refer={props.refer} />
+                )}
               </>
             )}
           </div>
         </div>
-        <Footer refer={props.refer}/>
+        <Footer refer={props.refer} />
       </SessionProvider>
     </>
   );

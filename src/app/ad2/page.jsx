@@ -2,6 +2,8 @@
 import Script from "next/script";
 import React, { useEffect, useState } from "react";
 
+// Kaidoo.online
+
 const Page = () => {
   const [adVisible, setAdVisible] = useState(false);
 
@@ -49,7 +51,7 @@ const Page = () => {
             borderRadius: "6px",
           }}
         >
-          <div>Click to supports Animoon 💖</div>
+          <div>Click to supports Shoko 💖</div>
         </div>
       )}
     </div>
