@@ -29,7 +29,7 @@ const Page = () => {
       }}
     >
       <Script
-        src="//abdicateeffectlucky.com/a8364aeaeff99fac8326528d16cd0941/invoke.js"
+        src="//electthirteenth.com/a8364aeaeff99fac8326528d16cd0941/invoke.js"
         strategy="afterInteractive"
         data-cfasync="false"
         async
