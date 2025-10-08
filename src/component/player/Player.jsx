@@ -62,7 +62,7 @@ export default function Player({
   streamInfo,
 }) {
   const artRef = useRef(null);
-  const proxy = "https://proxy.stabled30.workers.dev/?url=";
+  const proxy = "https://proxy.zenime.workers.dev/?url=";
   const m3u8proxy = "https://proxy.shoko.fun/m3u8-proxy?url="?.split(",") || [];
   const [currentEpisodeIndex, setCurrentEpisodeIndex] = useState(
     episodes?.findIndex(

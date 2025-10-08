@@ -47,9 +47,9 @@ export default function IframePlayer({
       setIframeSrc("");
       const lowerName = serverName.toLowerCase();
 
-      if (lowerName === "hd-5" || lowerName === "hd-4") {
+      if (lowerName === "hd-1" || lowerName === "hd-4") {
         setIframeSrc(`${baseURL}/${episodeId}/${servertype}`);
-      } else if (lowerName === "hd-1") {
+      } else if (lowerName === "hd-5") {
         setIframeSrc(
           `${baseURL}/${animeInfo?.anilistId}/${episodeNum}/${servertype}`
         );
@@ -89,7 +89,7 @@ export default function IframePlayer({
         ) {
           playNext(episodes[currentEpisodeIndex + 1].id.match(/ep=(\d+)/)?.[1]);
         }
-      }
+      } 
     };
     window.addEventListener("message", handleMessage);
     return () => {
@@ -97,6 +97,7 @@ export default function IframePlayer({
     };
   }, [autoNext, currentEpisodeIndex, episodes, playNext]);
 
+  // continue watching save on unmount
   useEffect(() => {
     setLoading(true);
     setIframeLoaded(false);
