@@ -3,11 +3,11 @@ import axios from "axios";
 const getQtip = async (id) => {
   try {
     // let workerUrls = import.meta.env.VITE_WORKER_URL?.split(",");
-    const apis = [
-    "https://api.shoko.fun/api",
-    "https://api2.shoko.fun/api",
-    "https://api3.shoko.fun/api",
-    ];
+  const apis = [
+    "https://newpi.henpro.fun/api",
+    "https://newpi2.henpro.fun/api",
+    "https://newpi3.henpro.fun/api",
+  ];
 
     const api_url = apis[Math.floor(Math.random() * apis.length)];
     if (!baseUrl) throw new Error("No API endpoint defined.");

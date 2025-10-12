@@ -3,9 +3,9 @@ import axios from "axios";
 export default async function getServers(animeId, episodeId) {
   try {
   const apis = [
-    "https://api.shoko.fun/api",
-    "https://api2.shoko.fun/api",
-    "https://api3.shoko.fun/api",
+    "https://newpi.henpro.fun/api",
+    "https://newpi2.henpro.fun/api",
+    "https://newpi3.henpro.fun/api",
   ];
 
   const api_url = apis[Math.floor(Math.random() * apis.length)];
