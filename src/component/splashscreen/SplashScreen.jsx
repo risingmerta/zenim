@@ -14,10 +14,10 @@ import Image from "next/image";
 import splash from "../../../public/splash.webp";
 import Script from "next/script";
 import Share from "../Share/Share";
-
+ 
 // Static data moved outside the component
 const NAV_LINKS = [
-  { to: "/home", label: "Home" },
+  { to: "/home", label: "Home" }, 
   { to: "/movie", label: "Movies" },
   { to: "/tv", label: "TV Series" },
   { to: "/most-popular", label: "Most Popular" },
