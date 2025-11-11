@@ -94,60 +94,57 @@ export default async function page({ params, searchParams }) {
   let datapp = null;
   let home = null;
 
-  // Always fetch homeData first
-  const apis = [
-    "https://newpi.henpro.fun/api",
-    "https://newpi2.henpro.fun/api",
-    "https://newpi3.henpro.fun/api",
-  ];
-  const api_url = apis[Math.floor(Math.random() * apis.length)];
+  if (categRoutes.find((item) => item !== param.id)) {
+    const apis = [
+      "https://newpi.henpro.fun/api",
+      "https://newpi2.henpro.fun/api",
+      "https://newpi3.henpro.fun/api",
+    ];
+    const api_url = apis[Math.floor(Math.random() * apis.length)];
 
-  const db = await connectDB();
+    const db = await connectDB();
 
-  // --- Fetch homepage data
-  try {
-    const doc = await db.collection("homeData").findOne({});
-    home = doc || (await fetch(api_url).then((res) => res.json()));
-  } catch (error) {
-    console.error("Error fetching homepage data:", error.message);
-  }
+    // --- Fetch homepage data
+    try {
+      const doc = await db.collection("homeData").findOne({});
+      home = doc || (await fetch(api_url).then((res) => res.json()));
+    } catch (error) {
+      console.error("Error fetching homepage data:", error.message);
+    }
 
-  // --- Normalize homepage fields
-  const {
-    spotlights,
-    trending,
-    topTen: topten,
-    today: todaySchedule,
-    topAiring: top_airing,
-    mostPopular: most_popular,
-    mostFavorite: most_favorite,
-    latestCompleted: latest_completed,
-    latestEpisode: latest_episode,
-    topUpcoming: top_upcoming,
-    recentlyAdded: recently_added,
-    genres,
-  } = home ?? {};
+    // --- Normalize homepage fields
+    const {
+      spotlights,
+      trending,
+      topTen: topten,
+      today: todaySchedule,
+      topAiring: top_airing,
+      mostPopular: most_popular,
+      mostFavorite: most_favorite,
+      latestCompleted: latest_completed,
+      latestEpisode: latest_episode,
+      topUpcoming: top_upcoming,
+      recentlyAdded: recently_added,
+      genres,
+    } = home ?? {};
 
-  home = {
-    spotlights,
-    trending,
-    topten,
-    todaySchedule,
-    top_airing,
-    most_popular,
-    most_favorite,
-    latest_completed,
-    latest_episode,
-    top_upcoming,
-    recently_added,
-    genres,
-  };
-
-  // ✅ Fetch anime-related data only if param.id is NOT a category
-  if (!categRoutes.includes(param.id)) {
-    const animeInfoCol = db.collection("animeInfo");
+    home = {
+      spotlights,
+      trending,
+      topten,
+      todaySchedule,
+      top_airing,
+      most_popular,
+      most_favorite,
+      latest_completed,
+      latest_episode,
+      top_upcoming,
+      recently_added,
+      genres,
+    };
 
     // --- Random Anime
+    const animeInfoCol = db.collection("animeInfo");
     const allDocs = await animeInfoCol.find({}).project({ _id: 1 }).toArray();
 
     if (allDocs.length) {
@@ -190,7 +187,8 @@ export default async function page({ params, searchParams }) {
           console.error("Error fetching fallback episodes:", err.message);
         }
       }
-    } else {
+    }
+    if (!doc) {
       // Doc doesn't exist — create new with fetched data
       try {
         const [infoRes, episodeRes] = await Promise.all([
@@ -220,7 +218,6 @@ export default async function page({ params, searchParams }) {
       }
     }
   }
-
 
   return (
     <div>

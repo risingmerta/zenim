@@ -2,10 +2,10 @@
 import fs from "fs";
 import path from "path";
 
-const subdomains = ["api", "api2", "api3", "vimal"];
+const subdomains = ["newpi", "newpi2", "newpi3"];
 const randomSubdomain =
   subdomains[Math.floor(Math.random() * subdomains.length)];
-const apiUrl = `https://${randomSubdomain}.shoko.fun/api/az-list?page=`;
+const apiUrl = `https://${randomSubdomain}.henpro.fun/api/az-list?page=`;
 const baseUrl = "https://shoko.fun";
 
 if (!baseUrl) {
