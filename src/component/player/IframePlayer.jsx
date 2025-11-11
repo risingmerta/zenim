@@ -49,7 +49,7 @@ export default function IframePlayer({
 
       if (lowerName === "hd-1" || lowerName === "hd-4") {
         setIframeSrc(`${baseURL}/${episodeId}/${servertype}`);
-      } else if (lowerName === "hd-5") {
+      } else if (lowerName === "hd-3") {
         setIframeSrc(`${baseURL}/${episodeId}/${servertype}`);
       } else if (
         lowerName === "vidstreaming" ||
