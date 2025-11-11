@@ -130,7 +130,6 @@ export const useWatch = (animeId, initialEpisodeId) => {
         const allowedServers = [
           "HD-1",
           "HD-2",
-          "HD-3",
           "Vidstreaming",
           "Vidcloud",
           "DouVideo",
@@ -150,14 +149,14 @@ export const useWatch = (animeId, initialEpisodeId) => {
             type: "sub",
             data_id: "69696968",
             server_id: "41",
-            serverName: "HD-4",
+            serverName: "HD-3",
           });
           if (animeInfo?.anilistId !== null) {
             filteredServers.push({
               type: "sub",
               data_id: "69696969",
               server_id: "44",
-              serverName: "HD-5",
+              serverName: "HD-4",
             });
           }
         }
@@ -167,14 +166,14 @@ export const useWatch = (animeId, initialEpisodeId) => {
             type: "dub",
             data_id: "96969696",
             server_id: "42",
-            serverName: "HD-4",
+            serverName: "HD-3",
           });
           if (animeInfo?.anilistId !== null) {
             filteredServers.push({
               type: "dub",
               data_id: "96969697",
               server_id: "43",
-              serverName: "HD-5",
+              serverName: "HD-4",
             });
           }
         }

@@ -23,13 +23,13 @@ export default function IframePlayer({
 
   const API_URL = apis[Math.floor(Math.random() * apis.length)];
   const baseURL =
-    serverName.toLowerCase() === "hd-5"
+    serverName.toLowerCase() === "hd-3"
       ? "https://megaplay.buzz/stream/s-2"
       : serverName.toLowerCase() === "hd-4"
-      ? "https://vidwish.live/stream/s-2"
-      : serverName.toLowerCase() === "hd-1"
-      ? "https://vidnest.fun/animepahe"
-      : undefined;
+        ? "https://vidwish.live/stream/s-2"
+        : serverName.toLowerCase() === "hd-1"
+          ? "https://vidnest.fun/animepahe"
+          : undefined;
 
   const [loading, setLoading] = useState(true);
   const [iframeLoaded, setIframeLoaded] = useState(false);
@@ -50,9 +50,7 @@ export default function IframePlayer({
       if (lowerName === "hd-1" || lowerName === "hd-4") {
         setIframeSrc(`${baseURL}/${episodeId}/${servertype}`);
       } else if (lowerName === "hd-5") {
-        setIframeSrc(
-          `${baseURL}/${animeInfo?.anilistId}/${episodeNum}/${servertype}`
-        );
+        setIframeSrc(`${baseURL}/${episodeId}/${servertype}`);
       } else if (
         lowerName === "vidstreaming" ||
         lowerName === "vidcloud" ||
@@ -89,7 +87,7 @@ export default function IframePlayer({
         ) {
           playNext(episodes[currentEpisodeIndex + 1].id.match(/ep=(\d+)/)?.[1]);
         }
-      } 
+      }
     };
     window.addEventListener("message", handleMessage);
     return () => {
@@ -135,11 +133,10 @@ export default function IframePlayer({
     <div className="relative w-full h-full overflow-hidden">
       {/* Loader Overlay */}
       <div
-        className={`absolute inset-0 flex justify-center items-center bg-black bg-opacity-50 z-10 transition-opacity duration-500 ${
-          loading
+        className={`absolute inset-0 flex justify-center items-center bg-black bg-opacity-50 z-10 transition-opacity duration-500 ${loading
             ? "opacity-100 pointer-events-auto"
             : "opacity-0 pointer-events-none"
-        }`}
+          }`}
       >
         <BouncingLoader />
       </div>
@@ -148,9 +145,8 @@ export default function IframePlayer({
         key={`${episodeId}-${servertype}-${serverName}-${iframeSrc}`}
         src={iframeSrc}
         allowFullScreen
-        className={`w-full h-full transition-opacity duration-500 ${
-          iframeLoaded ? "opacity-100" : "opacity-0"
-        }`}
+        className={`w-full h-full transition-opacity duration-500 ${iframeLoaded ? "opacity-100" : "opacity-0"
+          }`}
         onLoad={() => {
           setIframeLoaded(true);
           setTimeout(() => setLoading(false), 1000);

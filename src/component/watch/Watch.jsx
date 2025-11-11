@@ -185,7 +185,7 @@ export default function Watch(props) {
           (server) =>
             server.serverName === "HD-1" ||
             server.serverName === "HD-2" ||
-            server.serverName === "HD-3" ||
+            // server.serverName === "HD-3" ||
             server.serverName === "Vidstreaming" ||
             server.serverName === "Vidcloud" ||
             server.serverName === "DouVideo"
@@ -195,14 +195,14 @@ export default function Watch(props) {
             type: "sub",
             data_id: "69696968",
             server_id: "41",
-            serverName: "HD-4",
+            serverName: "HD-3",
           });
           if (animeInfo?.anilistId !== null) {
             filteredServers.push({
               type: "sub",
               data_id: "69696969",
               server_id: "44",
-              serverName: "HD-5",
+              serverName: "HD-4",
             });
           }
         }
@@ -211,14 +211,14 @@ export default function Watch(props) {
             type: "dub",
             data_id: "96969696",
             server_id: "42",
-            serverName: "HD-4",
+            serverName: "HD-3",
           });
           if (animeInfo?.anilistId !== null) {
             filteredServers.push({
               type: "dub",
               data_id: "96969697",
               server_id: "43",
-              serverName: "HD-5",
+              serverName: "HD-4",
             });
           }
         }
@@ -238,7 +238,7 @@ export default function Watch(props) {
                 "HD-2",
                 "HD-3",
                 "HD-4",
-                "HD-5",
+                // "HD-5",
                 "Vidstreaming",
                 "Vidcloud",
                 "DouVideo",
@@ -541,7 +541,7 @@ export default function Watch(props) {
                 <div className="player w-full h-fit bg-black flex flex-col">
                   <div className="w-full relative h-[480px] max-[1400px]:h-[40vw] max-[1200px]:h-[48vw] max-[1024px]:h-[58vw] max-[600px]:h-[65vw]">
                     {!buffering ? (
-                      ["hd-1", "hd-2", "hd-3"].includes(
+                      ["hd-1", "hd-2"].includes(
                         activeServerName.toLowerCase()
                       ) ? (
                         <Player
