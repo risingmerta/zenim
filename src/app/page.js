@@ -13,8 +13,8 @@ export default async function Page({ searchParams }) {
   try {
     const apis = [
       "https://newpi.henpro.fun/api",
-      "https://newpi.henpro.fun/api",
-      "https://newpi.henpro.fun/api",
+      "https://newpi2.henpro.fun/api",
+      "https://newpi3.henpro.fun/api",
     ];
 
     const baseUrl = apis[Math.floor(Math.random() * apis.length)];

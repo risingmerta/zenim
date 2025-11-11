@@ -56,7 +56,7 @@ export default function Category({ path, label, pagel, refer }) {
       try {
         const data = await getCategoryInfo(path, page);
         setCategoryInfo(data.data);
-        setTotalPages(data.totalPages);
+        setTotalPages(data.totalPages); 
         setLoading(false);
         typeof window !== "undefined" && window.scrollTo(0, 0);
       } catch (err) {
