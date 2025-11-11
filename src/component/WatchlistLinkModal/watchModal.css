@@ -1,5 +1,5 @@
 :root {
-  --theme: #00f2fe;
+  --theme: #1efe00;
 }
 
 /* Modal Background */
@@ -219,7 +219,7 @@
 
 .close-button:hover {
   background: rgba(0, 242, 254, 0.15);
-  color: #00f2fe;
+  color: #1efe00;
   transform: scale(1.1) rotate(90deg);
 }
 

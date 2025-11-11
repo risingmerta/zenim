@@ -61,30 +61,36 @@ export default function AtoZ({ path, pagel, refer }) {
         <div className="max-w-[1260px] mx-auto px-[15px] flex flex-col mt-[70px] max-md:mt-[70px]">
           <div
             style={{
-              width: "100%",
               display: "flex",
               justifyContent: "center",
-              marginTop: "10px 0",
+              alignItems: "center",
+              padding: "10px 0",
+              backgroundColor: "#201f31",
             }}
           >
             <iframe
-              src="/ad3"
-              style={{
-                width: "fit-content",
-                height: "100px",
-                border: "none",
-                overflow: "hidden",
-              }}
+              src="/ad"
+              title="Sponsored Ad"
               scrolling="no"
-            ></iframe>
+
+              referrerPolicy="no-referrer-when-downgrade"
+              style={{
+                width: "100%",
+                maxWidth: "728px",
+                height: "90px",
+                border: "none",
+                borderRadius: "10px",
+                overflow: "hidden",
+                backgroundColor: "#201f31",
+              }}
+            />
           </div>
           <ul className="flex gap-x-2 mt-[50px] items-center w-fit max-[1200px]:hidden">
             <li className="flex gap-x-3 items-center">
               <Link
-                href={`/home${
-                  refer ? `?refer=${refer}` : `?refer=weebsSecret`
-                }`}
-                className="text-white hover:text-[#00f2fe] text-[17px]"
+                href={`/home${refer ? `?refer=${refer}` : `?refer=weebsSecret`
+                  }`}
+                className="text-white hover:text-[#1efe00] text-[17px]"
               >
                 Home
               </Link>
@@ -93,7 +99,7 @@ export default function AtoZ({ path, pagel, refer }) {
             <li className="font-light">A-Z List</li>
           </ul>
           <div className="flex flex-col gap-y-5 mt-6">
-            <h1 className="font-bold text-2xl text-[#00f2fe] max-[478px]:text-[18px]">
+            <h1 className="font-bold text-2xl text-[#1efe00] max-[478px]:text-[18px]">
               Sort By Letters
             </h1>
             <div className="flex gap-x-[7px] flex-wrap justify-start gap-y-2 max-md:justify-start">
@@ -109,8 +115,8 @@ export default function AtoZ({ path, pagel, refer }) {
                   item.toLowerCase() === "all"
                     ? ""
                     : item === "#"
-                    ? "other"
-                    : item;
+                      ? "other"
+                      : item;
                 const isActive =
                   (currentLetter === "az-list" &&
                     item.toLowerCase() === "all") ||
@@ -119,9 +125,8 @@ export default function AtoZ({ path, pagel, refer }) {
 
                 return (
                   <Link
-                    href={`/az-list/${linkPath}${
-                      refer ? `?refer=${refer}` : `?refer=weebsSecret`
-                    }`}
+                    href={`/az-list/${linkPath}${refer ? `?refer=${refer}` : `?refer=weebsSecret`
+                      }`}
                     key={index}
                     className={`custom-button ${isActive ? "active" : ""}`}
                   >
@@ -133,22 +138,29 @@ export default function AtoZ({ path, pagel, refer }) {
           </div>
           <div
             style={{
-              width: "100%",
               display: "flex",
               justifyContent: "center",
-              marginTop: "10px 0",
+              alignItems: "center",
+              padding: "10px 0",
+              backgroundColor: "#201f31",
             }}
           >
             <iframe
-              src="/ad2"
-              style={{
-                width: "fit-content",
-                height: "100px",
-                border: "none",
-                overflow: "hidden",
-              }}
+              src="/ad"
+              title="Sponsored Ad"
               scrolling="no"
-            ></iframe>
+
+              referrerPolicy="no-referrer-when-downgrade"
+              style={{
+                width: "100%",
+                maxWidth: "728px",
+                height: "90px",
+                border: "none",
+                borderRadius: "10px",
+                overflow: "hidden",
+                backgroundColor: "#201f31",
+              }}
+            />
           </div>
           <div className="w-full flex flex-col gap-y-8">
             <div>

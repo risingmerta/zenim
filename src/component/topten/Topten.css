@@ -14,7 +14,7 @@
 .topten-header h1 {
   font-weight: bold !important;
   font-size: 2rem !important;
-  color: #00f2fe !important;
+  color: #1efe00 !important;
 }
 
 .topten-tabs {
@@ -33,7 +33,7 @@
 }
 
 .topten-tabs li.active {
-  background: #00f2fe !important;
+  background: #1efe00 !important;
   color: #555462 !important;
 }
 
@@ -59,7 +59,7 @@
 
 .topten-item-rank.top3 {
   color: #fff !important;
-  border-bottom: 3px solid #00f2fe !important;
+  border-bottom: 3px solid #1efe00 !important;
 }
 
 .topten-item-rank.other {
@@ -104,7 +104,7 @@
 }
 
 .topten-title:hover {
-  color: #00f2fe !important;
+  color: #1efe00 !important;
 }
 
 .topten-tags {

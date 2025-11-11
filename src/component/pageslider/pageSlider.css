@@ -16,11 +16,11 @@
 }
 
 .page-button:hover {
-  color: #00f2fe;
+  color: #1efe00;
 }
 
 .page-button.active {
-  background-color: #00f2fe;
+  background-color: #1efe00;
   color: #2b2a3c;
   cursor: default;
 }

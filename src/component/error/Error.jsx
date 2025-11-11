@@ -53,9 +53,9 @@ export default function Error({ error }) {
 
             <Link
               href="/?refer=weebsSecret"
-              className="mt-7 inline-flex items-center gap-2 bg-[#00f2fe] text-black text-[18px] py-2 px-5 rounded-3xl font-medium transition hover:scale-105"
+              className="mt-7 inline-flex items-center gap-2 bg-[#1efe00] text-black text-[18px] py-2 px-5 rounded-3xl font-medium transition hover:scale-105"
             >
-              <FaChevronLeft className="text-[#00f2fe] w-[20px] h-[20px] rounded-full p-1 bg-black" />
+              <FaChevronLeft className="text-[#1efe00] w-[20px] h-[20px] rounded-full p-1 bg-black" />
               Back to Homepage
             </Link>
           </div>

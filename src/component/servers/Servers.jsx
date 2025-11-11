@@ -73,7 +73,7 @@ function Servers({
         </div>
       ) : servers ? (
         <div className="responsiveCard">
-          <div className="h-full bg-[#00f2fe] px-6 text-black flex flex-col justify-center items-center gap-y-2 max-[600px]:bg-transparent max-[600px]:h-1/2 max-[600px]:text-white max-[600px]:mb-4">
+          <div className="h-full bg-[#1efe00] px-6 text-black flex flex-col justify-center items-center gap-y-2 max-[600px]:bg-transparent max-[600px]:h-1/2 max-[600px]:text-white max-[600px]:mb-4">
             <p className="text-center leading-5 font-medium text-[14px]">
               {`You are ${
                 WatchedEpisodes.find(
@@ -85,7 +85,7 @@ function Servers({
                   : "watching"
               }`}{" "}
               <br />
-              <span className="font-semibold max-[600px]:text-[#00f2fe]">
+              <span className="font-semibold max-[600px]:text-[#1efe00]">
                 Episode {activeEpisodeNum}
               </span>
             </p>
@@ -106,7 +106,7 @@ function Servers({
                 <div className="flex items-center gap-x-2">
                   <FontAwesomeIcon
                     icon={faFile}
-                    className="text-[#00f2fe] text-[13px]"
+                    className="text-[#1efe00] text-[13px]"
                   />
                   <p className="font-bold text-[14px]">RAW:</p>
                 </div>
@@ -116,7 +116,7 @@ function Servers({
                       key={index}
                       className={`px-6 py-[5px] rounded-lg cursor-pointer ${
                         activeServerId === item?.data_id
-                          ? "bg-[#00f2fe] text-black"
+                          ? "bg-[#1efe00] text-black"
                           : "bg-[#373646] text-white"
                       } max-[700px]:px-3`}
                       onClick={() => handleServerSelect(item)}
@@ -138,7 +138,7 @@ function Servers({
                 <div className="flex items-center gap-x-2">
                   <FontAwesomeIcon
                     icon={faClosedCaptioning}
-                    className="text-[#00f2fe] text-[13px]"
+                    className="text-[#1efe00] text-[13px]"
                   />
                   <p className="font-bold text-[14px]">SUB:</p>
                 </div>
@@ -148,7 +148,7 @@ function Servers({
                       key={index}
                       className={`px-6 py-[5px] rounded-lg cursor-pointer ${
                         activeServerId === item?.data_id
-                          ? "bg-[#00f2fe] text-black"
+                          ? "bg-[#1efe00] text-black"
                           : "bg-[#373646] text-white"
                       } max-[700px]:px-3`}
                       onClick={() => handleServerSelect(item)}
@@ -170,7 +170,7 @@ function Servers({
                 <div className="flex items-center gap-x-3">
                   <FontAwesomeIcon
                     icon={faMicrophone}
-                    className="text-[#00f2fe] text-[13px]"
+                    className="text-[#1efe00] text-[13px]"
                   />
                   <p className="font-bold text-[14px]">DUB:</p>
                 </div>
@@ -180,7 +180,7 @@ function Servers({
                       key={index}
                       className={`px-6 py-[5px] rounded-lg cursor-pointer ${
                         activeServerId === item?.data_id
-                          ? "bg-[#00f2fe] text-black"
+                          ? "bg-[#1efe00] text-black"
                           : "bg-[#373646] text-white"
                       } max-[700px]:px-3`}
                       onClick={() => handleServerSelect(item)}

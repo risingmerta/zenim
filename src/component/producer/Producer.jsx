@@ -103,9 +103,8 @@ export default function Producer(props) {
         </div> */}
         <div className="w-full mt-[70px]">
           <Share
-            ShareUrl={`https://shoko.fun/producer/${id}${
-              props.refer ? `?refer=${props.refer}` : `?refer=weebhideout`
-            }`}
+            ShareUrl={`https://shoko.fun/producer/${id}${props.refer ? `?refer=${props.refer}` : `?refer=weebhideout`
+              }`}
             arise={
               (id.charAt(0).toUpperCase() + id.slice(1)).split("-").join(" ") +
               " Anime"
@@ -116,7 +115,7 @@ export default function Producer(props) {
           {producerInfo ? (
             <div className="category-layout">
               {page > totalPages ? (
-                <p className="font-bold text-2xl text-[#00f2fe] max-[478px]:text-[18px] max-[300px]:leading-6">
+                <p className="font-bold text-2xl text-[#1efe00] max-[478px]:text-[18px] max-[300px]:leading-6">
                   You came a long way, go back{" "}
                   <br className="max-[300px]:hidden" />
                   nothing is here
@@ -138,65 +137,66 @@ export default function Producer(props) {
                       refer={props.refer}
                     />
                   )}
-                  {/* <div
+
+                  <div
                     style={{
-                      width: "100%",
                       display: "flex",
                       justifyContent: "center",
-                      marginTop: "10px",
-                      marginBottom: "-40px", // pull next section up
+                      alignItems: "center",
+                      padding: "10px 0",
+                      backgroundColor: "#201f31",
                     }}
                   >
                     <iframe
-                      src="/ad2"
-                      style={{
-                        width: "fit-content",
-                        height: "100px",
-                        border: "none",
-                        overflow: "hidden",
-                      }}
+                      src="/ad"
+                      title="Sponsored Ad"
                       scrolling="no"
-                    ></iframe>
-                  </div> */}
-                  <Script
-                    src="//abackdamstubborn.com/8ff2f9b0f1a544b4c8fe21a8086da14e/invoke.js"
-                    strategy="afterInteractive"
-                    data-cfasync="false"
-                    async
-                  />
-                  <div id="container-8ff2f9b0f1a544b4c8fe21a8086da14e" />
+
+                      referrerPolicy="no-referrer-when-downgrade"
+                      style={{
+                        width: "100%",
+                        maxWidth: "728px",
+                        height: "90px",
+                        border: "none",
+                        borderRadius: "10px",
+                        overflow: "hidden",
+                        backgroundColor: "#201f31",
+                      }}
+                    />
+                  </div>
                   <PageSlider
                     page={page}
                     totalPages={totalPages}
                     handlePageChange={handlePageChange}
                     refer={props.refer}
                   />
-                  {/* <div
+
+                  <div
                     style={{
-                      width: "100%",
                       display: "flex",
                       justifyContent: "center",
-                      margin: "20px 0",
+                      alignItems: "center",
+                      padding: "10px 0",
+                      backgroundColor: "#201f31",
                     }}
                   >
                     <iframe
-                      src="/ad3"
-                      style={{
-                        width: "fit-content",
-                        height: "100px",
-                        border: "none",
-                        overflow: "hidden",
-                      }}
+                      src="/ad"
+                      title="Sponsored Ad"
                       scrolling="no"
-                    ></iframe>
-                  </div> */}
-                  <Script
-                    src="//abackdamstubborn.com/072578f5a4df72a3692182642476bbea/invoke.js"
-                    strategy="afterInteractive"
-                    data-cfasync="false"
-                    async
-                  />
-                  <div id="container-072578f5a4df72a3692182642476bbea" />
+
+                      referrerPolicy="no-referrer-when-downgrade"
+                      style={{
+                        width: "100%",
+                        maxWidth: "728px",
+                        height: "90px",
+                        border: "none",
+                        borderRadius: "10px",
+                        overflow: "hidden",
+                        backgroundColor: "#201f31",
+                      }}
+                    />
+                  </div>
                 </div>
               )}
 
@@ -213,61 +213,9 @@ export default function Producer(props) {
                         refer={props.refer}
                       />
                     )}
-                    {/* <div
-                      style={{
-                        width: "100%",
-                        display: "flex",
-                        justifyContent: "center",
-                        margin: "10px 0",
-                      }}
-                    >
-                      <iframe
-                        src="/ad4"
-                        style={{
-                          width: "fit-content",
-                          height: "100px",
-                          border: "none",
-                          overflow: "hidden",
-                        }}
-                        scrolling="no"
-                      ></iframe>
-                    </div> */}
-                    <Script
-                      src="//abackdamstubborn.com/cd746754796510a55d9ef4d9a4260a75/invoke.js"
-                      strategy="afterInteractive"
-                      data-cfasync="false"
-                      async
-                    />
-                    <div id="container-cd746754796510a55d9ef4d9a4260a75" />
                     {homeInfo?.genres && (
                       <Genre data={homeInfo.genres} refer={props.refer} />
                     )}
-                    {/* <div
-                      style={{
-                        width: "100%",
-                        display: "flex",
-                        justifyContent: "center",
-                        margin: "10px 0",
-                      }}
-                    >
-                      <iframe
-                        src="/ad5"
-                        style={{
-                          width: "fit-content",
-                          height: "100px",
-                          border: "none",
-                          overflow: "hidden",
-                        }}
-                        scrolling="no"
-                      ></iframe>
-                    </div> */}
-                    <Script
-                      src="//abackdamstubborn.com/dbafd6a4e452fd720e2121278664c057/invoke.js"
-                      strategy="afterInteractive"
-                      data-cfasync="false"
-                      async
-                    />
-                    <div id="container-dbafd6a4e452fd720e2121278664c057" />
                   </>
                 )}
               </div>
@@ -276,25 +224,7 @@ export default function Producer(props) {
             <Error />
           )}
         </div>
-        {/* <div
-          style={{
-            width: "100%",
-            display: "flex",
-            justifyContent: "center",
-            margin: "10px 0",
-          }}
-        >
-          <iframe
-            src="/ad6"
-            style={{
-              width: "fit-content",
-              height: "100px",
-              border: "none",
-              overflow: "hidden",
-            }}
-            scrolling="no"
-          ></iframe>
-        </div> */}
+
         <Footer refer={props.refer} />
       </SessionProvider>
     </>

@@ -103,9 +103,11 @@ export default function Navbar({ lang, refer, selectL }) {
           </div>
           <div>
             <Link href={`/${refer ? `?refer=${refer}` : `?refer=weebsSecret`}`}>
-              <div className="logo-container">
-                <div className="logo-icon"></div>
-                <div className="logo-text">{siteName}</div>
+              <div class="logo-container">
+                <div class="logo-icon">
+                  <div class="window"></div>
+                </div>
+                <span class="logo-text">{siteName}</span>
               </div>
             </Link>
           </div>

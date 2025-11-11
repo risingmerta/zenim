@@ -49,7 +49,7 @@ function Cart({ label, data, path, selectL, refer }) {
 
   return (
     <div className="flex flex-col w-1/4 space-y-7 max-[1200px]:w-full">
-      <h1 className="font-bold text-2xl text-[#00f2fe] max-md:text-xl">
+      <h1 className="font-bold text-2xl text-[#1efe00] max-md:text-xl">
         {label}
       </h1>
       <div className="w-full space-y-4 flex flex-col">
@@ -96,7 +96,7 @@ function Cart({ label, data, path, selectL, refer }) {
               <div className="flex flex-col ml-4 space-y-2 w-full">
                 <Link
                   href={`/${item.id}${refer ? `?refer=${refer}` : `?refer=weebsSecret`}`}
-                  className="w-full line-clamp-2 text-[1em] font-[500] hover:cursor-pointer hover:text-[#00f2fe] transform transition-all ease-out max-[1200px]:text-[14px]"
+                  className="w-full line-clamp-2 text-[1em] font-[500] hover:cursor-pointer hover:text-[#1efe00] transform transition-all ease-out max-[1200px]:text-[14px]"
                 >
                   {language === "EN" ? item.title : item.japanese_title}
                 </Link>
@@ -134,10 +134,10 @@ function Cart({ label, data, path, selectL, refer }) {
           href={`/${path}${refer ? `?refer=${refer}` : `?refer=weebsSecret`}`}
           className="flex w-fit items-baseline rounded-3xl gap-x-2 group"
         >
-          <p className="text-white text-[17px] h-fit leading-4 group-hover:text-[#00f2fe] transform transition-all ease-out">
+          <p className="text-white text-[17px] h-fit leading-4 group-hover:text-[#1efe00] transform transition-all ease-out">
             View more
           </p>
-          <FaChevronRight className="text-white text-[10px] group-hover:text-[#00f2fe] transform transition-all ease-out" />
+          <FaChevronRight className="text-white text-[10px] group-hover:text-[#1efe00] transform transition-all ease-out" />
         </Link>
       </div>
     </div>

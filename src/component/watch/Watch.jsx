@@ -354,9 +354,8 @@ export default function Watch(props) {
   // Handle URL updates when episodeId changes
   useEffect(() => {
     if (episodeId) {
-      const newUrl = `/watch/${animeId}?ep=${episodeId}${
-        props.refer ? `&refer=${props.refer}` : `&refer=weebsSecret`
-      }`;
+      const newUrl = `/watch/${animeId}?ep=${episodeId}${props.refer ? `&refer=${props.refer}` : `&refer=weebsSecret`
+        }`;
       if (isFirstSet.current) {
         // Initial load: replace history entry
         router.push(newUrl, { replace: true });
@@ -374,8 +373,7 @@ export default function Watch(props) {
   useEffect(() => {
     if (totalEpisodes !== null && totalEpisodes === 0) {
       router.push(
-        `/${animeId}${
-          props.refer ? `?refer=${props.refer}` : `?refer=weebsSecret`
+        `/${animeId}${props.refer ? `?refer=${props.refer}` : `?refer=weebsSecret`
         }`
       );
     }
@@ -411,9 +409,8 @@ export default function Watch(props) {
   function Tag({ bgColor, index, icon, text }) {
     return (
       <div
-        className={`flex space-x-1 justify-center items-center px-[4px] py-[1px] text-black font-semibold text-[13px] ${
-          index === 0 ? "rounded-l-[4px]" : "rounded-none"
-        }`}
+        className={`flex space-x-1 justify-center items-center px-[4px] py-[1px] text-black font-semibold text-[13px] ${index === 0 ? "rounded-l-[4px]" : "rounded-none"
+          }`}
         style={{ backgroundColor: bgColor }}
       >
         {icon && <FontAwesomeIcon icon={icon} className="text-[12px]" />}
@@ -431,7 +428,7 @@ export default function Watch(props) {
       },
       {
         condition: animeInfo?.animeInfo?.tvInfo?.quality,
-        bgColor: "#00f2fe",
+        bgColor: "#1efe00",
         text: animeInfo?.animeInfo?.tvInfo?.quality,
       },
       {
@@ -502,12 +499,11 @@ export default function Watch(props) {
                   ].map(([text, link], index) => (
                     <li key={index} className="flex gap-x-3 items-center">
                       <Link
-                        href={`/${link}${
-                          props.refer
+                        href={`/${link}${props.refer
                             ? `?refer=${props.refer}`
                             : `?refer=weebsSecret`
-                        }`}
-                        className="text-white hover:text-[#00f2fe] text-[15px] font-semibold"
+                          }`}
+                        className="text-white hover:text-[#1efe00] text-[15px] font-semibold"
                       >
                         {text}
                       </Link>
@@ -636,24 +632,21 @@ export default function Watch(props) {
                       <div className="flex flex-wrap gap-4 max-[575px]:grid max-[575px]:grid-cols-3 max-[575px]:gap-3 max-[480px]:grid-cols-2">
                         {seasons.map((season, index) => (
                           <Link
-                            href={`/${season.id.replace("/", "")}${
-                              props.refer
+                            href={`/${season.id.replace("/", "")}${props.refer
                                 ? `?refer=${props.refer}`
                                 : `?refer=weebsSecret`
-                            }`}
+                              }`}
                             key={index}
-                            className={`relative w-[20%] h-[60px] rounded-lg overflow-hidden cursor-pointer group ${
-                              animeId === season.id.replace("/", "")
-                                ? "border border-[#00f2fe]"
+                            className={`relative w-[20%] h-[60px] rounded-lg overflow-hidden cursor-pointer group ${animeId === season.id.replace("/", "")
+                                ? "border border-[#1efe00]"
                                 : ""
-                            } max-[1200px]:w-[140px] max-[575px]:w-full`}
+                              } max-[1200px]:w-[140px] max-[575px]:w-full`}
                           >
                             <p
-                              className={`text-[13px] text-center font-bold absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full px-2 z-30 line-clamp-2 group-hover:text-[#00f2fe] ${
-                                animeId === season.id.replace("/", "")
-                                  ? "text-[#00f2fe]"
+                              className={`text-[13px] text-center font-bold absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full px-2 z-30 line-clamp-2 group-hover:text-[#1efe00] ${animeId === season.id.replace("/", "")
+                                  ? "text-[#1efe00]"
                                   : "text-white"
-                              }`}
+                                }`}
                             >
                               {season.season}
                             </p>
@@ -752,9 +745,9 @@ export default function Watch(props) {
                                 {isFullOverview
                                   ? animeInfo?.animeInfo?.Overview
                                   : `${animeInfo?.animeInfo?.Overview.slice(
-                                      0,
-                                      270
-                                    )}...`}
+                                    0,
+                                    270
+                                  )}...`}
                                 <span
                                   className="text-[13px] font-bold hover:cursor-pointer"
                                   onClick={() =>
@@ -791,11 +784,10 @@ export default function Watch(props) {
                     {` DUB in HD quality.`}
                   </p>
                   <Link
-                    href={`/${animeId}${
-                      props.refer
+                    href={`/${animeId}${props.refer
                         ? `?refer=${props.refer}`
                         : `?refer=weebsSecret`
-                    }`}
+                      }`}
                     className="w-fit text-[13px] bg-white rounded-[12px] px-[10px] py-1 text-black"
                   >
                     View detail
@@ -806,49 +798,62 @@ export default function Watch(props) {
           </div>
           <div
             style={{
-              width: "100%",
               display: "flex",
               justifyContent: "center",
-              marginTop: "10px 0",
+              alignItems: "center",
+              padding: "10px 0",
+              backgroundColor: "#201f31",
             }}
           >
             <iframe
               src="/ad"
-              style={{
-                width: "fit-content",
-                height: "100px",
-                border: "none",
-                overflow: "hidden",
-              }}
+              title="Sponsored Ad"
               scrolling="no"
-            ></iframe>
+
+              referrerPolicy="no-referrer-when-downgrade"
+              style={{
+                width: "100%",
+                maxWidth: "728px",
+                height: "90px",
+                border: "none",
+                borderRadius: "10px",
+                overflow: "hidden",
+                backgroundColor: "#201f31",
+              }}
+            />
           </div>
           <div className="w-full">
             <Share
-              ShareUrl={`https://shoko.fun/watch/${
-                animeId + "?ep=" + episodeId
-              }${props.refer ? `?refer=${props.refer}` : `?refer=weebsSecret`}`}
+              ShareUrl={`https://shoko.fun/watch/${animeId + "?ep=" + episodeId
+                }${props.refer ? `?refer=${props.refer}` : `?refer=weebsSecret`}`}
               arise="this Anime"
             />
           </div>
           <div
             style={{
-              width: "100%",
               display: "flex",
               justifyContent: "center",
-              marginTop: "10px 0",
+              alignItems: "center",
+              padding: "10px 0",
+              backgroundColor: "#201f31",
             }}
           >
             <iframe
-              src="/ad2"
-              style={{
-                width: "fit-content",
-                height: "100px",
-                border: "none",
-                overflow: "hidden",
-              }}
+              src="/ad"
+              title="Sponsored Ad"
               scrolling="no"
-            ></iframe>
+
+              referrerPolicy="no-referrer-when-downgrade"
+              style={{
+                width: "100%",
+                maxWidth: "728px",
+                height: "90px",
+                border: "none",
+                borderRadius: "10px",
+                overflow: "hidden",
+                backgroundColor: "#201f31",
+              }}
+            />
           </div>
           <div className="contentWrapper">
             <div className="mt-[15px] flex flex-col gap-y-7">

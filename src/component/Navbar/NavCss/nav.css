@@ -67,10 +67,10 @@
 .logo-icon {
   width: 40px;
   height: 40px;
-  background: linear-gradient(145deg, #ffffff, #00f2fe);
+  background: linear-gradient(145deg, #ffffff, #1efe00);
   border-radius: 50%;
   position: relative;
-  box-shadow: 0 0 10px rgba(0, 242, 254, 0.7);
+  box-shadow: 0 0 10px rgba(51, 254, 0, 0.7);
 }
 
 .logo-icon::after {
@@ -89,7 +89,7 @@
   font-size: 1.5rem;
   font-weight: 800;
   text-transform: uppercase;
-  background: linear-gradient(90deg, #4facfe, #00f2fe, #e91e63, #ffeb3b);
+  background: linear-gradient(90deg, #63fe4f, #1efe00, #e91e63, #ffeb3b);
   background-size: 200%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;

@@ -4,7 +4,7 @@ import Link from "next/link";
 function Genre({ data, refer }) {
   const colors = [
     "#A4B389",
-    "#00f2fe",
+    "#1efe00",
     "#935C5F",
     "#AD92BC",
     "#ABCCD8",
@@ -20,7 +20,7 @@ function Genre({ data, refer }) {
 
   return (
     <div className="flex flex-col w-full">
-      <h1 className="font-bold text-2xl text-[#00f2fe]">Genres</h1>
+      <h1 className="font-bold text-2xl text-[#1efe00]">Genres</h1>
       <div className="bg-[#373646] py-6 px-4 mt-6 max-[478px]:bg-transparent max-[478px]:px-0">
         <div className="grid grid-cols-3 grid-rows-2 gap-x-4 gap-y-3 w-full max-[478px]:flex max-[478px]:flex-wrap max-[478px]:gap-2">
           {data &&

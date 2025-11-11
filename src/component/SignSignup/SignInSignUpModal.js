@@ -166,7 +166,7 @@ const SignInSignUpModal = (props) => {
               <Link
                 href="/home"
                 style={{
-                  backgroundColor: "#00f2fe",
+                  backgroundColor: "#1efe00",
                   color: "#0f172a",
                   padding: "10px 20px",
                   borderRadius: "8px",
@@ -183,7 +183,7 @@ const SignInSignUpModal = (props) => {
                 onClick={handleSignOut}
                 disabled={loading}
                 style={{
-                  backgroundColor: "#00f2fe",
+                  backgroundColor: "#1efe00",
                   color: "#0f172a",
                   padding: "10px 20px",
                   borderRadius: "8px",

@@ -391,23 +391,29 @@ export default function Search(props) {
         <Navbar lang={lang} selectL={selectL} refer={props.refer} />
         <div
           style={{
-            width: "100%",
             display: "flex",
             justifyContent: "center",
-            marginTop: "65px",
-            marginBottom: "-60px"
+            alignItems: "center",
+            padding: "10px 0",
+            backgroundColor: "#201f31",
           }}
         >
           <iframe
-            src="/ad3"
-            style={{
-              width: "fit-content",
-              height: "100px",
-              border: "none",
-              overflow: "hidden",
-            }}
+            src="/ad"
+            title="Sponsored Ad"
             scrolling="no"
-          ></iframe>
+
+            referrerPolicy="no-referrer-when-downgrade"
+            style={{
+              width: "100%",
+              maxWidth: "728px",
+              height: "90px",
+              border: "none",
+              borderRadius: "10px",
+              overflow: "hidden",
+              backgroundColor: "#201f31",
+            }}
+          />
         </div>
         <div className="main-layout">
           <div>
@@ -520,9 +526,8 @@ export default function Search(props) {
                   {genArr.map((gen) => (
                     <span
                       key={gen}
-                      className={`genre-item ${
-                        filters.genres.includes(gen) ? "selected" : ""
-                      }`}
+                      className={`genre-item ${filters.genres.includes(gen) ? "selected" : ""
+                        }`}
                       onClick={() => handleGenreClick(gen)}
                     >
                       {gen}
@@ -537,61 +542,68 @@ export default function Search(props) {
             </div>
             <div
               style={{
-                width: "100%",
                 display: "flex",
                 justifyContent: "center",
-                marginTop: "10px 0",
+                alignItems: "center",
+                padding: "10px 0",
+                backgroundColor: "#201f31",
               }}
             >
               <iframe
-                src="/ad2"
-                style={{
-                  width: "fit-content",
-                  height: "100px",
-                  border: "none",
-                  overflow: "hidden",
-                }}
+                src="/ad"
+                title="Sponsored Ad"
                 scrolling="no"
-              ></iframe>
+
+                referrerPolicy="no-referrer-when-downgrade"
+                style={{
+                  width: "100%",
+                  maxWidth: "728px",
+                  height: "90px",
+                  border: "none",
+                  borderRadius: "10px",
+                  overflow: "hidden",
+                  backgroundColor: "#201f31",
+                }}
+              />
             </div>
             {loading ? (
               <CategoryCardLoader className={"max-[478px]:mt-2"} />
             ) : page > totalPages ? (
-              <p className="font-bold text-2xl text-[#00f2fe] max-[478px]:text-[18px] max-[300px]:leading-6">
+              <p className="font-bold text-2xl text-[#1efe00] max-[478px]:text-[18px] max-[300px]:leading-6">
                 You came a long way, go back{" "}
                 <br className="max-[300px]:hidden" />
                 nothing is here
               </p>
             ) : //filter div code start
-            // filter div code end
-            searchData && searchData.length > 0 ? (
-              <div>
-                <CategoryCard
-                  label={
-                    props.onSear
-                      ? `Search results for: ${keyword}`
-                      : `Filtered results`
-                  }
-                  data={searchData}
-                  showViewMore={false}
-                  className={"mt-0"}
-                  selectL={selectL}
-                  refer={props.refer}
-                />
-                <PageSlider
-                  page={parseInt(searchParams || "1", 10)}
-                  totalPages={totalPages}
-                  handlePageChange={handlePageChange}
-                  refer={props.refer}
-                />
-              </div>
-            ) : error ? (
-              <p className="font-bold text-2xl text-[#00f2fe] max-[478px]:text-[18px]">
-                Couldn&apos;t get search result please try again
-              </p>
-            ) : (
-              <h1 className="font-bold text-2xl text-[#00f2fe] max-[478px]:text-[18px]">{`Search results for: ${keyword}`}</h1>
-            )}
+              // filter div code end
+              searchData && searchData.length > 0 ? (
+                <div>
+                  <CategoryCard
+                    label={
+                      props.onSear
+                        ? `Search results for: ${keyword}`
+                        : `Filtered results`
+                    }
+                    data={searchData}
+                    showViewMore={false}
+                    className={"mt-0"}
+                    selectL={selectL}
+                    refer={props.refer}
+                  />
+                  <PageSlider
+                    page={parseInt(searchParams || "1", 10)}
+                    totalPages={totalPages}
+                    handlePageChange={handlePageChange}
+                    refer={props.refer}
+                  />
+                </div>
+              ) : error ? (
+                <p className="font-bold text-2xl text-[#1efe00] max-[478px]:text-[18px]">
+                  Couldn&apos;t get search result please try again
+                </p>
+              ) : (
+                <h1 className="font-bold text-2xl text-[#1efe00] max-[478px]:text-[18px]">{`Search results for: ${keyword}`}</h1>
+              )}
           </div>
           <div className="w-full flex flex-col gap-y-10">
             {homeInfoLoading ? (

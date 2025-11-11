@@ -14,17 +14,17 @@ import Image from "next/image";
 import splash from "../../../public/splash.webp";
 import Script from "next/script";
 import Share from "../Share/Share";
- 
+
 // Static data moved outside the component
 const NAV_LINKS = [
-  { to: "/home", label: "Home" }, 
+  { to: "/home", label: "Home" },
   { to: "/movie", label: "Movies" },
   { to: "/tv", label: "TV Series" },
   { to: "/most-popular", label: "Most Popular" },
   { to: "/top-airing", label: "Top Airing" },
 ];
 
-const logoTitle = "Shoko";
+const logoTitle = process.env.NEXT_PUBLIC_SITE_NAME || "Animoon"; // Default if env is missing
 
 // const useTopSearch = () => {
 //   const [topSearch, setTopSearch] = useState([]);
@@ -49,8 +49,7 @@ export default function SplashScreen({ results, refer }) {
     if (!trimmedSearch) return;
     const queryParam = encodeURIComponent(trimmedSearch);
     router.push(
-      `/search?keyword=${queryParam}${
-        refer ? `&refer=${refer}` : "&refer=weebsSecret"
+      `/search?keyword=${queryParam}${refer ? `&refer=${refer}` : "&refer=weebsSecret"
       }`
     );
   }, [search, router]);
@@ -72,10 +71,9 @@ export default function SplashScreen({ results, refer }) {
             {NAV_LINKS.map((link) => (
               <Link
                 key={link.to}
-                href={`${link.to}${
-                  refer ? `?refer=${refer}` : `?refer=weebsSecret`
-                }`}
-                className="hover:text-[#00f2fe]"
+                href={`${link.to}${refer ? `?refer=${refer}` : `?refer=weebsSecret`
+                  }`}
+                className="hover:text-[#1efe00]"
               >
                 {link.label}
               </Link>
@@ -88,7 +86,7 @@ export default function SplashScreen({ results, refer }) {
               className="p-2 focus:outline-none flex items-center gap-x-2 transition-colors duration-200 group"
             >
               <svg
-                className="w-6 h-6 text-white transition-colors duration-200 max-[520px]:w-5 max-[520px]:h-5 group-hover:text-[#00f2fe] group-focus:text-[#00f2fe] group-active:text-[#00f2fe]"
+                className="w-6 h-6 text-white transition-colors duration-200 max-[520px]:w-5 max-[520px]:h-5 group-hover:text-[#1efe00] group-focus:text-[#1efe00] group-active:text-[#1efe00]"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -101,7 +99,7 @@ export default function SplashScreen({ results, refer }) {
                   d="M4 6h16M4 12h16M4 18h16"
                 />
               </svg>
-              <span className="text-white font-semibold transition-colors duration-200 group-hover:text-[#00f2fe] group-focus:text-[#00f2fe] group-active:text-[#00f2fe]">
+              <span className="text-white font-semibold transition-colors duration-200 group-hover:text-[#1efe00] group-focus:text-[#1efe00] group-active:text-[#1efe00]">
                 Menu
               </span>
             </button>
@@ -118,11 +116,10 @@ export default function SplashScreen({ results, refer }) {
                 {NAV_LINKS.map((link) => (
                   <Link
                     key={link.to}
-                    href={`${link.to}${
-                      refer ? `?refer=${refer}` : `?refer=weebsSecret`
-                    }`}
+                    href={`${link.to}${refer ? `?refer=${refer}` : `?refer=weebsSecret`
+                      }`}
                     onClick={() => setIsModalOpen(false)}
-                    className="hover:text-[#00f2fe] text-white text-lg"
+                    className="hover:text-[#1efe00] text-white text-lg"
                   >
                     {link.label}
                   </Link>
@@ -134,22 +131,29 @@ export default function SplashScreen({ results, refer }) {
 
         <div
           style={{
-            width: "100%",
             display: "flex",
             justifyContent: "center",
-            margin: "10px 0",
+            alignItems: "center",
+            padding: "10px 0",
+            backgroundColor: "#201f31",
           }}
         >
           <iframe
             src="/ad"
-            style={{
-              width: "fit-content",
-              height: "100px",
-              border: "none",
-              overflow: "hidden",
-            }}
+            title="Sponsored Ad"
             scrolling="no"
-          ></iframe>
+
+            referrerPolicy="no-referrer-when-downgrade"
+            style={{
+              width: "100%",
+              maxWidth: "728px",
+              height: "90px",
+              border: "none",
+              borderRadius: "10px",
+              overflow: "hidden",
+              backgroundColor: "#201f31",
+            }}
+          />
         </div>
 
         <div className="splashscreen min-h-[480px] min-[1200px]:min-h-[520px] bg-[#2B2A3C] rounded-[40px] flex relative mt-7 max-[780px]:w-full items-stretch max-[780px]:rounded-[30px] max-[520px]:rounded-none max-[520px]:min-h-fit max-[520px]:pb-4 max-[520px]:mt-4">
@@ -158,9 +162,11 @@ export default function SplashScreen({ results, refer }) {
               href={`/home${refer ? `?refer=${refer}` : `?refer=weebsSecret`}`}
               className="text-[45px] font-extrabold tracking-wide max-[520px]:text-[38px] max-[520px]:text-center"
             >
-              <div className="logo-container">
-                <div className="logo-icon"></div>
-                <div className="logo-text">{logoTitle}</div>
+              <div class="logo-container">
+                <div class="logo-icon">
+                  <div class="window"></div>
+                </div>
+                <span class="logo-text">{logoTitle}</span>
               </div>
             </Link>
             <div className="w-full flex gap-x-3 mt-6">
@@ -173,12 +179,12 @@ export default function SplashScreen({ results, refer }) {
                 onKeyDown={handleKeyDown}
               />
               <button
-                className="bg-[#00f2fe] text-white py-3 px-4 rounded-xl font-extrabold"
+                className="bg-[#1efe00] text-white py-3 px-4 rounded-xl font-extrabold"
                 onClick={handleSearchSubmit}
               >
                 <FontAwesomeIcon
                   icon={faMagnifyingGlass}
-                  className="text-lg text-black hover:text-[#00f2fe] max-[600px]:mt-[7px]"
+                  className="text-lg text-black hover:text-[#1efe00] max-[600px]:mt-[7px]"
                 />
               </button>
             </div>
@@ -187,9 +193,8 @@ export default function SplashScreen({ results, refer }) {
               {topSearch.map((item, index) => (
                 <span key={index} className="splashitem font-[400]">
                   <Link
-                    href={`${item.link}${
-                      refer ? `&refer=${refer}` : `&refer=weebsSecret`
-                    }`}
+                    href={`${item.link}${refer ? `&refer=${refer}` : `&refer=weebsSecret`
+                      }`}
                   >
                     {item.title}
                   </Link>
@@ -199,12 +204,11 @@ export default function SplashScreen({ results, refer }) {
             </div>
             <div className="mt-8 flex max-[780px]:left-10">
               <Link
-                href={`/home${
-                  refer ? `?refer=${refer}` : `?refer=weebsSecret`
-                }`}
+                href={`/home${refer ? `?refer=${refer}` : `?refer=weebsSecret`
+                  }`}
                 className="max-[520px]:w-full"
               >
-                <div className="bg-[#00f2fe] text-black py-4 px-10 rounded-xl font-bold text-[20px] max-[520px]:text-center max-[520px]:font-medium max-[520px]:text-[17px]">
+                <div className="bg-[#1efe00] text-black py-4 px-10 rounded-xl font-bold text-[20px] max-[520px]:text-center max-[520px]:font-medium max-[520px]:text-[17px]">
                   Watch anime
                   <FontAwesomeIcon
                     icon={faCircleArrowRight}
@@ -225,29 +229,34 @@ export default function SplashScreen({ results, refer }) {
         </div>
 
         <Share
-          ShareUrl={`https://shoko.fun/${
-            refer ? `?refer=${refer}` : `?refer=weebsSecret`
-          }`}
+          ShareUrl={`https://shoko.fun/${refer ? `?refer=${refer}` : `?refer=weebsSecret`
+            }`}
         />
-
         <div
           style={{
-            width: "100%",
             display: "flex",
             justifyContent: "center",
-            margin: "10px 0",
+            alignItems: "center",
+            padding: "10px 0",
+            backgroundColor: "#201f31",
           }}
         >
           <iframe
-            src="/ad2"
-            style={{
-              width: "fit-content",
-              height: "100px",
-              border: "none",
-              overflow: "hidden",
-            }}
+            src="/ad"
+            title="Sponsored Ad"
             scrolling="no"
-          ></iframe>
+
+            referrerPolicy="no-referrer-when-downgrade"
+            style={{
+              width: "100%",
+              maxWidth: "728px",
+              height: "90px",
+              border: "none",
+              borderRadius: "10px",
+              overflow: "hidden",
+              backgroundColor: "#201f31",
+            }}
+          />
         </div>
       </div>
       <div className="mt-10 text-[14px] text-center pb-4">

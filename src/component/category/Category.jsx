@@ -56,7 +56,7 @@ export default function Category({ path, label, pagel, refer }) {
       try {
         const data = await getCategoryInfo(path, page);
         setCategoryInfo(data.data);
-        setTotalPages(data.totalPages); 
+        setTotalPages(data.totalPages);
         setLoading(false);
         typeof window !== "undefined" && window.scrollTo(0, 0);
       } catch (err) {
@@ -91,50 +91,63 @@ export default function Category({ path, label, pagel, refer }) {
         <div className="w-full flex flex-col gap-y-4 mt-[70px] max-md:mt-[70px]">
           <div
             style={{
-              width: "100%",
               display: "flex",
               justifyContent: "center",
-              marginTop: "10px 0",
+              alignItems: "center",
+              padding: "10px 0",
+              backgroundColor: "#201f31",
             }}
           >
             <iframe
-              src="/ad3"
-              style={{
-                width: "fit-content",
-                height: "100px",
-                border: "none",
-                overflow: "hidden",
-              }}
+              src="/ad"
+              title="Sponsored Ad"
               scrolling="no"
-            ></iframe>
+
+              referrerPolicy="no-referrer-when-downgrade"
+              style={{
+                width: "100%",
+                maxWidth: "728px",
+                height: "90px",
+                border: "none",
+                borderRadius: "10px",
+                overflow: "hidden",
+                backgroundColor: "#201f31",
+              }}
+            />
           </div>
           {/* Share Anime Banner */}
           <div className="w-full">
             <Share
-              ShareUrl={`https://shoko.fun/${path}${
-                refer ? `?refer=${refer}` : `?refer=weebsSecret`
-              }`}
+              ShareUrl={`https://shoko.fun/${path}${refer ? `?refer=${refer}` : `?refer=weebsSecret`
+                }`}
               arise={label?.split?.("/")?.pop() || ""}
             />
           </div>
           <div
             style={{
-              width: "100%",
               display: "flex",
               justifyContent: "center",
-              marginTop: "10px 0",
+              alignItems: "center",
+              padding: "10px 0",
+              backgroundColor: "#201f31",
             }}
           >
             <iframe
-              src="/ad2"
-              style={{
-                width: "fit-content",
-                height: "100px",
-                border: "none",
-                overflow: "hidden",
-              }}
+              src="/ad"
+              title="Sponsored Ad"
               scrolling="no"
-            ></iframe>
+
+              referrerPolicy="no-referrer-when-downgrade"
+              style={{
+                width: "100%",
+                maxWidth: "728px",
+                height: "90px",
+                border: "none",
+                borderRadius: "10px",
+                overflow: "hidden",
+                backgroundColor: "#201f31",
+              }}
+            />
           </div>
 
           {/* Main Content */}
@@ -142,7 +155,7 @@ export default function Category({ path, label, pagel, refer }) {
             {/* Category Info */}
             <div>
               {page > totalPages ? (
-                <p className="font-bold text-2xl text-[#00f2fe] max-[478px]:text-[18px] max-[300px]:leading-6">
+                <p className="font-bold text-2xl text-[#1efe00] max-[478px]:text-[18px] max-[300px]:leading-6">
                   You came a long way, go back{" "}
                   <br className="max-[300px]:hidden" />
                   nothing is here

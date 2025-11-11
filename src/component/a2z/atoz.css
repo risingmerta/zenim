@@ -10,12 +10,12 @@
 }
 
 .custom-button:hover {
-  background-color: #00f2fe;
+  background-color: #1efe00;
   color: black;
 }
 
 .custom-button.active {
-  background-color: #00f2fe;
+  background-color: #1efe00;
   color: black;
 }
 .adCluster {

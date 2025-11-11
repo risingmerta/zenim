@@ -11,7 +11,7 @@
 }
 
 .heading {
-  color: #00f2fe;
+  color: #1efe00;
   text-align: center;
   font-size: 1.8rem; /* Slightly smaller font size */
   font-weight: bold;
@@ -41,7 +41,7 @@
   padding: 15px;
   border-radius: 12px;
   margin: 20px 0;
-  border: 1px solid #00f2fe30; /* subtle border with theme color transparency */
+  border: 1px solid #1efe0030; /* subtle border with theme color transparency */
   transition: transform 0.3s;
 }
 .box:hover {
@@ -51,7 +51,7 @@
 .boxTitle {
   font-size: 1.1rem; /* Slightly smaller font size for title */
   margin-bottom: 10px;
-  color: #00f2fe;
+  color: #1efe00;
   font-weight: bold;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; /* Modern title font */
 }
@@ -60,7 +60,7 @@
   width: 100%;
   padding: 10px;
   background: #1c1c1c;
-  border: 1px solid #00f2fe60;
+  border: 1px solid #1efe0060;
   color: #fff;
   border-radius: 8px;
   margin-top: 5px;
@@ -71,14 +71,14 @@
 }
 
 .input:focus {
-  border-color: #00f2fe;
+  border-color: #1efe00;
   outline: none;
   box-shadow: 0 0 8px rgba(0, 242, 254, 0.7);
 }
 
 .saveButton {
   width: 100%;
-  background: linear-gradient(90deg, #00f2fe, #4facfe);
+  background: linear-gradient(90deg, #1efe00, #4facfe);
   color: #000;
   font-weight: bold;
   padding: 12px;
@@ -100,7 +100,7 @@
 .button {
   display: block;
   width: 100%;
-  background: #00f2fe;
+  background: #1efe00;
   color: #000;
   font-weight: bold;
   padding: 12px;
@@ -137,7 +137,7 @@
 .status {
   text-align: center;
   font-size: 0.9rem; /* Slightly smaller font size */
-  color: #00f2fe;
+  color: #1efe00;
   margin-top: 12px;
 }
 

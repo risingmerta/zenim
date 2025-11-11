@@ -5,7 +5,7 @@ import SocialLinks from "../Navbar/Social";
 import Link from "next/link";
 import Image from "next/image";
 export default function Footer(props) {
-  const handleNavigation = () => {};
+  const handleNavigation = () => { };
   function getAlphabets() {
     const alphabets = [];
     const startChar = "A".charCodeAt(0);
@@ -16,9 +16,8 @@ export default function Footer(props) {
     const links = alphabets.map((el) => {
       return (
         <Link
-          href={`/az-list/${el}${
-            props.refer ? `?refer=${props.refer}` : `?refer=weebsSecret`
-          }`}
+          href={`/az-list/${el}${props.refer ? `?refer=${props.refer}` : `?refer=weebsSecret`
+            }`}
           key={el}
           className="alphabet-tile"
           onClick={handleNavigation}
@@ -50,13 +49,14 @@ export default function Footer(props) {
       <div className="logo-social-links d-flex">
         <div className="main-element">
           <Link
-            href={`/${
-              props.refer ? `?refer=${props.refer}` : `?refer=weebsSecret`
-            }`}
+            href={`/${props.refer ? `?refer=${props.refer}` : `?refer=weebsSecret`
+              }`}
           >
-            <div className="logo-container">
-              <div className="logo-icon"></div>
-              <div className="logo-text">{siteName}</div>
+            <div class="logo-container">
+              <div class="logo-icon">
+                <div class="window"></div>
+              </div>
+              <span class="logo-text">{siteName}</span>
             </div>
           </Link>
         </div>
@@ -68,25 +68,22 @@ export default function Footer(props) {
       </div>
       <div className="alphabet-list d-flex">
         <Link
-          href={`/az-list${
-            props.refer ? `?refer=${props.refer}` : `?refer=weebsSecret`
-          }`}
+          href={`/az-list${props.refer ? `?refer=${props.refer}` : `?refer=weebsSecret`
+            }`}
           onClick={handleNavigation}
         >
           <div className="alphabet-tile">All</div>
         </Link>
         <Link
-          href={`/az-list/other${
-            props.refer ? `?refer=${props.refer}` : `?refer=weebsSecret`
-          }`}
+          href={`/az-list/other${props.refer ? `?refer=${props.refer}` : `?refer=weebsSecret`
+            }`}
           onClick={handleNavigation}
         >
           <div className="alphabet-tile">#</div>
         </Link>
         <Link
-          href={`/az-list/0-9${
-            props.refer ? `?refer=${props.refer}` : `?refer=weebsSecret`
-          }`}
+          href={`/az-list/0-9${props.refer ? `?refer=${props.refer}` : `?refer=weebsSecret`
+            }`}
           onClick={handleNavigation}
         >
           <div className="alphabet-tile">0-9</div>

@@ -39,7 +39,7 @@ function PageSlider({ page, totalPages, handlePageChange, start = false, style }
                 {page > 1 && totalPages > 2 && (
                     <button
                         onClick={() => handlePageChange(1)}
-                        className={`w-[40px] mx-1 p-2 ${start ? "bg-[#353537]" : "bg-[#2B2A3C]"} rounded-full text-[#999] text-[8px] hover:text-[#00f2fe]`}
+                        className={`w-[40px] mx-1 p-2 ${start ? "bg-[#353537]" : "bg-[#2B2A3C]"} rounded-full text-[#999] text-[8px] hover:text-[#1efe00]`}
                     >
                         <FontAwesomeIcon icon={faAngleDoubleLeft} />
                     </button>
@@ -47,7 +47,7 @@ function PageSlider({ page, totalPages, handlePageChange, start = false, style }
                 {page > 1 && (
                     <button
                         onClick={() => { if (page > 0) handlePageChange(page - 1) }}
-                        className={`w-[40px] mx-1 p-2 ${start ? "bg-[#353537]" : "bg-[#2B2A3C]"} rounded-full text-[#999] text-[8px] hover:text-[#00f2fe]`}
+                        className={`w-[40px] mx-1 p-2 ${start ? "bg-[#353537]" : "bg-[#2B2A3C]"} rounded-full text-[#999] text-[8px] hover:text-[#1efe00]`}
                     >
                         <FontAwesomeIcon icon={faChevronLeft} />
                     </button>
@@ -56,7 +56,7 @@ function PageSlider({ page, totalPages, handlePageChange, start = false, style }
                 {page < totalPages && (
                     <button
                         onClick={() => { if (page < totalPages) handlePageChange(page + 1) }}
-                        className={`w-[40px] mx-1 p-2 ${start ? "bg-[#353537]" : "bg-[#2B2A3C]"} rounded-full text-[#999] text-[8px] hover:text-[#00f2fe]`}
+                        className={`w-[40px] mx-1 p-2 ${start ? "bg-[#353537]" : "bg-[#2B2A3C]"} rounded-full text-[#999] text-[8px] hover:text-[#1efe00]`}
                     >
                         <FontAwesomeIcon icon={faChevronRight} />
                     </button>
@@ -64,7 +64,7 @@ function PageSlider({ page, totalPages, handlePageChange, start = false, style }
                 {page < totalPages && totalPages > 2 && (
                     <button
                         onClick={() => handlePageChange(totalPages)}
-                        className={`w-[40px] mx-1 p-2 ${start ? "bg-[#353537]" : "bg-[#2B2A3C]"} rounded-full text-[#999] text-[8px] hover:text-[#00f2fe]`}
+                        className={`w-[40px] mx-1 p-2 ${start ? "bg-[#353537]" : "bg-[#2B2A3C]"} rounded-full text-[#999] text-[8px] hover:text-[#1efe00]`}
                     >
                         <FontAwesomeIcon icon={faAngleDoubleRight} />
                     </button>

@@ -156,7 +156,7 @@ function Qtip({ id, refer }) {
               )}
               <div className="flex ml-4 gap-x-[1px] overflow-hidden rounded-md items-center h-fit">
                 {qtip?.quality && (
-                  <div className="bg-[#00f2fe] px-[7px] w-fit flex justify-center items-center py-[1px] text-black">
+                  <div className="bg-[#1efe00] px-[7px] w-fit flex justify-center items-center py-[1px] text-black">
                     <p className="text-[12px] font-semibold">{qtip.quality}</p>
                   </div>
                 )}
@@ -192,7 +192,7 @@ function Qtip({ id, refer }) {
                   )}
                 </div>
                 {qtip?.type && (
-                  <div className="absolute right-0 top-0 justify-center items-center rounded-sm bg-[#00f2fe] px-[6px] text-black">
+                  <div className="absolute right-0 top-0 justify-center items-center rounded-sm bg-[#1efe00] px-[6px] text-black">
                     <p className="font-semibold text-[13px]">{qtip.type}</p>
                   </div>
                 )}
@@ -247,7 +247,7 @@ function Qtip({ id, refer }) {
                         refer ? `?refer=${refer}` : `?refer=weebsSecret`
                       }`}
                       key={index}
-                      className="text-[13px] hover:text-[#00f2fe]"
+                      className="text-[13px] hover:text-[#1efe00]"
                     >
                       <span>
                         {genre}
@@ -261,7 +261,7 @@ function Qtip({ id, refer }) {
             <div className="flex items-center gap-[10px] mt-4">
               <Link
                 href={getWatchHref(qtip?.watchLink, refer)}
-                className="w-[80%] flex justify-center items-center gap-x-2 bg-[#00f2fe] py-[9px] rounded-3xl"
+                className="w-[80%] flex justify-center items-center gap-x-2 bg-[#1efe00] py-[9px] rounded-3xl"
               >
                 <FontAwesomeIcon
                   icon={faPlay}
@@ -289,7 +289,7 @@ function Qtip({ id, refer }) {
                       <button
                         key={status}
                         onClick={() => handleSelect(status)}
-                        className="block w-full px-4 py-2 text-left text-black hover:bg-[#00f2fe]/20 hover:text-black transition duration-150 ease-in-out"
+                        className="block w-full px-4 py-2 text-left text-black hover:bg-[#1efe00]/20 hover:text-black transition duration-150 ease-in-out"
                       >
                         {status}
                       </button>

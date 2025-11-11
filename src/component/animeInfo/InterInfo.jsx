@@ -46,11 +46,10 @@ function InfoItem({ label, value, isProducer = true, refer }) {
                     .replace(/[&'"^%$#@!()+=<>:;,.?/\\|{}[\]`~*_]/g, "")
                     .split(" ")
                     .join("-")
-                    .replace(/-+/g, "-")}${
-                    refer ? `?refer=${refer}` : `?refer=weebsSecret`
-                  }`}
+                    .replace(/-+/g, "-")}${refer ? `?refer=${refer}` : `?refer=weebsSecret`
+                    }`}
                   key={index}
-                  className="cursor-pointer hover:text-[#00f2fe]"
+                  className="cursor-pointer hover:text-[#1efe00]"
                 >
                   {item}
                   {index < value.length - 1 && ", "}
@@ -67,10 +66,9 @@ function InfoItem({ label, value, isProducer = true, refer }) {
                 .replace(/[&'"^%$#@!()+=<>:;,.?/\\|{}[\]`~*_]/g, "")
                 .split(" ")
                 .join("-")
-                .replace(/-+/g, "-")}${
-                refer ? `?refer=${refer}` : `?refer=weebsSecret`
-              }`}
-              className="cursor-pointer hover:text-[#00f2fe]"
+                .replace(/-+/g, "-")}${refer ? `?refer=${refer}` : `?refer=weebsSecret`
+                }`}
+              className="cursor-pointer hover:text-[#1efe00]"
             >
               {value}
             </Link>
@@ -86,9 +84,8 @@ function InfoItem({ label, value, isProducer = true, refer }) {
 function Tag({ bgColor, index, icon, text }) {
   return (
     <div
-      className={`flex space-x-1 justify-center items-center px-[4px] py-[1px] text-black font-bold text-[13px] ${
-        index === 0 ? "rounded-l-[4px]" : "rounded-none"
-      }`}
+      className={`flex space-x-1 justify-center items-center px-[4px] py-[1px] text-black font-bold text-[13px] ${index === 0 ? "rounded-l-[4px]" : "rounded-none"
+        }`}
       style={{ backgroundColor: bgColor }}
     >
       {icon && <FontAwesomeIcon icon={icon} className="text-[12px]" />}
@@ -116,7 +113,7 @@ function Notification({ message, type, onClose }) {
         exit={{ opacity: 0, x: 50 }}
         transition={{ duration: 0.3 }}
         className={`fixed bottom-4 right-4 z-[9999] px-4 py-3 rounded-lg shadow-lg text-sm font-medium flex items-center gap-2
-          ${isSuccess ? "bg-[#00f2fe]/80" : "bg-red-500/80"} text-white`}
+          ${isSuccess ? "bg-[#1efe00]/80" : "bg-red-500/80"} text-white`}
       >
         {isSuccess ? (
           <FaCheckCircle className="text-white text-lg" />
@@ -187,7 +184,7 @@ export default function InterInfo({
     },
     {
       condition: info.tvInfo?.quality,
-      bgColor: "#00f2fe",
+      bgColor: "#1efe00",
       text: info.tvInfo.quality,
     },
     {
@@ -330,10 +327,9 @@ export default function InterInfo({
               ].map(([text, link], index) => (
                 <li key={index} className="flex gap-x-3 items-center">
                   <Link
-                    href={`/${link}${
-                      refer ? `?refer=${refer}` : `?refer=weebsSecret`
-                    }`}
-                    className="text-white hover:text-[#00f2fe] text-[15px] font-semibold"
+                    href={`/${link}${refer ? `?refer=${refer}` : `?refer=weebsSecret`
+                      }`}
+                    className="text-white hover:text-[#1efe00] text-[15px] font-semibold"
                   >
                     {text}
                   </Link>
@@ -377,18 +373,16 @@ export default function InterInfo({
             </div>
             <div className="flex gap-x-4 mt-5">
               {animeInfo?.animeInfo?.Status?.toLowerCase() !==
-              "not-yet-aired" ? (
+                "not-yet-aired" ? (
                 <Link
                   href={
                     lastWatchedEpId
-                      ? `/watch/${animeInfo.id + "?ep=" + lastWatchedEpId}${
-                          refer ? `&refer=${refer}` : `&refer=weebsSecret`
-                        }`
-                      : `/watch/${animeInfo.id}${
-                          refer ? `?refer=${refer}` : `?refer=weebsSecret`
-                        }`
+                      ? `/watch/${animeInfo.id + "?ep=" + lastWatchedEpId}${refer ? `&refer=${refer}` : `&refer=weebsSecret`
+                      }`
+                      : `/watch/${animeInfo.id}${refer ? `?refer=${refer}` : `?refer=weebsSecret`
+                      }`
                   }
-                  className="flex gap-x-2 px-6 max-[429px]:px-3 py-2 bg-[#00f2fe] w-fit text-black items-center rounded-3xl"
+                  className="flex gap-x-2 px-6 max-[429px]:px-3 py-2 bg-[#1efe00] w-fit text-black items-center rounded-3xl"
                 >
                   <FontAwesomeIcon
                     icon={faPlay}
@@ -400,10 +394,9 @@ export default function InterInfo({
                 </Link>
               ) : (
                 <Link
-                  href={`/${animeInfo.id}${
-                    refer ? `?refer=${refer}` : `?refer=weebsSecret`
-                  }`}
-                  className="flex gap-x-2 px-6 max-[429px]:px-3 py-2 bg-[#00f2fe] w-fit text-black items-center rounded-3xl"
+                  href={`/${animeInfo.id}${refer ? `?refer=${refer}` : `?refer=weebsSecret`
+                    }`}
+                  className="flex gap-x-2 px-6 max-[429px]:px-3 py-2 bg-[#1efe00] w-fit text-black items-center rounded-3xl"
                 >
                   <p className="text-lg max-[429px]:text-[15px] font-medium">
                     Not released
@@ -412,12 +405,11 @@ export default function InterInfo({
               )}
 
               {animeInfo?.animeInfo?.Status?.toLowerCase() ===
-              "not-yet-aired" ? (
+                "not-yet-aired" ? (
                 <Link
-                  href={`/${animeInfo.id}${
-                    refer ? `?refer=${refer}` : `?refer=weebsSecret`
-                  }`}
-                  className="flex gap-x-2 px-6 max-[429px]:px-3 py-2 bg-[#00f2fe] w-fit text-black items-center rounded-3xl"
+                  href={`/${animeInfo.id}${refer ? `?refer=${refer}` : `?refer=weebsSecret`
+                    }`}
+                  className="flex gap-x-2 px-6 max-[429px]:px-3 py-2 bg-[#1efe00] w-fit text-black items-center rounded-3xl"
                 >
                   <p className="text-lg max-[429px]:text-[15px] font-medium">
                     Notify Me
@@ -444,7 +436,7 @@ export default function InterInfo({
                         <button
                           key={status}
                           onClick={() => handleSelect(status)}
-                          className="block w-full px-4 py-2 text-left text-black hover:bg-[#00f2fe]/20 hover:text-black transition duration-150 ease-in-out"
+                          className="block w-full px-4 py-2 text-left text-black hover:bg-[#1efe00]/20 hover:text-black transition duration-150 ease-in-out"
                         >
                           {status}
                         </button>
@@ -482,9 +474,8 @@ export default function InterInfo({
               {` DUB in HD quality.`}
             </p>
             <Share
-              ShareUrl={`https://shoko.fun/${animeInfo.id}${
-                refer ? `?refer=${refer}` : `?refer=weebsSecret`
-              }`}
+              ShareUrl={`https://shoko.fun/${animeInfo.id}${refer ? `?refer=${refer}` : `?refer=weebsSecret`
+                }`}
               arise="this Anime"
             />
           </div>
@@ -522,11 +513,10 @@ export default function InterInfo({
                 <div className="flex flex-wrap gap-2">
                   {info.Genres.map((genre, index) => (
                     <Link
-                      href={`/genre/${genre.split(" ").join("-")}${
-                        refer ? `?refer=${refer}` : `?refer=weebsSecret`
-                      }`}
+                      href={`/genre/${genre.split(" ").join("-")}${refer ? `?refer=${refer}` : `?refer=weebsSecret`
+                        }`}
                       key={index}
-                      className="text-[14px] font-semibold px-2 py-[1px] border border-gray-400 rounded-2xl hover:text-[#00f2fe]"
+                      className="text-[14px] font-semibold px-2 py-[1px] border border-gray-400 rounded-2xl hover:text-[#1efe00]"
                     >
                       {genre}
                     </Link>
@@ -552,50 +542,54 @@ export default function InterInfo({
       </div>
       <div
         style={{
-          width: "100%",
           display: "flex",
           justifyContent: "center",
-          marginTop: "70px",
+          alignItems: "center",
+          padding: "10px 0",
+          backgroundColor: "#201f31",
         }}
       >
         <iframe
           src="/ad"
-          style={{
-            width: "fit-content",
-            height: "100px",
-            border: "none",
-            overflow: "hidden",
-          }}
+          title="Sponsored Ad"
           scrolling="no"
-        ></iframe>
+
+          referrerPolicy="no-referrer-when-downgrade"
+          style={{
+            width: "100%",
+            maxWidth: "728px",
+            height: "90px",
+            border: "none",
+            borderRadius: "10px",
+            overflow: "hidden",
+            backgroundColor: "#201f31",
+          }}
+        />
       </div>
       <div className="mainLayoutGrid">
         <div>
           {seasons?.length > 0 && (
             <>
               <div className="flex flex-col gap-y-7 mt-8">
-                <h1 className="w-fit text-2xl text-[#00f2fe] max-[478px]:text-[18px] font-bold">
+                <h1 className="w-fit text-2xl text-[#1efe00] max-[478px]:text-[18px] font-bold">
                   More Seasons
                 </h1>
                 <div className="flex flex-wrap gap-4 max-[575px]:grid max-[575px]:grid-cols-3 max-[575px]:gap-3 max-[480px]:grid-cols-2">
                   {seasons.map((season, index) => (
                     <Link
-                      href={`/${season.id.replace("/", "")}${
-                        refer ? `?refer=${refer}` : `?refer=weebsSecret`
-                      }`}
+                      href={`/${season.id.replace("/", "")}${refer ? `?refer=${refer}` : `?refer=weebsSecret`
+                        }`}
                       key={index}
-                      className={`relative w-[20%] h-[60px] rounded-lg overflow-hidden cursor-pointer group ${
-                        id === season.id.replace("/", "")
-                          ? "border border-[#00f2fe]"
+                      className={`relative w-[20%] h-[60px] rounded-lg overflow-hidden cursor-pointer group ${id === season.id.replace("/", "")
+                          ? "border border-[#1efe00]"
                           : ""
-                      } max-[1200px]:w-[140px] max-[575px]:w-full`}
+                        } max-[1200px]:w-[140px] max-[575px]:w-full`}
                     >
                       <p
-                        className={`text-[13px] text-center font-bold absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full px-2 z-30 line-clamp-2 group-hover:text-[#00f2fe] ${
-                          id === season.id.replace("/", "")
-                            ? "text-[#00f2fe]"
+                        className={`text-[13px] text-center font-bold absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full px-2 z-30 line-clamp-2 group-hover:text-[#1efe00] ${id === season.id.replace("/", "")
+                            ? "text-[#1efe00]"
                             : "text-white"
-                        }`}
+                          }`}
                       >
                         {season.season}
                       </p>
@@ -611,22 +605,29 @@ export default function InterInfo({
               </div>
               <div
                 style={{
-                  width: "100%",
                   display: "flex",
                   justifyContent: "center",
-                  marginTop: "70px",
+                  alignItems: "center",
+                  padding: "10px 0",
+                  backgroundColor: "#201f31",
                 }}
               >
                 <iframe
-                  src="/ad2"
-                  style={{
-                    width: "fit-content",
-                    height: "100px",
-                    border: "none",
-                    overflow: "hidden",
-                  }}
+                  src="/ad"
+                  title="Sponsored Ad"
                   scrolling="no"
-                ></iframe>
+
+                  referrerPolicy="no-referrer-when-downgrade"
+                  style={{
+                    width: "100%",
+                    maxWidth: "728px",
+                    height: "90px",
+                    border: "none",
+                    borderRadius: "10px",
+                    overflow: "hidden",
+                    backgroundColor: "#201f31",
+                  }}
+                />
               </div>
             </>
           )}

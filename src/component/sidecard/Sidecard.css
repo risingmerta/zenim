@@ -7,7 +7,7 @@
 .sidecard-title {
   font-weight: bold;
   font-size: 1.5rem;
-  color: #00f2fe;
+  color: #1efe00;
 }
 
 .sidecard-content {
@@ -88,7 +88,7 @@
 }
 
 .sidecard-link:hover {
-  color: #00f2fe;
+  color: #1efe00;
 }
 
 .sidecard-tags {

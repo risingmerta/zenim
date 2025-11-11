@@ -223,14 +223,14 @@ function Episodelist({
 
                   const bgClass = isWatched
                     ? isActive
-                      ? "bg-[#00f2fe]"
-                      : "bg-[#248388]"
+                      ? "bg-[#1efe00]"
+                      : "bg-[#24883a]"
                     : item?.filler
                     ? isActive
-                      ? "bg-[#00f2fe]"
+                      ? "bg-[#1efe00]"
                       : "bg-gradient-to-r from-[#5a4944] to-[#645a4b]"
                     : isActive
-                    ? "bg-[#00f2fe]"
+                    ? "bg-[#1efe00]"
                     : "bg-[#35373D]";
 
                   const textClass =
@@ -255,7 +255,7 @@ function Episodelist({
                       <span
                         className={`${
                           item?.filler
-                            ? "text-white md:group-hover:text-[#00f2fe]"
+                            ? "text-white md:group-hover:text-[#1efe00]"
                             : ""
                         }`}
                       >
@@ -282,7 +282,7 @@ function Episodelist({
                         ? "bg-[#201F2D] text-gray-400"
                         : "bg-none"
                     } group md:hover:bg-[#2B2A42] ${
-                      isActive ? "text-[#00f2fe] bg-[#2B2A42]" : ""
+                      isActive ? "text-[#1efe00] bg-[#2B2A42]" : ""
                     } ${isSearched ? "glow-animation" : ""} ${
                       isWatched && !isActive ? "text-[#21a6ad]" : ""
                     }
@@ -297,13 +297,13 @@ function Episodelist({
                   >
                     <p className="text-[14px] font-medium">{index + 1}</p>
                     <div className="w-full flex items-center justify-between gap-x-[5px]">
-                      <h1 className="line-clamp-1 text-[15px] font-light group-hover:text-[#00f2fe]">
+                      <h1 className="line-clamp-1 text-[15px] font-light group-hover:text-[#1efe00]">
                         {language === "EN" ? item?.title : item?.japanese_title}
                       </h1>
                       {isActive && (
                         <FontAwesomeIcon
                           icon={faCirclePlay}
-                          className="w-[20px] h-[20px] text-[#00f2fe]"
+                          className="w-[20px] h-[20px] text-[#1efe00]"
                         />
                       )}
                       {!isActive && isWatched && (

@@ -152,7 +152,7 @@ const CategoryCard = React.memo(
     return (
       <div className={`w-full ${className}`}>
         <div className="flex items-center justify-between">
-          <h1 className="font-bold text-2xl text-[#00f2fe] max-[478px]:text-[18px] capitalize">
+          <h1 className="font-bold text-2xl text-[#1efe00] max-[478px]:text-[18px] capitalize">
             {label}
           </h1>
           {showViewMore && (
@@ -166,10 +166,10 @@ const CategoryCard = React.memo(
               }
               className="flex w-fit items-baseline h-fit rounded-3xl gap-x-1 group"
             >
-              <p className="text-white text-[12px] font-semibold h-fit leading-0 group-hover:text-[#00f2fe] transition-all ease-out">
+              <p className="text-white text-[12px] font-semibold h-fit leading-0 group-hover:text-[#1efe00] transition-all ease-out">
                 View more
               </p>
-              <FaChevronRight className="text-white text-[10px] group-hover:text-[#00f2fe] transition-all ease-out" />
+              <FaChevronRight className="text-white text-[10px] group-hover:text-[#1efe00] transition-all ease-out" />
             </Link>
           )}
         </div>
@@ -277,7 +277,7 @@ const CategoryCard = React.memo(
                     href={`/${item.id}${
                       refer ? `?refer=${refer}` : `?refer=weebhideout`
                     }`}
-                    className="text-white font-semibold mt-1 item-title hover:text-[#00f2fe] hover:cursor-pointer line-clamp-1"
+                    className="text-white font-semibold mt-1 item-title hover:text-[#1efe00] hover:cursor-pointer line-clamp-1"
                     onClick={() =>
                       typeof window !== "undefined" &&
                       window.scrollTo({ top: 0, behavior: "smooth" })
@@ -409,7 +409,7 @@ const CategoryCard = React.memo(
                       onClick={() =>
                         window.scrollTo({ top: 0, behavior: "smooth" })
                       }
-                      className="text-white font-semibold mt-1 item-title hover:text-[#00f2fe] hover:cursor-pointer line-clamp-1"
+                      className="text-white font-semibold mt-1 item-title hover:text-[#1efe00] hover:cursor-pointer line-clamp-1"
                     >
                       {language === "EN" ? item.title : item.japanese_title}
                     </Link>

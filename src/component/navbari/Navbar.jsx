@@ -73,7 +73,7 @@ function Navbar() {
               className="text-4xl font-bold max-[575px]:text-3xl cursor-pointer"
             >
               {logoTitle.slice(0, 3)}
-              <span className="text-[#00f2fe]">{logoTitle.slice(3, 4)}</span>
+              <span className="text-[#1efe00]">{logoTitle.slice(3, 4)}</span>
               {logoTitle.slice(4)}
             </Link>
           </div>
@@ -99,7 +99,7 @@ function Navbar() {
             >
               <FontAwesomeIcon
                 icon={item.icon}
-                className="text-[#00f2fe] text-xl font-bold"
+                className="text-[#1efe00] text-xl font-bold"
               />
               <p className="text-[15px]">{item.label}</p>
             </Link>
@@ -114,7 +114,7 @@ function Navbar() {
                     index === 0 ? "rounded-l-[3px]" : "rounded-r-[3px]"
                   } ${
                     language === lang
-                      ? "bg-[#00f2fe] text-black"
+                      ? "bg-[#1efe00] text-black"
                       : "bg-gray-600 text-white"
                   }`}
                 >
@@ -132,7 +132,7 @@ function Navbar() {
           >
             <FaTelegramPlane
               // icon={faTelegram}
-              className="text-xl font-bold text-[#00f2fe]"
+              className="text-xl font-bold text-[#1efe00]"
             />
             <p className="text-[15px] mb-[1px] text-white">Join Telegram</p>
           </Link>

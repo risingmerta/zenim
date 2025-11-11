@@ -32,7 +32,7 @@ const Trending = ({ trending, selectL, refer }) => {
 
   return (
     <div className="mt-6 max-[1200px]:px-4 max-md:px-0">
-      <h1 className="text-[#00f2fe] text-2xl font-bold max-md:pl-4">
+      <h1 className="text-[#1efe00] text-2xl font-bold max-md:pl-4">
         Trending
       </h1>
 
@@ -98,10 +98,10 @@ const Trending = ({ trending, selectL, refer }) => {
 
         {/* Navigation buttons */}
         <div className="absolute top-0 right-0 bottom-0 w-[45px] flex flex-col space-y-2 max-[759px]:hidden">
-          <div className="btn-next bg-[#383747] h-[50%] flex justify-center items-center rounded-[8px] cursor-pointer transition-all duration-300 ease-out hover:bg-[#00f2fe] hover:text-[#383747]">
+          <div className="btn-next bg-[#383747] h-[50%] flex justify-center items-center rounded-[8px] cursor-pointer transition-all duration-300 ease-out hover:bg-[#1efe00] hover:text-[#383747]">
             <FaChevronRight />
           </div>
-          <div className="btn-prev bg-[#383747] h-[50%] flex justify-center items-center rounded-[8px] cursor-pointer transition-all duration-300 ease-out hover:bg-[#00f2fe] hover:text-[#383747]">
+          <div className="btn-prev bg-[#383747] h-[50%] flex justify-center items-center rounded-[8px] cursor-pointer transition-all duration-300 ease-out hover:bg-[#1efe00] hover:text-[#383747]">
             <FaChevronLeft />
           </div>
         </div>

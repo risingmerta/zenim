@@ -64,7 +64,7 @@
   position: absolute;
   bottom: 0;
   right: 0;
-  background-color: #00f2fe;
+  background-color: #1efe00;
   color: #000;
   border-radius: 50%;
   padding: 6px;
@@ -215,7 +215,7 @@
 }
 
 .avatar-image:hover {
-  border-color: #00f2fe;
+  border-color: #1efe00;
   transform: scale(1.05);
 }
 
@@ -229,7 +229,7 @@
 
 .modal-footer button {
   padding: 0.6rem 1.2rem;
-  background-color: #00f2fe;
+  background-color: #1efe00;
   border: none;
   border-radius: 8px;
   cursor: pointer;
@@ -265,7 +265,7 @@
 
 .close-button:hover {
   background: rgba(0, 242, 254, 0.15);
-  color: #00f2fe;
+  color: #1efe00;
   transform: scale(1.1) rotate(90deg);
 }
 

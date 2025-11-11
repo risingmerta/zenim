@@ -18,7 +18,7 @@ const ToggleButton = ({ label, isActive, onClick }) => (
     <h1 className="capitalize text-[13px]">{label}</h1>
     <span
       className={`capitalize text-[13px] ${
-        isActive ? "text-[#00f2fe]" : "text-red-500"
+        isActive ? "text-[#1efe00]" : "text-red-500"
       }`}
     >
       {isActive ? "on" : "off"}
@@ -45,7 +45,7 @@ function Notification({ message, type, onClose }) {
         exit={{ opacity: 0, x: 50 }}
         transition={{ duration: 0.3 }}
         className={`fixed bottom-4 right-4 z-[9999] px-4 py-3 rounded-lg shadow-lg text-sm font-medium flex items-center gap-2
-          ${isSuccess ? "bg-[#00f2fe]/80" : "bg-red-500/80"} text-white`}
+          ${isSuccess ? "bg-[#1efe00]/80" : "bg-red-500/80"} text-white`}
       >
         {isSuccess ? (
           <FaCheckCircle className="text-white text-lg" />
@@ -234,7 +234,7 @@ function WatchControlsContent({
                   <button
                     key={status}
                     onClick={() => handleSelect(status)}
-                    className="block w-full px-4 py-2 text-left text-black hover:bg-[#00f2fe]/20 hover:text-black transition duration-150 ease-in-out"
+                    className="block w-full px-4 py-2 text-left text-black hover:bg-[#1efe00]/20 hover:text-black transition duration-150 ease-in-out"
                   >
                     {status}
                   </button>

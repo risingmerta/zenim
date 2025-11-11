@@ -59,45 +59,59 @@ export default function Home(props) {
             refer={props.refer}
           />
 
-          <div
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            padding: "10px 0",
+            backgroundColor: "#201f31",
+          }}
+        >
+          <iframe
+            src="/ad"
+            title="Sponsored Ad"
+            scrolling="no"
+
+            referrerPolicy="no-referrer-when-downgrade"
             style={{
               width: "100%",
-              display: "flex",
-              justifyContent: "center",
-              margin: "10px 0",
+              maxWidth: "728px",
+              height: "90px",
+              border: "none",
+              borderRadius: "10px",
+              overflow: "hidden",
+              backgroundColor: "#201f31",
             }}
-          >
-            <iframe
-              src="/ad"
-              style={{
-                width: "fit-content",
-                height: "100px",
-                border: "none",
-                overflow: "hidden",
-              }}
-              scrolling="no"
-            ></iframe>
-          </div>
+          />
+        </div>
           <ContinueWatching selectL={selectL} refer={props.refer} />
-          <div
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            padding: "10px 0",
+            backgroundColor: "#201f31",
+          }}
+        >
+          <iframe
+            src="/ad"
+            title="Sponsored Ad"
+            scrolling="no"
+
+            referrerPolicy="no-referrer-when-downgrade"
             style={{
               width: "100%",
-              display: "flex",
-              justifyContent: "center",
-              margin: "10px 0",
+              maxWidth: "728px",
+              height: "90px",
+              border: "none",
+              borderRadius: "10px",
+              overflow: "hidden",
+              backgroundColor: "#201f31",
             }}
-          >
-            <iframe
-              src="/ad2"
-              style={{
-                width: "fit-content",
-                height: "100px",
-                border: "none",
-                overflow: "hidden",
-              }}
-              scrolling="no"
-            ></iframe>
-          </div>
+          />
+        </div>
           <Trending
             trending={homeInfo.trending}
             selectL={selectL}

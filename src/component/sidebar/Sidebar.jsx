@@ -70,7 +70,7 @@ const Sidebar = ({ isOpen, onClose }) => {
               >
                 <FontAwesomeIcon
                   icon={item.icon}
-                  className="text-[#00f2fe] text-xl font-bold max-[575px]:text-[15px]"
+                  className="text-[#1efe00] text-xl font-bold max-[575px]:text-[15px]"
                 />
                 <p className="text-[15px] max-[575px]:text-[13px]">
                   {item.label}
@@ -87,7 +87,7 @@ const Sidebar = ({ isOpen, onClose }) => {
                       index === 0 ? "rounded-l-[3px]" : "rounded-r-[3px]"
                     } ${
                       language === lang
-                        ? "bg-[#00f2fe] text-black"
+                        ? "bg-[#1efe00] text-black"
                         : "bg-gray-600 text-white"
                     } max-[575px]:text-[9px] max-[575px]:py-0`}
                   >
@@ -125,7 +125,7 @@ const Sidebar = ({ isOpen, onClose }) => {
               >
                 <Link
                   href={item.path}
-                  className="px-4 hover:text-[#00f2fe] hover:cursor-pointer w-fit line-clamp-1"
+                  className="px-4 hover:text-[#1efe00] hover:cursor-pointer w-fit line-clamp-1"
                 >
                   {item.name}
                 </Link>

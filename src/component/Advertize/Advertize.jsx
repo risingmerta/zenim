@@ -5,7 +5,7 @@ export default function Advertize(props) {
   const [time, setTime] = useState(new Date());
   const [showAd, setShowAd] = useState(false);
   const [directLink, setDirectLink] = useState(
-    "https://electthirteenth.com/zffe7w32?key=38fa10bd1d079d31f58778794a8026c0"
+    "https://www.effectivegatecpm.com/rhbukn35v?key=11de2237f91439a908295769e5b4f9ba"
   );
 
   useEffect(() => {
@@ -40,9 +40,9 @@ export default function Advertize(props) {
     } else {
       return {
         getItem: () => null,
-        setItem: () => {},
-        removeItem: () => {},
-        clear: () => {},
+        setItem: () => { },
+        removeItem: () => { },
+        clear: () => { },
       };
     }
   };

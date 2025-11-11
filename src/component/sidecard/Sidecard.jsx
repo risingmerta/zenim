@@ -54,7 +54,7 @@ function Sidecard({ data, label, className, limit, selectL, refer }) {
   };
   return (
     <div className={`flex flex-col space-y-6 ${className}`}>
-      <h1 className="font-bold text-2xl text-[#00f2fe]">{label}</h1>
+      <h1 className="font-bold text-2xl text-[#1efe00]">{label}</h1>
       <div className="flex flex-col space-y-4 bg-[#2B2A3C] p-4 pt-8">
         {data &&
           displayedData.map((item, index) => (
@@ -100,7 +100,7 @@ function Sidecard({ data, label, className, limit, selectL, refer }) {
                 <div className="flex flex-col ml-4 space-y-2">
                   <Link
                     href={`/${item.id}${refer ? `?refer=${refer}` : `?refer=weebsSecret`}`}
-                    className="text-[1em] font-[500] hover:cursor-pointer hover:text-[#00f2fe] transform transition-all ease-out line-clamp-1 max-[478px]:line-clamp-2 max-[478px]:text-[14px]"
+                    className="text-[1em] font-[500] hover:cursor-pointer hover:text-[#1efe00] transform transition-all ease-out line-clamp-1 max-[478px]:line-clamp-2 max-[478px]:text-[14px]"
                     onClick={() =>
                       typeof window !== "undefined" &&
                       window.scrollTo({ top: 0, behavior: "smooth" })

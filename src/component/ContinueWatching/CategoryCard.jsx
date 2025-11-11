@@ -138,7 +138,7 @@ const CategoryCard = ({
     <div className={`w-full ${className}`}>
       {label && (
         <div className="flex items-center justify-between">
-          <h1 className="font-bold text-2xl text-[#00f2fe] max-[478px]:text-[18px] capitalize">
+          <h1 className="font-bold text-2xl text-[#1efe00] max-[478px]:text-[18px] capitalize">
             {label}
           </h1>
           {showViewMore && (
@@ -152,10 +152,10 @@ const CategoryCard = ({
               }
               className="flex w-fit items-baseline h-fit rounded-3xl gap-x-1 group"
             >
-              <p className="text-white text-[12px] font-semibold group-hover:text-[#00f2fe] transition-all ease-out">
+              <p className="text-white text-[12px] font-semibold group-hover:text-[#1efe00] transition-all ease-out">
                 View more
               </p>
-              <FaChevronRight className="text-white text-[10px] group-hover:text-[#00f2fe] transition-all ease-out" />
+              <FaChevronRight className="text-white text-[10px] group-hover:text-[#1efe00] transition-all ease-out" />
             </Link>
           )}
         </div>
@@ -242,7 +242,7 @@ const CategoryCard = ({
               href={`/${item.id}${
                 refer ? `?refer=${refer}` : `?refer=weebsSecret`
               }`}
-              className="text-white font-medium text-[0.85rem] mt-1 item-title hover:text-[#00f2fe] hover:cursor-pointer line-clamp-1"
+              className="text-white font-medium text-[0.85rem] mt-1 item-title hover:text-[#1efe00] hover:cursor-pointer line-clamp-1"
             >
               {language === "EN" ? item.title : item.japanese_title}
             </Link>
