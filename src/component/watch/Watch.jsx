@@ -73,34 +73,34 @@ export default function Watch(props) {
   const [serverLoading, setServerLoading] = useState(true);
   const nextEpisodeSchedule = props.scheduleData;
   const isServerFetchInProgress = useRef(false);
-  const isStreamFetchInProgress = useRef(false);
+  const isStreamFetchInProgress = useRef(false); 
 
-  let message;
+  let message = props.scheduleData ? props.scheduleData : "";
 
-  if (props.scheduleData?.releaseDate && props.scheduleData?.time) {
-    // Combine release date and time (UTC-safe)
-    const dateStr = `${props.scheduleData?.releaseDate}T${props.scheduleData?.time}:00Z`;
+  // if (props.scheduleData && props.scheduleData) {
+  //   // Combine release date and time (UTC-safe)
+  //   const dateStr = `${props.scheduleData?.releaseDate}T${props.scheduleData?.time}:00Z`;
 
-    const nextEpisodeDate = new Date(dateStr);
+  //   const nextEpisodeDate = new Date(dateStr);
 
-    if (isNaN(nextEpisodeDate)) {
-      message = "🚨 There was an error with the episode schedule date.";
-    } else {
-      const formattedDate = nextEpisodeDate.toLocaleString("en-US", {
-        month: "numeric",
-        day: "numeric",
-        year: "numeric",
-        hour: "numeric",
-        minute: "2-digit",
-        second: "2-digit",
-        hour12: true,
-      });
+  //   if (isNaN(nextEpisodeDate)) {
+  //     message = "🚨 There was an error with the episode schedule date.";
+  //   } else {
+  //     const formattedDate = nextEpisodeDate.toLocaleString("en-US", {
+  //       month: "numeric",
+  //       day: "numeric",
+  //       year: "numeric",
+  //       hour: "numeric",
+  //       minute: "2-digit",
+  //       second: "2-digit",
+  //       hour12: true,
+  //     });
 
-      message = `${formattedDate}`;
-    }
-  } else {
-    message = "";
-  }
+  //     message = `${formattedDate}`;
+  //   }
+  // } else {
+  //   message = "";
+  // }
 
   useEffect(() => {
     setEpisodes(null);

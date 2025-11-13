@@ -183,15 +183,15 @@ export default async function Page({ params, searchParams }) {
     const res = await fetch(`${api_url}/schedule/${id}`, { cache: "no-store" });
     if (res.ok) {
       const json = await res.json();
-      const dateOnly = json?.results?.nextEpisodeSchedule?.split(" ")[0];
-      if (dateOnly) {
-        const schDoc = await db
-          .collection("animeSchedule")
-          .findOne({ _id: dateOnly });
-        dati = schDoc?.schedule?.find((s) => s.id === id)
-          ? { schedule: schDoc.schedule.find((s) => s.id === id) }
-          : null;
-      }
+      dati = json?.results?.nextEpisodeSchedule?.split(" ")[0];
+      // if (dateOnly) {
+      //   const schDoc = await db
+      //     .collection("animeSchedule")
+      //     .findOne({ _id: dateOnly });
+      //   dati = schDoc?.schedule?.find((s) => s.id === id)
+      //     ? { schedule: schDoc.schedule.find((s) => s.id === id) }
+      //     : null;
+      // }
     }
   } catch (error) {
     console.error("Failed to fetch schedule:", error.message);
@@ -206,7 +206,7 @@ export default async function Page({ params, searchParams }) {
         homeData={home}
         infoData={infoData}
         episodeData={episodeData}
-        scheduleData={dati?.schedule}
+        scheduleData={dati}
         randomData={randomData}
       />
 
