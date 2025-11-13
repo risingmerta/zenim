@@ -183,7 +183,7 @@ export default async function Page({ params, searchParams }) {
     const res = await fetch(`${api_url}/schedule/${id}`, { cache: "no-store" });
     if (res.ok) {
       const json = await res.json();
-      dati = json?.results?.nextEpisodeSchedule?.split(" ")[0];
+      dati = json?.results?.nextEpisodeSchedule;
       // if (dateOnly) {
       //   const schDoc = await db
       //     .collection("animeSchedule")
