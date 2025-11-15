@@ -1,6 +1,6 @@
 // monetize.js
 
-import MonetizeContent from "@/components/MonetizeContent/MonetizeContent";
+import MonetizeContent from "@/component/MonetizeContent/MonetizeContent";
 // import { SessionProvider } from "next-auth/react";
 
 // ----------------------------------------------------
