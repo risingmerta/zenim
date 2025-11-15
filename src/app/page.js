@@ -18,9 +18,7 @@ export default async function Page({ searchParams }) {
     ];
 
     const baseUrl = apis[Math.floor(Math.random() * apis.length)];
-    const res = await fetch(`${baseUrl}/top-search`, {
-      next: { revalidate: 3600 },
-    });
+    const res = await fetch(`${baseUrl}/top-search`);
     const data = await res.json();
     results = data?.results || [];
   } catch (error) {

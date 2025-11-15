@@ -8,19 +8,19 @@ const API_URLS = [
 ];
 
 // In-memory cache
-let cache = {
-  timestamp: 0,
-  data: null,
-};
+// let cache = {
+//   timestamp: 0,
+//   data: null,
+// };
 
-// Cache duration (1 hour)
-const CACHE_DURATION = 60 * 60 * 1000;
+// // Cache duration (1 hour)
+// const CACHE_DURATION = 60 * 60 * 1000;
 
-/**
- * Attempts to fetch home data from a list of external APIs sequentially.
- * @returns {Promise<Object>} The 'results' object from the first successful API response.
- * @throws {Error} If all APIs fail to provide valid data.
- */
+// /**
+//  * Attempts to fetch home data from a list of external APIs sequentially.
+//  * @returns {Promise<Object>} The 'results' object from the first successful API response.
+//  * @throws {Error} If all APIs fail to provide valid data.
+//  */
 async function fetchHomeDataFromApis() {
   for (const url of API_URLS) {
     try {
@@ -54,11 +54,11 @@ async function fetchHomeDataFromApis() {
 export async function GET() {
   const now = Date.now();
 
-  // 1. Check Cache
-  if (cache.data && now - cache.timestamp < CACHE_DURATION) {
-    console.log("Cache hit: Returning cached data.");
-    return NextResponse.json(cache.data);
-  }
+  // // 1. Check Cache
+  // if (cache.data && now - cache.timestamp < CACHE_DURATION) {
+  //   console.log("Cache hit: Returning cached data.");
+  //   return NextResponse.json(cache.data);
+  // }
 
   try {
     // 2. Fetch from external APIs
@@ -96,20 +96,20 @@ export async function GET() {
     };
 
     // 4. Update Cache
-    cache = {
-      timestamp: now,
-      data: result,
-    };
+    // cache = {
+    //   timestamp: now,
+    //   data: result,
+    // };
 
     return NextResponse.json(result);
   } catch (err) {
     console.error("❌ Error fetching home data from all sources:", err.message);
 
     // Fallback: If cache exists, return stale data during failure.
-    if (cache.data) {
-        console.warn("Returning stale cache data due to upstream failure.");
-        return NextResponse.json(cache.data);
-    }
+    // if (cache.data) {
+    //     console.warn("Returning stale cache data due to upstream failure.");
+    //     return NextResponse.json(cache.data);
+    // }
 
     return NextResponse.json({ error: "Server error: Could not fetch home data." }, { status: 500 });
   }
