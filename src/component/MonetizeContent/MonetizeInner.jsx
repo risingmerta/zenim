@@ -335,6 +335,8 @@ const CreatorSettings = ({
   session,
   adsterraSmartlink,
   setAdsterraSmartlink,
+  nativeBarLink,
+  setNativeBarLink,
   creatorApiKey,
   setCreatorApiKey,
   instagramId,
@@ -358,7 +360,7 @@ const CreatorSettings = ({
           <span className="text-[#1efe00] font-medium">
             Place it in your Instagram bio
           </span>{" "}
-          and share it widely! The more visits, the more you earn.
+          and share it widely!
         </p>
       </div>
 
@@ -379,7 +381,6 @@ const CreatorSettings = ({
           <button
             onClick={() => handleCopy(creatorLink)}
             className="p-2 rounded-full bg-[#1e1e1e] hover:bg-[#1efe00] hover:text-black transition-all"
-            title="Copy Link"
           >
             <FaLink className="text-white h-4 w-4" />
           </button>
@@ -393,6 +394,7 @@ const CreatorSettings = ({
         </h3>
 
         <div className="space-y-5">
+
           {/* Smart Link */}
           <label className="block">
             <span className="text-gray-400 text-sm sm:text-base">
@@ -403,6 +405,21 @@ const CreatorSettings = ({
               placeholder="Enter your Smart Link URL"
               value={adsterraSmartlink}
               onChange={(e) => setAdsterraSmartlink(e.target.value)}
+              className="w-full mt-2 bg-[#111] border border-[#2a2a2a] rounded-lg p-2.5 sm:p-3 text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-[#1efe00] transition-all"
+              disabled={isLoadingSetup}
+            />
+          </label>
+
+          {/* Native Bar Link */}
+          <label className="block">
+            <span className="text-gray-400 text-sm sm:text-base">
+              Adsterra Native Bar URL
+            </span>
+            <input
+              type="url"
+              placeholder="Enter your Native Bar URL"
+              value={nativeBarLink}
+              onChange={(e) => setNativeBarLink(e.target.value)}
               className="w-full mt-2 bg-[#111] border border-[#2a2a2a] rounded-lg p-2.5 sm:p-3 text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-[#1efe00] transition-all"
               disabled={isLoadingSetup}
             />
@@ -455,6 +472,7 @@ const CreatorSettings = ({
     </div>
   );
 };
+
 
 // ----------------------------------------------------
 // MONETIZATION STEPS COMPONENT (The Setup Form)
@@ -659,6 +677,44 @@ export function MonetizeInner(props) {
   };
 
   // --- FETCH SETUP STATUS ---
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const savedSmartlink = localStorage.getItem("adsterraSmartlink");
+      const savedNativeBar = localStorage.getItem("nativeBarAd");
+      const savedApiKey = localStorage.getItem("creatorApiKey");
+      const savedInstagram = localStorage.getItem("instagramId");
+
+      if (savedSmartlink) setAdsterraSmartlink(savedSmartlink);
+      if (savedNativeBar) setNativeBarAd(savedNativeBar);
+      if (savedApiKey) setCreatorApiKey(savedApiKey);
+      if (savedInstagram) setInstagramId(savedInstagram);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      localStorage.setItem("adsterraSmartlink", adsterraSmartlink);
+    }
+  }, [adsterraSmartlink]);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      localStorage.setItem("nativeBarAd", nativeBarAd);
+    }
+  }, [nativeBarAd]);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      localStorage.setItem("creatorApiKey", creatorApiKey);
+    }
+  }, [creatorApiKey]);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      localStorage.setItem("instagramId", instagramId);
+    }
+  }, [instagramId]);
+
   useEffect(() => {
     if (session && status === "authenticated") {
       const fetchSetupStatus = async () => {
