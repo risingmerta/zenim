@@ -26,6 +26,8 @@
     "clsx": "^2.1.1",
     "cors-anywhere": "^0.4.4",
     "date-fns": "^4.1.0",
+    "dayjs": "^1.11.19",
+    "days": "^1.1.1",
     "firebase": "^11.6.1",
     "framer-motion": "^12.23.12",
     "fs": "^0.0.1-security",

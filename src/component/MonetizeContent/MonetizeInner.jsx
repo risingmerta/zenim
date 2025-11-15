@@ -18,7 +18,8 @@ import dayjs from "dayjs";
 import SignInSignUpModal from "@/component/SignSignup/SignInSignUpModal";
 import "./monetize.css"; // Ensure this CSS file is present
 import Navbar from "../Navbar/Navbar";
-import Footer from "../footer/Footer";
+import Footer from "../Footer/Footer";
+// import Footer from "../footer/Footer";
 
 const PAYOUT_THRESHOLD = 25;
 
