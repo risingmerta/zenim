@@ -2,10 +2,16 @@
   display: flex;
   align-items: center;
   gap: 5px;
+  flex-wrap: wrap; /* ⭐ allows wrapping */
+  max-width: 100%; /* prevents overflow */
 }
+
 .social-links-wrapper span {
   padding: 5px;
   border-radius: 50%;
   font-size: 20px;
   overflow: hidden;
+  display: flex; /* keep icon centered */
+  justify-content: center;
+  align-items: center;
 }
