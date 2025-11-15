@@ -1,20 +1,93 @@
-import Advertize from "@/component/Advertize/Advertize";
-import Montiz from "@/component/Montiz/page";
-import React from "react";
+// monetize.js
+
+import MonetizeContent from "@/components/MonetizeContent/MonetizeContent";
+// import { SessionProvider } from "next-auth/react";
+
+// ----------------------------------------------------
+// THE DEFAULT EXPORT WRAPPED WITH SessionProvider
+// This is what you would import if you need the SessionProvider
 
 export async function generateMetadata() {
   return {
-    title: "Turn Your Anime Content Into Cash – Promote Animoon & Earn",
-    description: "Join the Animoon Affiliate Program designed for anime content creators. Share Animoon with your audience and earn money for every click, signup, or sale. It’s fast, free, and perfect for anime fans looking to monetize their influence.",
+    title:
+      "Monetize Your Creator Profile | Earn Money from Views & Traffic - Animeshouse",
+    description:
+      "Join Animeshouse's monetization program and start earning from your content. Connect your Adsterra Smart Link and API key, track analytics, and get paid for every view you bring.",
+    openGraph: {
+      title: "Monetize Your Animeshouse Creator Profile | Earn from Views & Clicks",
+      description:
+        "Set up your Adsterra Smart Link and API integration to start earning. Real-time analytics, payout tracking, and easy setup for all creators on Animeshouse.",
+      url: "https://animeshouse.fun/monetize",
+      type: "website",
+      siteName: "Animeshouse",
+      // images: [
+      //   {
+      //     url: "https://animeshouse.fun/og/monetize-banner.jpg",
+      //     width: 1200,
+      //     height: 630,
+      //     alt: "Animeshouse Monetization Dashboard",
+      //   },
+      // ],
+    },
+    // twitter: {
+    //   card: "summary_large_image",
+    //   title: "Animeshouse Creator Monetization | Earn from Your Content",
+    //   description:
+    //     "Link your Adsterra account and start earning from your Animeshouse creator profile with live analytics and payouts.",
+    //   images: ["https://Animeshouse.fun/og/monetize-banner.jpg"],
+    // },
+    keywords: [
+      "Animeshouse",
+      "Animeshouse monetization",
+      "creator earnings",
+      "adsterra smart link",
+      "Animeshouse dashboard",
+      "earn money online",
+      "creator program",
+      "Animeshouse analytics",
+    ],
+    alternates: {
+      canonical: "https://animeshouse.fun/monetize",
+    },
   };
 }
 
-export default async function page({ searchParams }) {
-  const searc = await searchParams;
-  return (
-    <div>
-      <Montiz refer={searc.refer} />
-      {/* <Advertize direct={searc.refer} /> */}
-    </div>
-  );
+// ----------------------------------------------------
+export default async function Monetize({searchParams}) {
+  const creatorApiKey = searchParams.creator; // ✨ Get the creator API key
+
+  // --- Start Dynamic Ad Link Logic ---
+  const DEFAULT_AD_LINK =
+    "https://contemplatewaryheadquarter.com/ukqgqrv4n?key=acf2a1b713094b78ec1cc21761e9b149";
+  let dynamicAdLink = DEFAULT_AD_LINK;
+
+  if (creatorApiKey) {
+    try {
+      // 1. Connect to MongoDB
+      const db = await connectDB();
+      // Assuming your collection is named 'creators'
+      const collection = db.collection("creators");
+
+      // 2. Fetch the creator data
+      const creatorData = await collection.findOne(
+        { username: creatorApiKey },
+        // Project to only include the smartlink for efficiency
+        { projection: { adsterraSmartlink: 1, _id: 0 } }
+      );
+
+      // 3. Update the ad link if found
+      if (creatorData && creatorData.adsterraSmartlink) {
+        dynamicAdLink = creatorData.adsterraSmartlink;
+      }
+    } catch (error) {
+      console.error("MongoDB fetch failed for creator:", creatorApiKey, error);
+      // It will fall back to DEFAULT_AD_LINK
+    }
+  }
+  // --- End Dynamic Ad Link Logic ---
+  // You can pass the session prop if you are fetching the session on the server
+  // return <SessionProvider session={pageProps.session}> <MonetizeContent /> </SessionProvider>
+
+  // For a simple client-side component, we just wrap it
+  return <MonetizeContent creator={creatorApiKey} />;
 }

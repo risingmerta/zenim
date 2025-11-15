@@ -666,7 +666,7 @@ export default function Watch(props) {
                       <div className="w-full px-4 rounded-md bg-[#0088CC] flex items-center justify-between gap-x-2">
                         <div className="w-full h-fit">
                           <span className="text-[18px]">🚀</span>
-                          {" Estimated the next episode will come at "}
+                          {" Estimated the next episode will come at "} 
                           <span className="text-[13.4px] font-medium">
                             {message}
                           </span>
