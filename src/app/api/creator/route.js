@@ -1,31 +1,28 @@
 import { NextResponse } from "next/server";
 import { getServerSession } from "next-auth/next";
-import { authOptions } from "@/app/api/auth/[...nextauth]/route"; // Adjust path as necessary
-import { connectDB } from "@/lib/mongoClient"; // Adjust path as necessary
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import { connectDB } from "@/lib/mongoClient";
 
-// Define the collection for storing monetization details
 const CREATOR_COLLECTION = "creators";
 
 /**
- * GET handler: Retrieves the creator's monetization setup data.
- * Used by the frontend (MonetizeContent component) to check setup status.
+ * GET – Fetch creator monetization setup
+ * Works for Web + Mobile (no localStorage needed)
  */
 export async function GET() {
   const session = await getServerSession(authOptions);
-  const userId = session?.user?.id;
 
-  if (!userId) {
-    // If no session, they shouldn't even reach the authenticated part of the dashboard
+  if (!session?.user?.id) {
     return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
   }
 
+  const userId = session.user.id;
+
   try {
-    // Correctly destructure the returned db object
     const db = await connectDB();
 
     const creatorSetup = await db.collection(CREATOR_COLLECTION).findOne(
-      { userId: userId }, // Query by the authenticated user's ID
-      // ✨ ADD 'username' to the projection so it is returned
+      { userId },
       {
         projection: {
           _id: 0,
@@ -33,11 +30,11 @@ export async function GET() {
           creatorApiKey: 1,
           instagramId: 1,
           username: 1,
+          native: 1, // 🟢 NEW: native bar support
         },
       }
     );
 
-    // If data is found, return it. If not found (null), it means setup hasn't been done yet.
     return NextResponse.json({ setup: creatorSetup }, { status: 200 });
   } catch (err) {
     console.error("GET Creator Setup DB Error:", err);
@@ -49,28 +46,33 @@ export async function GET() {
 }
 
 /**
- * POST handler: Saves or updates the creator's monetization setup data.
- * Called when the user clicks 'Complete Setup & Save' in the frontend.
+ * POST – Save or Update monetization setup
+ * Safe for React Native (localStorage is not needed)
  */
 export async function POST(request) {
   const session = await getServerSession(authOptions);
-  const userId = session?.user?.id;
-  // ✨ Extract username from the session
-  const username = session?.user?.username;
 
-  if (!userId || !username) {
-    // Ensure both are present for proper saving
+  if (!session?.user?.id || !session?.user?.username) {
     return NextResponse.json(
-      { message: "Unauthorized or missing user data" },
+      { message: "Unauthorized or missing session" },
       { status: 401 }
     );
   }
 
-  try {
-    const { adsterraSmartlink, creatorApiKey, instagramId } =
-      await request.json();
+  const userId = session.user.id;
+  const username = session.user.username;
 
-    // Basic Validation
+  try {
+    const body = await request.json();
+
+    const {
+      adsterraSmartlink,
+      creatorApiKey,
+      instagramId,
+      native = false, // 🟢 NEW: Support native bar toggle
+    } = body;
+
+    // Basic validation
     if (!adsterraSmartlink || !creatorApiKey) {
       return NextResponse.json(
         { message: "Smartlink and API Key are required." },
@@ -78,18 +80,16 @@ export async function POST(request) {
       );
     }
 
-    // Correctly destructure the returned db object
     const db = await connectDB();
 
-    // Data to be inserted/updated
     const updateData = {
       $set: {
-        userId: userId,
-        // ✨ Add username to the $set operator
-        username: username,
-        adsterraSmartlink: adsterraSmartlink,
-        creatorApiKey: creatorApiKey,
+        userId,
+        username,
+        adsterraSmartlink,
+        creatorApiKey,
         instagramId: instagramId || null,
+        native, // 🟢 Save native bar preference
         updatedAt: new Date(),
       },
       $setOnInsert: {
@@ -97,10 +97,9 @@ export async function POST(request) {
       },
     };
 
-    // Use upsert to either update an existing document or insert a new one
     const result = await db
       .collection(CREATOR_COLLECTION)
-      .updateOne({ userId: userId }, updateData, { upsert: true });
+      .updateOne({ userId }, updateData, { upsert: true });
 
     return NextResponse.json(
       {
