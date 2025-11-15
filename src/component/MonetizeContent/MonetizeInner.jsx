@@ -209,7 +209,7 @@ function CreatorDashboardContent({ creatorApiKey }) {
     const progress = Math.min(100, (totalRevenue / PAYOUT_THRESHOLD) * 100);
     return { totalRevenue, progress };
   }, [stats]);
- 
+
   const { totalRevenue, progress } = revenueSummary;
   const formatCurrency = (v) => `$${v.toFixed(2)}`;
 
@@ -459,9 +459,12 @@ const CreatorSettings = ({
 // ----------------------------------------------------
 // MONETIZATION STEPS COMPONENT (The Setup Form)
 // ----------------------------------------------------
+
 function MonetizationSteps({
   adsterraSmartlink,
   setAdsterraSmartlink,
+  nativeBarAd,
+  setNativeBarAd,
   creatorApiKey,
   setCreatorApiKey,
   instagramId,
@@ -481,13 +484,12 @@ function MonetizationSteps({
 
       {/* Steps Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6">
+
         {/* Step 1 */}
         <div className="bg-[#0f0f0f] border border-gray-700 rounded-xl p-4 sm:p-5 md:p-6 shadow-[0_0_20px_rgba(0,255,100,0.1)] hover:shadow-[0_0_25px_rgba(0,255,100,0.25)] transition-all duration-300">
           <div className="flex flex-col items-center text-center space-y-2 sm:space-y-3">
             <FaSackDollar className="text-green-400 text-3xl sm:text-4xl drop-shadow-[0_0_10px_rgba(0,255,100,0.4)]" />
-            <h3 className="text-lg sm:text-xl font-semibold">
-              Step 1: Sign Up
-            </h3>
+            <h3 className="text-lg sm:text-xl font-semibold">Step 1: Sign Up</h3>
             <p className="text-gray-400 text-xs sm:text-sm">
               Join Adsterra’s publisher program and get approved fast.
             </p>
@@ -507,11 +509,13 @@ function MonetizationSteps({
           <div className="flex flex-col items-center text-center space-y-2 sm:space-y-3">
             <FaLink className="text-cyan-400 text-3xl sm:text-4xl drop-shadow-[0_0_10px_rgba(0,200,255,0.5)]" />
             <h3 className="text-lg sm:text-xl font-semibold">
-              Step 2: Get Smart Link
+              Step 2: Smart Link + Native Bar Ad
             </h3>
             <p className="text-gray-400 text-xs sm:text-sm">
-              Create your Smart Link to track traffic and revenue.
+              Add your Smart Link and Native Bar ad code.
             </p>
+
+            {/* Smart Link Input */}
             <input
               type="url"
               placeholder="Enter your Smart Link URL"
@@ -519,13 +523,32 @@ function MonetizationSteps({
               onChange={(e) => setAdsterraSmartlink(e.target.value)}
               className="w-full bg-[#1a1a1a] text-gray-200 border border-gray-700 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-cyan-500 transition text-sm"
             />
+
+            {/* Native Bar Ad Input */}
+            <textarea
+              placeholder="Paste Native Bar Ad Code (Script)"
+              value={nativeBarAd}
+              onChange={(e) => setNativeBarAd(e.target.value)}
+              className="w-full bg-[#1a1a1a] text-gray-200 border border-gray-700 rounded-md p-2 h-24 focus:outline-none focus:ring-2 focus:ring-cyan-500 transition text-sm"
+            />
+
+            {/* Helpful Links */}
             <a
               href="https://beta.publishers.adsterra.com/links"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-cyan-400 font-medium mt-2 hover:text-cyan-300 transition"
+              className="text-cyan-400 font-medium hover:text-cyan-300 transition"
             >
               Get Smart Link →
+            </a>
+
+            <a
+              href="https://beta.publishers.adsterra.com/native-banners"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-cyan-400 font-medium hover:text-cyan-300 transition"
+            >
+              Get Native Bar Ad →
             </a>
           </div>
         </div>
@@ -535,12 +558,13 @@ function MonetizationSteps({
           <div className="flex flex-col items-center text-center space-y-2 sm:space-y-3">
             <FaKey className="text-yellow-400 text-3xl sm:text-4xl drop-shadow-[0_0_10px_rgba(255,200,0,0.5)]" />
             <h3 className="text-lg sm:text-xl font-semibold">
-              Step 3: Get API Key
+              Step 3: API Key + Instagram
             </h3>
             <p className="text-gray-400 text-xs sm:text-sm">
-              Generate your API Token to connect your Adsterra account.
-              Optionally add Instagram.
+              Add your API Token and optionally link Instagram.
             </p>
+
+            {/* API Key */}
             <input
               type="text"
               placeholder="Enter your API Key (Required)"
@@ -548,6 +572,8 @@ function MonetizationSteps({
               onChange={(e) => setCreatorApiKey(e.target.value)}
               className="w-full bg-[#1a1a1a] text-gray-200 border border-gray-700 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-yellow-500 transition text-sm"
             />
+
+            {/* Instagram Username */}
             <input
               type="text"
               placeholder="Instagram Handle (Optional)"
@@ -555,6 +581,7 @@ function MonetizationSteps({
               onChange={(e) => setInstagramId(e.target.value)}
               className="w-full bg-[#1a1a1a] text-gray-200 border border-gray-700 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-pink-500 transition text-sm"
             />
+
             <a
               href="https://beta.publishers.adsterra.com/api-token"
               target="_blank"
@@ -584,12 +611,13 @@ function MonetizationSteps({
   );
 }
 
+
 // ----------------------------------------------------
 // THE MAIN MONETIZE COMPONENT
 // ----------------------------------------------------
 export function MonetizeInner(props) {
   const { data: session, status } = useSession();
-
+  const [nativeBarAd, setNativeBarAd] = useState("");
   const [adsterraSmartlink, setAdsterraSmartlink] = useState("");
   const [creatorApiKey, setCreatorApiKey] = useState("");
   const [instagramId, setInstagramId] = useState("");
@@ -892,6 +920,8 @@ export function MonetizeInner(props) {
               <MonetizationSteps
                 adsterraSmartlink={adsterraSmartlink}
                 setAdsterraSmartlink={setAdsterraSmartlink}
+                nativeBarAd={nativeBarAd}
+                setNativeBarAd={setNativeBarAd}
                 creatorApiKey={creatorApiKey}
                 setCreatorApiKey={setCreatorApiKey}
                 instagramId={instagramId}
