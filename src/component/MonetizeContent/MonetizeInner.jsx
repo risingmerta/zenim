@@ -543,7 +543,7 @@ function MonetizationSteps({
             </a>
 
             <a
-              href="https://beta.publishers.adsterra.com/native-banners"
+              href="https://beta.publishers.adsterra.com/websites"
               target="_blank"
               rel="noopener noreferrer"
               className="text-cyan-400 font-medium hover:text-cyan-300 transition"
