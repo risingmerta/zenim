@@ -335,8 +335,8 @@ const CreatorSettings = ({
   session,
   adsterraSmartlink,
   setAdsterraSmartlink,
-  nativeBarLink,
-  setNativeBarLink,
+  nativeBarAd,
+  setNativeBarAd,
   creatorApiKey,
   setCreatorApiKey,
   instagramId,
@@ -418,8 +418,8 @@ const CreatorSettings = ({
             <input
               type="url"
               placeholder="Enter your Native Bar URL"
-              value={nativeBarLink}
-              onChange={(e) => setNativeBarLink(e.target.value)}
+              value={nativeBarAd}
+              onChange={(e) => setNativeBarAd(e.target.value)}
               className="w-full mt-2 bg-[#111] border border-[#2a2a2a] rounded-lg p-2.5 sm:p-3 text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-[#1efe00] transition-all"
               disabled={isLoadingSetup}
             />
@@ -956,6 +956,8 @@ export function MonetizeInner(props) {
                     session={session}
                     adsterraSmartlink={adsterraSmartlink}
                     setAdsterraSmartlink={setAdsterraSmartlink}
+                    nativeBarAd={nativeBarAd}
+                    setNativeBarAd={setNativeBarAd}
                     creatorApiKey={creatorApiKey}
                     setCreatorApiKey={setCreatorApiKey}
                     instagramId={instagramId}
