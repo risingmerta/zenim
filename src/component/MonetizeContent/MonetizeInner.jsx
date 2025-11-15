@@ -893,7 +893,7 @@ export function MonetizeInner(props) {
   return (
     <>
       <Navbar now={false} creator={props.creator} />
-      <div className="min-h-screen text-white bg-[#0a0a0a] px-4 sm:px-6 md:px-10 py-8 sm:py-10 md:py-14 relative overflow-hidden">
+      <div className="min-h-screen text-white bg-[#0a0a0a] px-4 mt-[30px] sm:px-6 md:px-10 py-8 sm:py-10 md:py-14 relative overflow-hidden">
         {/* Optional gradient backdrop */}
         <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0a] via-[#101010] to-[#080808] pointer-events-none" />
 
